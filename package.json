@@ -8,7 +8,6 @@
   },
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start"
+    "generate": "PROD=true nuxt generate"
   }
 }

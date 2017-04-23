@@ -25,7 +25,7 @@
 <script>
 export default {
   data: () => ({
-    href: 'https://twitter.com/intent/tweet?url=' + encodeURIComponent('https://head-elements.now.sh/about')
+
   }),
   props: [
     'rows'
