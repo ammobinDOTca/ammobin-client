@@ -3,7 +3,6 @@
   <div class="container">
     <h1>Meta Ammo</h1>
     <h3>... a place to view all ammo prices across canada</h3>
-    <my-table></my-table>
     <p>
       <nuxt-link to="/rimfire">rimfire</nuxt-link>
     </p>
