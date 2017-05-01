@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "nuxt",
     "build": "PROD=true nuxt build",
-    "start": "PROD=true nuxt start",
+    "start": "HOST=0.0.0.0 NODE_ENV=production PROD=true nuxt start",
     "generate": "PROD=true nuxt generate"
   }
 }
