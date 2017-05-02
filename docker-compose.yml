@@ -4,6 +4,6 @@ services:
       build: .
       restart: always
       ports:
-        - :4000:3000
-      volumes:
-      - .:/build
+        - :4000:4000
+      #volumes:
+      #- .:/build
