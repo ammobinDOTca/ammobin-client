@@ -2,7 +2,7 @@ const webpack = require('webpack');
 module.exports = {
   build: {
     plugins: [
-      new webpack.DefinePlugin({ BASE_API_URL: !!process.env.PROD ? '"TODO"' : '"http://localhost:8080/"' })
+      new webpack.DefinePlugin({ BASE_API_URL: !!process.env.PROD ? '"https://ammo-api.snapfix.io"' : '"http://localhost:8080/"' })
     ],
     vendor: ['axios'] // Add axios in the vendor.bundle.js
   },
