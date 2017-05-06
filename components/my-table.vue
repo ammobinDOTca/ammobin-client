@@ -1,16 +1,19 @@
 <template>
   <div class="">
-    <div class="pure-g">
+    <div class="pure-g row">
       <div class="pure-u-1-4"></div>
-      <div class="pure-u-1-4">name</div>
-      <div class="pure-u-1-4">price</div>
-      <div class="pure-u-1-4">link</div>
+      <div class="pure-u-1-4">
+        <h4>Name</h4></div>
+      <div class="pure-u-1-4">
+        <h4>Price</h4></div>
+      <div class="pure-u-1-4">
+        <h4>Link</h4></div>
     </div>
   
-    <div v-for="row in rows" class="pure-g">
-      <div class="img-cell pure-u-1-4"><img class="pure-img fixed-img" v-bind:src="row.img" /></div>
+    <div v-for="(row, index) in rows" class="pure-g row">
+      <div class="pure-u-1-4"><img class="pure-img img-cell" v-bind:src="row.img" /></div>
       <div class="pure-u-1-4">{{row.name}}</div>
-      <div class="pure-u-1-4">{{row.price | currency}}</div>
+      <div class="pure-u-1-4">${{row.price}}</div>
       <div class="pure-u-1-4"><a v-bind:href="row.link">buy from {{row.vendor}}</a></div>
     </div>
   </div>
@@ -33,12 +36,17 @@ export default {
   width: 100%
 }
 
-.fixed-img-cell {
-  max-width: 165px;
-  max-height: 165px;
+.img-cell {
+  max-width: 160px;
+  max-height: 160px;
+  padding: 5px;
 }
 
-.img-cell {
-  height: 165px;
+.row {
+  align-items: center;
+  text-align: center;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: lightgrey
 }
 </style>

@@ -1,0 +1,18 @@
+@media screen and (min-width: 75.5em) {
+  .container {
+    width: 70%;
+  }
+}
+.container {
+  margin: auto;
+  text-align: center;
+  padding-top: 100px;
+}
+
+p {
+  font-size: 20px;
+}
+
+a {
+  color: #41B883;
+}

@@ -1,9 +1,11 @@
 const webpack = require('webpack');
+const { join } = require('path');
 module.exports = {
   build: {
     plugins: [
       new webpack.DefinePlugin({ BASE_API_URL: !!process.env.PROD ? '"https://ammo-api.snapfix.io"' : '"http://localhost:8080/"' })
     ],
+    extractCSS: true,
     vendor: ['axios'] // Add axios in the vendor.bundle.js
   },
   loading: {
@@ -11,6 +13,10 @@ module.exports = {
     failedColor: '#bf5050',
     duration: 1500
   },
+  css: [
+    'purecss/build/pure-min.css',
+    join(__dirname, 'css/main.css')
+  ],
   head: {
     meta: [
       { charset: 'utf-8' },
@@ -18,12 +24,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Meta description' }
     ],
     link: [
-      {
-        rel: 'stylesheet',
-        href: 'https://unpkg.com/purecss@0.6.2/build/pure-min.css',
-        integrity: 'sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD',
-        crossorigin: 'anonymous'
-      }
+
     ]
   }
 }

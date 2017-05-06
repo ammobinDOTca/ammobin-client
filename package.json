@@ -4,7 +4,10 @@
   "description": "",
   "dependencies": {
     "axios": "^0.15.2",
-    "nuxt": "latest"
+    "css-loader": "^0.28.1",
+    "nuxt": "latest",
+    "purecss": "^0.6.2",
+    "vue-style-loader": "^3.0.1"
   },
   "scripts": {
     "dev": "nuxt",

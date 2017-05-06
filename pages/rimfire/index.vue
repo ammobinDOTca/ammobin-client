@@ -10,6 +10,11 @@
 import MyTable from '~components/my-table.vue'
 import { getRimfire } from '~/api.js';
 export default {
+  data() {
+    return {
+      error: null
+    }
+  },
   head: {
     title: 'Rimfire',
     meta: [
