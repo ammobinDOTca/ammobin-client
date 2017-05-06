@@ -1,13 +1,33 @@
 <template>
-  <div>
-    todo
+  <div class="container">
+    <h1>About</h1>
+    <div>
+      <a href="/">ammobin.ca</a> retreives public ammo prices daily from Canadian online retailers to aid in showing the best deals available.
+      <br> No ammo is sold through this ammobin.ca, it only links to retailer's product page.
+    </div>
+  
+    <h3>Supported Retailers</h3>
+    <ul>
+      <li><a href="http://www.bullseyelondon.com">Bull's Eye (London, ON)</a></li>
+      <li><a href="http://www.firearmsoutletcanada.com">Firearms Outlet Canada (Ajax, ON)</a></li>
+      <li><a href="https://www.alflahertys.com">Al Flaherty's (Toronto, ON)</a></li>
+      <li><a href="http://www.cabelas.ca">Cabela's (all over Canada)</a></li>
+      <li>more to come...</li>
+    </ul>
+  
+    <h3>Contact</h3>
+    <div>
+      Found an issue? Want to review the source code? Feature sugestions? Need a retailer not listed here?
+      <br> The web client is available at:
+      <a href="https://github.com/nexus-uw/ammo-scrape-client">https://github.com/nexus-uw/ammo-scrape-client</a>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   head: {
-    title: 'About Meta Ammo',
+    title: 'About AmmoBin.ca',
     meta: [
       {
         hid: 'description', name: 'description',

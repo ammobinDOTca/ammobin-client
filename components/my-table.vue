@@ -2,7 +2,7 @@
   <div class="">
     <form id="search">
       Search
-      <input name="query" v-model="searchQuery">
+      <input name="query" v-mode.lazl="searchQuery">
     </form>
     <div class="pure-g row">
       <div class="pure-u-1-4"></div>
@@ -20,7 +20,7 @@
     <div v-for="(row, index) in filteredRows" class="pure-g row">
       <div class="pure-u-1-4"><img class="pure-img img-cell" v-bind:src="row.img" /></div>
       <div class="pure-u-1-4">{{row.name}}</div>
-      <div class="pure-u-1-4">${{row.price}}</div>
+      <div class="pure-u-1-4">${{Math.round(row.price)}}</div>
       <div class="pure-u-1-4"><a v-bind:href="row.link">buy from {{row.vendor}}</a></div>
     </div>
   </div>

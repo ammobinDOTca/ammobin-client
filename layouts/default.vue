@@ -1,21 +1,19 @@
 <template>
   <div>
     <div class="pure-menu pure-menu-horizontal">
-      <a href="/" class="pure-menu-heading pure-menu-link">
-                                    Meta Ammo
-                                  </a>
+      <a href="/" class="pure-menu-heading pure-menu-link">AmmoBin.ca</a>
       <ul class="pure-menu-list">
         <li class="pure-menu-item">
-          <nuxt-link class="pure-menu-link" to="/rimfire">rimfire</nuxt-link>
+          <nuxt-link class="pure-menu-link" to="/rimfire">Rimfire</nuxt-link>
         </li>
         <li class="pure-menu-item">
-          <nuxt-link class="pure-menu-link" to="/centerfire">centerfire</nuxt-link>
+          <nuxt-link class="pure-menu-link" to="/centerfire">Enterfire</nuxt-link>
         </li>
         <li class="pure-menu-item">
-          <nuxt-link class="pure-menu-link" to="/shotgun">shotgun</nuxt-link>
+          <nuxt-link class="pure-menu-link" to="/shotgun">Shotgun</nuxt-link>
         </li>
         <li class="pure-menu-item">
-          <nuxt-link class="pure-menu-link" to="/about">about</nuxt-link>
+          <nuxt-link class="pure-menu-link" to="/about">About</nuxt-link>
         </li>
       </ul>
     </div>
@@ -26,11 +24,11 @@
 <script>
 export default {
   head: {
-    title: 'Meta Ammo',
+    title: 'AmmoBin.ca',
     meta: [
       {
         hid: 'description', name: 'description',
-        content: 'Meta Ammo home page'
+        content: ' A place to view online ammo prices across Canada'
       }
     ]
   }

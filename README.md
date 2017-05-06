@@ -1,15 +1,13 @@
-# ammo scrape
+# AmmoBin.ca
 
-meta search site for ammo prices across canada
+meta search site for ammo prices across canada. built with [nuxt.js](https://nuxtjs.org).
 
 ## todo
-- about
-  - include supported list
-  - contact
-  - next steps
-  - how to
-- filter by province
-- sort
-- search for name, caliber
+- filter by vendor  province
 - group by product
 - client side pagination
+
+
+## how to run locally
+- ```npm i```
+- ```PROD=true npm run dev```

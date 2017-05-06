@@ -1,8 +1,8 @@
 
 <template>
   <div class="container">
-    <h1>Meta Ammo</h1>
-    <h3>... a place to view all ammo prices across canada</h3>
+    <h1>AmmoBin.ca</h1>
+    <h3> A place to view online ammo prices across Canada</h3>
     <p>
       <nuxt-link to="/rimfire">rimfire</nuxt-link>
     </p>
