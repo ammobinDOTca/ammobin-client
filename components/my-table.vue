@@ -1,25 +1,19 @@
 <template>
-  <table class="pure-table pure-table-horizontal fill">
-    <thead>
-      <tr>
-        <th></th>
-        <th>name</th>
-        <th>price</th>
-        <th>province</th>
-        <th>link</th>
-      </tr>
-    </thead>
+  <div class="">
+    <div class="pure-g">
+      <div class="pure-u-1-4"></div>
+      <div class="pure-u-1-4">name</div>
+      <div class="pure-u-1-4">price</div>
+      <div class="pure-u-1-4">link</div>
+    </div>
   
-    <tbody>
-      <tr v-for="row in rows">
-        <td class="img-cell"><img class="pure-img fixed-img" v-bind:src="row.img" /></td>
-        <td>{{row.name}}</td>
-        <td>{{row.price}}</td>
-        <td>{{row.province}}</td>
-        <td><a v-bind:href="row.link">buy from {{row.vendor}}</a></td>
-      </tr>
-    </tbody>
-  </table>
+    <div v-for="row in rows" class="pure-g">
+      <div class="img-cell pure-u-1-4"><img class="pure-img fixed-img" v-bind:src="row.img" /></div>
+      <div class="pure-u-1-4">{{row.name}}</div>
+      <div class="pure-u-1-4">{{row.price | currency}}</div>
+      <div class="pure-u-1-4"><a v-bind:href="row.link">buy from {{row.vendor}}</a></div>
+    </div>
+  </div>
 </template>
 
 <script>
