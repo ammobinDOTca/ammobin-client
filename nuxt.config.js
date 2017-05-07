@@ -17,7 +17,8 @@ module.exports = {
     duration: 1500
   },
   css: [
-    'purecss/build/pure-min.css',
+    `purecss/build/pure${process.env.PROD ? '-min' : ''}.css`,
+    `purecss/build/grids-responsive${process.env.PROD ? '-min' : ''}.css`,
     join(__dirname, 'css/main.css')
   ],
   head: {

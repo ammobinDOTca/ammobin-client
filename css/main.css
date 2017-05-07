@@ -2,12 +2,12 @@
   .container {
     width: 70%;
     padding-top: 100px;
-
   }
 }
 .container {
   text-align: center;
   padding-top: 25px;
+    margin: auto;
 }
 .main {
     margin: auto;

@@ -1,14 +1,14 @@
 <template>
   <div class="">
     <div class="pure-form pure-form-stacked">
-      <div id="search" class="pure-u-1 pure-u-lg-1-2">
-        Search
-        <input name="query" v-model.lazy="searchQuery" class="pure-u-1 pure-u-lg-1-2">
+      <div id="search" class="pure-u-1 pure-u-md-1-3">
+        <label>Search</label>
+        <input name="query" v-model="searchQuery" class="pure-input-1">
       </div>
   
-      <div class="pure-u-md-1-4 pure-u-lg-1-2">
+      <div class="pure-u-1 pure-u-md-1-3">
         <label for="pageSize"> Page Size</label>
-        <select id="pageSize" v-model.number="pageSize" class="pure-input-1-2">
+        <select id="pageSize" v-model.number="pageSize" class="pure-input-1">
           <option>25</option>
           <option>50</option>
           <option>75</option>
@@ -16,10 +16,10 @@
         </select>
       </div>
   
-      <div class="pure-u-1-2">
-        <div>
-          page
-        </div>
+      <div class="pure-u-1 pure-u-md-1-3">
+        <label>
+          Page
+        </label>
         <div>
           <button @click="goto(1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
             First
@@ -38,18 +38,18 @@
       </div>
     </div>
     <div class="pure-g row">
-      <div class="pure-u-1-4"></div>
-      <div class="pure-u-1-4 title" @click="sortBy('name')" :class="{ active: sortKey == 'name' }">
+      <div class="pure-u-lg-1-4 pure-u-1"></div>
+      <div class="pure-u-lg-1-4 pure-u-1 title" @click="sortBy('name')" :class="{ active: sortKey == 'name' }">
         <h4>Name
           <span class="arrow" :class="sortOrders['name'] > 0 ? 'asc' : 'dsc'"></span>
         </h4>
       </div>
-      <div class="pure-u-1-4 title" @click="sortBy('price')" :class="{ active: sortKey == 'price' }">
+      <div class="pure-u-lg-1-4 pure-u-1 title" @click="sortBy('price')" :class="{ active: sortKey == 'price' }">
         <h4>Price
           <span class="arrow" :class="sortOrders['price'] > 0 ? 'asc' : 'dsc'"></span>
         </h4>
       </div>
-      <div class="pure-u-1-4 title" @click="sortBy('link')" :class="{ active: sortKey == 'link' }">
+      <div class="pure-u-lg-1-4 pure-u-1 title" @click="sortBy('link')" :class="{ active: sortKey == 'link' }">
         <h4>Link
           <span class="arrow" :class="sortOrders['link'] > 0 ? 'asc' : 'dsc'"></span>
         </h4>
@@ -57,17 +57,17 @@
     </div>
   
     <div v-for="(row, index) in filteredRows" class="pure-g row">
-      <div class="pure-u-1-4">
+      <div class="pure-u-lg-1-4 pure-u-1">
         <img class="pure-img img-cell" v-bind:src="row.img" />
       </div>
-      <div class="pure-u-1-4">{{row.name}}</div>
-      <div class="pure-u-1-4">${{Math.round(row.price)}}</div>
-      <div class="pure-u-1-4">
+      <div class="pure-u-lg-1-4 pure-u-1">{{row.name}}</div>
+      <div class="pure-u-lg-1-4 pure-u-1">${{Math.round(row.price)}}</div>
+      <div class="pure-u-lg-1-4 pure-u-1">
         <a v-bind:href="row.link">buy from {{row.vendor}}</a>
       </div>
     </div>
     <div>
-      <div class="pure-u-1-2">
+      <div class="pure-u-lg-1-2 pure-u-1">
         <div>
           page
         </div>
@@ -177,7 +177,8 @@ export default {
   text-align: center;
   border-bottom-style: solid;
   border-bottom-width: 1px;
-  border-bottom-color: lightgrey
+  border-bottom-color: lightgrey;
+  padding-bottom: 10px;
 }
 
 .active {
