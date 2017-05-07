@@ -24,12 +24,13 @@ export default {
   components: {
     MyTable
   },
-  async asyncData() {
+  async asyncData({ error }) {
     try {
       let rows = await getRimfire();
       return { rows };
-    } catch (error) {
-      return { error }
+    } catch (e) {
+      console.error(e)
+      error({ statusCode: 500, message: 'Failed to load prices' });
     }
   }
 }

@@ -1,9 +1,42 @@
 <template>
   <div class="">
-    <form id="search">
-      Search
-      <input name="query" v-mode.lazl="searchQuery">
-    </form>
+    <div class="pure-form pure-form-stacked">
+      <div id="search" class="pure-u-1-4">
+        Search
+        <input name="query" v-model.lazy="searchQuery" class="pure-u-23-24">
+      </div>
+  
+      <div class="pure-u-1-4">
+        <label for="pageSize"> Page Size</label>
+        <select id="pageSize" v-model.number="pageSize" class="pure-input-1-2">
+          <option>25</option>
+          <option>50</option>
+          <option>75</option>
+          <option>100</option>
+        </select>
+      </div>
+  
+      <div class="pure-u-1-2">
+        <div>
+          page
+        </div>
+        <div>
+          <button @click="goto(1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
+            First
+          </button>
+          <button @click="goto(page - 1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
+            Prev
+          </button>
+          {{page}} of {{pages}}
+          <button @click="goto(page+1)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
+            Next
+          </button>
+          <button @click="goto( pages)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
+            Last
+          </button>
+        </div>
+      </div>
+    </div>
     <div class="pure-g row">
       <div class="pure-u-1-4"></div>
       <div class="pure-u-1-4 title" @click="sortBy('name')" :class="{ active: sortKey == 'name' }">
@@ -23,12 +56,36 @@
       <div class="pure-u-1-4">${{Math.round(row.price)}}</div>
       <div class="pure-u-1-4"><a v-bind:href="row.link">buy from {{row.vendor}}</a></div>
     </div>
+    <div>
+      <div class="pure-u-1-2">
+        <div>
+          page
+        </div>
+        <div>
+          <button @click="goto(1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
+            First
+          </button>
+          <button @click="goto(page - 1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
+            Prev
+          </button>
+          {{page}} of {{pages}}
+          <button @click="goto(page+1)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
+            Next
+          </button>
+          <button @click="goto( pages)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
+            Last
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   data: () => ({
+    page: 1,
+    pageSize: 25,
     searchQuery: '',
     sortKey: 'price',
     sortOrders: {
@@ -42,7 +99,7 @@ export default {
   ],
   computed: {
     filteredRows() {
-      let data = this.rows;
+      let data = this.rows.slice();
       let sortKey = this.sortKey;
       let order = this.sortOrders[sortKey];
       if (this.searchQuery) {
@@ -61,14 +118,29 @@ export default {
           }
         });
       }
-      return data;
 
+      let start = (this.page - 1) * this.pageSize;
+      let end = Math.min(this.page * this.pageSize, this.rows.length)
+
+      return data.slice(start, end);
+
+    },
+    pages() {
+      return Math.ceil(this.rows.length / this.pageSize);
     }
   },
   methods: {
     sortBy(key) {
       this.sortKey = key
       this.sortOrders[key] = this.sortOrders[key] * -1
+    },
+    goto(page) {
+      if (page > this.pages) {
+        this.page = this.pages;
+      } else {
+        this.page = page;
+      }
+      window.scroll(0, 0); //scroll to top of page
     }
   }
 

@@ -7,7 +7,7 @@
           <nuxt-link class="pure-menu-link" to="/rimfire">Rimfire</nuxt-link>
         </li>
         <li class="pure-menu-item">
-          <nuxt-link class="pure-menu-link" to="/centerfire">Enterfire</nuxt-link>
+          <nuxt-link class="pure-menu-link" to="/centerfire">Centerfire</nuxt-link>
         </li>
         <li class="pure-menu-item">
           <nuxt-link class="pure-menu-link" to="/shotgun">Shotgun</nuxt-link>
