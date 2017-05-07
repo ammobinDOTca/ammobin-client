@@ -31,11 +31,3 @@ export default {
 }
 </script>
 
-<style scoped>
-.container {
-  width: 70%;
-  margin: auto;
-  text-align: center;
-  padding-top: 100px;
-}
-</style>

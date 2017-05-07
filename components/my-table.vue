@@ -1,12 +1,12 @@
 <template>
   <div class="">
     <div class="pure-form pure-form-stacked">
-      <div id="search" class="pure-u-1-4">
+      <div id="search" class="pure-u-1 pure-u-lg-1-2">
         Search
-        <input name="query" v-model.lazy="searchQuery" class="pure-u-23-24">
+        <input name="query" v-model.lazy="searchQuery" class="pure-u-1 pure-u-lg-1-2">
       </div>
   
-      <div class="pure-u-1-4">
+      <div class="pure-u-md-1-4 pure-u-lg-1-2">
         <label for="pageSize"> Page Size</label>
         <select id="pageSize" v-model.number="pageSize" class="pure-input-1-2">
           <option>25</option>
@@ -40,21 +40,31 @@
     <div class="pure-g row">
       <div class="pure-u-1-4"></div>
       <div class="pure-u-1-4 title" @click="sortBy('name')" :class="{ active: sortKey == 'name' }">
-        <h4>Name<span class="arrow" :class="sortOrders['name'] > 0 ? 'asc' : 'dsc'"></span></h4>
+        <h4>Name
+          <span class="arrow" :class="sortOrders['name'] > 0 ? 'asc' : 'dsc'"></span>
+        </h4>
       </div>
       <div class="pure-u-1-4 title" @click="sortBy('price')" :class="{ active: sortKey == 'price' }">
-        <h4>Price<span class="arrow" :class="sortOrders['price'] > 0 ? 'asc' : 'dsc'"></span></h4>
+        <h4>Price
+          <span class="arrow" :class="sortOrders['price'] > 0 ? 'asc' : 'dsc'"></span>
+        </h4>
       </div>
       <div class="pure-u-1-4 title" @click="sortBy('link')" :class="{ active: sortKey == 'link' }">
-        <h4>Link<span class="arrow" :class="sortOrders['link'] > 0 ? 'asc' : 'dsc'"></span></h4>
+        <h4>Link
+          <span class="arrow" :class="sortOrders['link'] > 0 ? 'asc' : 'dsc'"></span>
+        </h4>
       </div>
     </div>
   
     <div v-for="(row, index) in filteredRows" class="pure-g row">
-      <div class="pure-u-1-4"><img class="pure-img img-cell" v-bind:src="row.img" /></div>
+      <div class="pure-u-1-4">
+        <img class="pure-img img-cell" v-bind:src="row.img" />
+      </div>
       <div class="pure-u-1-4">{{row.name}}</div>
       <div class="pure-u-1-4">${{Math.round(row.price)}}</div>
-      <div class="pure-u-1-4"><a v-bind:href="row.link">buy from {{row.vendor}}</a></div>
+      <div class="pure-u-1-4">
+        <a v-bind:href="row.link">buy from {{row.vendor}}</a>
+      </div>
     </div>
     <div>
       <div class="pure-u-1-2">
