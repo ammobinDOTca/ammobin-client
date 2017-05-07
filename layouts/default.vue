@@ -4,16 +4,16 @@
       <a href="/" class="pure-menu-heading pure-menu-link">AmmoBin.ca</a>
       <ul class="pure-menu-list">
         <li class="pure-menu-item">
-          <nuxt-link class="pure-menu-link" to="/rimfire">Rimfire</nuxt-link>
+          <nuxt-link class="pure-menu-link" :class="{'pure-menu-selected': currentPage === '/rimfire'}" to="/rimfire">Rimfire</nuxt-link>
         </li>
         <li class="pure-menu-item">
-          <nuxt-link class="pure-menu-link" to="/centerfire">Centerfire</nuxt-link>
+          <nuxt-link class="pure-menu-link" :class="{'pure-menu-selected': currentPage === '/centerfire'}" to="/centerfire">Centerfire</nuxt-link>
         </li>
         <li class="pure-menu-item">
-          <nuxt-link class="pure-menu-link" to="/shotgun">Shotgun</nuxt-link>
+          <nuxt-link class="pure-menu-link" :class="{'pure-menu-selected': currentPage === '/shotgun'}" to="/shotgun">Shotgun</nuxt-link>
         </li>
         <li class="pure-menu-item">
-          <nuxt-link class="pure-menu-link" to="/about">About</nuxt-link>
+          <nuxt-link class="pure-menu-link" :class="{'pure-menu-selected': currentPage === '/about'}" to="/about">About</nuxt-link>
         </li>
       </ul>
     </div>
@@ -31,6 +31,11 @@ export default {
         content: ' A place to view online ammo prices across Canada'
       }
     ]
+  },
+  computed: {
+    currentPage() {
+      return this.$router.path
+    }
   }
 };
 </script>
