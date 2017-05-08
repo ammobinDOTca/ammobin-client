@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <div class="pure-menu pure-menu-horizontal">
+    <div class="pure-menu pure-menu-horizontal pure-menu-scrollable">
       <a href="/" class="pure-menu-heading pure-menu-link">AmmoBin.ca</a>
       <ul class="pure-menu-list">
         <li class="pure-menu-item">

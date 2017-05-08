@@ -3,7 +3,7 @@
     <div class="pure-form pure-form-stacked">
       <div id="search" class="pure-u-1 pure-u-md-1-3">
         <label>Search</label>
-        <input name="query" v-model="searchQuery" class="pure-input-1">
+        <input name="query" v-model="searchQuery" class="pure-input-1" placeholder="ie: .22LR, Barnaul, 500">
       </div>
   
       <div class="pure-u-1 pure-u-md-1-3">
@@ -39,17 +39,17 @@
     </div>
     <div class="pure-g row">
       <div class="pure-u-lg-1-4 pure-u-1"></div>
-      <div class="pure-u-lg-1-4 pure-u-1 title" @click="sortBy('name')" :class="{ active: sortKey == 'name' }">
+      <div class="pure-u-lg-1-4 pure-u-1-3 title" @click="sortBy('name')" :class="{ active: sortKey == 'name' }">
         <h4>Name
           <span class="arrow" :class="sortOrders['name'] > 0 ? 'asc' : 'dsc'"></span>
         </h4>
       </div>
-      <div class="pure-u-lg-1-4 pure-u-1 title" @click="sortBy('price')" :class="{ active: sortKey == 'price' }">
+      <div class="pure-u-lg-1-4 pure-u-1-3 title" @click="sortBy('price')" :class="{ active: sortKey == 'price' }">
         <h4>Price
           <span class="arrow" :class="sortOrders['price'] > 0 ? 'asc' : 'dsc'"></span>
         </h4>
       </div>
-      <div class="pure-u-lg-1-4 pure-u-1 title" @click="sortBy('link')" :class="{ active: sortKey == 'link' }">
+      <div class="pure-u-lg-1-4 pure-u-1-3 title" @click="sortBy('link')" :class="{ active: sortKey == 'link' }">
         <h4>Link
           <span class="arrow" :class="sortOrders['link'] > 0 ? 'asc' : 'dsc'"></span>
         </h4>
@@ -98,6 +98,7 @@ export default {
     pageSize: 25,
     searchQuery: '',
     sortKey: 'price',
+    sortedListLength: 0,
     sortOrders: {
       name: 1,
       link: 1,
@@ -129,14 +130,15 @@ export default {
         });
       }
 
+      this.sortedListLength = data.length; // gross side effect. but lets us know how many pages of data there are
       let start = (this.page - 1) * this.pageSize;
-      let end = Math.min(this.page * this.pageSize, this.rows.length)
+      let end = Math.min(this.page * this.pageSize, data.length)
 
       return data.slice(start, end);
 
     },
     pages() {
-      return Math.ceil(this.rows.length / this.pageSize);
+      return Math.max(Math.ceil(this.sortedListLength / this.pageSize), 1);
     }
   },
   methods: {
