@@ -60,9 +60,9 @@
       <div class="pure-u-lg-1-4 pure-u-1">
         <img class="pure-img img-cell" v-bind:src="row.img" />
       </div>
-      <div class="pure-u-lg-1-4 pure-u-1">{{row.name}}</div>
-      <div class="pure-u-lg-1-4 pure-u-1">${{Math.round(row.price)}}</div>
-      <div class="pure-u-lg-1-4 pure-u-1">
+      <div class="pure-u-lg-1-4 pure-u-1 m-b-1">{{row.name}}</div>
+      <div class="pure-u-lg-1-4 pure-u-1 m-b-1 ">${{row.price.toFixed(2)}}</div>
+      <div class="pure-u-lg-1-4 pure-u-1 m-b-1">
         <a v-bind:href="row.link">buy from {{row.vendor}}</a>
       </div>
     </div>
@@ -172,6 +172,8 @@ export default {
   max-width: 160px;
   max-height: 160px;
   padding: 5px;
+  display: block;
+  margin: auto;
 }
 
 .row {
@@ -210,5 +212,9 @@ export default {
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
   border-top: 4px solid black;
+}
+
+.m-b-1 {
+  margin-bottom: 5px;
 }
 </style>
