@@ -7,13 +7,21 @@
     </div>
   
     <h3>Supported Retailers</h3>
-    <ul>
-      <li><a href="http://www.bullseyelondon.com">Bull's Eye (London, ON)</a></li>
-      <li><a href="http://www.firearmsoutletcanada.com">Firearms Outlet Canada (Ajax, ON)</a></li>
-      <li><a href="https://www.alflahertys.com">Al Flaherty's (Toronto, ON)</a></li>
-      <li><a href="http://www.cabelas.ca">Cabela's (all over Canada)</a></li>
-      <li>more to come...</li>
-    </ul>
+    <div>
+      <div>
+        <a href="http://www.bullseyelondon.com">Bull's Eye (London, ON)</a>
+      </div>
+      <div>
+        <a href="http://www.firearmsoutletcanada.com">Firearms Outlet Canada (Ajax, ON)</a>
+      </div>
+      <div>
+        <a href="https://www.alflahertys.com">Al Flaherty's (Toronto, ON)</a>
+      </div>
+      <div>
+        <a href="http://www.cabelas.ca">Cabela's (all over Canada)</a>
+      </div>
+      <div>more to come...</div>
+    </div>
   
     <h3>Contact</h3>
     <div>
