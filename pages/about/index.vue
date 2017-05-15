@@ -9,6 +9,9 @@
     <h3>Supported Retailers</h3>
     <div>
       <div>
+        <a href="http://www.cabelas.ca">Cabela's (all over Canada)</a>
+      </div>
+      <div>
         <a href="http://www.bullseyelondon.com">Bull's Eye (London, ON)</a>
       </div>
       <div>
@@ -17,9 +20,7 @@
       <div>
         <a href="https://www.alflahertys.com">Al Flaherty's (Toronto, ON)</a>
       </div>
-      <div>
-        <a href="http://www.cabelas.ca">Cabela's (all over Canada)</a>
-      </div>
+  
       <div>more to come...</div>
     </div>
   

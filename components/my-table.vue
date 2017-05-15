@@ -63,13 +63,13 @@
       <div class="pure-u-lg-1-4 pure-u-1 m-b-1">{{row.name}}</div>
       <div class="pure-u-lg-1-4 pure-u-1 m-b-1 ">${{row.price.toFixed(2)}}</div>
       <div class="pure-u-lg-1-4 pure-u-1 m-b-1">
-        <a v-bind:href="row.link">buy from {{row.vendor}}</a>
+        <a v-bind:href="row.link">Buy From {{row.vendor}}</a>
       </div>
     </div>
     <div>
       <div class="pure-u-lg-1-2 pure-u-1">
         <div>
-          page
+          Page
         </div>
         <div>
           <button @click="goto(1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">

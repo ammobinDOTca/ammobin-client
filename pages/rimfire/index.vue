@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>rimfire</h1>
+    <h1>Rimfire</h1>
     <my-table v-bind:rows="rows"></my-table>
     <div v-if="error">failed to load ammo list: {{error}}</div>
   </div>
