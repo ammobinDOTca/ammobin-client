@@ -13,15 +13,15 @@
       <nuxt-link to="/shotgun">Shotgun</nuxt-link>
     </p>
     <!--<div v-if="!failedToLoadMainPrices">
-        <h2>Today's Price Info</h2>
-        {{mainPrices}}
-      </div>-->
+          <h2>Today's Price Info</h2>
+          {{mainPrices}}
+        </div>-->
     <div>
       <h2>Supported Retailers</h2>
   
       <!--<div>
-                <a href="http://www.cabelas.ca">Cabela's (all over Canada)</a>
-              </div>-->
+                  <a href="http://www.cabelas.ca">Cabela's (all over Canada)</a>
+                </div>-->
       <div>
         <a href="http://www.bullseyelondon.com" target="_blank">Bull's Eye (London, ON)</a>
       </div>
@@ -31,7 +31,9 @@
       <div>
         <a href="https://www.alflahertys.com" target="_blank">Al Flaherty's (Toronto, ON)</a>
       </div>
-  
+      <div>
+        <a href="https://www.sail.ca/" target="_blank">Sail (ON + QC)</a>
+      </div>
       <div>more to come...</div>
     </div>
   </div>
