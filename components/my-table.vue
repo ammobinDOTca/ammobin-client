@@ -63,7 +63,7 @@
       <div class="pure-u-lg-1-4 pure-u-1 m-b-1">{{row.name}}</div>
       <div class="pure-u-lg-1-4 pure-u-1 m-b-1 ">${{row.price.toFixed(2)}}</div>
       <div class="pure-u-lg-1-4 pure-u-1 m-b-1">
-        <a v-bind:href="row.link">Buy From {{row.vendor}}</a>
+        <a v-bind:href="row.link" target="_blank">Buy From {{row.vendor}}</a>
       </div>
     </div>
     <div>

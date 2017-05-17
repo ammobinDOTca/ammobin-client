@@ -13,3 +13,8 @@ export function getShotgun() {
   return axios.get(BASE_API_URL + 'shotgun')
     .then(res => res.data);
 }
+
+export function getMainPrices() {
+  return axios.get(BASE_API_URL + 'price-ranges')
+    .then(res => res.data);
+}
