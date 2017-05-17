@@ -62,7 +62,7 @@
       </div>
     </div>
   
-    <div v-for="(row, index) in filteredRows" class="pure-g row">
+    <div v-for="(row, index) in filteredRows" class="pure-g row fix-row">
       <div class="pure-u-lg-1-4 pure-u-1">
         <img class="pure-img img-cell" v-bind:src="row.img" />
       </div>
@@ -215,6 +215,11 @@ export default {
   border-bottom-width: 1px;
   border-bottom-color: lightgrey;
   padding-bottom: 10px;
+}
+
+.fix-row {
+  min-height: 107px;
+  align-content: center;
 }
 
 .active {
