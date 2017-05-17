@@ -1,18 +1,24 @@
 <template>
   <div class="">
     <div class="pure-form pure-form-stacked">
-      <div id="search" class="pure-u-1 pure-u-md-1-3">
+      <div id="search" class="pure-u-1 pure-u-md-1-6">
         <label>Search</label>
         <input name="query" v-model="searchQuery" class="pure-input-1" placeholder="ie: .22LR, Barnaul, 500">
       </div>
   
-      <div class="pure-u-1 pure-u-md-1-3">
+      <div class="pure-u-1 pure-u-md-1-6">
         <label for="pageSize"> Page Size</label>
         <select id="pageSize" v-model.number="pageSize" class="pure-input-1">
           <option>25</option>
           <option>50</option>
           <option>75</option>
           <option>100</option>
+        </select>
+      </div>
+      <div class="pure-u-1 pure-u-md-1-6">
+        <label for="pageSize"> Calibre</label>
+        <select id="pageSize" v-model="calibre" class="pure-input-1">
+          <option v-for="c in calibres">{{c}}</option>
         </select>
       </div>
   
@@ -94,11 +100,14 @@
 <script>
 export default {
   data: () => ({
+    // current page index
     page: 1,
+    // default page size
     pageSize: 25,
     searchQuery: '',
     sortKey: 'price',
     sortedListLength: 0,
+    calibre: null,
     sortOrders: {
       name: 1,
       link: 1,
@@ -109,12 +118,28 @@ export default {
     'rows'
   ],
   computed: {
+    // list of calibres from ALL results
+    calibres() {
+      if (!this.rows) {
+        return [];
+      }
+      return Object.keys(this.rows.reduce((list, row) => {
+        if (!list[row.calibre]) {
+          list[row.calibre] = true;
+        }
+        return list;
+      }, { '': true })).sort();
+    },
+    // apply filters + sorting + pagination to results
     filteredRows() {
       let data = this.rows.slice();
       let sortKey = this.sortKey;
       let order = this.sortOrders[sortKey];
       if (this.searchQuery) {
         data = data.filter(r => r.name && r.name.toLowerCase().indexOf(this.searchQuery.toLowerCase()) >= 0);
+      }
+      if (this.calibre) {
+        data = data.filter(r => r.calibre === this.calibre);
       }
       if (sortKey) {
         data = data.sort(function (a, b) {
@@ -133,12 +158,19 @@ export default {
       this.sortedListLength = data.length; // gross side effect. but lets us know how many pages of data there are
       let start = (this.page - 1) * this.pageSize;
       let end = Math.min(this.page * this.pageSize, data.length)
-
       return data.slice(start, end);
 
     },
+    // get number of filter pages
     pages() {
-      return Math.max(Math.ceil(this.sortedListLength / this.pageSize), 1);
+      const pages = Math.max(Math.ceil(this.sortedListLength / this.pageSize), 1);
+
+      // if filter + old page num are out side of results, bring us to the end
+      if (this.page > pages) {
+        this.page = pages;
+      }
+
+      return pages;
     }
   },
   methods: {
