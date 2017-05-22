@@ -3,7 +3,7 @@
     <div class="pure-form pure-form-stacked">
       <div id="search" class="pure-u-1 pure-u-md-1-6">
         <label>Search</label>
-        <input name="query" v-model="searchQuery" class="pure-input-1" placeholder="ie: .22LR, Barnaul, 500">
+        <input name="query" v-model="searchQuery" class="pure-input-1" placeholder="ie: Barnaul, surplus, 00 Buck">
       </div>
   
       <div class="pure-u-1 pure-u-md-1-6">
@@ -50,9 +50,9 @@
           <span class="arrow" :class="sortOrders['name'] > 0 ? 'asc' : 'dsc'"></span>
         </h4>
       </div>
-      <div class="pure-u-lg-1-4 pure-u-1-3 title" @click="sortBy('price')" :class="{ active: sortKey == 'price' }">
+      <div class="pure-u-lg-1-4 pure-u-1-3 title" @click="sortBy('minPrice')" :class="{ active: sortKey == 'minPrice' }">
         <h4>Price
-          <span class="arrow" :class="sortOrders['price'] > 0 ? 'asc' : 'dsc'"></span>
+          <span class="arrow" :class="sortOrders['minPrice'] > 0 ? 'asc' : 'dsc'"></span>
         </h4>
       </div>
       <div class="pure-u-lg-1-4 pure-u-1-3 title" @click="sortBy('link')" :class="{ active: sortKey == 'link' }">
@@ -61,15 +61,41 @@
         </h4>
       </div>
     </div>
+    <div v-if="filteredRows.length === 0" class="pure-g row fix-row">
+      no results found.
+    </div>
   
     <div v-for="(row, index) in filteredRows" class="pure-g row fix-row">
       <div class="pure-u-lg-1-4 pure-u-1">
         <img class="pure-img img-cell" v-bind:src="row.img" />
       </div>
       <div class="pure-u-lg-1-4 pure-u-1 m-b-1">{{row.name}}</div>
-      <div class="pure-u-lg-1-4 pure-u-1 m-b-1 ">${{row.price.toFixed(2)}}</div>
+      <div class="pure-u-lg-1-4 pure-u-1 m-b-1 ">
+        <span v-if="row.minPrice !== row.maxPrice">
+          ${{row.minPrice.toFixed(2)}} - ${{row.maxPrice.toFixed(2)}}
+        </span>
+        <span v-if="row.minPrice === row.maxPrice">
+          ${{row.minPrice.toFixed(2)}}
+        </span>
+      </div>
       <div class="pure-u-lg-1-4 pure-u-1 m-b-1">
-        <a v-bind:href="row.link" target="_blank">Buy From {{row.vendor}}</a>
+        <button class="pure-button" @click="toggleVendors(row.name)">
+          {{showVendors[row.name]? 'hide':'show'}} vendors
+        </button>
+      </div>
+      <div class="pure-u-1" v-if="showVendors[row.name] === true">
+        <div v-for="v in row.vendors" class="pure-g m-b-1">
+          <div class="pure-u-1-2">
+            {{v.name}}
+          </div>
+          <div class="pure-u-1-4">
+            ${{v.price.toFixed(2)}}
+          </div>
+          <div class="pure-u-1-4">
+            <a v-bind:href="v.link" target="_blank">Buy From {{v.vendor}}</a>
+          </div>
+        </div>
+  
       </div>
     </div>
     <div>
@@ -105,14 +131,16 @@ export default {
     // default page size
     pageSize: 25,
     searchQuery: '',
-    sortKey: 'price',
+    sortKey: 'minPrice',
     sortedListLength: 0,
-    calibre: null,
+    calibre: '',
     sortOrders: {
       name: 1,
       link: 1,
-      price: 1
-    }
+      minPrice: 1
+    },
+    showVendors: {}
+
   }),
   props: [
     'rows'
@@ -158,6 +186,10 @@ export default {
       this.sortedListLength = data.length; // gross side effect. but lets us know how many pages of data there are
       let start = (this.page - 1) * this.pageSize;
       let end = Math.min(this.page * this.pageSize, data.length)
+      this.showVendors = data.map(i => i.name).reduce((sv, k) => {
+        sv[k] = false;
+        return sv;
+      }, {})
       return data.slice(start, end);
 
     },
@@ -185,8 +217,14 @@ export default {
         this.page = page;
       }
       window.scroll(0, 0); //scroll to top of page
+    },
+    toggleVendors(name) {
+      console.log('toggleVendors', name, this.showVendors)
+      this.showVendors[name] = !this.showVendors[name];
+
     }
-  }
+  },
+
 
 }
 </script>
