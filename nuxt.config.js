@@ -4,7 +4,7 @@ module.exports = {
   build: {
     plugins: [
       new webpack.DefinePlugin({
-        BASE_API_URL: !!process.env.PROD ? '"https://ammo-api.snapfix.io/"' : '"http://localhost:8080/"',
+        BASE_API_URL: !!process.env.PROD ? '"https:/api.ammobin.ca/"' : '"http://localhost:8080/"',
         PROD: process.env.PROD ? 'true' : 'false'
       })
     ],
@@ -14,7 +14,7 @@ module.exports = {
   loading: {
     color: '#4FC08D',
     failedColor: '#bf5050',
-    duration: 1500
+    duration: 2000
   },
   css: [
     `purecss/build/pure${process.env.PROD ? '-min' : ''}.css`,

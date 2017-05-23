@@ -12,49 +12,34 @@
     <p>
       <nuxt-link to="/shotgun">Shotgun</nuxt-link>
     </p>
-    <!--<div v-if="!failedToLoadMainPrices">
-              <h2>Today's Price Info</h2>
-              {{mainPrices}}
-            </div>-->
     <div>
       <h2>Supported Retailers</h2>
-  
-      <div>
-        <a href="http://www.cabelas.ca" target="_blank">Cabela's (all over Canada)</a>
-      </div>
-      <div>
-        <a href="http://www.bullseyelondon.com" target="_blank">Bull's Eye (London, ON)</a>
-      </div>
-      <div>
-        <a href="http://www.firearmsoutletcanada.com" target="_blank">Firearms Outlet Canada (Ajax, ON)</a>
-      </div>
-      <div>
-        <a href="https://www.alflahertys.com" target="_blank">Al Flaherty's (Toronto, ON)</a>
-      </div>
-      <div>
-        <a href="https://www.sail.ca/" target="_blank">Sail (ON + QC)</a>
-      </div>
-      <div>more to come...</div>
+      <supported-retailers></supported-retailers>
     </div>
   </div>
 </template>
 
 <script>
 import { getMainPrices } from '~/api';
+import SupportedRetailers from '~components/supported-retailers.vue'
+
 export default {
+  components: {
+    SupportedRetailers
+  },
   data() {
     return {
       failedToLoadMainPrices: false
     }
   },
   async asyncData({ error }) {
-    try {
-      let mainPrices = await getMainPrices();
-      return { mainPrices };
-    } catch (e) {
-      console.error(e); // ignore
-      return { failedToLoadMainPrices: true }
-    }
+    // try {
+    //   let mainPrices = await getMainPrices();
+    //   return { mainPrices };
+    // } catch (e) {
+    //   console.error(e); // ignore
+    //   return { failedToLoadMainPrices: true }
+    // }
   }
 }
 </script>

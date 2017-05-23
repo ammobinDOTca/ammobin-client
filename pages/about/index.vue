@@ -3,41 +3,36 @@
     <h1>About</h1>
     <div>
       <a href="/">ammobin.ca</a> retreives public ammo prices daily from Canadian online retailers to aid in showing the best deals available.
-      <br> No ammo is sold through this ammobin.ca, it only links to retailer's product page.
+    </div>
+    <div>
+      Prices are updated every morning.
+    </div>
+    <div>
+      No ammo is sold through this site site, it only links to retailer's product page.
     </div>
   
-    <h3>Supported Retailers</h3>
+    <h2>Contact</h2>
     <div>
-      <div>
-        <a href="http://www.cabelas.ca" target="_blank">Cabela's (all over Canada)</a>
-      </div>
-      <div>
-        <a href="http://www.bullseyelondon.com" target="_blank">Bull's Eye (London, ON)</a>
-      </div>
-      <div>
-        <a href="http://www.firearmsoutletcanada.com" target="_blank">Firearms Outlet Canada (Ajax, ON)</a>
-      </div>
-      <div>
-        <a href="https://www.alflahertys.com" target="_blank">Al Flaherty's (Toronto, ON)</a>
-      </div>
-      <div>
-        <a href="https://www.sail.ca/" target="_blank">Sail (ON + QC)</a>
-      </div>
-  
-      <div>more to come...</div>
-    </div>
-  
-    <h3>Contact</h3>
-    <div>
-      Found an issue? Want to review the source code? Feature sugestions? Need a retailer not listed here?
-      <br> The web client is available at:
+      Found an issue?
+      <br>Want to review the source code?
+      <br> Feature sugestions?
+      <br>Need a retailer not yet listed here?
+      <br> File an issue agains the web client source code at:
       <a href="https://github.com/nexus-uw/ammo-scrape-client">https://github.com/nexus-uw/ammo-scrape-client</a>
     </div>
+  
+    <h2>Supported Retailers</h2>
+    <supported-retailers></supported-retailers>
   </div>
 </template>
 
 <script>
+import SupportedRetailers from '~components/supported-retailers.vue'
+
 export default {
+  components: {
+    SupportedRetailers
+  },
   head: {
     title: 'About AmmoBin.ca',
     meta: [
