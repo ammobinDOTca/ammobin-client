@@ -1,5 +1,7 @@
 # AmmoBin.ca
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/nexus-uw/ammo-scrape-client.svg?token=957f4dcb8f49d20fcd7acdc058831b3f677c53fb9487017a6899f188474adf72&ts=1495511154761)](https://greenkeeper.io/)
+
 meta search site for ammo prices across canada. built with [nuxt.js](https://nuxtjs.org).
 
 ## todo
