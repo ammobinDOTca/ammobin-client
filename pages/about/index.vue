@@ -8,7 +8,7 @@
       Prices are updated every morning.
     </div>
     <div>
-      No ammo is sold through this site site, it only links to retailer's product page.
+      No ammo is sold through this site, it only links to retailer's product page.
     </div>
   
     <h2>Contact</h2>
