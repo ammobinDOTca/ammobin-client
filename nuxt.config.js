@@ -6,7 +6,7 @@ module.exports = {
       new webpack.DefinePlugin({
         BASE_API_URL: !!process.env.PROD ? '"https://api.ammobin.ca/"' : '"http://localhost:8080/"',
         PROD: process.env.PROD ? 'true' : 'false'
-      })
+      }),
     ],
     extractCSS: true,
     vendor: ['axios'] // Add axios in the vendor.bundle.js
@@ -25,10 +25,11 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
-      { hid: 'description', name: 'description', content: 'Ammo prices across canada' }
+      { hid: 'description', name: 'description', content: 'Ammo prices across canada' },
+
     ],
     link: [
-
+      { rel: 'icon', type: 'image/x-icon', href: '/assets/favicon.ico' }
     ]
   }
 }

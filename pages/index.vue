@@ -1,6 +1,7 @@
 
 <template>
   <div class="container">
+    <img src="~assets/logo-medium.png" class="pure-img img">
     <h1>AmmoBin.ca</h1>
     <h3> A place to view the best online ammo prices across Canada.</h3>
     <p>
@@ -43,3 +44,11 @@ export default {
   }
 }
 </script>
+
+<style>
+.img {
+  display: block;
+  margin: auto;
+}
+</style>
+

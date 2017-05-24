@@ -67,7 +67,7 @@
   
     <div v-for="(row, index) in filteredRows" class="pure-g row fix-row">
       <div class="pure-u-lg-1-4 pure-u-1">
-        <img class="pure-img img-cell" v-bind:src="row.img" />
+        <img class="pure-img img-cell" v-bind:src="row.img || defaultImg" />
       </div>
       <div class="pure-u-lg-1-4 pure-u-1 m-b-1">{{row.name}}</div>
       <div class="pure-u-lg-1-4 pure-u-1 m-b-1 ">
@@ -139,8 +139,8 @@ export default {
       link: 1,
       minPrice: 1
     },
-    showVendors: {}
-
+    showVendors: {},
+    defaultImg: require('~/assets/blank.png')
   }),
   props: [
     'rows'

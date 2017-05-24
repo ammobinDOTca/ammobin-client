@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <img src="~assets/logo-medium.png" class="pure-img img">
     <h1>About</h1>
     <div>
       <a href="/">ammobin.ca</a> retreives public ammo prices daily from Canadian online retailers to aid in showing the best deals available.
@@ -18,7 +19,7 @@
       <br> Feature sugestions?
       <br>Need a retailer not yet listed here?
       <br> File an issue agains the web client source code at:
-      <a href="https://github.com/nexus-uw/ammo-scrape-client">https://github.com/nexus-uw/ammo-scrape-client</a>
+      <a href="https://github.com/nexus-uw/ammo-bin-client">https://github.com/nexus-uw/ammo-bin-client</a>
     </div>
   
     <h2>Supported Retailers</h2>
@@ -44,3 +45,9 @@ export default {
   }
 };
 </script>
+<style>
+.img {
+  display: block;
+  margin: auto;
+}
+</style>
