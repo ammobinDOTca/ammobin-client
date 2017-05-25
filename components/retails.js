@@ -48,5 +48,9 @@ export const list = shuffle([
     link: 'http://www.bullseyelondon.com/',
     img: require('~assets/bulls-logo.png'),
     id: 5
+  }, {
+    name: 'Canadian Tire (all over Canada)',
+    link: 'http://www.canadiantire.ca/en/sports-rec/hunting/ammunition.html',
+    img: require('~assets/canadian-tire-logo.png')
   }
 ]);
