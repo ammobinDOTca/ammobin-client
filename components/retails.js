@@ -51,6 +51,11 @@ export const list = shuffle([
   }, {
     name: 'Canadian Tire (all over Canada)',
     link: 'http://www.canadiantire.ca/en/sports-rec/hunting/ammunition.html',
-    img: require('~assets/canadian-tire-logo.png')
+    img: require('~assets/canadian-tire-logo.png'),
+    id: 6
+  }, {
+    name: 'Reliable Gun (Vancouver, BC)',
+    link: 'https://www.reliablegun.com',
+    img: require('~assets/reliable-gun-logo.jpeg')
   }
 ]);
