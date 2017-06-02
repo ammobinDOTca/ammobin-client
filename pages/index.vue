@@ -4,15 +4,42 @@
     <img src="~assets/logo-medium.png" class="pure-img img">
     <h1>AmmoBin.ca</h1>
     <h3> A place to view the best online ammo prices across Canada.</h3>
-    <p>
-      <nuxt-link to="/rimfire">Rimfire</nuxt-link>
-    </p>
-    <p>
-      <nuxt-link to="/centerfire">Centerfire</nuxt-link>
-    </p>
-    <p>
-      <nuxt-link to="/shotgun">Shotgun</nuxt-link>
-    </p>
+  
+    <div class="pure-g row">
+      <div class="pure-u-lg-1-3 pure-u-1 margin-y">
+        <nuxt-link :to="{ path: 'rimfire', query: { calibre: '.22LR' }}">.22LR</nuxt-link>
+      </div>
+      <div class="pure-u-lg-1-3 pure-u-1 margin-y">
+        <nuxt-link :to="{ path: 'centerfire', query: { calibre: '9mm' }}">9mm</nuxt-link>
+      </div>
+      <div class="pure-u-lg-1-3 pure-u-1 margin-y">
+        <nuxt-link :to="{ path: 'centerfire', query: { calibre: '5.56 NATO' }}">5.56 NATO</nuxt-link>
+      </div>
+    </div>
+    <div class="pure-g row">
+      <div class="pure-u-lg-1-3 pure-u-1 margin-y">
+        <nuxt-link :to="{ path: 'centerfire', query: { calibre: '7.62 x 39mm' }}">7.62 x 39mm</nuxt-link>
+      </div>
+      <div class="pure-u-lg-1-3 pure-u-1 margin-y">
+        <nuxt-link :to="{ path: 'centerfire', query: { calibre: '7.62 NATO' }}">7.62 NATO</nuxt-link>
+      </div>
+      <div class="pure-u-lg-1-3 pure-u-1 margin-y">
+        <nuxt-link :to="{ path: 'shotgun', query: { calibre: '12 GA' }}">12 GA</nuxt-link>
+      </div>
+    </div>
+    <div class="pure-g row">
+      <div class="pure-u-lg-1-3 pure-u-1 margin-y">
+        <nuxt-link to="/rimfire">All Rimfire</nuxt-link>
+      </div>
+      <div class="pure-u-lg-1-3 pure-u-1 margin-y">
+        <nuxt-link to="/centerfire">All Centerfire</nuxt-link>
+      </div>
+      <div class="pure-u-lg-1-3 pure-u-1 margin-y">
+        <nuxt-link to="/shotgun">All Shotgun</nuxt-link>
+      </div>
+  
+    </div>
+  
     <div>
       <h2>Supported Retailers</h2>
       <supported-retailers></supported-retailers>
@@ -49,6 +76,11 @@ export default {
 .img {
   display: block;
   margin: auto;
+}
+
+.margin-y {
+  margin-bottom: 15px;
+  margin-top: 15px;
 }
 </style>
 

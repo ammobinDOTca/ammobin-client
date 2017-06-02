@@ -3,6 +3,7 @@
 meta search site for ammo prices across canada. built with [nuxt.js](https://nuxtjs.org).
 
 ## todo
+- deploy to docker hub
 - add 1 more ontario vendors
 - add 2 BC or alberta vendors
 - filter by vendor  province

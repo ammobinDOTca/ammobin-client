@@ -31,5 +31,9 @@ module.exports = {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/assets/favicon.ico' }
     ]
+  },
+  cache: {
+    max: 1000,
+    maxAge: 86400000
   }
 }

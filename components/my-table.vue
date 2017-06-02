@@ -61,8 +61,9 @@
         </h4>
       </div>
     </div>
+  
     <div v-if="filteredRows.length === 0" class="pure-g row fix-row">
-      no results found.
+      <div class="pure-u-1"> no results found.</div>
     </div>
   
     <div v-for="(row, index) in filteredRows" class="pure-g row fix-row">
@@ -133,7 +134,6 @@ export default {
     searchQuery: '',
     sortKey: 'minPrice',
     sortedListLength: 0,
-    calibre: '',
     sortOrders: {
       name: 1,
       link: 1,
@@ -143,8 +143,16 @@ export default {
     defaultImg: require('~/assets/blank.png')
   }),
   props: [
-    'rows'
+    'rows',
+    'calibre'
   ],
+  watch: {
+    calibre: function () {
+      // update url with the calibre everytime it changes
+      // should happen in page component
+      history.pushState({}, 'generate-routes', window.location.pathname + `?cailbre=${encodeURIComponent(this.calibre)}`);
+    }
+  },
   computed: {
     // list of calibres from ALL results
     calibres() {
@@ -219,9 +227,7 @@ export default {
       window.scroll(0, 0); //scroll to top of page
     },
     toggleVendors(name) {
-      console.log('toggleVendors', name, this.showVendors)
       this.showVendors[name] = !this.showVendors[name];
-
     }
   },
 

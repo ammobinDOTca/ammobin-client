@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>Rimfire</h1>
-    <my-table v-bind:rows="rows"></my-table>
+    <my-table v-bind:rows="rows" v-bind:calibre="calibre"></my-table>
     <div v-if="error">failed to load ammo list: {{error}}</div>
   </div>
 </template>
@@ -24,18 +24,16 @@ export default {
   components: {
     MyTable
   },
-  async asyncData({ error }) {
+  async asyncData({ error, query }) {
     try {
       let rows = await getRimfire();
-      return { rows };
+      return { rows, calibre: query.calibre || '' };
     } catch (e) {
       console.error(e)
       error({ statusCode: 500, message: 'Failed to load prices' });
     }
   },
-  serverCacheKey() {
-    return new Date().toDateString();
-  },
+
 }
 </script>
 >
