@@ -32,7 +32,10 @@ export default {
       console.error(e)
       error({ statusCode: 500, message: 'Failed to load prices' });
     }
-  }
+  },
+  serverCacheKey() {
+    return new Date().toDateString();
+  },
 }
 </script>
 >
