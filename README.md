@@ -12,6 +12,19 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - fix favicon
 - added progress web app support
 
+## vendors to add
+- cabelas (have to work through calibre selector for center fire)
+- wholesalesports.com
+- http://www.westcoasthunting.ca/
+- https://www.leverarms.com
+- https://theshootingedge.com/
+- https://store.theshootingcentre.com/
+- https://gun-shop.ca/product-category
+- https://www.canadaammo.com/
+- https://www.wolverinesupplies.com
+- http://northprosports.com
+- https://vancouvergunstore.ca/
+
 ## how to run locally
 - ```npm i```
 - ```PROD=true npm run dev```
