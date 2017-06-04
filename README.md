@@ -24,7 +24,7 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - https://www.wolverinesupplies.com
 - http://northprosports.com
 - https://vancouvergunstore.ca/
-- https://www.gotenda.com/
+- https://www.gotenda.com/ (bulk ammo)
 
 ## how to run locally
 - ```npm i```
