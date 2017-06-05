@@ -1,4 +1,4 @@
-# AmmoBin.ca
+# AmmoBin.ca [![Build Status](https://travis-ci.org/ammobinDOTca/ammo-bin-client.svg?branch=master)](https://travis-ci.org/ammobinDOTca/ammo-bin-client)
 
 meta search site for ammo prices across canada. built with [nuxt.js](https://nuxtjs.org).
 
