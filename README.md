@@ -24,7 +24,11 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - https://www.wolverinesupplies.com
 - http://northprosports.com
 - https://vancouvergunstore.ca/
-- https://www.gotenda.com/ (bulk ammo)
+- https://www.gotenda.com/ (bulk ammo section
+- https://shophighfalls.com/collections/rifle-ammo?view=ALL
+- http://lanzshootingsupplies.com/shop/ammunition/caliber/handgun.html
+- http://www.rougeriverarms.com/index.php?route=product/category&path=70
+- https://www.westernmetal.ca/shooting-category/new-ammunition
 
 ## how to run locally
 - ```npm i```
