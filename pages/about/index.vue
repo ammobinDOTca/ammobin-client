@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <img src="~assets/logo-medium.png" class="pure-img img">
+    <img src="~assets/logo-medium.png" class="pure-img img" alt="ammobin.ca logo">
     <h1>About</h1>
     <div>
       <a href="/">ammobin.ca</a> retreives public ammo prices daily from Canadian online retailers to aid in showing the best deals available.
