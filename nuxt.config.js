@@ -28,6 +28,16 @@ module.exports = {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
       { hid: 'description', name: 'description', content: 'The place to view ammo prices across Canada.' },
+      {
+        // google webmaster
+        name: 'google-site-verification',
+        content: 'X3ZsfEygJo1ywKMaf5Q8ltUgkgK7o9buM7yMsI6G7yc'
+      },
+      {
+        // bing webmaster (since helps to feed duckduckgo)
+        name: 'msvalidate.01',
+        content: '330D6A0BB2221C7F78C038494DE50309'
+      }
 
     ],
     link: [
