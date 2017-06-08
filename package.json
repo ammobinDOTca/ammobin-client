@@ -4,6 +4,7 @@
   "description": "",
   "dependencies": {
     "axios": "^0.15.2",
+    "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.1",
     "nuxt": "latest",
     "purecss": "^0.6.2",
