@@ -93,7 +93,7 @@
             ${{v.price.toFixed(2)}}
           </div>
           <div class="pure-u-1-4">
-            <a v-bind:href="v.link" target="_blank">Buy From {{v.vendor}}</a>
+            <a v-bind:href="v.link" target="_blank" rel="nofollow">Buy From {{v.vendor}}</a>
           </div>
         </div>
   
