@@ -1,12 +1,14 @@
 const webpack = require('webpack');
 const { join } = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   build: {
     plugins: [
       new webpack.DefinePlugin({
         BASE_API_URL: !!process.env.PROD ? '"https://api.ammobin.ca/"' : '"http://localhost:8080/"',
         PROD: process.env.PROD ? 'true' : 'false'
-      })
+      }),
+      new CopyWebpackPlugin([{ from: 'static' }])
     ],
     extractCSS: true,
     vendor: ['axios'] // Add axios in the vendor.bundle.js
@@ -25,10 +27,15 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
-      { hid: 'description', name: 'description', content: 'Ammo prices across canada' }
+      { hid: 'description', name: 'description', content: 'The place to view ammo prices across Canada.' },
+
     ],
     link: [
-
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
+  },
+  cache: {
+    max: 1000,
+    maxAge: 86400000
   }
 }
