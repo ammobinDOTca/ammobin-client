@@ -3,7 +3,7 @@
   "private": true,
   "description": "",
   "dependencies": {
-    "axios": "^0.15.2",
+    "axios": "^0.16.1",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.1",
     "nuxt": "latest",
