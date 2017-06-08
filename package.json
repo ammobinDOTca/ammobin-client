@@ -11,6 +11,7 @@
     "vue-style-loader": "^3.0.1"
   },
   "scripts": {
+    "test": "npm run build",
     "dev": "nuxt",
     "build": "PROD=true nuxt build",
     "start": "HOST=0.0.0.0 NODE_ENV=production PROD=true nuxt start",
