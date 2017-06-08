@@ -30,10 +30,7 @@ export default {
         hid: 'description', name: 'description',
         content: ' A place to view online ammo prices across Canada'
       },
-      {
-        name: 'google-site-verification',
-        content: 'X3ZsfEygJo1ywKMaf5Q8ltUgkgK7o9buM7yMsI6G7yc'
-      }
+
     ]
   },
   computed: {
