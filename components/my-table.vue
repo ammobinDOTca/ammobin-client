@@ -70,7 +70,7 @@
       <div class="pure-u-lg-1-4 pure-u-1">
         <img class="pure-img img-cell" v-bind:src="row.img || defaultImg" />
       </div>
-      <div class="pure-u-lg-1-4 pure-u-1 m-b-1">{{row.name}}</div>
+      <div class="pure-u-lg-1-4 pure-u-1 m-b-1 capitalize">{{row.name}}</div>
       <div class="pure-u-lg-1-4 pure-u-1 m-b-1 ">
         <span v-if="row.minPrice !== row.maxPrice">
           ${{row.minPrice.toFixed(2)}} - ${{row.maxPrice.toFixed(2)}}
@@ -297,5 +297,9 @@ export default {
 
 .m-b-1 {
   margin-bottom: 5px;
+}
+
+.capitalize {
+  text-transform: capitalize;
 }
 </style>

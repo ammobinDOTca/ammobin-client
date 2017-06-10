@@ -6,12 +6,12 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 
 ## todo
 - determine quantities to generate unit prices
-- deploy to docker hub
+- filter out 'UNKNOWN' calibres by default
+- add switch to show unknown calibres
 - add 1 more ontario vendors
 - add 2 BC or alberta vendors
 - filter by vendor  province
-- fix favicon
-- added progress web app support
+- add progress web app support
 
 ## vendors to add
 - cabelas (have to work through calibre selector for center fire)
@@ -21,7 +21,6 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - https://theshootingedge.com/
 - https://store.theshootingcentre.com/
 - https://gun-shop.ca/product-category
-- https://www.canadaammo.com/
 - https://www.wolverinesupplies.com
 - http://northprosports.com
 - https://vancouvergunstore.ca/
