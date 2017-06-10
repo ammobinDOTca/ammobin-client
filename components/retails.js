@@ -63,5 +63,10 @@ export const list = shuffle([
     link: 'https://www.gotenda.com/',
     img: require('~assets/tenda-logo.png'),
     id: 8
+  }, {
+    name: 'Canada Ammo',
+    link: 'https://www.canadaammo.com',
+    img: require('~assets/canada-ammo-logo.jpeg'),
+    id: 9
   }
 ]);
