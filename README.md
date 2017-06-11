@@ -21,7 +21,6 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - https://theshootingedge.com/
 - https://store.theshootingcentre.com/
 - https://gun-shop.ca/product-category
-- https://www.wolverinesupplies.com
 - http://northprosports.com
 - https://vancouvergunstore.ca/
 - https://www.gotenda.com/ (bulk ammo section
