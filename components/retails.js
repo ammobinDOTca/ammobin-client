@@ -68,5 +68,10 @@ export const list = shuffle([
     link: 'https://www.canadaammo.com',
     img: require('~assets/canada-ammo-logo.jpeg'),
     id: 9
+  }, {
+    name: 'Wolverine Supplies',
+    link: 'https://www.wolverinesupplies.com',
+    img: require('~assets/wolverine-logo.png'),
+    id: 10
   }
 ]);
