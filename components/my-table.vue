@@ -45,22 +45,22 @@
     </div>
     <div class="pure-g row">
       <div class="pure-u-lg-1-5 pure-u-1"></div>
-      <div class="pure-u-lg-1-5 pure-u-1-3 title" @click="sortBy('name')" :class="{ active: sortKey == 'name' }">
+      <div class="pure-u-lg-1-5 pure-u-1-4 title" @click="sortBy('name')" :class="{ active: sortKey == 'name' }">
         <h4>Name
           <span class="arrow" :class="sortOrders['name'] > 0 ? 'asc' : 'dsc'"></span>
         </h4>
       </div>
-      <div class="pure-u-lg-1-5 pure-u-1-3 title" @click="sortBy('minPrice')" :class="{ active: sortKey == 'minPrice' }">
+      <div class="pure-u-lg-1-5 pure-u-1-4 title" @click="sortBy('minPrice')" :class="{ active: sortKey == 'minPrice' }">
         <h4>Price
           <span class="arrow" :class="sortOrders['minPrice'] > 0 ? 'asc' : 'dsc'"></span>
         </h4>
       </div>
-      <div class="pure-u-lg-1-5 pure-u-1-3 title" @click="sortBy('minUnitCost')" :class="{ active: sortKey == 'minUnitCost' }">
+      <div class="pure-u-lg-1-5 pure-u-1-4 title" @click="sortBy('minUnitCost')" :class="{ active: sortKey == 'minUnitCost' }">
         <h4>Unit Cost
           <span class="arrow" :class="sortOrders['minUnitCost'] > 0 ? 'asc' : 'dsc'"></span>
         </h4>
       </div>
-      <div class="pure-u-lg-1-5 pure-u-1-3 title" @click="sortBy('link')" :class="{ active: sortKey == 'link' }">
+      <div class="pure-u-lg-1-5 pure-u-1-4 title" @click="sortBy('link')" :class="{ active: sortKey == 'link' }">
         <h4>Link
           <span class="arrow" :class="sortOrders['link'] > 0 ? 'asc' : 'dsc'"></span>
         </h4>
@@ -72,13 +72,13 @@
     </div>
   
     <div v-for="(row, index) in filteredRows" class="pure-g row fix-row">
-      <div class="pure-u-lg-1-5 pure-u-1">
+      <div class="pure-u-lg-1-5 pure-u-md-1 pure-u-1">
         <img class="pure-img img-cell" v-bind:src="row.img || defaultImg" />
       </div>
-      <div class="pure-u-lg-1-5 pure-u-1 m-b-1 capitalize">
+      <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1 capitalize">
         {{row.name}}
       </div>
-      <div class="pure-u-lg-1-5 pure-u-1 m-b-1 ">
+      <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1 ">
         <span v-if="row.minPrice !== row.maxPrice">
           ${{row.minPrice.toFixed(2)}} - ${{row.maxPrice.toFixed(2)}}
         </span>
@@ -86,7 +86,7 @@
           ${{row.minPrice.toFixed(2)}}
         </span>
       </div>
-      <div class="pure-u-lg-1-5 pure-u-1 m-b-1">
+      <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
         <span v-if="row.minUnitCost && row.minUnitCost !== row.maxUnitCost">
           ${{ row.minUnitCost.toFixed(2) }} - ${{ row.maxUnitCost.toFixed(2) }}
         </span>
@@ -97,23 +97,23 @@
           N/A
         </span>
       </div>
-      <div class="pure-u-lg-1-5 pure-u-1 m-b-1">
+      <div class="pure-u-lg-1-5 pure-u-md-1-4  pure-u-1 m-b-1">
         <button class="pure-button" @click="toggleVendors(row.name)">
           {{showVendors[row.name]? 'hide':'show'}} vendors
         </button>
       </div>
       <div class="pure-u-1" v-if="showVendors[row.name] === true">
         <div v-for="v in row.vendors" class="pure-g m-b-1">
-          <div class="pure-u-2-5">
+          <div class="pure-u-md-1-4 pure-u-2-5 ">
             {{v.name}}
           </div>
-          <div class="pure-u-1-5">
+          <div class="pure-u-md-1-4 pure-u-1-5">
             ${{v.price.toFixed(2)}}
           </div>
-          <div class="pure-u-1-5">
+          <div class="pure-u-md-1-4 pure-u-1-5">
             <span v-if="v.unitCost">({{(v.unitCost).toFixed(2)}} per round)</span>
           </div>
-          <div class="pure-u-1-5">
+          <div class="pure-u-md-1-4 pure-u-1-5">
             <a v-bind:href="v.link" target="_blank" rel="nofollow">Buy From {{v.vendor}}</a>
           </div>
         </div>
