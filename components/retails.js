@@ -56,7 +56,7 @@ export const list = shuffle([
   }, {
     name: 'Reliable Gun (Vancouver, BC)',
     link: 'https://www.reliablegun.com',
-    img: require('~assets/reliable-gun-logo.jpeg'),
+    img: require('~assets/reliable-gun-logo.jpg'),
     id: 7
   }, {
     name: 'Tenda',
@@ -66,7 +66,7 @@ export const list = shuffle([
   }, {
     name: 'Canada Ammo',
     link: 'https://www.canadaammo.com',
-    img: require('~assets/canada-ammo-logo.jpeg'),
+    img: require('~assets/canada-ammo-logo.jpg'),
     id: 9
   }, {
     name: 'Wolverine Supplies',
