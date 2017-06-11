@@ -104,16 +104,16 @@
       </div>
       <div class="pure-u-1" v-if="showVendors[row.name] === true">
         <div v-for="v in row.vendors" class="pure-g m-b-1">
-          <div class="pure-u-md-1-4 pure-u-2-5 ">
+          <div class="pure-u-lg-2-5 pure-u-md-1-4 pure-u-2-5 ">
             {{v.name}}
           </div>
-          <div class="pure-u-md-1-4 pure-u-1-5">
+          <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1-5">
             ${{v.price.toFixed(2)}}
           </div>
-          <div class="pure-u-md-1-4 pure-u-1-5">
+          <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1-5">
             <span v-if="v.unitCost">({{(v.unitCost).toFixed(2)}} per round)</span>
           </div>
-          <div class="pure-u-md-1-4 pure-u-1-5">
+          <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1-5">
             <a v-bind:href="v.link" target="_blank" rel="nofollow">Buy From {{v.vendor}}</a>
           </div>
         </div>
