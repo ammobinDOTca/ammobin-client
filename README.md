@@ -5,11 +5,7 @@
 meta search site for ammo prices across canada. built with [nuxt.js](https://nuxtjs.org).
 
 ## todo
-- determine quantities to generate unit prices
-- filter out 'UNKNOWN' calibres by default
-- add switch to show unknown calibres
-- add 1 more ontario vendors
-- add 2 BC or alberta vendors
+- filter out 'UNKNOWN' calibres by default + create the dank zone (contains all unknown stuff).
 - filter by vendor  province
 - add progress web app support
 
