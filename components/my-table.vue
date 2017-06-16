@@ -190,12 +190,20 @@ export default {
     },
     // apply filters + sorting + pagination to results
     filteredRows() {
-      let data = this.rows.slice();
+      let data = JSON.parse(JSON.stringify(this.rows)); // super fancy deep list of objects
       let sortKey = this.sortKey;
       let order = this.sortOrders[sortKey];
       if (this.searchQuery) {
-        data = data.filter(r => r.name && r.name.toLowerCase().indexOf(this.searchQuery.toLowerCase()) >= 0);
-        // todo: filter on row's items name + vendor + province
+        const q = this.searchQuery.toLowerCase();
+        // data = data.filter(r => (r.name &&
+        //   r.name.toLowerCase().indexOf(q) >= 0));
+        data = data.map(d => {
+          d.vendors = d.vendors.filter(r => (r.name &&
+            r.name.toLowerCase().indexOf(q) >= 0));
+          return d;
+        })
+          .filter(f => f.vendors && f.vendors.length);
+
       }
       if (this.calibre) {
         data = data.filter(r => r.calibre === this.calibre);
