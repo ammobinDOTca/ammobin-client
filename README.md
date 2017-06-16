@@ -4,10 +4,15 @@
 
 meta search site for ammo prices across canada. built with [nuxt.js](https://nuxtjs.org).
 
+## how to run 
+1. ```docker run ammobindotca/ammo-bin-client -p 3000:3000```
+
 ## todo
-- filter out 'UNKNOWN' calibres by default + create the dank zone (contains all unknown stuff).
+- filter out 'UNKNOWN' calibres + brands by default + create the dank zone (contains all unknown stuff).
+- apply order to grouped items (ie: order by unit cost)
+- add best prices to main page (also expose as rss feed)
 - filter by vendor  province
-- add progress web app support
+- add progress web app support (nuxt provides some of this already, need to futher investigate)
 
 ## vendors to add
 - cabelas (have to work through calibre selector for center fire)
@@ -25,6 +30,7 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - http://www.rougeriverarms.com/index.php?route=product/category&path=70
 - https://www.westernmetal.ca/shooting-category/new-ammunition
 - https://www.jobrookoutdoors.com/shooting/ammo/rimfire/?limit=100&sort=lowest
+
 ## how to run locally
 - ```npm i```
 - ```PROD=true npm run dev```
