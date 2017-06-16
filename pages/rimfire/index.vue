@@ -15,6 +15,7 @@ export default {
       error: null
     }
   },
+
   head: {
     title: 'Rimfire',
     meta: [

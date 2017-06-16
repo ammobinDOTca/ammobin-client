@@ -73,5 +73,10 @@ export const list = shuffle([
     link: 'https://www.wolverinesupplies.com',
     img: require('~assets/wolverine-logo.png'),
     id: 10
+  }, {
+    name: 'Jo Brook Outdoors',
+    link: 'https://www.jobrookoutdoors.com/',
+    img: require('~assets/jo-brook-logo.png'),
+    id: 11
   }
 ]);
