@@ -19,6 +19,11 @@ export default {
   components: {
     MyTable
   },
+  data() {
+    return {
+      error: null
+    }
+  },
   async asyncData({ error, query }) {
     try {
       let rows = await getCenterfire();
