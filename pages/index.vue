@@ -7,16 +7,16 @@
   
     <div class="pure-g row">
       <div class="pure-u-lg-1-3 pure-u-1-2 margin-y">
-        <nuxt-link :to="{ path: 'rimfire', query: { calibre: '.22LR' }}">.22LR</nuxt-link>
+        <nuxt-link :to="{ path: 'rimfire', query: { calibre: '.22 LR' }}">.22LR</nuxt-link>
       </div>
       <div class="pure-u-lg-1-3 pure-u-1-2 margin-y">
-        <nuxt-link :to="{ path: 'centerfire', query: { calibre: '9mm' }}">9mm</nuxt-link>
+        <nuxt-link :to="{ path: 'centerfire', query: { calibre: '9MM' }}">9mm</nuxt-link>
       </div>
       <div class="pure-u-lg-1-3 pure-u-1-2 margin-y">
         <nuxt-link :to="{ path: 'centerfire', query: { calibre: '5.56 NATO' }}">5.56 NATO</nuxt-link>
       </div>
       <div class="pure-u-lg-1-3 pure-u-1-2 margin-y">
-        <nuxt-link :to="{ path: 'centerfire', query: { calibre: '7.62 x 39mm' }}">7.62 x 39mm</nuxt-link>
+        <nuxt-link :to="{ path: 'centerfire', query: { calibre: '7.62 X 39MM' }}">7.62 x 39mm</nuxt-link>
       </div>
       <div class="pure-u-lg-1-3 pure-u-1-2 margin-y">
         <nuxt-link :to="{ path: 'centerfire', query: { calibre: '7.62 NATO' }}">7.62 NATO</nuxt-link>
