@@ -4,7 +4,7 @@
 
 meta search site for ammo prices across canada. built with [nuxt.js](https://nuxtjs.org).
 
-## how to run 
+## how to run
 1. ```docker run ammobindotca/ammo-bin-client -p 3000:3000```
 
 ## todo
@@ -29,7 +29,7 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - http://lanzshootingsupplies.com/shop/ammunition/caliber/handgun.html
 - http://www.rougeriverarms.com/index.php?route=product/category&path=70
 - https://www.westernmetal.ca/shooting-category/new-ammunition
-- https://www.jobrookoutdoors.com/shooting/ammo/rimfire/?limit=100&sort=lowest
+
 
 ## how to run locally
 - ```npm i```
