@@ -153,7 +153,7 @@ export default {
     // default page size
     pageSize: 25,
     searchQuery: '',
-    sortKey: 'minPrice',
+    sortKey: 'minUnitCost',
     sortedListLength: 0,
     sortOrders: {
       name: 1,
@@ -229,7 +229,49 @@ export default {
           } else {
             return -1 * order;
           }
-        });
+        })
+        data = data.map(row => {
+          row.vendors = row.vendors.sort(function (a, b) {
+            let groupedKey;
+            switch (sortKey) {
+              case 'minUnitCost':
+                groupedKey = 'unitCost';
+                break;
+              case 'name':
+                groupedKey = 'name';
+                break;
+              case 'minPrice':
+                groupedKey = 'price';
+                break;
+              case 'link':
+                groupedKey = 'vendor';
+                break;
+              default:
+                console.error('unhandled sort key', sortKey)
+            }
+
+            let aa = a[groupedKey];
+            let bb = b[groupedKey];
+            // put unknown unit costs at the bottom of the sort order
+            if (groupedKey === 'unitCost') {
+              if (aa <= 0) {
+                aa = Number.MAX_SAFE_INTEGER;
+              }
+              if (bb <= 0) {
+                bb = Number.MAX_SAFE_INTEGER;
+              }
+            }
+
+            if (aa === bb) {
+              return 0;
+            } else if (aa > bb) {
+              return 1 * order;
+            } else {
+              return -1 * order;
+            }
+          });
+          return row
+        })
       }
 
       this.sortedListLength = data.length; // gross side effect. but lets us know how many pages of data there are
