@@ -44,18 +44,23 @@
       </div>
     </div>
     <div class="pure-g row">
-      <div class="pure-u-lg-1-4 pure-u-1"></div>
-      <div class="pure-u-lg-1-4 pure-u-1-3 title" @click="sortBy('name')" :class="{ active: sortKey == 'name' }">
+      <div class="pure-u-lg-1-5 pure-u-1"></div>
+      <div class="pure-u-lg-1-5 pure-u-1-4 title" @click="sortBy('name')" :class="{ active: sortKey == 'name' }">
         <h4>Name
           <span class="arrow" :class="sortOrders['name'] > 0 ? 'asc' : 'dsc'"></span>
         </h4>
       </div>
-      <div class="pure-u-lg-1-4 pure-u-1-3 title" @click="sortBy('minPrice')" :class="{ active: sortKey == 'minPrice' }">
+      <div class="pure-u-lg-1-5 pure-u-1-4 title" @click="sortBy('minPrice')" :class="{ active: sortKey == 'minPrice' }">
         <h4>Price
           <span class="arrow" :class="sortOrders['minPrice'] > 0 ? 'asc' : 'dsc'"></span>
         </h4>
       </div>
-      <div class="pure-u-lg-1-4 pure-u-1-3 title" @click="sortBy('link')" :class="{ active: sortKey == 'link' }">
+      <div class="pure-u-lg-1-5 pure-u-1-4 title" @click="sortBy('minUnitCost')" :class="{ active: sortKey == 'minUnitCost' }">
+        <h4>Unit Cost
+          <span class="arrow" :class="sortOrders['minUnitCost'] > 0 ? 'asc' : 'dsc'"></span>
+        </h4>
+      </div>
+      <div class="pure-u-lg-1-5 pure-u-1-4 title" @click="sortBy('link')" :class="{ active: sortKey == 'link' }">
         <h4>Link
           <span class="arrow" :class="sortOrders['link'] > 0 ? 'asc' : 'dsc'"></span>
         </h4>
@@ -67,33 +72,49 @@
     </div>
   
     <div v-for="(row, index) in filteredRows" class="pure-g row fix-row">
-      <div class="pure-u-lg-1-4 pure-u-1">
+      <div class="pure-u-lg-1-5 pure-u-md-1 pure-u-1">
         <img class="pure-img img-cell" v-bind:src="row.img || defaultImg" />
       </div>
-      <div class="pure-u-lg-1-4 pure-u-1 m-b-1">{{row.name}}</div>
-      <div class="pure-u-lg-1-4 pure-u-1 m-b-1 ">
-        <span v-if="row.minPrice !== row.maxPrice">
-          ${{row.minPrice.toFixed(2)}} - ${{row.maxPrice.toFixed(2)}}
-        </span>
-        <span v-if="row.minPrice === row.maxPrice">
-          ${{row.minPrice.toFixed(2)}}
-        </span>
+      <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1 capitalize">
+        {{row.name}}
       </div>
-      <div class="pure-u-lg-1-4 pure-u-1 m-b-1">
+      <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1 ">
+        <div v-if="row.minPrice !== row.maxPrice">
+          ${{row.minPrice.toFixed(2)}} - ${{row.maxPrice.toFixed(2)}}
+        </div>
+        <div v-else>
+          ${{row.minPrice.toFixed(2)}}
+        </div>
+      </div>
+      <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
+        <div v-if="row.minUnitCost && row.minUnitCost !== row.maxUnitCost">
+          ${{ row.minUnitCost.toFixed(2) }} - ${{ row.maxUnitCost.toFixed(2) }}
+        </div>
+        <div v-else-if=" row.minUnitCost && row.minUnitCost === row.maxUnitCost">
+          ${{row.minUnitCost.toFixed(2)}}
+        </div>
+        <div v-else if="!row.minUnitCost">
+          N/A
+        </div>
+      </div>
+      <div class="pure-u-lg-1-5 pure-u-md-1-4  pure-u-1 m-b-1">
         <button class="pure-button" @click="toggleVendors(row.name)">
           {{showVendors[row.name]? 'hide':'show'}} vendors
         </button>
       </div>
       <div class="pure-u-1" v-if="showVendors[row.name] === true">
         <div v-for="v in row.vendors" class="pure-g m-b-1">
-          <div class="pure-u-1-2">
+          <div class="pure-u-lg-2-5 pure-u-md-1-4 pure-u-2-5 ">
             {{v.name}}
           </div>
-          <div class="pure-u-1-4">
+          <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1-5">
             ${{v.price.toFixed(2)}}
           </div>
-          <div class="pure-u-1-4">
-            <a v-bind:href="v.link" target="_blank">Buy From {{v.vendor}}</a>
+          <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1-5">
+            <span v-if="v.unitCost">({{(v.unitCost).toFixed(2)}} per round)</span>
+          </div>
+          <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1-5">
+            <a v-bind:href="v.link" target="_blank" rel="nofollow">Buy From {{v.vendor}}</a>
           </div>
         </div>
   
@@ -132,12 +153,13 @@ export default {
     // default page size
     pageSize: 25,
     searchQuery: '',
-    sortKey: 'minPrice',
+    sortKey: 'minUnitCost',
     sortedListLength: 0,
     sortOrders: {
       name: 1,
       link: 1,
-      minPrice: 1
+      minPrice: 1,
+      minUnitCost: 1
     },
     showVendors: {},
     defaultImg: require('~/assets/blank.png')
@@ -168,11 +190,20 @@ export default {
     },
     // apply filters + sorting + pagination to results
     filteredRows() {
-      let data = this.rows.slice();
+      let data = JSON.parse(JSON.stringify(this.rows)); // super fancy deep list of objects
       let sortKey = this.sortKey;
       let order = this.sortOrders[sortKey];
       if (this.searchQuery) {
-        data = data.filter(r => r.name && r.name.toLowerCase().indexOf(this.searchQuery.toLowerCase()) >= 0);
+        const q = this.searchQuery.toLowerCase();
+        // data = data.filter(r => (r.name &&
+        //   r.name.toLowerCase().indexOf(q) >= 0));
+        data = data.map(d => {
+          d.vendors = d.vendors.filter(r => (r.name &&
+            r.name.toLowerCase().indexOf(q) >= 0));
+          return d;
+        })
+          .filter(f => f.vendors && f.vendors.length);
+
       }
       if (this.calibre) {
         data = data.filter(r => r.calibre === this.calibre);
@@ -181,6 +212,16 @@ export default {
         data = data.sort(function (a, b) {
           let aa = a[sortKey];
           let bb = b[sortKey];
+          // put unknown unit costs at the bottom of the sort order
+          if (sortKey === 'minUnitCost') {
+            if (aa <= 0) {
+              aa = Number.MAX_SAFE_INTEGER;
+            }
+            if (bb <= 0) {
+              bb = Number.MAX_SAFE_INTEGER;
+            }
+          }
+
           if (aa === bb) {
             return 0;
           } else if (aa > bb) {
@@ -188,7 +229,49 @@ export default {
           } else {
             return -1 * order;
           }
-        });
+        })
+        data = data.map(row => {
+          row.vendors = row.vendors.sort(function (a, b) {
+            let groupedKey;
+            switch (sortKey) {
+              case 'minUnitCost':
+                groupedKey = 'unitCost';
+                break;
+              case 'name':
+                groupedKey = 'name';
+                break;
+              case 'minPrice':
+                groupedKey = 'price';
+                break;
+              case 'link':
+                groupedKey = 'vendor';
+                break;
+              default:
+                console.error('unhandled sort key', sortKey)
+            }
+
+            let aa = a[groupedKey];
+            let bb = b[groupedKey];
+            // put unknown unit costs at the bottom of the sort order
+            if (groupedKey === 'unitCost') {
+              if (aa <= 0) {
+                aa = Number.MAX_SAFE_INTEGER;
+              }
+              if (bb <= 0) {
+                bb = Number.MAX_SAFE_INTEGER;
+              }
+            }
+
+            if (aa === bb) {
+              return 0;
+            } else if (aa > bb) {
+              return 1 * order;
+            } else {
+              return -1 * order;
+            }
+          });
+          return row
+        })
       }
 
       this.sortedListLength = data.length; // gross side effect. but lets us know how many pages of data there are
@@ -297,5 +380,9 @@ export default {
 
 .m-b-1 {
   margin-bottom: 5px;
+}
+
+.capitalize {
+  text-transform: capitalize;
 }
 </style>

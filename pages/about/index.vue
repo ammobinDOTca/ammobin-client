@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <img src="~assets/logo-medium.png" class="pure-img img">
+    <img src="~assets/logo-medium.png" class="pure-img img" alt="ammobin.ca logo">
     <h1>About</h1>
     <div>
       <a href="/">ammobin.ca</a> retreives public ammo prices daily from Canadian online retailers to aid in showing the best deals available.
@@ -24,6 +24,11 @@
       <br> Issues with miss classified calibres can be filed at:
       <a href="https://github.com/ammobinDOTca/ammobin-classifer">https://github.com/ammobinDOTca/ammobin-classifer</a>
     </div>
+  
+    <h2> Disclaimer</h2>
+    <div> As of June 15, 2017, ammobin.ca has been entirely funded out of pocket. It does not receive any kick backs from any retailer listed on this site.</div>
+    <div> Additionally, ammobin.ca does not use any client side analytics or tracking software or external libraries. All site statics are collected from nginx server logs (ie: what your browser sends when it requests a page) and by using url redirection to track clicks to vendors.</div>
+    
   
     <h2>Supported Retailers</h2>
     <supported-retailers></supported-retailers>

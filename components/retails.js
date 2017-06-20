@@ -56,12 +56,32 @@ export const list = shuffle([
   }, {
     name: 'Reliable Gun (Vancouver, BC)',
     link: 'https://www.reliablegun.com',
-    img: require('~assets/reliable-gun-logo.jpeg'),
+    img: require('~assets/reliable-gun-logo.jpg'),
     id: 7
   }, {
     name: 'Tenda',
     link: 'https://www.gotenda.com/',
     img: require('~assets/tenda-logo.png'),
     id: 8
+  }, {
+    name: 'Canada Ammo',
+    link: 'https://www.canadaammo.com',
+    img: require('~assets/canada-ammo-logo.jpg'),
+    id: 9
+  }, {
+    name: 'Wolverine Supplies',
+    link: 'https://www.wolverinesupplies.com',
+    img: require('~assets/wolverine-logo.png'),
+    id: 10
+  }, {
+    name: 'Jo Brook Outdoors',
+    link: 'https://www.jobrookoutdoors.com/',
+    img: require('~assets/jo-brook-logo.png'),
+    id: 11
+  }, {
+    name: 'The Ammo Source',
+    link: 'http://www.theammosource.com',
+    img: require('~assets/the-ammo-source-logo.png'),
+    id: 11
   }
 ]);

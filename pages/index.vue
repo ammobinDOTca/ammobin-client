@@ -1,37 +1,33 @@
 
 <template>
   <div class="container">
-    <img src="~assets/logo-medium.png" class="pure-img img">
+    <img src="~assets/logo-medium.png" class="pure-img img" alt="ammobin.ca logo">
     <h1>AmmoBin.ca</h1>
     <h3> A place to view the best online ammo prices across Canada.</h3>
   
     <div class="pure-g row">
-      <div class="pure-u-lg-1-3 pure-u-1 margin-y">
-        <nuxt-link :to="{ path: 'rimfire', query: { calibre: '.22LR' }}">.22LR</nuxt-link>
+      <div class="pure-u-lg-1-3 pure-u-1-2 margin-y">
+        <nuxt-link :to="{ path: 'rimfire', query: { calibre: '.22 LR' }}">.22LR</nuxt-link>
       </div>
-      <div class="pure-u-lg-1-3 pure-u-1 margin-y">
-        <nuxt-link :to="{ path: 'centerfire', query: { calibre: '9mm' }}">9mm</nuxt-link>
+      <div class="pure-u-lg-1-3 pure-u-1-2 margin-y">
+        <nuxt-link :to="{ path: 'centerfire', query: { calibre: '9MM' }}">9mm</nuxt-link>
       </div>
-      <div class="pure-u-lg-1-3 pure-u-1 margin-y">
+      <div class="pure-u-lg-1-3 pure-u-1-2 margin-y">
         <nuxt-link :to="{ path: 'centerfire', query: { calibre: '5.56 NATO' }}">5.56 NATO</nuxt-link>
       </div>
-    </div>
-    <div class="pure-g row">
-      <div class="pure-u-lg-1-3 pure-u-1 margin-y">
-        <nuxt-link :to="{ path: 'centerfire', query: { calibre: '7.62 x 39mm' }}">7.62 x 39mm</nuxt-link>
+      <div class="pure-u-lg-1-3 pure-u-1-2 margin-y">
+        <nuxt-link :to="{ path: 'centerfire', query: { calibre: '7.62 X 39MM' }}">7.62 x 39mm</nuxt-link>
       </div>
-      <div class="pure-u-lg-1-3 pure-u-1 margin-y">
+      <div class="pure-u-lg-1-3 pure-u-1-2 margin-y">
         <nuxt-link :to="{ path: 'centerfire', query: { calibre: '7.62 NATO' }}">7.62 NATO</nuxt-link>
       </div>
-      <div class="pure-u-lg-1-3 pure-u-1 margin-y">
+      <div class="pure-u-lg-1-3 pure-u-1-2 margin-y">
         <nuxt-link :to="{ path: 'shotgun', query: { calibre: '12 GA' }}">12 GA</nuxt-link>
       </div>
-    </div>
-    <div class="pure-g row">
-      <div class="pure-u-lg-1-3 pure-u-1 margin-y">
+      <div class="pure-u-lg-1-3 pure-u-1-2 margin-y">
         <nuxt-link to="/rimfire">All Rimfire</nuxt-link>
       </div>
-      <div class="pure-u-lg-1-3 pure-u-1 margin-y">
+      <div class="pure-u-lg-1-3 pure-u-1-2 margin-y">
         <nuxt-link to="/centerfire">All Centerfire</nuxt-link>
       </div>
       <div class="pure-u-lg-1-3 pure-u-1 margin-y">
