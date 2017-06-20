@@ -79,23 +79,23 @@
         {{row.name}}
       </div>
       <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1 ">
-        <span v-if="row.minPrice !== row.maxPrice">
+        <div v-if="row.minPrice !== row.maxPrice">
           ${{row.minPrice.toFixed(2)}} - ${{row.maxPrice.toFixed(2)}}
-        </span>
-        <span v-if="row.minPrice === row.maxPrice">
+        </div>
+        <div v-else>
           ${{row.minPrice.toFixed(2)}}
-        </span>
+        </div>
       </div>
       <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
-        <span v-if="row.minUnitCost && row.minUnitCost !== row.maxUnitCost">
+        <div v-if="row.minUnitCost && row.minUnitCost !== row.maxUnitCost">
           ${{ row.minUnitCost.toFixed(2) }} - ${{ row.maxUnitCost.toFixed(2) }}
-        </span>
-        <span v-if=" row.minUnitCost && row.minUnitCost === row.maxUnitCost">
+        </div>
+        <div v-else-if=" row.minUnitCost && row.minUnitCost === row.maxUnitCost">
           ${{row.minUnitCost.toFixed(2)}}
-        </span>
-        <span v-if="!row.minUnitCost">
+        </div>
+        <div v-else if="!row.minUnitCost">
           N/A
-        </span>
+        </div>
       </div>
       <div class="pure-u-lg-1-5 pure-u-md-1-4  pure-u-1 m-b-1">
         <button class="pure-button" @click="toggleVendors(row.name)">
