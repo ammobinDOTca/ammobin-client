@@ -78,5 +78,10 @@ export const list = shuffle([
     link: 'https://www.jobrookoutdoors.com/',
     img: require('~assets/jo-brook-logo.png'),
     id: 11
+  }, {
+    name: 'The Ammo Source',
+    link: 'http://www.theammosource.com',
+    img: require('~assets/the-ammo-source-logo.png'),
+    id: 11
   }
 ]);

@@ -29,8 +29,7 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - http://lanzshootingsupplies.com/shop/ammunition/caliber/handgun.html
 - http://www.rougeriverarms.com/index.php?route=product/category&path=70
 - https://www.westernmetal.ca/shooting-category/new-ammunition
-- https://www.jobrookoutdoors.com/shooting/ammo/rimfire/?limit=100&sort=lowest
-
+- http://www.theammosource.com (fill out the ammo source, currently only picking their deals)
 
 ## how to run locally
 - ```npm i```
