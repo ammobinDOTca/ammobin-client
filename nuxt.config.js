@@ -38,7 +38,6 @@ module.exports = {
         name: 'msvalidate.01',
         content: '330D6A0BB2221C7F78C038494DE50309'
       }
-
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
