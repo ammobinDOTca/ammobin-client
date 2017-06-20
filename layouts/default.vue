@@ -18,6 +18,9 @@
       </ul>
     </div>
     <nuxt/>
+    <footer class="footer">
+      AmmoBin.ca {{new Date().getFullYear()}}
+    </footer>
   </div>
 </template>
 
@@ -40,3 +43,10 @@ export default {
   }
 };
 </script>
+
+<style>
+.footer {
+  text-align: center;
+  margin-top: 100px;
+}
+</style>
