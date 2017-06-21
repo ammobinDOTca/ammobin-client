@@ -8,14 +8,15 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 1. ```docker run ammobindotca/ammo-bin-client -p 3000:3000```
 
 ## todo
-- filter out 'UNKNOWN' calibres + brands by default + create the dank zone (contains all unknown stuff).
-- apply order to grouped items (ie: order by unit cost)
+- create the dank zone
 - add best prices to main page (also expose as rss feed)
 - filter by vendor  province
-- add progress web app support (nuxt provides some of this already, need to futher investigate)
+
+## how to run locally
+- ```npm i```
+- ```PROD=true npm run dev```
 
 ## vendors to add
-- cabelas (have to work through calibre selector for center fire)
 - wholesalesports.com
 - http://www.westcoasthunting.ca/
 - https://www.leverarms.com
@@ -24,13 +25,14 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - https://gun-shop.ca/product-category
 - http://northprosports.com
 - https://vancouvergunstore.ca/
-- https://www.gotenda.com/ (bulk ammo section
 - https://shophighfalls.com/collections/rifle-ammo?view=ALL
 - http://lanzshootingsupplies.com/shop/ammunition/caliber/handgun.html
 - http://www.rougeriverarms.com/index.php?route=product/category&path=70
 - https://www.westernmetal.ca/shooting-category/new-ammunition
+- http://shop.sylvestresportinggoods.com/Rifle-Ammunition/?p=catalog&mode=catalog&parent=506&pg=1&CatalogSetSortBy=price 
+
+## incomplete vendors
+- cabelas center fire
+- https://www.gotenda.com/ (bulk ammo section)
 - http://www.theammosource.com (fill out the ammo source, currently only picking their deals)
 
-## how to run locally
-- ```npm i```
-- ```PROD=true npm run dev```
