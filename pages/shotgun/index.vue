@@ -11,9 +11,9 @@ import MyTable from '~components/my-table.vue'
 import { getShotgun } from '~/api.js';
 export default {
   head: {
-    title: 'Shotgun',
+    title: 'Shotgun Prices',
     meta: [
-      { hid: 'description', name: 'description', content: 'shotgun ammo list' }
+      { hid: 'description', name: 'description', content: 'The place to view the best shotgun shell prices across Canada.' }
     ]
   },
   components: {
