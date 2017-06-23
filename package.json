@@ -8,7 +8,9 @@
     "css-loader": "^0.28.1",
     "nuxt": "latest",
     "purecss": "^0.6.2",
-    "vue-style-loader": "^3.0.1",
+    "vue-style-loader": "^3.0.1"
+  },
+  "devDependencies":{
     "snyk": "^1.36.0"
   },
   "scripts": {
