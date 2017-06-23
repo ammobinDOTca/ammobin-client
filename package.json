@@ -8,13 +8,17 @@
     "css-loader": "^0.28.1",
     "nuxt": "latest",
     "purecss": "^0.6.2",
-    "vue-style-loader": "^3.0.1"
+    "vue-style-loader": "^3.0.1",
+    "snyk": "^1.36.0"
   },
   "scripts": {
     "test": "npm run build",
     "dev": "nuxt",
     "build": "PROD=true nuxt build",
     "start": "HOST=0.0.0.0 NODE_ENV=production PROD=true nuxt start",
-    "generate": "PROD=true nuxt generate"
-  }
+    "generate": "PROD=true nuxt generate",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
