@@ -83,5 +83,10 @@ export const list = shuffle([
     link: 'http://www.theammosource.com',
     img: require('~assets/the-ammo-source-logo.png'),
     id: 11
+  }, {
+    name: 'Hirsch Precision',
+    link: 'http://www.hirschprecision.com',
+    img: require('~assets/hirsch-logo.png'),
+    id: 12
   }
 ]);
