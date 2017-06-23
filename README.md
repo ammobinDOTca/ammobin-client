@@ -22,10 +22,10 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - https://www.leverarms.com
 - https://theshootingedge.com/
 - https://store.theshootingcentre.com/
-- https://gun-shop.ca/product-category
+- https://gun-shop.ca/product-category (css rules hinder pulling data. will need to update scraper)
 - http://northprosports.com
 - https://vancouvergunstore.ca/
-- https://shophighfalls.com/collections/rifle-ammo?view=ALL
+- https://shophighfalls.com/collections/rifle-ammo?view=ALL (css rules hinder pulling data. will need to update scraper)
 - http://lanzshootingsupplies.com/shop/ammunition/caliber/handgun.html
 - http://www.rougeriverarms.com/index.php?route=product/category&path=70
 - https://www.westernmetal.ca/shooting-category/new-ammunition
@@ -33,6 +33,5 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 
 ## incomplete vendors
 - cabelas center fire
-- https://www.gotenda.com/ (bulk ammo section)
 - http://www.theammosource.com (fill out the ammo source, currently only picking their deals)
 
