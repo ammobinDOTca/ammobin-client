@@ -47,7 +47,7 @@ export default {
     meta: [
       {
         hid: 'description', name: 'description',
-        content: 'About Meta Ammo'
+        content: 'All about ammobin.ca'
       }
     ]
   }
