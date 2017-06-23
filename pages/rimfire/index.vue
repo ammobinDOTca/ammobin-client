@@ -17,9 +17,9 @@ export default {
   },
 
   head: {
-    title: 'Rimfire',
+    title: 'Rimfire Price List',
     meta: [
-      { hid: 'description', name: 'description', content: 'rimfire ammo list' }
+      { hid: 'description', name: 'description', content: 'The list of the best rimfire ammo prices across Canada.' }
     ]
   },
   components: {

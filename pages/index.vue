@@ -3,7 +3,7 @@
   <div class="container">
     <img src="~assets/logo-medium.png" class="pure-img img" alt="ammobin.ca logo">
     <h1>AmmoBin.ca</h1>
-    <h3> A place to view the best online ammo prices across Canada.</h3>
+    <h3>The place to view the best online ammo prices across Canada.</h3>
   
     <div class="pure-g row">
       <div class="pure-u-lg-1-3 pure-u-1-2 margin-y">
@@ -64,6 +64,14 @@ export default {
     //   console.error(e); // ignore
     //   return { failedToLoadMainPrices: true }
     // }
+  },
+   head () {
+    return {
+      title: 'The place to view the best online ammo prices across Canada.',
+      meta: [
+        { hid: 'description', name: 'description', content: 'The place to view the best online ammo prices across Canada.' }
+      ]
+    }
   }
 }
 </script>
