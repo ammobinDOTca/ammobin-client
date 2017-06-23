@@ -11,9 +11,9 @@ import MyTable from '~components/my-table.vue'
 import { getCenterfire } from '~/api.js';
 export default {
   head: {
-    title: 'Centerfire',
+    title: 'Centerfire Price List',
     meta: [
-      { hid: 'description', name: 'description', content: 'centerfire ammo list' }
+      { hid: 'description', name: 'description', content: 'The list of the best centerfire ammo prices across Canada.' }
     ]
   },
   components: {
