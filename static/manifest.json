@@ -1,0 +1,11 @@
+{
+  "short_name": "ammobin.ca",
+  "name": "The place to view ammo prices across Canada.",
+  "icons": [
+
+  ],
+  "start_url": "index.html?launcher=true",
+  "background_color": "#41b883",
+  "theme_color": "#41b883",
+  "display": "standalone"
+}

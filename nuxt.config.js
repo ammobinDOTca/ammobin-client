@@ -37,10 +37,15 @@ module.exports = {
         // bing webmaster (since helps to feed duckduckgo)
         name: 'msvalidate.01',
         content: '330D6A0BB2221C7F78C038494DE50309'
+      },
+      {
+       name: "theme_color",
+       content: "#41b883"
       }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'manifest', href: '/manifest.json' },
     ]
   },
   cache: {
