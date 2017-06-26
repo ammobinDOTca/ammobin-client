@@ -1,0 +1,8 @@
+{
+  "short_name": "ammobin.ca",
+  "name": "The place to view ammo prices across Canada.",
+  "icons": [
+
+  ],
+  "start_url": "index.html?launcher=true"
+}
