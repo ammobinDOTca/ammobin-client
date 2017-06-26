@@ -19,10 +19,13 @@
       <br> Feature sugestions?
       <br>Need a retailer not yet listed here?
       <br> File an issue agains the web client source code at:
-      <a href="https://github.com/ammobinDOTca/ammo-bin-client" target="_blank" rel="noopener">https://github.com/ammobinDOTca/ammo-bin-client</a>
+      <a href="https://github.com/ammobinDOTca/ammobin-client" target="_blank" rel="noopener">https://github.com/ammobinDOTca/ammobin-client</a>
   
       <br> Issues with miss classified calibres can be filed at:
       <a href="https://github.com/ammobinDOTca/ammobin-classifer" target="_blank" rel="noopener">https://github.com/ammobinDOTca/ammobin-classifer</a>
+      
+      <br> Backend source can be reviewed at:
+      <a href="https://github.com/ammobinDOTca/ammobin-api" target="_blank" rel="noopener">https://github.com/ammobinDOTca/ammobin-api</a>
     </div>
   
     <h2> Disclaimer</h2>
