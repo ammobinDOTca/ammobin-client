@@ -17,12 +17,17 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - ```PROD=true npm run dev```
 
 ## vendors to add
+- - https://gun-shop.ca/product-category (css rules hinder pulling data. will need to update scraper)
 - wholesalesports.com
+- https://www.marstar.ca/dynamic/category.jsp?catid=76551
+- https://www.tradeexcanada.com/produits/78
+- http://frontierfirearms.ca/ammunition-reloading/surplus-ammunition.html
+- http://www.grouseriver.com/Hunting-Shooting/Ammunition
+
 - http://www.westcoasthunting.ca/
 - https://www.leverarms.com
 - https://theshootingedge.com/
 - https://store.theshootingcentre.com/
-- https://gun-shop.ca/product-category (css rules hinder pulling data. will need to update scraper)
 - http://northprosports.com
 - https://vancouvergunstore.ca/
 - https://shophighfalls.com/collections/rifle-ammo?view=ALL (css rules hinder pulling data. will need to update scraper)
@@ -32,9 +37,9 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - http://shop.sylvestresportinggoods.com/Rifle-Ammunition/?p=catalog&mode=catalog&parent=506&pg=1&CatalogSetSortBy=price 
 
 ## incomplete vendors
-- cabelas center fire
+- cabelas center fire (only picking 7 calibres out of 14)
 - http://www.theammosource.com (fill out the ammo source, currently only picking their deals)
 
 
 ## docker hub
-https://hub.docker.com/r/ammobindotca/ammo-bin-client/
+https://hub.docker.com/r/ammobindotca/ammobin-client/
