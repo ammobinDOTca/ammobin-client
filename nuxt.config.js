@@ -2,6 +2,9 @@ const webpack = require('webpack');
 const { join } = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
+  modules: [
+    '@nuxtjs/pwa',
+  ],
   build: {
     plugins: [
       new webpack.DefinePlugin({
@@ -39,17 +42,22 @@ module.exports = {
         content: '330D6A0BB2221C7F78C038494DE50309'
       },
       {
-       name: "theme_color",
-       content: "#41b883"
+        name: "theme_color",
+        content: "#41b883"
       }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'manifest', href: '/manifest.json' },
     ]
   },
   cache: {
     max: 1000,
     maxAge: 86400000
+  },
+  manifest: {
+    "start_url": "/?launcher=true",
+    "background_color": "#f4f4f4",
+    "theme_color": "#41b883",
+    "display": "standalone"
   }
 }
