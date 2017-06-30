@@ -1,6 +1,4 @@
 function shuffle(input) {
-  console.log('shuffle')
-
   const array = [].concat(input);
   var currentIndex = array.length
     , temporaryValue

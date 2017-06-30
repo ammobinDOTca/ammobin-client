@@ -101,7 +101,7 @@
         </div>
       </div>
     </div>
-    <div v-if="error">failed to load ammo list: {{error}}</div>
+    <div v-if="error">Failed to load the dankest.</div>
   </div>
 </template>
 
@@ -194,8 +194,8 @@ export default {
       let rows = await getDank();
       return { rows };
     } catch (e) {
-      console.error(e)
-      error({ statusCode: 500, message: 'Failed to load prices' });
+      console.error(e);
+      return { statusCode: 500, message: 'Failed to load the dankest', error: e };
     }
   },
 
