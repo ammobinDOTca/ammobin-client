@@ -59,5 +59,8 @@ module.exports = {
     "background_color": "#f4f4f4",
     "theme_color": "#41b883",
     "display": "standalone"
+  },
+  workbox: {
+    globIgnores: ['sw.js', '**/workbox*.js']
   }
 }

@@ -2,7 +2,7 @@
   <div class="container">
     <h1>Centerfire</h1>
     <my-table v-bind:rows="rows" v-bind:calibre="calibre"></my-table>
-    <div v-if="error">failed to load ammo list: {{error}}</div>
+    <div v-if="error">failed to load ammo list.</div>
   </div>
 </template>
 
@@ -29,8 +29,8 @@ export default {
       let rows = await getCenterfire();
       return { rows, calibre: query.calibre || '' };
     } catch (e) {
-      console.error(e)
-      error({ statusCode: 500, message: 'Failed to load prices' });
+      console.error(e);
+      return { statusCode: 500, message: 'Failed to load prices', error: e };
     }
   },
 

@@ -11,6 +11,7 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - create the dank zone
 - add best prices to main page (also expose as rss feed)
 - filter by vendor  province
+- https://github.com/WICG/BackgroundSync/blob/master/explainer.md
 
 ## how to run locally
 - ```npm i```
@@ -34,7 +35,7 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - http://lanzshootingsupplies.com/shop/ammunition/caliber/handgun.html
 - http://www.rougeriverarms.com/index.php?route=product/category&path=70
 - https://www.westernmetal.ca/shooting-category/new-ammunition
-- http://shop.sylvestresportinggoods.com/Rifle-Ammunition/?p=catalog&mode=catalog&parent=506&pg=1&CatalogSetSortBy=price 
+- http://shop.sylvestresportinggoods.com/Rifle-Ammunition/?p=catalog&mode=catalog&parent=506&pg=1&CatalogSetSortBy=price
 
 ## incomplete vendors
 - cabelas center fire (only picking 7 calibres out of 14)
