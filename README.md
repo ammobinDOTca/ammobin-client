@@ -25,6 +25,7 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - http://frontierfirearms.ca/ammunition-reloading/surplus-ammunition.html
 - http://www.grouseriver.com/Hunting-Shooting/Ammunition
 
+- http://www.dantesports.com/en/product-category/shop/ammunition/
 - http://www.westcoasthunting.ca/
 - https://www.leverarms.com
 - https://theshootingedge.com/
