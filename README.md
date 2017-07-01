@@ -36,6 +36,7 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - http://www.rougeriverarms.com/index.php?route=product/category&path=70
 - https://www.westernmetal.ca/shooting-category/new-ammunition
 - http://shop.sylvestresportinggoods.com/Rifle-Ammunition/?p=catalog&mode=catalog&parent=506&pg=1&CatalogSetSortBy=price
+- https://www.tesro.ca/ammunition-and-pellets/smallbore-ammunition.html?limit=36
 
 ## incomplete vendors
 - cabelas center fire (only picking 7 calibres out of 14)
