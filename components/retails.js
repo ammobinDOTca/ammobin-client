@@ -86,5 +86,10 @@ export const list = shuffle([
     link: 'http://www.hirschprecision.com/?utm_source=ammobin.ca',
     img: require('~assets/hirsch-logo.png'),
     id: 12
+  }, {
+    name: 'Wild West',
+    link: 'https://gun-shop.ca/?utm_source=ammobin.ca',
+    img: require('~assets/wild.png'),
+    id: 13
   }
 ]);
