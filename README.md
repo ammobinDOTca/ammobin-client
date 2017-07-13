@@ -37,6 +37,7 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - http://shop.sylvestresportinggoods.com/Rifle-Ammunition/?p=catalog&mode=catalog&parent=506&pg=1&CatalogSetSortBy=price
 - https://www.tesro.ca/ammunition-and-pellets/smallbore-ammunition.html?limit=36
 - https://durhamoutdoors.ca/collections/ammo-and-reloading
+- https://blue-wolf-firearms-canada.myshopify.com/collections/rimfire
 
 ## incomplete vendors
 - cabelas center fire (only picking 7 calibres out of 14)
