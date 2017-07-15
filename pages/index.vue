@@ -13,13 +13,13 @@
         <nuxt-link :to="{ path: 'centerfire', query: { calibre: '9MM' }}">9mm</nuxt-link>
       </div>
       <div class="pure-u-lg-1-3 pure-u-1-2 margin-y">
-        <nuxt-link :to="{ path: 'centerfire', query: { calibre: '5.56 NATO' }}">5.56 NATO</nuxt-link>
+        <nuxt-link :to="{ path: 'centerfire', query: { calibre: '.223 / 5.56 NATO' }}">5.56 NATO</nuxt-link>
       </div>
       <div class="pure-u-lg-1-3 pure-u-1-2 margin-y">
         <nuxt-link :to="{ path: 'centerfire', query: { calibre: '7.62 X 39MM' }}">7.62 x 39mm</nuxt-link>
       </div>
       <div class="pure-u-lg-1-3 pure-u-1-2 margin-y">
-        <nuxt-link :to="{ path: 'centerfire', query: { calibre: '7.62 NATO' }}">7.62 NATO</nuxt-link>
+        <nuxt-link :to="{ path: 'centerfire', query: { calibre: '.308 / 7.62 NATO' }}">7.62 NATO</nuxt-link>
       </div>
       <div class="pure-u-lg-1-3 pure-u-1-2 margin-y">
         <nuxt-link :to="{ path: 'shotgun', query: { calibre: '12 GA' }}">12 GA</nuxt-link>
