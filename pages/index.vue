@@ -40,6 +40,11 @@
       <h2>Supported Retailers</h2>
       <supported-retailers></supported-retailers>
     </div>
+  
+    <div style="margin-top: 2rem">
+      Looking for guns? Try
+      <a href="http://gunsale.ca/?utm_source=ammobin.ca" target="_blank" rel="noopener">gunsale.ca</a>
+    </div>
   </div>
 </template>
 
@@ -65,7 +70,7 @@ export default {
     //   return { failedToLoadMainPrices: true }
     // }
   },
-   head () {
+  head() {
     return {
       title: 'The place to view the best online ammo prices across Canada.',
       meta: [
