@@ -91,5 +91,10 @@ export const list = shuffle([
     link: 'https://gun-shop.ca/?utm_source=ammobin.ca',
     img: require('~assets/wild.png'),
     id: 13
+  }, {
+    name: 'Tiger Arms',
+    link: 'http://www.tigerarms.ca/?utm_source=ammobin.ca',
+    img: require('~assets/tigerarms.png'),
+    id: 14
   }
 ]);
