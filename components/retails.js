@@ -96,5 +96,10 @@ export const list = shuffle([
     link: 'http://www.tigerarms.ca/?utm_source=ammobin.ca',
     img: require('~assets/tigerarms.png'),
     id: 14
-  }
+  }, {
+    name: 'Mag Dump',
+    link: 'https://magdump.ca/?utm_source=ammobin.ca',
+    img: require('~assets/magdump-logo.png'),
+    id: 15
+  },
 ]);
