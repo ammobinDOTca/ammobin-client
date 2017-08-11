@@ -1,7 +1,15 @@
 <template>
   <div class="container">
     <h1>Today's Dankest Ammo Listings</h1>
-    <h3>Everything that failed to be classified</h3>
+    <div class="row">
+      <div class="pure-u-1-3">
+        <img v-bind:src="img1" class="dank-img" />
+      </div>
+      <h3 class="pure-u-1-3">Everything that failed to be classified</h3>
+      <div class="pure-u-1-3">
+        <img v-bind:src="img2" class="dank-img" />
+      </div>
+    </div>
     <div class="">
       <div class="pure-form pure-form-stacked">
         <div id="search" class="pure-u-1 pure-u-md-1-6">
@@ -64,16 +72,16 @@
       </div>
   
       <div v-for="(row, index) in filteredRows" class="pure-g row fix-row">
-        <div class="pure-u-lg-1-5 pure-u-md-1 pure-u-1">
+        <div class="pure-u-lg-1-4 pure-u-md-1 pure-u-1">
           <img class="pure-img img-cell" v-bind:src="row.img || defaultImg">
         </div>
-        <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1 capitalize">
+        <div class="pure-u-lg-1-4 pure-u-md-1-4 pure-u-1 m-b-1 capitalize">
           {{row.name}}
         </div>
-        <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1 ">
+        <div class="pure-u-lg-1-4 pure-u-md-1-4 pure-u-1 m-b-1 ">
           ${{row.price ? row.price.toFixed(2) : '???'}}
         </div>
-        <div class="pure-u-lg-1-5 pure-u-md-1-4  pure-u-1 m-b-1">
+        <div class="pure-u-lg-1-4 pure-u-md-1-4  pure-u-1 m-b-1">
           <a v-bind:href="row.link" target="_blank" rel="nofollow">Buy From {{row.vendor}}</a>
   
         </div>
@@ -104,6 +112,12 @@
     <div v-if="error">Failed to load the dankest.</div>
   </div>
 </template>
+
+<style>
+.dank-img {
+  width: inherit;
+}
+</style>
 
 <script>
 import MyTable from '~components/my-table.vue'
@@ -190,9 +204,15 @@ export default {
     },
   },
   async asyncData({ error, query }) {
+    const imgs = [
+      require('~assets/every-russian.jpg'),
+      require('~assets/k.jpg'),
+      require('~assets/smell.png'),
+      require('~assets/Tacticool.jpg'),
+    ]
     try {
       let rows = await getDank();
-      return { rows };
+      return { rows, img1: imgs[Math.floor(Math.random() * imgs.length)], img2: imgs[Math.floor(Math.random() * imgs.length)] };
     } catch (e) {
       console.error(e);
       return { statusCode: 500, message: 'Failed to load the dankest', error: e };
