@@ -23,6 +23,7 @@
     <nuxt/>
     <footer class="footer">
       AmmoBin.ca {{new Date().getFullYear()}}
+      <a v-bind:href="mail">Contact</a>
     </footer>
   </div>
 </template>
@@ -42,6 +43,11 @@ export default {
   computed: {
     currentPage() {
       return this.$router.path
+    }
+  },
+  data() {
+    return {
+      mail: 'mailto:' + 'contact' + '@' + 'ammobin.ca' // this probably will do nothing to stop bots...
     }
   }
 };
