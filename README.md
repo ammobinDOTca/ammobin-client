@@ -6,7 +6,6 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 1. ```docker run ammobindotca/ammo-bin-client -p 3000:3000```
 
 ## todo
-- create the dank zone
 - add best prices to main page (also expose as rss feed)
 - filter by vendor  province
 - https://github.com/WICG/BackgroundSync/blob/master/explainer.md
