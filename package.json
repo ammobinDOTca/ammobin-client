@@ -9,7 +9,7 @@
     "css-loader": "^0.28.1",
     "es6-promise": "^4.1.1",
     "nuxt": "1.0.0-rc4",
-    "purecss": "^0.6.2",
+    "purecss": "^1.0.0",
     "vue-style-loader": "^3.0.1"
   },
   "devDependencies": {
