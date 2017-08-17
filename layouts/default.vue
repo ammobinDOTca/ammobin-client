@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <a href="https://github.com/ammobindotca">
-      <img style="position: absolute; top: 0; right: 0; border: 0;" src="~assets/fork.png" alt="Fork me on GitHub">
+      <img style="position: absolute; top: 0; right: 0; border: 0;" src="~/assets/fork.png" alt="Fork me on GitHub">
     </a>
     <div class="pure-menu pure-menu-horizontal pure-menu-scrollable">
       <a href="/" class="pure-menu-heading pure-menu-link">AmmoBin.ca</a>

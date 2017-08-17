@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import MyTable from '~components/my-table.vue'
+import MyTable from '~/components/my-table.vue'
 import { getCenterfire } from '~/api.js';
 export default {
   head: {

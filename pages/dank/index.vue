@@ -120,7 +120,7 @@
 </style>
 
 <script>
-import MyTable from '~components/my-table.vue'
+import MyTable from '~/components/my-table.vue'
 import { getDank } from '~/api.js';
 export default {
   head: {
@@ -205,10 +205,10 @@ export default {
   },
   async asyncData({ error, query }) {
     const imgs = [
-      require('~assets/every-russian.jpg'),
-      require('~assets/k.jpg'),
-      require('~assets/smell.png'),
-      require('~assets/Tacticool.jpg'),
+      require('~/assets/every-russian.jpg'),
+      require('~/assets/k.jpg'),
+      require('~/assets/smell.png'),
+      require('~/assets/Tacticool.jpg'),
     ]
     try {
       let rows = await getDank();

@@ -1,7 +1,7 @@
 
 <template>
   <div class="container">
-    <img src="~assets/logo-medium.png" class="pure-img img" alt="ammobin.ca logo">
+    <img src="~/assets/logo-medium.png" class="pure-img img" alt="ammobin.ca logo">
     <h1>AmmoBin.ca</h1>
     <h3>The place to view the best online ammo prices across Canada.</h3>
   
@@ -50,7 +50,7 @@
 
 <script>
 import { getMainPrices } from '~/api';
-import SupportedRetailers from '~components/supported-retailers.vue'
+import SupportedRetailers from '~/components/supported-retailers.vue'
 
 export default {
   components: {
