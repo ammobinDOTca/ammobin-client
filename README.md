@@ -1,5 +1,7 @@
 # AmmoBin.ca [![Build Status](https://travis-ci.org/ammobinDOTca/ammobin-client.svg?branch=master)](https://travis-ci.org/ammobinDOTca/ammobin-client)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ammobinDOTca/ammobin-client.svg)](https://greenkeeper.io/)
+
 meta search site for ammo prices across canada. built with [nuxt.js](https://nuxtjs.org).
 
 ## how to run
