@@ -51,7 +51,7 @@ module.exports = {
     ]
   },
   cache: {
-    max: 1000,
+    max: 4,
     maxAge: 86400000
   },
   manifest: {
