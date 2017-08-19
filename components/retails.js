@@ -102,4 +102,11 @@ export const list = shuffle([
     img: require('~/assets/magdump-logo.png'),
     id: 15
   },
+  {
+    name: 'Rangeview Sports',
+    link: 'https://www.rangeviewsports.ca/?utm_source=ammobin.ca',
+    img: require('~/assets/rangeview-sports.png'),
+    id: 15
+  },
+
 ]);
