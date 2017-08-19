@@ -42,8 +42,6 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 
 ## incomplete vendors
 - cabelas center fire (only picking 7 calibres out of 14)
-- http://www.theammosource.com (fill out the ammo source, currently only picking their deals)
-
 
 ## docker hub
 https://hub.docker.com/r/ammobindotca/ammobin-client/
