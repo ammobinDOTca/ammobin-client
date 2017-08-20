@@ -57,53 +57,53 @@ export const list = shuffle([
     img: require('~/assets/reliable-gun-logo.jpg'),
     id: 7
   }, {
-    name: 'Tenda',
+    name: 'Tenda (Richmond Hill, ON)',
     link: 'https://www.gotenda.com/?utm_source=ammobin.ca',
     img: require('~/assets/tenda-logo.png'),
     id: 8
   }, {
-    name: 'Canada Ammo',
+    name: 'Canada Ammo  (BC and ON)',
     link: 'https://www.canadaammo.com/?utm_source=ammobin.ca',
     img: require('~/assets/canada-ammo-logo.jpg'),
     id: 9
   }, {
-    name: 'Wolverine Supplies',
+    name: 'Wolverine Supplies (Virden, MB)',
     link: 'https://www.wolverinesupplies.com/?utm_source=ammobin.ca',
     img: require('~/assets/wolverine-logo.png'),
     id: 10
   }, {
-    name: 'Jo Brook Outdoors',
+    name: 'Jo Brook Outdoors (Brandon, MB)',
     link: 'https://www.jobrookoutdoors.com/?utm_source=ammobin.ca',
     img: require('~/assets/jo-brook-logo.png'),
     id: 11
   }, {
-    name: 'The Ammo Source',
+    name: 'The Ammo Source (Harrowsmith, ON)',
     link: 'http://www.theammosource.com/?utm_source=ammobin.ca',
     img: require('~/assets/the-ammo-source-logo.png'),
     id: 11
   }, {
-    name: 'Hirsch Precision',
+    name: 'Hirsch Precision (Lake Echo, NS)',
     link: 'http://www.hirschprecision.com/?utm_source=ammobin.ca',
     img: require('~/assets/hirsch-logo.png'),
     id: 12
   }, {
-    name: 'Wild West',
+    name: 'Wild West (Edmonton, AB)',
     link: 'https://gun-shop.ca/?utm_source=ammobin.ca',
     img: require('~/assets/wild.png'),
     id: 13
   }, {
-    name: 'Tiger Arms',
+    name: 'Tiger Arms (Port Coquitlam, BC)',
     link: 'http://www.tigerarms.ca/?utm_source=ammobin.ca',
     img: require('~/assets/tigerarms.png'),
     id: 14
   }, {
-    name: 'Mag Dump',
+    name: 'Mag Dump (Sherwood Park, AB)',
     link: 'https://magdump.ca/?utm_source=ammobin.ca',
     img: require('~/assets/magdump-logo.png'),
     id: 15
   },
   {
-    name: 'Rangeview Sports',
+    name: 'Rangeview Sports (Newmarket, ON)',
     link: 'https://www.rangeviewsports.ca/?utm_source=ammobin.ca',
     img: require('~/assets/rangeview-sports.png'),
     id: 15

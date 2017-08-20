@@ -16,7 +16,7 @@
           <label>Search</label>
           <input name="query" v-model="searchQuery" class="pure-input-1" placeholder="ie: Barnaul, surplus, 00 Buck" disabled>
         </div>
-  
+
         <div class="pure-u-1 pure-u-md-1-6">
           <label for="pageSize"> Page Size</label>
           <select id="pageSize" v-model.number="pageSize" class="pure-input-1">
@@ -26,7 +26,7 @@
             <option>100</option>
           </select>
         </div>
-  
+
         <div class="pure-u-1 pure-u-md-1-3">
           <label>
             Page
@@ -66,11 +66,11 @@
           </h4>
         </div>
       </div>
-  
-      <div v-if="filteredRows.length === 0" class="pure-g row fix-row">
+
+      <div v-if="filteredRows.length === 0" class="pure-g row fix-row no-res">
         <div class="pure-u-1"> no results found.</div>
       </div>
-  
+
       <div v-for="(row, index) in filteredRows" class="pure-g row fix-row">
         <div class="pure-u-lg-1-4 pure-u-md-1 pure-u-1">
           <img class="pure-img img-cell" v-bind:src="row.img || defaultImg">
@@ -83,7 +83,7 @@
         </div>
         <div class="pure-u-lg-1-4 pure-u-md-1-4  pure-u-1 m-b-1">
           <a v-bind:href="row.link" target="_blank" rel="nofollow">Buy From {{row.vendor}}</a>
-  
+
         </div>
       </div>
       <div>
@@ -110,12 +110,27 @@
       </div>
     </div>
     <div v-if="error">Failed to load the dankest.</div>
+    <div class="row">
+      <div class="pure-u-1-3">
+        <img v-bind:src="img3" class="dank-img" />
+      </div>
+      <h3 class="pure-u-1-3">Everything that failed to be classified</h3>
+      <div class="pure-u-1-3">
+        <img v-bind:src="img4" class="dank-img" />
+      </div>
+    </div>
   </div>
 </template>
 
 <style>
 .dank-img {
   width: inherit;
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.no-res {
+  height: 150px;
 }
 </style>
 
@@ -205,14 +220,29 @@ export default {
   },
   async asyncData({ error, query }) {
     const imgs = [
-      require('~/assets/every-russian.jpg'),
-      require('~/assets/k.jpg'),
-      require('~/assets/smell.png'),
-      require('~/assets/Tacticool.jpg'),
+      require('~/assets/dank/every-russian.jpg'),
+      require('~/assets/dank/k.jpg'),
+      require('~/assets/dank/smell.png'),
+      require('~/assets/dank/Tacticool.jpg'),
+      require('~/assets/dank/canada-ww1-win.jpg'),
+      require('~/assets/dank/colonial-wifo.jpg'),
+      require('~/assets/dank/dam-business.jpg'),
+      require('~/assets/dank/no-sorry.jpg'),
+      require('~/assets/dank/rcmp-pepe.jpg'),
+      require('~/assets/dank/svt-moose.jpg'),
+
+
     ]
     try {
       let rows = await getDank();
-      return { rows, img1: imgs[Math.floor(Math.random() * imgs.length)], img2: imgs[Math.floor(Math.random() * imgs.length)] };
+      return {
+        rows,
+        // lazy.....
+        img1: imgs[Math.floor(Math.random() * imgs.length)],
+        img2: imgs[Math.floor(Math.random() * imgs.length)],
+        img3: imgs[Math.floor(Math.random() * imgs.length)],
+        img4: imgs[Math.floor(Math.random() * imgs.length)],
+      };
     } catch (e) {
       console.error(e);
       return { statusCode: 500, message: 'Failed to load the dankest', error: e };
