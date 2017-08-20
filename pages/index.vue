@@ -4,7 +4,7 @@
     <img src="~/assets/logo-medium.png" class="pure-img img" alt="ammobin.ca logo">
     <h1>AmmoBin.ca</h1>
     <h3>The place to view the best online ammo prices across Canada.</h3>
-  
+
     <div class="pure-g row">
       <div class="pure-u-lg-1-3 pure-u-1-2 margin-y">
         <nuxt-link :to="{ path: 'rimfire', query: { calibre: '.22 LR' }}">.22LR</nuxt-link>
@@ -33,18 +33,24 @@
       <div class="pure-u-lg-1-3 pure-u-1 margin-y">
         <nuxt-link to="/shotgun">All Shotgun</nuxt-link>
       </div>
-  
+
     </div>
-  
+    <div class="margin-y">
+      <a href="http://www.thefirearmblog.com/blog/2017/08/13/%e2%9c%89tfbtv-mailbag-episode-4-new-hope?utm_src=ammobin.ca" target="_blank" rel="noopener" title="TFBTV Mailbag Episode 4: A New Hope">
+        <img src="~/assets/aso-tfbtv2.svg" width="100px" />
+      </a>
+    </div>
+
     <div>
       <h2>Supported Retailers</h2>
       <supported-retailers></supported-retailers>
     </div>
-  
+
     <div style="margin-top: 2rem">
       Looking for guns? Try
-      <a href="http://gunsale.ca/?utm_source=ammobin.ca" target="_blank" rel="noopener">gunsale.ca</a>
+      <a href="http://gunsale.ca/?utm_source=ammobin.ca" target="_blank" rel="noopener" title="gunsale.ca">gunsale.ca</a>
     </div>
+
   </div>
 </template>
 
