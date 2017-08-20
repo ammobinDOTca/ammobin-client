@@ -39,7 +39,7 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - https://blue-wolf-firearms-canada.myshopify.com/collections/rimfire
 
 ## incomplete vendors
-- cabelas center fire (only picking 7 calibres out of 14)
+
 
 ## docker hub
 https://hub.docker.com/r/ammobindotca/ammobin-client/
