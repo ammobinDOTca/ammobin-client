@@ -44,7 +44,7 @@
     <div style="margin-top: 2rem">
       <!-- TODO: only display this link if user ip is from USA + track clicks-->
       <!-- not in any way connected with wikiarms, chosen b/c they have a mobile friendly website + https + display cost per round -->
-      Lokking for ammo/guns in the land of free and brave? Consider
+      Looking for ammo/guns in the land of free and brave? Consider
       <a href="https://www.wikiarms.com/?utm_source=ammobin.ca" target="_blank" rel="noopener">wikiarms.com</a>
     </div>
   </div>
