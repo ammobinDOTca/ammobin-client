@@ -32,7 +32,7 @@
 
     <h2> Disclaimer</h2>
     <div> As of June 15, 2017, ammobin.ca has been entirely funded out of pocket. It does not receive any kick backs from any retailer listed on this site.</div>
-    <div> Additionally, ammobin.ca does not use any client side analytics or tracking software or external libraries. All site statics are collected from nginx server logs (ie: what your browser sends when it requests a page) and by using url redirection to track clicks to vendors.</div>
+    <div> Additionally, ammobin.ca does not use any client side analytics or tracking software or external libraries. All site statistics are collected from nginx server logs (ie: what your browser sends when it requests a page) and by using url redirection to track clicks to vendors.</div>
 
     <h2>Supported Retailers</h2>
     <supported-retailers></supported-retailers>
@@ -44,7 +44,7 @@
     <div style="margin-top: 2rem">
       <!-- TODO: only display this link if user ip is from USA + track clicks-->
       <!-- not in any way connected with wikiarms, chosen b/c they have a mobile friendly website + https + display cost per round -->
-      Lokking for ammo/guns in the land of free and brave? Consider
+      Looking for ammo/guns in the land of free and brave? Consider
       <a href="https://www.wikiarms.com/?utm_source=ammobin.ca" target="_blank" rel="noopener">wikiarms.com</a>
     </div>
   </div>
