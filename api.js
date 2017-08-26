@@ -19,7 +19,7 @@ export function getDank() {
     .then(res => res.data);
 }
 
-export function getMainPrices() {
-  return axios.get(BASE_API_URL + 'price-ranges')
+export function getBestPopularPrices() {
+  return axios.get(BASE_API_URL + 'best-popular-prices')
     .then(res => res.data);
 }
