@@ -64,9 +64,9 @@ export default {
     try {
       let mainPrices = await getBestPopularPrices();
       return {
-        min762Price: mainPrices.min762Price || 0,
-        min9Price: mainPrices.min9Price || 0,
-        min556Price: mainPrices.min556Price || 0
+        min762Price: mainPrices['7.62 X 39MM'] || 0,
+        min9Price: mainPrices['9MM'] || 0,
+        min556Price: mainPrices['.223 / 5.56 NATO'] || 0
       };
     } catch (e) {
       console.error('Error: failed to get best popular prices', e); // ignore
