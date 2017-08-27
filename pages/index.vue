@@ -15,6 +15,7 @@
         <nuxt-link :to="{ path: 'centerfire', query: { calibre: '.223 / 5.56 NATO' }}">5.56 NATO </nuxt-link>
         <div> Starting at</div>
         <div>${{min556Price.toFixed(2)}} per round</div>
+        
       </div>
       <div class="pure-u-md-1-3 pure-u-1 margin-y">
         <nuxt-link :to="{ path: 'centerfire', query: { calibre: '7.62 X 39MM' }}">7.62 x 39mm </nuxt-link>
