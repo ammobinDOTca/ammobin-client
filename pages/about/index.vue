@@ -23,7 +23,7 @@
       <div> Feature sugestions?</div>
       <div>Need a retailer not yet listed here?</div>
 
-      <div style="margin-top:10px;"> Sumbit an issue or PR at
+      <div style="margin-top:10px;"> Submit an issue or PR at
         <a href="https://github.com/ammobinDOTca" target="_blank" rel="noopener">https://github.com/ammobindotca</a>
       </div>
       <div>
