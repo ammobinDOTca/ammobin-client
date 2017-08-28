@@ -108,5 +108,11 @@ export const list = shuffle([
     img: require('~/assets/rangeview-sports.png'),
     id: 15
   },
+  {
+    name: 'Frontier Firearms (Prince Albert, SK)',
+    link: 'http://frontierfirearms.ca/utm_source=ammobin.ca',
+    img: require('~/assets/frontierfirearms-logo.png'),
+    id: 16
+  }
 
 ]);
