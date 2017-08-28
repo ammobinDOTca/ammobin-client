@@ -15,9 +15,6 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - ```PROD=true npm run dev```
 
 ## vendors to add
-- - https://gun-shop.ca/product-category (css rules hinder pulling data. will need to update scraper)
-- wholesalesports.com
-- https://www.marstar.ca/dynamic/category.jsp?catid=76551
 - https://www.tradeexcanada.com/produits/78
 - http://frontierfirearms.ca/ammunition-reloading/surplus-ammunition.html
 - http://www.grouseriver.com/Hunting-Shooting/Ammunition
@@ -37,6 +34,10 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - https://www.tesro.ca/ammunition-and-pellets/smallbore-ammunition.html?limit=36
 - https://durhamoutdoors.ca/collections/ammo-and-reloading
 - https://blue-wolf-firearms-canada.myshopify.com/collections/rimfire
+
+## skipped
+- wholesalesports.com
+- https://www.marstar.ca/dynamic/category.jsp?catid=76551
 
 ## incomplete vendors
 
