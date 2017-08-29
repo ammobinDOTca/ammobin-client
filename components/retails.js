@@ -109,10 +109,16 @@ export const list = shuffle([
     id: 15
   },
   {
+
+    name: 'Trade Ex Canada (Hawkesbury, ON)',
+    link: 'https://www.tradeexcanada.com/utm_source=ammobin.ca',
+    img: require('~/assets/tradex-logo.png'),
+    id:16
+  },{
     name: 'Frontier Firearms (Prince Albert, SK)',
     link: 'http://frontierfirearms.ca/utm_source=ammobin.ca',
     img: require('~/assets/frontierfirearms-logo.png'),
-    id: 16
+    id: 17
   }
 
 ]);
