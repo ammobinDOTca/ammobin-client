@@ -108,5 +108,11 @@ export const list = shuffle([
     img: require('~/assets/rangeview-sports.png'),
     id: 15
   },
+  {
+    name: 'Trade Ex Canada (Hawkesbury, ON)',
+    link: 'https://www.tradeexcanada.com/utm_source=ammobin.ca',
+    img: require('~/assets/tradex-logo.png'),
+    id: 16
+  }
 
 ]);
