@@ -16,7 +16,6 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 
 ## vendors to add
 - https://www.tradeexcanada.com/produits/78
-- http://frontierfirearms.ca/ammunition-reloading/surplus-ammunition.html
 - http://www.grouseriver.com/Hunting-Shooting/Ammunition
 
 - http://www.dantesports.com/en/product-category/shop/ammunition/
