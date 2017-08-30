@@ -1,7 +1,7 @@
-FROM node:7-alpine
+FROM node:8-alpine
 WORKDIR /build
 COPY package.json /build
-RUN npm install --production --silent
+RUN npm install --production 
 COPY . /build
 
 EXPOSE 3000
