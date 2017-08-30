@@ -1,4 +1,5 @@
-FROM node:8-alpine
+# should be alpine but https://github.com/webpack-contrib/css-loader/pull/597 requires us to have git
+FROM node:8-slim
 WORKDIR /build
 COPY package.json /build
 RUN npm install --production 
