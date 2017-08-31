@@ -50,10 +50,12 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     ]
   },
-  cache: {
+ /* 
+ disabled while working on api memory useage
+ cache: {
     max: 1000,
     maxAge: 86400000
-  },
+  },*/
   manifest: {
     "start_url": "/?launcher=true",
     "background_color": "#f4f4f4",
