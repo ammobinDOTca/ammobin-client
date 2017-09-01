@@ -60,9 +60,10 @@ export default {
       min556Price: 0
     }
   },
-  async asyncData({ error }) {
+  async asyncData({ error, app }) {
     try {
-      let mainPrices = await getBestPopularPrices();
+      let res = await app.$axios.get(BASE_API_URL + 'best-popular-prices');
+      const mainPrices = res.data;
       return {
         min762Price: mainPrices['7.62 X 39MM'] || 0,
         min9Price: mainPrices['9MM'] || 0,

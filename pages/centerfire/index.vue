@@ -1,14 +1,14 @@
 <template>
   <div class="container">
     <h1>Centerfire</h1>
-    <my-table v-bind:rows="rows" v-bind:calibre="calibre"></my-table>
+    <my-table v-if="!error" v-bind:rows="rows" v-bind:calibre="calibre"></my-table>
     <div v-if="error">failed to load ammo list.</div>
   </div>
 </template>
 
 <script>
 import MyTable from '~/components/my-table.vue'
-import { getCenterfire } from '~/api.js';
+
 export default {
   head: {
     title: 'Centerfire Price List',
@@ -21,16 +21,18 @@ export default {
   },
   data() {
     return {
-      error: null
+      error: null,
+      rows: [],
+      calibre: ''
     }
   },
-  async asyncData({ error, query }) {
+  async asyncData({ error, query, app }) {
     try {
-      let rows = await getCenterfire();
-      return { rows, calibre: query.calibre || '' };
+      let res = await app.$axios.get(BASE_API_URL + 'centerfire');
+      return { rows: res.data, calibre: query.calibre || '' };
     } catch (e) {
       console.error(e);
-      return { statusCode: 500, message: 'Failed to load prices', error: e };
+      return { statusCode: 500, message: 'Failed to load prices', error: true };
     }
   },
 
