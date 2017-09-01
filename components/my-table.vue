@@ -71,7 +71,8 @@
       <div class="pure-u-1"> no results found.</div>
     </div>
 
-    <div v-for="(row, index) in filteredRows" class="pure-g row fix-row">
+
+    <div v-for="(row, index) in filteredRows" class="pure-g row fix-row item">
       <div class="pure-u-lg-1-5 pure-u-md-1 pure-u-1">
         <img class="pure-img img-cell" v-bind:src="row.img || defaultImg" />
       </div>
@@ -384,5 +385,9 @@ export default {
 
 .capitalize {
   text-transform: capitalize;
+}
+
+.item {
+  min-height: 171px;
 }
 </style>
