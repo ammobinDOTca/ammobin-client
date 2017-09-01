@@ -71,6 +71,7 @@
       <div class="pure-u-1"> no results found.</div>
     </div>
 
+
     <div v-for="(row, index) in filteredRows" class="pure-g row fix-row item">
       <div class="pure-u-lg-1-5 pure-u-md-1 pure-u-1">
         <img class="pure-img img-cell" v-bind:src="row.img || defaultImg" />
@@ -190,7 +191,7 @@ export default {
     },
     // apply filters + sorting + pagination to results
     filteredRows() {
-      let data = JSON.parse(JSON.stringify(this.rows)); // super fancy deep list of objects
+      let data = JSON.parse(JSON.stringify(this.rows && this.rows.length ? this.rows : [])); // super fancy deep list of objects
       let sortKey = this.sortKey;
       let order = this.sortOrders[sortKey];
       if (this.searchQuery) {

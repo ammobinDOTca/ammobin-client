@@ -136,7 +136,7 @@
 
 <script>
 import MyTable from '~/components/my-table.vue'
-import { getDank } from '~/api.js';
+
 export default {
   head: {
     title: 'Dankest Ammo Items Found Today',
@@ -174,7 +174,7 @@ export default {
       let sortKey = this.sortKey;
       let order = this.order;
       if (sortKey) {
-        data = data.sort(function (a, b) {
+        data = data.sort(function(a, b) {
           let aa = a[sortKey];
           let bb = b[sortKey];
 
@@ -218,7 +218,7 @@ export default {
       window.scroll(0, 0); //scroll to top of page
     },
   },
-  async asyncData({ error, query }) {
+  async asyncData({ error, query, app }) {
     const imgs = [
       require('~/assets/dank/every-russian.jpg'),
       require('~/assets/dank/k.jpg'),
@@ -234,7 +234,8 @@ export default {
 
     ]
     try {
-      let rows = await getDank();
+      let res = await app.$axios.get(BASE_API_URL + 'dank');
+      const rows = res.data;
       return {
         rows,
         // lazy.....
@@ -245,7 +246,7 @@ export default {
       };
     } catch (e) {
       console.error(e);
-      return { statusCode: 500, message: 'Failed to load the dankest', error: e };
+      return { statusCode: 500, message: 'Failed to load the dankest', error: true };
     }
   },
 

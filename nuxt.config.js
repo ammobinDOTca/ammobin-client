@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   modules: [
     '@nuxtjs/pwa',
+    '@nuxtjs/axios'
   ],
   build: {
     plugins: [
@@ -50,12 +51,12 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     ]
   },
- /* 
- disabled while working on api memory useage
- cache: {
-    max: 1000,
-    maxAge: 86400000
-  },*/
+  /*
+  disabled while working on api memory useage
+  cache: {
+     max: 1000,
+     maxAge: 86400000
+   },*/
   manifest: {
     "start_url": "/?launcher=true",
     "background_color": "#f4f4f4",
