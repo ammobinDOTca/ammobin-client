@@ -5,7 +5,7 @@
         <label>Search</label>
         <input name="query" v-model="searchQuery" class="pure-input-1" placeholder="ie: Barnaul, surplus, 00 Buck">
       </div>
-  
+
       <div class="pure-u-1 pure-u-md-1-6">
         <label for="pageSize"> Page Size</label>
         <select id="pageSize" v-model.number="pageSize" class="pure-input-1">
@@ -21,7 +21,7 @@
           <option v-for="c in calibres">{{c}}</option>
         </select>
       </div>
-  
+
       <div class="pure-u-1 pure-u-md-1-3">
         <label>
           Page
@@ -66,12 +66,12 @@
         </h4>
       </div>
     </div>
-  
+
     <div v-if="filteredRows.length === 0" class="pure-g row fix-row">
       <div class="pure-u-1"> no results found.</div>
     </div>
-  
-    <div v-for="(row, index) in filteredRows" class="pure-g row fix-row">
+
+    <div v-for="(row, index) in filteredRows" class="pure-g row fix-row item">
       <div class="pure-u-lg-1-5 pure-u-md-1 pure-u-1">
         <img class="pure-img img-cell" v-bind:src="row.img || defaultImg" />
       </div>
@@ -117,7 +117,7 @@
             <a v-bind:href="v.link" target="_blank" rel="nofollow noopener">Buy From {{v.vendor}}</a>
           </div>
         </div>
-  
+
       </div>
     </div>
     <div>
@@ -169,7 +169,7 @@ export default {
     'calibre'
   ],
   watch: {
-    calibre: function () {
+    calibre: function() {
       // update url with the calibre everytime it changes
       // should happen in page component
       history.pushState({}, 'generate-routes', window.location.pathname + `?cailbre=${encodeURIComponent(this.calibre)}`);
@@ -209,7 +209,7 @@ export default {
         data = data.filter(r => r.calibre === this.calibre);
       }
       if (sortKey) {
-        data = data.sort(function (a, b) {
+        data = data.sort(function(a, b) {
           let aa = a[sortKey];
           let bb = b[sortKey];
           // put unknown unit costs at the bottom of the sort order
@@ -231,7 +231,7 @@ export default {
           }
         })
         data = data.map(row => {
-          row.vendors = row.vendors.sort(function (a, b) {
+          row.vendors = row.vendors.sort(function(a, b) {
             let groupedKey;
             switch (sortKey) {
               case 'minUnitCost':
@@ -384,5 +384,9 @@ export default {
 
 .capitalize {
   text-transform: capitalize;
+}
+
+.item {
+  min-height: 171px;
 }
 </style>
