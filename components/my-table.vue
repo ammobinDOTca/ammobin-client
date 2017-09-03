@@ -17,8 +17,8 @@
       </div>
       <div class="pure-u-1 pure-u-md-1-6">
         <label for="pageSize"> Calibre</label>
-        <select id="pageSize" v-model="calibre" class="pure-input-1">
-          <option v-for="c in calibres">{{c}}</option>
+        <select id="pageSize" :value="calibre" @change="updateCalibre($event.target.value)" class="pure-input-1">
+          <option v-for="c in calibres" :key="c">{{c}}</option>
         </select>
       </div>
 
@@ -71,8 +71,7 @@
       <div class="pure-u-1"> no results found.</div>
     </div>
 
-
-    <div v-for="(row, index) in filteredRows" class="pure-g row fix-row item">
+    <div v-for="(row, index) in filteredRows" :key="row.name" class="pure-g row fix-row item">
       <div class="pure-u-lg-1-5 pure-u-md-1 pure-u-1">
         <img class="pure-img img-cell" v-bind:src="row.img || defaultImg" />
       </div>
@@ -104,7 +103,7 @@
         </button>
       </div>
       <div class="pure-u-1" v-if="showVendors[row.name] === true">
-        <div v-for="v in row.vendors" class="pure-g m-b-1">
+        <div v-for="v in row.vendors" :key="v.link" class="pure-g m-b-1">
           <div class="pure-u-lg-2-5 pure-u-md-1-4 pure-u-2-5 ">
             {{v.name}}
           </div>
@@ -147,15 +146,14 @@
 </template>
 
 <script>
+
 export default {
   data: () => ({
-    // current page index
-    page: 1,
     // default page size
     pageSize: 25,
     searchQuery: '',
     sortKey: 'minUnitCost',
-    sortedListLength: 0,
+    sortedListLength: -1,
     sortOrders: {
       name: 1,
       link: 1,
@@ -167,15 +165,9 @@ export default {
   }),
   props: [
     'rows',
-    'calibre'
+    'calibre',
+    'page'
   ],
-  watch: {
-    calibre: function() {
-      // update url with the calibre everytime it changes
-      // should happen in page component
-      history.pushState({}, 'generate-routes', window.location.pathname + `?cailbre=${encodeURIComponent(this.calibre)}`);
-    }
-  },
   computed: {
     // list of calibres from ALL results
     calibres() {
@@ -287,11 +279,11 @@ export default {
     },
     // get number of filter pages
     pages() {
-      const pages = Math.max(Math.ceil(this.sortedListLength / this.pageSize), 1);
+      const pages = Math.max(Math.ceil((this.sortedListLength === -1 ? this.rows.length : this.sortedListLength) / this.pageSize), 1);
 
       // if filter + old page num are out side of results, bring us to the end
       if (this.page > pages) {
-        this.page = pages;
+        this.$emit('update:page', pages);
       }
 
       return pages;
@@ -304,14 +296,17 @@ export default {
     },
     goto(page) {
       if (page > this.pages) {
-        this.page = this.pages;
+        this.$emit('update:page', this.pages)
       } else {
-        this.page = page;
+        this.$emit('update:page', page)
       }
       window.scroll(0, 0); //scroll to top of page
     },
     toggleVendors(name) {
       this.showVendors[name] = !this.showVendors[name];
+    },
+    updateCalibre(calibre) {
+      this.$emit('update:calibre', calibre)
     }
   },
 
