@@ -286,6 +286,8 @@ export default {
         this.$emit('update:page', pages);
       }
 
+      this.$emit('pages', pages);
+
       return pages;
     }
   },
