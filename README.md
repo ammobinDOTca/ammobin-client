@@ -15,7 +15,6 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - ```PROD=true npm run dev```
 
 ## vendors to add
-- https://www.tradeexcanada.com/produits/78
 - http://www.grouseriver.com/Hunting-Shooting/Ammunition
 
 - http://www.dantesports.com/en/product-category/shop/ammunition/
