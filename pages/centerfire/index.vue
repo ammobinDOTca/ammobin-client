@@ -1,24 +1,39 @@
 <template>
   <div class="container">
     <h1>Centerfire</h1>
-    <my-table v-if="!error" v-bind:rows="rows" :calibre.sync="calibre" :page.sync="page"></my-table>
+    <my-table v-if="!error" v-bind:rows="rows" :calibre.sync="calibre" :page.sync="page" @pages="pages=$event"></my-table>
     <div v-if="error">failed to load ammo list.</div>
   </div>
 </template>
 
 <script>
 import MyTable from '~/components/my-table.vue'
+import { getUrl, updateUrl } from '~/helpers'
 
-function updateUrl(page, calibre) {
-  history.pushState({}, 'Best-centerfire-prices', window.location.pathname + `?calibre=${encodeURIComponent(calibre)}&page=${page}`);
-}
 
 export default {
-  head: {
-    title: 'Centerfire Price List',
-    meta: [
-      { hid: 'description', name: 'description', content: 'The list of the best centerfire ammo prices across Canada.' }
-    ]
+  head() {
+    const link = [];
+
+    if (this.page > 1) {
+      link.push({ rel: 'prev', href: getUrl('https://ammobin.ca/centerfire', this.page - 1, this.calibre) })
+    }
+
+    if (this.pages > this.page) {
+      link.push({ rel: 'next', href: getUrl('https://ammobin.ca/centerfire', this.page + 1, this.calibre) })
+    }
+
+    return {
+      title: this.calibre + ' Centerfire Prices',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `The place to view the best ${this.calibre} Centerfire prices across Canada.`
+        }
+      ],
+      link
+    }
   },
   components: {
     MyTable
@@ -28,15 +43,16 @@ export default {
       error: null,
       rows: [],
       calibre: '',
-      page: 1
+      page: 1,
+      pages: 1
     }
   },
   watch: {
     page: function() {
-      updateUrl(this.page, this.calibre)
+      updateUrl('centerfire', this.page, this.calibre)
     },
     calibre: function() {
-      updateUrl(this.page, this.calibre)
+      updateUrl('centerfire', this.page, this.calibre)
     }
   },
   async asyncData({ error, query, app }) {

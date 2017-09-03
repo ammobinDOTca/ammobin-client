@@ -1,34 +1,47 @@
 <template>
   <div class="container">
     <h1>Shotgun</h1>
-    <my-table v-if="!error" v-bind:rows="rows" :calibre.sync="calibre" :page.sync="page"></my-table>
+    <my-table v-if="!error" v-bind:rows="rows" :calibre.sync="calibre" :page.sync="page" @pages="pages=$event"></my-table>
     <div v-if="error">failed to load ammo list</div>
   </div>
 </template>
 
 <script>
 import MyTable from '~/components/my-table.vue'
-
-function updateUrl(page, calibre) {
-  history.pushState({}, 'best-shotgun-prices', window.location.pathname + `?calibre=${encodeURIComponent(calibre)}&page=${page}`);
-}
+import { getUrl, updateUrl } from '~/helpers'
 
 export default {
-  head: {
-    title: 'Shotgun Prices',
-    meta: [
-      { hid: 'description', name: 'description', content: 'The place to view the best shotgun shell prices across Canada.' }
-    ]
+  head() {
+    const link = [];
+    if (this.page > 1) {
+      link.push({ rel: 'prev', href: getUrl('https://ammobin.ca/shotgun', this.page - 1, this.calibre) })
+    }
+
+    if (this.pages > this.page) {
+      link.push({ rel: 'next', href: getUrl('https://ammobin.ca/shotgun', this.page + 1, this.calibre) });
+    }
+
+    return {
+      title: this.calibre + ' Shotgun Prices',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `The place to view the best ${this.calibre} shotgun shell prices across Canada.`
+        }
+      ],
+      link
+    }
   },
   components: {
     MyTable
   },
   watch: {
     page: function() {
-      updateUrl(this.page, this.calibre)
+      updateUrl('shotgun', this.page, this.calibre)
     },
     calibre: function() {
-      updateUrl(this.page, this.calibre)
+      updateUrl('shotgun', this.page, this.calibre)
     }
   },
   data() {
@@ -36,7 +49,8 @@ export default {
       error: null,
       rows: [],
       calibre: '',
-      page: 1
+      page: 1,
+      pages: 1
     }
   },
   async asyncData({ error, query, app }) {

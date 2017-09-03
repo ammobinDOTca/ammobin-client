@@ -1,45 +1,59 @@
 <template>
   <div class="container">
     <h1>Rimfire</h1>
-    <my-table v-if="!error" v-bind:rows="rows" :calibre.sync="calibre" :page.sync="page"></my-table>
+    <my-table v-if="!error" v-bind:rows="rows" :calibre.sync="calibre" :page.sync="page" @pages="pages=$event"></my-table>
     <div v-if="error">failed to load ammo list</div>
   </div>
 </template>
 
 <script>
 import MyTable from '~/components/my-table.vue'
+import { getUrl, updateUrl } from '~/helpers'
 
-function updateUrl(page, calibre) {
-  history.pushState({}, 'best-rimfire-prices', window.location.pathname + `?calibre=${encodeURIComponent(calibre)}&page=${page}`);
-}
 
 export default {
   data() {
     return {
       error: null,
       rows: [],
-      calibre: ''
+      calibre: '',
+      page: 1,
+      pages: 1
     }
   },
 
-  head: {
-    title: 'Rimfire Price List',
-    meta: [
-      {
-        hid: 'description', name: 'description',
-        content: 'The list of the best rimfire ammo prices across Canada.'
-      }
-    ]
+  head() {
+    const link = [];
+
+    if (this.page > 1) {
+      link.push({ rel: 'prev', href: getUrl('https://ammobin.ca/rimfire', this.page - 1, this.calibre) })
+    }
+
+    if (this.pages > this.page) {
+      link.push({ rel: 'next', href: getUrl('https://ammobin.ca/rimfire', this.page + 1, this.calibre) });
+    }
+
+    return {
+      title: this.calibre + ' Rimfire Prices',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `The place to view the best ${this.calibre} rimfire prices across Canada.`
+        }
+      ],
+      link
+    }
   },
   components: {
     MyTable
   },
   watch: {
     page: function() {
-      updateUrl(this.page, this.calibre)
+      updateUrl('rimfire', this.page, this.calibre)
     },
     calibre: function() {
-      updateUrl(this.page, this.calibre)
+      updateUrl('rimfire', this.page, this.calibre)
     }
   },
   async asyncData({ error, query, app }) {
