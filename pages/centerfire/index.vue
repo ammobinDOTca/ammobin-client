@@ -57,10 +57,11 @@ export default {
   },
   async asyncData({ error, query, app }) {
     try {
-      let res = await app.$axios.get(BASE_API_URL + 'centerfire');
-      const rows = res.data;
       const page = parseInt(query.page || '1');
-      return { rows, calibre: query.calibre || '', page };
+      const calibre = query.calibre || '';
+      let res = await app.$axios.get(BASE_API_URL + `centerfire?calibre=${encodeURIComponent(calibre)}&page=${page}`);
+      const rows = res.data;
+      return { rows, calibre, page };
     } catch (e) {
       console.error(e);
       return { statusCode: 500, message: 'Failed to load prices', error: true };
