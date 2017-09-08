@@ -70,7 +70,7 @@ export default {
         min556Price: mainPrices['.223 / 5.56 NATO'] || 0
       };
     } catch (e) {
-      console.error('Error: failed to get best popular prices', e); // ignore
+      console.error('Error: failed to get best popular prices', e && e.message? e.message:e); // ignore
       return { failedToLoadMainPrices: true }
     }
   },
