@@ -42,6 +42,11 @@ module.exports = {
         name: 'msvalidate.01',
         content: '330D6A0BB2221C7F78C038494DE50309'
       },
+      {       
+        //yandex also feeds duckduckgo
+        name: 'yandex-verification',
+        content:'99071bdc94d7e5ed'
+      },
       {
         name: "theme_color",
         content: "#41b883"
