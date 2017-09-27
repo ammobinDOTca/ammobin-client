@@ -1,22 +1,24 @@
 # AmmoBin.ca [![Build Status](https://travis-ci.org/ammobinDOTca/ammobin-client.svg?branch=master)](https://travis-ci.org/ammobinDOTca/ammobin-client) [![Greenkeeper badge](https://badges.greenkeeper.io/ammobinDOTca/ammobin-client.svg)](https://greenkeeper.io/)
 
-meta search site for ammo prices across canada. built with [nuxt.js](https://nuxtjs.org).
+meta search site for ammo prices across canada. built with [nuxt.js](https://nuxtjs.org) (and thus vue.js).
 
 ## how to run
 1. ```docker run ammobindotca/ammo-bin-client -p 3000:3000```
 
+## how to run locally
+- ```npm i```
+- ```PROD=true npm run dev``` (will target prod api)
+
 ## todo
-- add best prices to main page (also expose as rss feed)
 - filter by vendor  province
 - https://github.com/WICG/BackgroundSync/blob/master/explainer.md
 
-## how to run locally
-- ```npm i```
-- ```PROD=true npm run dev```
+## contributing
+- do some work
+- submit pr
 
 ## vendors to add
 - http://www.grouseriver.com/Hunting-Shooting/Ammunition
-
 - http://www.dantesports.com/en/product-category/shop/ammunition/
 - http://www.westcoasthunting.ca/
 - https://www.leverarms.com
@@ -35,10 +37,10 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 
 ## skipped
 - wholesalesports.com
-- https://www.marstar.ca/dynamic/category.jsp?catid=76551
+- marstar.ca
 
 ## incomplete vendors
-
+- none
 
 ## docker hub
 https://hub.docker.com/r/ammobindotca/ammobin-client/
