@@ -2,6 +2,8 @@
 
 meta search site for ammo prices across canada. built with [nuxt.js](https://nuxtjs.org) (and thus vue.js).
 
+![Screenshot-2017-9-27 The place to view the best online ammo prices across Canada.png](https://raw.githubusercontent.com/ammobinDOTca/ammobin-client/master/Screenshot-2017-9-27%20The%20place%20to%20view%20the%20best%20online%20ammo%20prices%20across%20Canada%20.png)
+
 ## how to run
 1. ```docker run ammobindotca/ammo-bin-client -p 3000:3000```
 
