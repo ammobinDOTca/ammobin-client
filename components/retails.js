@@ -124,5 +124,10 @@ export const list = shuffle([
     link: 'https://www.bvoutdoors.com/?utm_source=ammobin.ca',
     img: require('~/assets/bvoutdoors-logo.png'),
     id: 18
+  }, {
+    name: 'NAS Guns & Ammo (Niagara and Sault Ste. Marie, ON)',
+    link: 'https://www.nasgunsandammo.com/?utm_source=ammobin.ca',
+    img: require('~/assets/nas-logo.png'),
+    id: 19
   },
 ]);
