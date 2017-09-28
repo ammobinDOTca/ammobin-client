@@ -95,7 +95,8 @@ export const list = shuffle([
     name: 'Tiger Arms (Port Coquitlam, BC)',
     link: 'http://www.tigerarms.ca/?utm_source=ammobin.ca',
     img: require('~/assets/tigerarms.png'),
-    id: 14
+    id: 14,
+    background:true,
   }, {
     name: 'Mag Dump (Sherwood Park, AB)',
     link: 'https://magdump.ca/?utm_source=ammobin.ca',
@@ -128,6 +129,7 @@ export const list = shuffle([
     name: 'NAS Guns & Ammo (Niagara and Sault Ste. Marie, ON)',
     link: 'https://www.nasgunsandammo.com/?utm_source=ammobin.ca',
     img: require('~/assets/nas-logo.png'),
-    id: 19
+    id: 19,
+    background:true,
   },
 ]);
