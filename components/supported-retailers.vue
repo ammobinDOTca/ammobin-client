@@ -3,7 +3,7 @@
 
     <div class="pure-u-1 pure-u-md-1-3 m-t-2 m-r-2" v-for="row in list" :key="row.id">
       <a v-bind:href="row.link" target="_blank" rel="noopener">
-        <img v-bind:src="row.img" class="pure-img img" v-bind:alt="row.name" v-bind:title="row.name">
+        <img v-bind:src="row.img" class="pure-img img" v-bind:class="{'grey-background':row.background}" v-bind:alt="row.name" v-bind:title="row.name">
       </a>
     </div>
     <div class="pure-u-1 pure-u-md-1-3 m-t-2">
@@ -30,6 +30,10 @@ export default {
 
 .m-t-2 {
   margin-top: 25px;
+}
+
+.grey-background {
+  background-color: darkgrey;
 }
 </style>
 
