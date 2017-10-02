@@ -18,7 +18,7 @@
   "scripts": {
     "test": "npm run build",
     "dev": "nuxt",
-    "build": "PROD=true nuxt build",
+    "build": "PROD=true nuxt build --universal",
     "start": "HOST=0.0.0.0 NODE_ENV=production PROD=true nuxt start",
     "generate": "PROD=true nuxt generate",
     "snyk-protect": "snyk protect",
