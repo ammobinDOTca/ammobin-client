@@ -18,3 +18,9 @@ export function getUrl(base, page, calibre) {
 export function updateUrl(title, page, calibre) {
   history.pushState({}, title, getUrl(window.location.pathname, page, calibre));
 }
+
+export function isCrawler(req) {
+  const userAgent = (req ? req.headers['user-agent'] : (typeof navigator !== 'undefined' ? navigator.userAgent : 'No user agent (generated)'));
+
+  return ['Googlebot', 'Bingbot', 'Slurp', 'DuckDuckBot','Yandex'].some(bot => userAgent.indexOf(bot) >= 0);
+}

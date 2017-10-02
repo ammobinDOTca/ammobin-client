@@ -183,6 +183,9 @@ export default {
     },
     // apply filters + sorting + pagination to results
     filteredRows() {
+      this.pageSize = this.$store.state.isCrawler ? 100 : this.pageSize;
+
+
       let data = JSON.parse(JSON.stringify(this.rows && this.rows.length ? this.rows : [])); // super fancy deep list of objects
       let sortKey = this.sortKey;
       let order = this.sortOrders[sortKey];
@@ -271,7 +274,7 @@ export default {
       let start = (this.page - 1) * this.pageSize;
       let end = Math.min(this.page * this.pageSize, data.length)
       this.showVendors = data.map(i => i.name).reduce((sv, k) => {
-        sv[k] = false;
+        sv[k] = this.$store.state.isCrawler; // show google all the results...
         return sv;
       }, {})
       return data.slice(start, end);
