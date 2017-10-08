@@ -98,7 +98,7 @@
         </div>
       </div>
       <div class="pure-u-lg-1-5 pure-u-md-1-4  pure-u-1 m-b-1">
-        <button class="pure-button" @click="toggleVendors(row.name)">
+        <button class="pure-button" @click="toggleVendors(row.name, row)">
           {{showVendors[row.name]? 'hide':'show'}} vendors
         </button>
       </div>
@@ -307,8 +307,14 @@ export default {
       }
       window.scroll(0, 0); //scroll to top of page
     },
-    toggleVendors(name) {
-      this.showVendors[name] = !this.showVendors[name];
+    toggleVendors(name, row) {
+      const open = !!this.showVendors[name];
+
+      if (!open) {
+        this.$axios.post(BASE_API_URL + 'track-view', { calibre: row.calibre, brand: row.brand })
+      }
+
+      this.showVendors[name] = !open;
     },
     updateCalibre(calibre) {
       this.$emit('update:calibre', calibre)
