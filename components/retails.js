@@ -130,5 +130,10 @@ export const list = shuffle([
     link: 'https://www.nasgunsandammo.com/?utm_source=ammobin.ca',
     img: require('~/assets/nas-logo.jpeg'),
     id: 19,
+  }, {
+    name: 'Dante Sports (Montréal QC)',
+    link: 'https://www.dantesports.com/en/?utm_source=ammobin.ca',
+    img: require('~/assets/dante-logo.png'),
+    id: 19,
   },
 ]);
