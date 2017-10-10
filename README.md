@@ -21,7 +21,6 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 
 ## vendors to add
 - http://www.grouseriver.com/Hunting-Shooting/Ammunition
-- http://www.dantesports.com/en/product-category/shop/ammunition/
 - http://www.westcoasthunting.ca/
 - https://www.leverarms.com
 - https://theshootingedge.com/
