@@ -7,7 +7,6 @@ const createStore = () => {
     },
     mutations: {
       setCrawler(state, val) {
-        console.log(state, val)
         return state.isCrawler = val;
       }
     },
