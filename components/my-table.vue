@@ -22,23 +22,37 @@
         </select>
       </div>
 
+      <div class="pure-u-1 pure-u-md-1-6">
+        <label for="pageSize">Province</label>
+        <select id="pageSize" v-model="province" class="pure-input-1">
+          <option v-for="c in provinces" :key="c">{{c}}</option>
+        </select>
+      </div>
+
+      <div class="pure-u-1 pure-u-md-1-6">
+        <label for="pageSize">Vendor</label>
+        <select id="pageSize" v-model="vendor" class="pure-input-1">
+          <option v-for="c in vendors" :key="c">{{c}}</option>
+        </select>
+      </div>
+
       <div class="pure-u-1 pure-u-md-1-3">
         <label>
           Page
         </label>
         <div>
           <button @click="goto(1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
-            First
+            |<<
           </button>
           <button @click="goto(page - 1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
-            Prev
+            <
           </button>
           {{page}} of {{pages}}
           <button @click="goto(page+1)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
-            Next
+            >
           </button>
           <button @click="goto( pages)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
-            Last
+            >>|
           </button>
         </div>
       </div>
@@ -127,17 +141,17 @@
         </div>
         <div>
           <button @click="goto(1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
-            First
+            |<<
           </button>
           <button @click="goto(page - 1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
-            Prev
+            <
           </button>
           {{page}} of {{pages}}
           <button @click="goto(page+1)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
-            Next
+            >
           </button>
           <button @click="goto( pages)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
-            Last
+            >>|
           </button>
         </div>
       </div>
@@ -146,13 +160,12 @@
 </template>
 
 <script>
-
 export default {
   data: () => ({
     // default page size
     pageSize: 25,
-    searchQuery: '',
-    sortKey: 'minUnitCost',
+    searchQuery: "",
+    sortKey: "minUnitCost",
     sortedListLength: -1,
     sortOrders: {
       name: 1,
@@ -160,56 +173,119 @@ export default {
       minPrice: 1,
       minUnitCost: 1
     },
+    province: null,
     showVendors: {},
-    defaultImg: require('~/assets/blank.png')
+    provinces: [
+      null,
+      "AB",
+      "BC",
+      "MB",
+      "NB",
+      "NS",
+      "NT",
+      "NU",
+      "ON",
+      "PE",
+      "QC",
+      "SK",
+      "YT"
+    ],
+    vendor: null,
+    defaultImg: require("~/assets/blank.png")
   }),
-  props: [
-    'rows',
-    'calibre',
-    'page'
-  ],
+  props: ["rows", "calibre", "page"],
   computed: {
+    vendors() {
+      if (!this.rows) {
+        return [];
+      }
+      return Object.keys(
+        this.rows.reduce(
+          (list, row) => {
+            row.vendors.forEach(i => (list[i.vendor] = true));
+            return list;
+          },
+          { "": true }
+        )
+      ).sort();
+    },
     // list of calibres from ALL results
     calibres() {
       if (!this.rows) {
         return [];
       }
-      return Object.keys(this.rows.reduce((list, row) => {
-        if (!list[row.calibre]) {
-          list[row.calibre] = true;
-        }
-        return list;
-      }, { '': true })).sort();
+      return Object.keys(
+        this.rows.reduce(
+          (list, row) => {
+            if (!list[row.calibre]) {
+              list[row.calibre] = true;
+            }
+            return list;
+          },
+          { "": true }
+        )
+      ).sort();
     },
     // apply filters + sorting + pagination to results
     filteredRows() {
       this.pageSize = this.$store.state.isCrawler ? 100 : this.pageSize;
 
-
-      let data = JSON.parse(JSON.stringify(this.rows && this.rows.length ? this.rows : [])); // super fancy deep list of objects
+      let data = JSON.parse(
+        JSON.stringify(this.rows && this.rows.length ? this.rows : [])
+      ); // super fancy deep list of objects
       let sortKey = this.sortKey;
       let order = this.sortOrders[sortKey];
+
+      // filter by name
       if (this.searchQuery) {
         const q = this.searchQuery.toLowerCase();
         // data = data.filter(r => (r.name &&
         //   r.name.toLowerCase().indexOf(q) >= 0));
-        data = data.map(d => {
-          d.vendors = d.vendors.filter(r => (r.name &&
-            r.name.toLowerCase().indexOf(q) >= 0));
-          return d;
-        })
+        data = data
+          .map(d => {
+            d.vendors = d.vendors.filter(
+              r => r.name && r.name.toLowerCase().indexOf(q) >= 0
+            );
+            return d;
+          })
           .filter(f => f.vendors && f.vendors.length);
-
       }
+
+      // filter by calibre
       if (this.calibre) {
         data = data.filter(r => r.calibre === this.calibre);
       }
+
+      // filter by province
+      if (this.province) {
+        data = data
+          .map(d => {
+            d.vendors = d.vendors.filter(
+              r => r.province && r.province.indexOf(this.province) >= 0
+            );
+            return d;
+          })
+          .filter(f => f.vendors && f.vendors.length);
+      }
+
+      // filter by vendor
+      if (this.vendor) {
+        data = data
+          .map(d => {
+            d.vendors = d.vendors.filter(
+              r => r.vendor && r.vendor.indexOf(this.vendor) >= 0
+            );
+            return d;
+          })
+          .filter(f => f.vendors && f.vendors.length);
+      }
+
       if (sortKey) {
         data = data.sort(function(a, b) {
           let aa = a[sortKey];
           let bb = b[sortKey];
           // put unknown unit costs at the bottom of the sort order
-          if (sortKey === 'minUnitCost') {
+          if (sortKey === "minUnitCost") {
             if (aa <= 0) {
               aa = Number.MAX_SAFE_INTEGER;
             }
@@ -225,31 +301,31 @@ export default {
           } else {
             return -1 * order;
           }
-        })
+        });
         data = data.map(row => {
           row.vendors = row.vendors.sort(function(a, b) {
             let groupedKey;
             switch (sortKey) {
-              case 'minUnitCost':
-                groupedKey = 'unitCost';
+              case "minUnitCost":
+                groupedKey = "unitCost";
                 break;
-              case 'name':
-                groupedKey = 'name';
+              case "name":
+                groupedKey = "name";
                 break;
-              case 'minPrice':
-                groupedKey = 'price';
+              case "minPrice":
+                groupedKey = "price";
                 break;
-              case 'link':
-                groupedKey = 'vendor';
+              case "link":
+                groupedKey = "vendor";
                 break;
               default:
-                console.error('unhandled sort key', sortKey)
+                console.error("unhandled sort key", sortKey);
             }
 
             let aa = a[groupedKey];
             let bb = b[groupedKey];
             // put unknown unit costs at the bottom of the sort order
-            if (groupedKey === 'unitCost') {
+            if (groupedKey === "unitCost") {
               if (aa <= 0) {
                 aa = Number.MAX_SAFE_INTEGER;
               }
@@ -266,44 +342,50 @@ export default {
               return -1 * order;
             }
           });
-          return row
-        })
+          return row;
+        });
       }
 
       this.sortedListLength = data.length; // gross side effect. but lets us know how many pages of data there are
       let start = (this.page - 1) * this.pageSize;
-      let end = Math.min(this.page * this.pageSize, data.length)
+      let end = Math.min(this.page * this.pageSize, data.length);
       this.showVendors = data.map(i => i.name).reduce((sv, k) => {
         sv[k] = this.$store.state.isCrawler; // show google all the results...
         return sv;
-      }, {})
+      }, {});
       return data.slice(start, end);
-
     },
     // get number of filter pages
     pages() {
-      const pages = Math.max(Math.ceil((this.sortedListLength === -1 ? this.rows.length : this.sortedListLength) / this.pageSize), 1);
+      const pages = Math.max(
+        Math.ceil(
+          (this.sortedListLength === -1
+            ? this.rows.length
+            : this.sortedListLength) / this.pageSize
+        ),
+        1
+      );
 
       // if filter + old page num are out side of results, bring us to the end
       if (this.page > pages) {
-        this.$emit('update:page', pages);
+        this.$emit("update:page", pages);
       }
 
-      this.$emit('pages', pages);
+      this.$emit("pages", pages);
 
       return pages;
     }
   },
   methods: {
     sortBy(key) {
-      this.sortKey = key
-      this.sortOrders[key] = this.sortOrders[key] * -1
+      this.sortKey = key;
+      this.sortOrders[key] = this.sortOrders[key] * -1;
     },
     goto(page) {
       if (page > this.pages) {
-        this.$emit('update:page', this.pages)
+        this.$emit("update:page", this.pages);
       } else {
-        this.$emit('update:page', page)
+        this.$emit("update:page", page);
       }
       window.scroll(0, 0); //scroll to top of page
     },
@@ -311,18 +393,19 @@ export default {
       const open = !!this.showVendors[name];
 
       if (!open) {
-        this.$axios.post(BASE_API_URL + 'track-view', { calibre: row.calibre, brand: row.brand })
+        this.$axios.post(BASE_API_URL + "track-view", {
+          calibre: row.calibre,
+          brand: row.brand
+        });
       }
 
       this.showVendors[name] = !open;
     },
     updateCalibre(calibre) {
-      this.$emit('update:calibre', calibre)
+      this.$emit("update:calibre", calibre);
     }
-  },
-
-
-}
+  }
+};
 </script>
 
 <style>
@@ -331,7 +414,7 @@ export default {
 }
 
 .fill {
-  width: 100%
+  width: 100%;
 }
 
 .img-cell {
