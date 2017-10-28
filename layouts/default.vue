@@ -15,6 +15,9 @@
         <li class="pure-menu-item">
           <nuxt-link class="pure-menu-link" :class="{'pure-menu-selected': currentPage === '/shotgun'}" to="/shotgun">Shotgun</nuxt-link>
         </li>
+         <li class="pure-menu-item">
+          <nuxt-link class="pure-menu-link" :class="{'pure-menu-selected': currentPage === '/dank'}" to="/dank">DANK</nuxt-link>
+        </li>
         <li class="pure-menu-item">
           <nuxt-link class="pure-menu-link" :class="{'pure-menu-selected': currentPage === '/about'}" to="/about">About</nuxt-link>
         </li>
@@ -31,24 +34,24 @@
 <script>
 export default {
   head: {
-    title: 'AmmoBin.ca',
+    title: "AmmoBin.ca",
     meta: [
       {
-        hid: 'description', name: 'description',
-        content: ' A place to view online ammo prices across Canada'
-      },
-
+        hid: "description",
+        name: "description",
+        content: " A place to view online ammo prices across Canada"
+      }
     ]
   },
   computed: {
     currentPage() {
-      return this.$router.path
+      return this.$router.path;
     }
   },
   data() {
     return {
-      mail: 'mailto:' + 'contact' + '@' + 'ammobin.ca' // this probably will do nothing to stop bots...
-    }
+      mail: "mailto:" + "contact" + "@" + "ammobin.ca" // this probably will do nothing to stop bots...
+    };
   }
 };
 </script>
@@ -62,8 +65,6 @@ export default {
 .light-grey {
   background-color: #f1f1f1;
 }
-
-
 
 /* hide fork me link on mobile*/
 
