@@ -80,60 +80,66 @@ export const list = shuffle([
     name: 'The Ammo Source (Harrowsmith, ON)',
     link: 'http://www.theammosource.com/?utm_source=ammobin.ca',
     img: require('~/assets/the-ammo-source-logo.png'),
-    id: 11
+    id: 12
   }, {
     name: 'Hirsch Precision (Lake Echo, NS)',
     link: 'http://www.hirschprecision.com/?utm_source=ammobin.ca',
     img: require('~/assets/hirsch-logo.png'),
-    id: 12
+    id: 13
   }, {
     name: 'Wild West (Edmonton, AB)',
     link: 'https://gun-shop.ca/?utm_source=ammobin.ca',
     img: require('~/assets/wild.png'),
-    id: 13
+    id: 14
   }, {
     name: 'Tiger Arms (Port Coquitlam, BC)',
     link: 'http://www.tigerarms.ca/?utm_source=ammobin.ca',
     img: require('~/assets/tigerarms.png'),
-    id: 14,
+    id: 15,
     background: true,
   }, {
     name: 'Mag Dump (Sherwood Park, AB)',
     link: 'https://magdump.ca/?utm_source=ammobin.ca',
     img: require('~/assets/magdump-logo.png'),
-    id: 15
+    id: 16
   },
   {
     name: 'Rangeview Sports (Newmarket, ON)',
     link: 'https://www.rangeviewsports.ca/?utm_source=ammobin.ca',
     img: require('~/assets/rangeview-sports.png'),
-    id: 15
+    id: 17
   },
   {
 
     name: 'Trade Ex Canada (Hawkesbury, ON)',
     link: 'https://www.tradeexcanada.com/?utm_source=ammobin.ca',
     img: require('~/assets/tradex-logo.png'),
-    id: 16
+    id: 18
   }, {
     name: 'Frontier Firearms (Prince Albert, SK)',
     link: 'http://frontierfirearms.ca/?utm_source=ammobin.ca',
     img: require('~/assets/frontierfirearms-logo.png'),
-    id: 17
+    id: 19
   }, {
     name: 'BV Outdoor Essentials (Smithers, BC)',
     link: 'https://www.bvoutdoors.com/?utm_source=ammobin.ca',
     img: require('~/assets/bvoutdoors-logo.png'),
-    id: 18
+    id: 20
   }, {
     name: 'NAS Guns & Ammo (Niagara and Sault Ste. Marie, ON)',
     link: 'https://www.nasgunsandammo.com/?utm_source=ammobin.ca',
     img: require('~/assets/nas-logo.jpeg'),
-    id: 19,
+    id: 21,
   }, {
     name: 'Dante Sports (Montréal QC)',
     link: 'https://www.dantesports.com/en/?utm_source=ammobin.ca',
     img: require('~/assets/dante-logo.png'),
-    id: 19,
+    id: 22,
   },
+  {
+    name: 'Lever Arms (Vancouver, BC)',
+    link: 'https://www.leverarms.com/?utm_source=ammobin.ca',
+    img: require('~/assets/leverarms-logo.png'),
+    id: 23
+  }
 ]);
