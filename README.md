@@ -20,7 +20,6 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - submit pr
 
 ## vendors to add
-- http://www.westcoasthunting.ca/
 - https://www.leverarms.com
 - https://theshootingedge.com/
 - https://store.theshootingcentre.com/
@@ -38,6 +37,7 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 
 ## blocked
 - wanstalls
+- http://www.westcoasthunting.ca/ (prices + counts hidden on item page. would need to scrape everypage)
 
 ## skipped
 - wholesalesports.com
