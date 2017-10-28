@@ -14,7 +14,7 @@
       <div class="pure-form pure-form-stacked">
         <div id="search" class="pure-u-1 pure-u-md-1-6">
           <label>Search</label>
-          <input name="query" v-model="searchQuery" class="pure-input-1" placeholder="ie: Barnaul, surplus, 00 Buck" disabled>
+          <input name="query" v-model="searchQuery" class="pure-input-1" placeholder="ie: Barnaul, surplus, 00 Buck">
         </div>
 
         <div class="pure-u-1 pure-u-md-1-6">
@@ -135,44 +135,52 @@
 </style>
 
 <script>
-import MyTable from '~/components/my-table.vue'
+import MyTable from "~/components/my-table.vue";
 
 export default {
   head: {
-    title: 'Dankest Ammo Items Found Today',
+    title: "Dankest Ammo Items Found Today",
     meta: [
-      { hid: 'description', name: 'description', content: 'The dankest list of ammo items for sale online today in Canada.' }
+      {
+        hid: "description",
+        name: "description",
+        content:
+          "The dankest list of ammo items for sale online today in Canada."
+      }
     ]
   },
-  components: {
-
-  },
+  components: {},
   data() {
     return {
-
       // current page index
       page: 1,
       // default page size
       pageSize: 25,
-      searchQuery: '',
-      sortKey: 'price',
+      searchQuery: "",
+      sortKey: "price",
       sortedListLength: 0,
       sortOrders: {
         name: 1,
         vendor: 1,
-        price: 1,
+        price: 1
       },
       showVendors: {},
-      defaultImg: require('~/assets/blank.png'),
+      defaultImg: require("~/assets/blank.png"),
 
       error: null
-    }
+    };
   },
   computed: {
     filteredRows() {
       let data = this.rows;
       let sortKey = this.sortKey;
       let order = this.order;
+      let searchQuery = this.searchQuery.toLowerCase();
+
+      if (searchQuery) {
+        data = data.filter(r => r.name.toLowerCase().indexOf(searchQuery) >= 0);
+      }
+
       if (sortKey) {
         data = data.sort(function(a, b) {
           let aa = a[sortKey];
@@ -185,7 +193,7 @@ export default {
           } else {
             return -1 * order;
           }
-        })
+        });
       }
 
       this.sortedListLength = data.length; // gross side effect. but lets us know how many pages of data there are
@@ -194,7 +202,10 @@ export default {
       return data.slice(start, end);
     },
     pages() {
-      const pages = Math.max(Math.ceil(this.sortedListLength / this.pageSize), 1);
+      const pages = Math.max(
+        Math.ceil(this.sortedListLength / this.pageSize),
+        1
+      );
 
       // if filter + old page num are out side of results, bring us to the end
       if (this.page > pages) {
@@ -206,8 +217,8 @@ export default {
   },
   methods: {
     sortBy(key) {
-      this.sortKey = key
-      this.sortOrders[key] = this.sortOrders[key] * -1
+      this.sortKey = key;
+      this.sortOrders[key] = this.sortOrders[key] * -1;
     },
     goto(page) {
       if (page > this.pages) {
@@ -216,25 +227,23 @@ export default {
         this.page = page;
       }
       window.scroll(0, 0); //scroll to top of page
-    },
+    }
   },
   async asyncData({ error, query, app }) {
     const imgs = [
-      require('~/assets/dank/every-russian.jpg'),
-      require('~/assets/dank/k.jpg'),
-      require('~/assets/dank/smell.png'),
-      require('~/assets/dank/Tacticool.jpg'),
-      require('~/assets/dank/canada-ww1-win.jpg'),
-      require('~/assets/dank/colonial-wifo.jpg'),
-      require('~/assets/dank/dam-business.jpg'),
-      require('~/assets/dank/no-sorry.jpg'),
-      require('~/assets/dank/rcmp-pepe.jpg'),
-      require('~/assets/dank/svt-moose.jpg'),
-
-
-    ]
+      require("~/assets/dank/every-russian.jpg"),
+      require("~/assets/dank/k.jpg"),
+      require("~/assets/dank/smell.png"),
+      require("~/assets/dank/Tacticool.jpg"),
+      require("~/assets/dank/canada-ww1-win.jpg"),
+      require("~/assets/dank/colonial-wifo.jpg"),
+      require("~/assets/dank/dam-business.jpg"),
+      require("~/assets/dank/no-sorry.jpg"),
+      require("~/assets/dank/rcmp-pepe.jpg"),
+      require("~/assets/dank/svt-moose.jpg")
+    ];
     try {
-      let res = await app.$axios.get(BASE_API_URL + 'dank');
+      let res = await app.$axios.get(BASE_API_URL + "dank");
       const rows = res.data;
       return {
         rows,
@@ -242,14 +251,17 @@ export default {
         img1: imgs[Math.floor(Math.random() * imgs.length)],
         img2: imgs[Math.floor(Math.random() * imgs.length)],
         img3: imgs[Math.floor(Math.random() * imgs.length)],
-        img4: imgs[Math.floor(Math.random() * imgs.length)],
+        img4: imgs[Math.floor(Math.random() * imgs.length)]
       };
     } catch (e) {
       console.error(e);
-      return { statusCode: 500, message: 'Failed to load the dankest', error: true };
+      return {
+        statusCode: 500,
+        message: "Failed to load the dankest",
+        error: true
+      };
     }
-  },
-
-}
+  }
+};
 </script>
 
