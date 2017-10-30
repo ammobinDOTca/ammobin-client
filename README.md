@@ -12,7 +12,6 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - ```PROD=true npm run dev``` (will target prod api)
 
 ## todo
-- filter by vendor  province
 - https://github.com/WICG/BackgroundSync/blob/master/explainer.md
 
 ## contributing
@@ -20,7 +19,6 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - submit pr
 
 ## vendors to add
-- https://www.leverarms.com
 - https://theshootingedge.com/
 - https://store.theshootingcentre.com/
 - http://northprosports.com
