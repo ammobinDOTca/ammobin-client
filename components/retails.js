@@ -141,5 +141,11 @@ export const list = shuffle([
     link: 'https://www.leverarms.com/?utm_source=ammobin.ca',
     img: require('~/assets/leverarms-logo.png'),
     id: 23
+  },
+  {
+    name: 'Calgary Shooting Center (Calgary, AB)',
+    link: 'https://store.theshootingcentre.com/?utm_source=ammobin.ca',
+    img: require('~/assets/shooting-center-logo.jpg'),
+    id: 24
   }
 ]);

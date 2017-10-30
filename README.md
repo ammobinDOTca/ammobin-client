@@ -20,7 +20,6 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 
 ## vendors to add
 - https://theshootingedge.com/
-- https://store.theshootingcentre.com/
 - http://northprosports.com
 - https://vancouvergunstore.ca/
 - https://shophighfalls.com/collections/rifle-ammo?view=ALL (css rules hinder pulling data. will need to update scraper)
@@ -32,9 +31,10 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - https://durhamoutdoors.ca/collections/ammo-and-reloading
 - http://www.grouseriver.com/Hunting-Shooting/Ammunition
 - https://blue-wolf-firearms-canada.myshopify.com/collections/rimfire
+- http://westrifle.com/wrstore/index.php?main_page=index&cPath=2
 
 ## blocked
-- wanstalls
+- https://www.wanstallsonline.com/
 - http://www.westcoasthunting.ca/ (prices + counts hidden on item page. would need to scrape everypage)
 
 ## skipped
