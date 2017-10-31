@@ -25,7 +25,6 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - https://shophighfalls.com/collections/rifle-ammo?view=ALL (css rules hinder pulling data. will need to update scraper)
 - http://lanzshootingsupplies.com/shop/ammunition/caliber/handgun.html
 - http://www.rougeriverarms.com/index.php?route=product/category&path=70
-- https://www.westernmetal.ca/shooting-category/new-ammunition
 - http://shop.sylvestresportinggoods.com/Rifle-Ammunition/?p=catalog&mode=catalog&parent=506&pg=1&CatalogSetSortBy=price
 - https://www.tesro.ca/ammunition-and-pellets/smallbore-ammunition.html?limit=36
 - https://durhamoutdoors.ca/collections/ammo-and-reloading
