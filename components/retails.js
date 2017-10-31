@@ -147,5 +147,11 @@ export const list = shuffle([
     link: 'https://store.theshootingcentre.com/?utm_source=ammobin.ca',
     img: require('~/assets/shooting-center-logo.jpg'),
     id: 24
+  },
+  {
+    name: 'Western Metal (AB)',
+    link: 'https://www.westernmetal.ca/shooting?utm_source=ammobin.ca',
+    img: require('~/assets/westernmetal-logo.png'),
+    id: 25
   }
 ]);
