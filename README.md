@@ -19,6 +19,7 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - submit pr
 
 ## vendors to add
+- https://alsimmonsgunshop.com/product-category/ammunition/handgun-ammunition/?instock_products=in
 - https://theshootingedge.com/
 - http://northprosports.com
 - https://vancouvergunstore.ca/
