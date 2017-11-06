@@ -153,5 +153,11 @@ export const list = shuffle([
     link: 'https://www.westernmetal.ca/shooting?utm_source=ammobin.ca',
     img: require('~/assets/westernmetal-logo.png'),
     id: 25
+  },
+  {
+    name: 'Al Simmons (Hamilton, ON)',
+    link: 'https://alsimmonsgunshop.com/?utm_source=ammobin.ca',
+    img: require('~/assets/al-simmons-logo.jpg'),
+    id: 26
   }
 ]);
