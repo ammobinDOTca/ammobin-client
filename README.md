@@ -31,8 +31,13 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - http://www.grouseriver.com/Hunting-Shooting/Ammunition
 - https://blue-wolf-firearms-canada.myshopify.com/collections/rimfire
 - http://westrifle.com/wrstore/index.php?main_page=index&cPath=2
+- https://www.londerosports.com/firearms/ammunitions/rifle?limit=all
+- https://gunworx.ca/collections/ammunition
+- https://www.latulippe.com/en/our-stores/
+- https://www.bartonsbigcountry.ca/ammunition.html
 
 ## blocked
+- http://www.danchasse.com/shop_free/index.php?categoryID=109 (je ne parle en francis)
 - https://www.wanstallsonline.com/
 - http://www.westcoasthunting.ca/ (prices + counts hidden on item page. would need to scrape everypage)
 
