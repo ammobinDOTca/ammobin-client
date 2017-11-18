@@ -21,7 +21,6 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 ## vendors to add
 - https://theshootingedge.com/
 - http://northprosports.com
-- https://vancouvergunstore.ca/
 - https://shophighfalls.com/collections/rifle-ammo?view=ALL (css rules hinder pulling data. will need to update scraper)
 - http://lanzshootingsupplies.com/shop/ammunition/caliber/handgun.html
 - http://www.rougeriverarms.com/index.php?route=product/category&path=70
