@@ -159,5 +159,11 @@ export const list = shuffle([
     link: 'https://alsimmonsgunshop.com/?utm_source=ammobin.ca',
     img: require('~/assets/al-simmons-logo.jpg'),
     id: 26
+  },
+  {
+    name: 'Vancouver Gun Store (Vancouver, BC)',
+    link: 'https://vancouvergunstore.ca/?utm_source=ammobin.ca',
+    img: require('~/assets/vancouvergunstore-logo.png'),
+    id: 27
   }
 ]);
