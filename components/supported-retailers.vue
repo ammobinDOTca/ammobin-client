@@ -7,19 +7,19 @@
       </a>
     </div>
     <div class="pure-u-1 pure-u-md-1-3 m-t-2">
-      <h4>more to come...</h4>
+      <h4>{{$t('about.moreRetailers')}}</h4>
     </div>
   </div>
 </template>
 
 <script>
-import { list } from './retails'
+import { list } from "./retails";
 
 export default {
   data() {
     return { list };
   }
-}
+};
 </script>
 
 <style>
