@@ -10,7 +10,7 @@
   "home": {
     "title": "Bienvenue",
     "tagline": "L'endroit pour voir les meilleurs prix de munitions au Canada.",
-    "daily": "quotidiennement, et plus prochainement.",
+    "daily": "quotidiennement, et plus encore prochainement.",
     "gunsaleLink": "À la recherche d'armes à feu? Essayez",
     "startingAt": "À partir de",
     "perRound": "par cartouche",
@@ -51,8 +51,10 @@
     "unitCost": "Coût unitaire",
     "link": "Lien",
     "noResult": "Pas de résultats",
-    "vendors": "détaillants",
+    "vendors": "les détaillants",
     "perRound": "par cartouche",
-    "buyFrom": "Acheter chez"
+    "buyFrom": "Acheter chez",
+    "show": "Afficher",
+    "hide": "Masquer"
   }
 }

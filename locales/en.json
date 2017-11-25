@@ -53,6 +53,8 @@
     "noResult": "No Results",
     "vendors": "vendors",
     "perRound": "per round",
-    "buyFrom": "buy from"
+    "buyFrom": "buy from",
+    "show": "Show",
+    "hide": "Hide"
   }
 }

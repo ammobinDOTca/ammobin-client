@@ -113,7 +113,7 @@
       </div>
       <div class="pure-u-lg-1-5 pure-u-md-1-4  pure-u-1 m-b-1">
         <button class="pure-button" @click="toggleVendors(row.name, row)">
-          {{showVendors[row.name]? 'hide':'show'}} {{$t('table.vendors')}}
+          {{showVendors[row.name]? $t('table.hide') : $t('table.show')}} {{$t('table.vendors')}}
         </button>
       </div>
       <div class="pure-u-1" v-if="showVendors[row.name] === true">
