@@ -128,7 +128,7 @@ export const list = shuffle([
   }, {
     name: 'NAS Guns & Ammo (Niagara and Sault Ste. Marie, ON)',
     link: 'https://www.nasgunsandammo.com/?utm_source=ammobin.ca',
-    img: require('~/assets/nas-logo.jpeg'),
+    img: require('~/assets/nas-logo.jpg'),
     id: 21,
   }, {
     name: 'Dante Sports (Montréal QC)',
