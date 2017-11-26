@@ -1,4 +1,4 @@
 <script>
-import Index from "~/pages/_LANG/index";
+import Index from "~/pages/_LANG/dank";
 export default Index;
 </script>

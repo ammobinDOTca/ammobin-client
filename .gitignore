@@ -4,3 +4,4 @@ dist
 static/sw.js
 static/workbox-sw*.js
 npm-debug.log
+package-lock.json

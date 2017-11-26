@@ -2,12 +2,12 @@
   <div class="">
     <div class="pure-form pure-form-stacked">
       <div id="search" class="pure-u-1 pure-u-md-1-6">
-        <label>Search</label>
+        <label>{{$t('table.search')}}</label>
         <input name="query" v-model="searchQuery" class="pure-input-1" placeholder="ie: Barnaul, surplus, 00 Buck">
       </div>
 
       <div class="pure-u-1 pure-u-md-1-6">
-        <label for="pageSize"> Page Size</label>
+        <label for="pageSize"> {{$t('table.pageSize')}}</label>
         <select id="pageSize" v-model.number="pageSize" class="pure-input-1">
           <option>25</option>
           <option>50</option>
@@ -16,21 +16,21 @@
         </select>
       </div>
       <div class="pure-u-1 pure-u-md-1-6">
-        <label for="pageSize"> Calibre</label>
+        <label for="pageSize"> {{$t('table.calibre')}}</label>
         <select id="pageSize" :value="calibre" @change="updateCalibre($event.target.value)" class="pure-input-1">
           <option v-for="c in calibres" :key="c">{{c}}</option>
         </select>
       </div>
 
       <div class="pure-u-1 pure-u-md-1-6">
-        <label for="pageSize">Province</label>
+        <label for="pageSize">{{$t('table.province')}}</label>
         <select id="pageSize" v-model="province" class="pure-input-1">
           <option v-for="c in provinces" :key="c">{{c}}</option>
         </select>
       </div>
 
       <div class="pure-u-1 pure-u-md-1-6">
-        <label for="pageSize">Vendor</label>
+        <label for="pageSize">{{$t('table.vendor')}}</label>
         <select id="pageSize" v-model="vendor" class="pure-input-1">
           <option v-for="c in vendors" :key="c">{{c}}</option>
         </select>
@@ -38,7 +38,7 @@
 
       <div class="pure-u-1 pure-u-md-1-3">
         <label>
-          Page
+          {{$t('table.page')}}
         </label>
         <div>
           <button @click="goto(1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
@@ -47,7 +47,7 @@
           <button @click="goto(page - 1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
             <
           </button>
-          {{page}} of {{pages}}
+          {{page}} {{$t('table.of')}} {{pages}}
           <button @click="goto(page+1)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
             >
           </button>
@@ -60,29 +60,29 @@
     <div class="pure-g row">
       <div class="pure-u-lg-1-5 pure-u-1"></div>
       <div class="pure-u-lg-1-5 pure-u-1-4 title" @click="sortBy('name')" :class="{ active: sortKey == 'name' }">
-        <h4>Name
+        <h4>{{$t('table.name')}}
           <span class="arrow" :class="sortOrders['name'] > 0 ? 'asc' : 'dsc'"></span>
         </h4>
       </div>
       <div class="pure-u-lg-1-5 pure-u-1-4 title" @click="sortBy('minPrice')" :class="{ active: sortKey == 'minPrice' }">
-        <h4>Price
+        <h4>{{$t('table.price')}}
           <span class="arrow" :class="sortOrders['minPrice'] > 0 ? 'asc' : 'dsc'"></span>
         </h4>
       </div>
       <div class="pure-u-lg-1-5 pure-u-1-4 title" @click="sortBy('minUnitCost')" :class="{ active: sortKey == 'minUnitCost' }">
-        <h4>Unit Cost
+        <h4>{{$t('table.unitCost')}}
           <span class="arrow" :class="sortOrders['minUnitCost'] > 0 ? 'asc' : 'dsc'"></span>
         </h4>
       </div>
       <div class="pure-u-lg-1-5 pure-u-1-4 title" @click="sortBy('link')" :class="{ active: sortKey == 'link' }">
-        <h4>Link
+        <h4>{{$t('table.link')}}
           <span class="arrow" :class="sortOrders['link'] > 0 ? 'asc' : 'dsc'"></span>
         </h4>
       </div>
     </div>
 
     <div v-if="filteredRows.length === 0" class="pure-g row fix-row">
-      <div class="pure-u-1"> no results found.</div>
+      <div class="pure-u-1"> {{$t('table.noResult')}}</div>
     </div>
 
     <div v-for="(row, index) in filteredRows" :key="row.name" class="pure-g row fix-row item">
@@ -113,7 +113,7 @@
       </div>
       <div class="pure-u-lg-1-5 pure-u-md-1-4  pure-u-1 m-b-1">
         <button class="pure-button" @click="toggleVendors(row.name, row)">
-          {{showVendors[row.name]? 'hide':'show'}} vendors
+          {{showVendors[row.name]? $t('table.hide') : $t('table.show')}} {{$t('table.vendors')}}
         </button>
       </div>
       <div class="pure-u-1" v-if="showVendors[row.name] === true">
@@ -125,10 +125,10 @@
             ${{v.price.toFixed(2)}}
           </div>
           <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1-5">
-            <span v-if="v.unitCost">({{(v.unitCost).toFixed(2)}} per round)</span>
+            <span v-if="v.unitCost">({{(v.unitCost).toFixed(2)}} {{$t('table.perRound')}})</span>
           </div>
           <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1-5">
-            <a v-bind:href="v.link" target="_blank" rel="nofollow noopener">Buy From {{v.vendor}}</a>
+            <a v-bind:href="v.link" target="_blank" rel="nofollow noopener">{{$t('table.buyFrom')}} {{v.vendor}}</a>
           </div>
         </div>
 
@@ -137,7 +137,7 @@
     <div>
       <div class="pure-u-lg-1-2 pure-u-1">
         <div>
-          Page
+          {{$t('table.page')}}
         </div>
         <div>
           <button @click="goto(1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
@@ -146,7 +146,7 @@
           <button @click="goto(page - 1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
             <
           </button>
-          {{page}} of {{pages}}
+          {{page}} {{$t('table.of')}} {{pages}}
           <button @click="goto(page+1)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
             >
           </button>

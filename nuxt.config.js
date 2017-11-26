@@ -12,10 +12,10 @@ module.exports = {
         BASE_API_URL: !!process.env.PROD ? '"https://api.ammobin.ca/"' : '"http://localhost:8080/"',
         PROD: process.env.PROD ? 'true' : 'false'
       }),
-      new CopyWebpackPlugin([{ from: 'static' }])
+      new CopyWebpackPlugin([{ from: 'static' }]),
     ],
     extractCSS: true,
-    vendor: ['axios'] // Add axios in the vendor.bundle.js
+    vendor: ['axios', 'vue-i18n'] // Add axios in the vendor.bundle.js
   },
   loading: {
     color: '#4FC08D',
@@ -42,10 +42,10 @@ module.exports = {
         name: 'msvalidate.01',
         content: '330D6A0BB2221C7F78C038494DE50309'
       },
-      {       
+      {
         //yandex also feeds duckduckgo
         name: 'yandex-verification',
-        content:'99071bdc94d7e5ed'
+        content: '99071bdc94d7e5ed'
       },
       {
         name: "theme_color",
@@ -54,8 +54,14 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'alternate', hreflang: 'fr-ca', href: 'https://ammobin.ca/fr' },
+      { rel: 'alternate', hreflang: 'x-default', href: 'https://ammobin.ca/' },
     ]
   },
+  router: {
+    middleware: 'i18n'
+  },
+  plugins: ['~/plugins/i18n.js'],
   /*
   disabled while working on api memory useage
   cache: {
