@@ -35,8 +35,8 @@
     "moreRetailers": "more to come..."
   },
   "links": {
-    "french": "français",
-    "english": "english"
+    "french": "FR",
+    "english": "EN"
   },
   "table": {
     "search": "Search",
@@ -53,6 +53,8 @@
     "noResult": "No Results",
     "vendors": "vendors",
     "perRound": "per round",
-    "buyFrom": "buy from"
+    "buyFrom": "buy from",
+    "show": "Show",
+    "hide": "Hide"
   }
 }
