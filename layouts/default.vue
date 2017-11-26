@@ -46,6 +46,12 @@
     <footer class="footer">
       AmmoBin.ca {{new Date().getFullYear()}}
       <a v-bind:href="mail">Contact</a>
+      <div>
+        <a href="https://github.com/ammobindotca" target="_blank" rel="noopener">github</a> |
+        <a href="https://www.instagram.com/ammobin.ca" target="_blank" rel="noopener">instagram</a> |
+        <a href="https://twitter.com/ammobinca" target="_blank" rel="noopener">twitter</a> |
+        <a href="https://www.facebook.com/ammobinca-329189654220485" target="_blank" rel="noopener">facebook</a>
+      </div>
     </footer>
   </div>
 </template>
