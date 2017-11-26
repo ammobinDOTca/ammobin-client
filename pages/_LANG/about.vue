@@ -67,12 +67,12 @@ export default {
     SupportedRetailers
   },
   head: {
-    title: "About AmmoBin.ca",
+    title: "About AmmoBin.ca", //TODO: en francais
     meta: [
       {
         hid: "description",
         name: "description",
-        content: "All about ammobin.ca"
+        content: "All about ammobin.ca" //TODO: en francais
       }
     ]
   },

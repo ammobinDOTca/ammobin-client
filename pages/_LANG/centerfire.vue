@@ -13,37 +13,31 @@ import { getUrl, updateUrl } from "~/helpers";
 export default {
   head() {
     const link = [];
-
+    const url = `https://ammobin.ca/${this.$i18n.locale !== "en"
+      ? this.$i18n.locale + "/"
+      : ""}centerfire`;
     if (this.page > 1) {
       link.push({
         rel: "prev",
-        href: getUrl(
-          "https://ammobin.ca/centerfire",
-          this.page - 1,
-          this.calibre
-        )
+        href: getUrl(url, this.page - 1, this.calibre)
       });
     }
 
     if (this.pages > this.page) {
       link.push({
         rel: "next",
-        href: getUrl(
-          "https://ammobin.ca/centerfire",
-          this.page + 1,
-          this.calibre
-        )
+        href: getUrl(url, this.page + 1, this.calibre)
       });
     }
 
     return {
-      title: this.calibre + " Centerfire Prices",
+      title: this.calibre + " Centerfire Prices", //TODO: en francais
       meta: [
         {
           hid: "description",
           name: "description",
           content: `The place to view the best ${this
-            .calibre} Centerfire prices across Canada.`
+            .calibre} Centerfire prices across Canada.` //TODO: en francais
         }
       ],
       link

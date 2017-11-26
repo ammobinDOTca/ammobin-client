@@ -79,13 +79,12 @@ export default {
   },
   head() {
     return {
-      title: "The place to view the best online ammo prices across Canada.",
+      title: "The place to view the best online ammo prices across Canada.", //TODO: en francais
       meta: [
         {
           hid: "description",
           name: "description",
-          content:
-            "The place to view the best online ammo prices across Canada."
+          content: this.$t("home.tagline")
         }
       ]
     };

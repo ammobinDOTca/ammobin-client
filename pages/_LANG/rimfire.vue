@@ -23,29 +23,32 @@ export default {
 
   head() {
     const link = [];
+    const url = `https://ammobin.ca/${this.$i18n.locale !== "en"
+      ? this.$i18n.locale + "/"
+      : ""}rimfire`;
 
     if (this.page > 1) {
       link.push({
         rel: "prev",
-        href: getUrl("https://ammobin.ca/rimfire", this.page - 1, this.calibre)
+        href: getUrl(url, this.page - 1, this.calibre)
       });
     }
 
     if (this.pages > this.page) {
       link.push({
         rel: "next",
-        href: getUrl("https://ammobin.ca/rimfire", this.page + 1, this.calibre)
+        href: getUrl(url, this.page + 1, this.calibre)
       });
     }
 
     return {
-      title: this.calibre + " Rimfire Prices",
+      title: this.calibre + " Rimfire Prices", //TODO: en francais
       meta: [
         {
           hid: "description",
           name: "description",
           content: `The place to view the best ${this
-            .calibre} rimfire prices across Canada.`
+            .calibre} rimfire prices across Canada.` //TODO: en francais
         }
       ],
       link

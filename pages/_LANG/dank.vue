@@ -139,13 +139,13 @@ import MyTable from "~/components/my-table.vue";
 
 export default {
   head: {
-    title: "Dankest Ammo Items Found Today",
+    title: "Dankest Ammo Items Found Today", //TODO: en francais
     meta: [
       {
         hid: "description",
         name: "description",
         content:
-          "The dankest list of ammo items for sale online today in Canada."
+          "The dankest list of ammo items for sale online today in Canada." //TODO: en francais
       }
     ]
   },

@@ -38,15 +38,20 @@
 
 <script>
 export default {
-  head: {
-    title: "AmmoBin.ca",
-    meta: [
-      {
-        hid: "description",
-        name: "description",
-        content: " A place to view online ammo prices across Canada"
+  head() {
+    return {
+      title: "AmmoBin.ca",
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.$t("home.tagline")
+        }
+      ],
+      htmlAttrs: {
+        lang: this.$i18n.locale || "en"
       }
-    ]
+    };
   },
   computed: {
     currentPage() {

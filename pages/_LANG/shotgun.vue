@@ -13,28 +13,31 @@ import { getUrl, updateUrl } from "~/helpers";
 export default {
   head() {
     const link = [];
+    const url = `https://ammobin.ca/${this.$i18n.locale !== "en"
+      ? this.$i18n.locale + "/"
+      : ""}shotgun`;
     if (this.page > 1) {
       link.push({
         rel: "prev",
-        href: getUrl("https://ammobin.ca/shotgun", this.page - 1, this.calibre)
+        href: getUrl(url, this.page - 1, this.calibre)
       });
     }
 
     if (this.pages > this.page) {
       link.push({
         rel: "next",
-        href: getUrl("https://ammobin.ca/shotgun", this.page + 1, this.calibre)
+        href: getUrl(url, this.page + 1, this.calibre)
       });
     }
 
     return {
-      title: this.calibre + " Shotgun Prices",
+      title: this.calibre + " Shotgun Prices", //TODO: en francais
       meta: [
         {
           hid: "description",
           name: "description",
           content: `The place to view the best ${this
-            .calibre} shotgun shell prices across Canada.`
+            .calibre} shotgun shell prices across Canada.` //TODO: en francais
         }
       ],
       link
