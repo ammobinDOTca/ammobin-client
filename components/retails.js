@@ -165,5 +165,11 @@ export const list = shuffle([
     link: 'https://vancouvergunstore.ca/?utm_source=ammobin.ca',
     img: require('~/assets/vancouvergunstore-logo.png'),
     id: 27
-  }
+  },
+  {
+    name: 'Bartons Big Country (Grande Prairie, AB)',
+    link: 'https://www.bartonsbigcountry.ca/?utm_source=ammobin.ca',
+    img: require('~/assets/logo-bartons.png'),
+    id: 28
+  },
 ]);

@@ -32,7 +32,6 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - https://www.londerosports.com/firearms/ammunitions/rifle?limit=all
 - https://gunworx.ca/collections/ammunition
 - https://www.latulippe.com/en/our-stores/
-- https://www.bartonsbigcountry.ca/ammunition.html
 
 ## blocked
 - http://www.danchasse.com/shop_free/index.php?categoryID=109 (je ne parle en francis)
