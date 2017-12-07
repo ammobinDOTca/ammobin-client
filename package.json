@@ -14,7 +14,7 @@
     "vue-style-loader": "^3.0.1"
   },
   "devDependencies": {
-    "snyk": "^1.42.1"
+    "snyk": "^1.54.1"
   },
   "scripts": {
     "test": "npm run build",
