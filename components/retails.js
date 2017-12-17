@@ -172,4 +172,10 @@ export const list = shuffle([
     img: require('~/assets/logo-bartons.png'),
     id: 28
   },
+  {
+    name: 'The Shooting Edge (Calgary, AB)',
+    link: 'https://theshootingedge.com/?utm_source=ammobin.ca',
+    img: require('~/assets/shootingedge-logo.png'),
+    id: 29
+  }
 ]);
