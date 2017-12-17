@@ -37,7 +37,8 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - http://www.danchasse.com/shop_free/index.php?categoryID=109 (je ne parle en francis)
 - https://www.wanstallsonline.com/
 - http://www.westcoasthunting.ca/ (prices + counts hidden on item page. would need to scrape everypage)
-- http://westrifle.com/wrstore/index.php?main_page=index&cPath=2 (everything was sold out nov 2017)
+- http://westrifle.com/wrstore/index.php?main_page=index&cPath=2 (everything was sold out nov 2017) 
+- https://www.siwashsports.ca/product-category/ammunition/centerfire-ammunition/ (cant buy things online as of dec 17 2017, will add once this feature is enabled on the site)
 ## skipped
 - wholesalesports.com
 - marstar.ca
