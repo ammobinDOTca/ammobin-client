@@ -23,7 +23,13 @@
     "start": "HOST=0.0.0.0 NODE_ENV=production PROD=true nuxt start",
     "generate": "PROD=true nuxt generate",
     "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "prepublish": "npm run snyk-protect",
+    "deploy": "now -e NODE_ENV=production --token $NOW_TOKEN --npm --public",
+    "alias": "now alias --token=$NOW_TOKEN"
   },
-  "snyk": true
+  "snyk": true,
+  "now": {
+    "name": "ammobin",
+    "alias": "ammobin.now.sh"
+  }
 }
