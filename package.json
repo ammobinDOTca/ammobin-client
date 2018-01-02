@@ -14,6 +14,7 @@
     "vue-style-loader": "^3.0.1"
   },
   "devDependencies": {
+    "now": "^9.0.1",
     "snyk": "^1.59.1"
   },
   "scripts": {
