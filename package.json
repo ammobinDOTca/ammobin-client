@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "now": "^9.0.1",
-    "snyk": "^1.59.1"
+    "snyk": "^1.65.1"
   },
   "scripts": {
     "test": "npm run build",
