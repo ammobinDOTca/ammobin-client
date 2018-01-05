@@ -1,4 +1,4 @@
-# AmmoBin.ca [![Build Status](https://travis-ci.org/ammobinDOTca/ammobin-client.svg?branch=master)](https://travis-ci.org/ammobinDOTca/ammobin-client) [![Greenkeeper badge](https://badges.greenkeeper.io/ammobinDOTca/ammobin-client.svg)](https://greenkeeper.io/)
+# AmmoBin.ca [ ![Codeship Status for ammobinDOTca/ammobin-client](https://app.codeship.com/projects/992b88f0-d18a-0135-270c-42cf0d64356b/status?branch=master)](https://app.codeship.com/projects/262429) [![Greenkeeper badge](https://badges.greenkeeper.io/ammobinDOTca/ammobin-client.svg)](https://greenkeeper.io/)
 
 meta search site for ammo prices across canada. built with [nuxt.js](https://nuxtjs.org) (and thus vue.js).
 
