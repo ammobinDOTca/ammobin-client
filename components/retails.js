@@ -177,5 +177,11 @@ export const list = shuffle([
     link: 'https://theshootingedge.com/?utm_source=ammobin.ca',
     img: require('~/assets/shootingedge-logo.png'),
     id: 29
+  },
+  {
+    name: 'Lanz Shooting Supplies (St Ann, ON)',
+    link: 'http://www.lanzshootingsupplies.com/?utm_source=ammobin.ca',
+    img: require('~/assets/lanz-logo.png'),
+    id: 30
   }
 ]);
