@@ -26,7 +26,8 @@
     "snyk-protect": "snyk protect",
     "prepublish": "npm run snyk-protect",
     "deploy": "now -e NODE_ENV=production --token $NOW_TOKEN --npm --public",
-    "alias": "now alias --token=$NOW_TOKEN"
+    "alias": "now alias --token=$NOW_TOKEN",
+    "heroku-postbuild": "npm run build"
   },
   "snyk": true,
   "now": {
