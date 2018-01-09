@@ -55,6 +55,7 @@ module.exports = {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'alternate', hreflang: 'fr-ca', href: 'https://ammobin.ca/fr' },
+      { rel: 'alternate', hreflang: 'en-ca', href: 'https://ammobin.ca/' },
       { rel: 'alternate', hreflang: 'x-default', href: 'https://ammobin.ca/' },
     ]
   },
