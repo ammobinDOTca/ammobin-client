@@ -87,7 +87,7 @@
 
     <div v-for="(row, index) in filteredRows" :key="row.name" class="pure-g row fix-row item">
       <div class="pure-u-lg-1-5 pure-u-md-1 pure-u-1">
-        <img class="pure-img img-cell" v-bind:src="row.img || defaultImg" />
+        <img class="pure-img img-cell" v-bind:src="row.img || defaultImg" v-img-fallback="defaultImg" />
       </div>
       <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1 capitalize">
         {{row.name}}
