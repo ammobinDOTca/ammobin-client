@@ -13,6 +13,7 @@ module.exports = {
         PROD: process.env.PROD ? 'true' : 'false'
       }),
       new CopyWebpackPlugin([{ from: 'static' }]),
+
     ],
     extractCSS: true,
     vendor: ['axios', 'vue-i18n'] // Add axios in the vendor.bundle.js
@@ -62,7 +63,7 @@ module.exports = {
   router: {
     middleware: 'i18n'
   },
-  plugins: ['~/plugins/i18n.js'],
+  plugins: ['~/plugins/i18n.js', { src: '~/plugins/vue-img', ssr: false },],
   /*
   disabled while working on api memory useage
   cache: {
