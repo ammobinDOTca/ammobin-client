@@ -13,7 +13,6 @@ const createStore = () => {
         return state.isCrawler = val;
       },
       SET_LANG(state, locale) {
-        console.log('SET_LANG',locale)
         if (state.locales.indexOf(locale) !== -1) {
           state.locale = locale
         }
