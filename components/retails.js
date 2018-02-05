@@ -183,5 +183,11 @@ export const list = shuffle([
     link: 'http://www.lanzshootingsupplies.com/?utm_source=ammobin.ca',
     img: require('~/assets/lanz-logo.png'),
     id: 30
-  }
+  },
+  {
+    name: 'Duram Outdoors (Orono, ON)',
+    link: 'https://durhamoutdoors.ca/?utm_source=ammobin.ca',
+    img: require('~/assets/duram-logo.png'),
+    id: 31
+  },
 ]);
