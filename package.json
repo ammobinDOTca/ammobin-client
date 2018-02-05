@@ -3,7 +3,7 @@
   "private": true,
   "description": "The place to view ammo prices across Canada",
   "dependencies": {
-    "@nuxtjs/axios": "^4.0.0",
+    "@nuxtjs/axios": "^5.0.0",
     "@nuxtjs/pwa": "^2.0.2",
     "copy-webpack-plugin": "^4.2.3",
     "css-loader": "^0.28.1",
