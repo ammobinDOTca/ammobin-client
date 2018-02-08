@@ -24,7 +24,6 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - http://www.rougeriverarms.com/index.php?route=product/category&path=70
 - http://shop.sylvestresportinggoods.com/Rifle-Ammunition/?p=catalog&mode=catalog&parent=506&pg=1&CatalogSetSortBy=price
 - https://www.tesro.ca/ammunition-and-pellets/smallbore-ammunition.html?limit=36
-- https://durhamoutdoors.ca/collections/ammo-and-reloading
 - http://www.grouseriver.com/Hunting-Shooting/Ammunition
 - https://blue-wolf-firearms-canada.myshopify.com/collections/rimfire
 - https://www.londerosports.com/firearms/ammunitions/rifle?limit=all
@@ -32,6 +31,7 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - https://www.latulippe.com/en/our-stores/
 - http://doctordeals.ca/product-category/smoking-gun/ammunition/rifle-ammo/
 - https://waspmunitions.ca/WASP-REMANUFACTURED-AMMUNITION-c14772333
+- https://rampartcorp.com/collections/ammunition
 
 ## blocked
 - http://www.danchasse.com/shop_free/index.php?categoryID=109 (je ne parle en francis)
