@@ -190,4 +190,10 @@ export const list = shuffle([
     img: require('~/assets/duram-logo.png'),
     id: 31
   },
+  {
+    name: 'Soley Outdoors (Markham, ON)',
+    link: 'https://www.solelyoutdoors.com/?utm_source=ammobin.ca',
+    img: require('~/assets/soley-logo.png'),
+    id: 32
+  },
 ]);
