@@ -19,7 +19,6 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - submit pr
 
 ## vendors to add
-- http://northprosports.com
 - https://shophighfalls.com/collections/rifle-ammo?view=ALL (css rules hinder pulling data. will need to update scraper)
 - http://shop.sylvestresportinggoods.com/Rifle-Ammunition/?p=catalog&mode=catalog&parent=506&pg=1&CatalogSetSortBy=price
 - https://www.tesro.ca/ammunition-and-pellets/smallbore-ammunition.html?limit=36
@@ -32,16 +31,19 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - https://waspmunitions.ca/WASP-REMANUFACTURED-AMMUNITION-c14772333
 - https://rampartcorp.com/collections/ammunition
 
+
 ## blocked
 - http://www.danchasse.com/shop_free/index.php?categoryID=109 (je ne parle en francis)
 - https://www.wanstallsonline.com/
 - http://www.westcoasthunting.ca/ (prices + counts hidden on item page. would need to scrape everypage)
 - http://westrifle.com/wrstore/index.php?main_page=index&cPath=2 (everything was sold out nov 2017)
 - https://www.siwashsports.ca/product-category/ammunition/centerfire-ammunition/ (cant buy things online as of dec 17 2017, will add once this feature is enabled on the site)
+- https://eccfirearms.blogspot.ca/2011/02/ammunition-ecc-firearms-has-widest.html  (cant buy oneline as of feb 17 2018)
+
 ## skipped
 - wholesalesports.com
 - marstar.ca
-
+- http://www.prairieshotammo.com/find-a-dealer-3.html (but should review these retailers to see if they have online shops)
 ## incomplete vendors
 - none
 
