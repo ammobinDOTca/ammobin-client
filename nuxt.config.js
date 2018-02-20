@@ -51,6 +51,10 @@ module.exports = {
       {
         name: "theme_color",
         content: "#41b883"
+      },
+      {
+        name: 'image',
+        content: "https://ammobin.ca/icon.png"
       }
     ],
     link: [
