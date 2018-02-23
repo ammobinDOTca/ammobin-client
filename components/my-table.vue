@@ -193,7 +193,7 @@ export default {
     vendor: null,
     defaultImg: require("~/assets/blank.png")
   }),
-  props: ["rows", "calibre", "page"],
+  props: ["rows", "pages", "calibres"],
   computed: {
     vendors() {
       if (!this.rows) {
@@ -203,23 +203,6 @@ export default {
         this.rows.reduce(
           (list, row) => {
             row.vendors.forEach(i => (list[i.vendor] = true));
-            return list;
-          },
-          { "": true }
-        )
-      ).sort();
-    },
-    // list of calibres from ALL results
-    calibres() {
-      if (!this.rows) {
-        return [];
-      }
-      return Object.keys(
-        this.rows.reduce(
-          (list, row) => {
-            if (!list[row.calibre]) {
-              list[row.calibre] = true;
-            }
             return list;
           },
           { "": true }
@@ -249,11 +232,6 @@ export default {
             return d;
           })
           .filter(f => f.vendors && f.vendors.length);
-      }
-
-      // filter by calibre
-      if (this.calibre) {
-        data = data.filter(r => r.calibre === this.calibre);
       }
 
       // filter by province
@@ -347,33 +325,12 @@ export default {
       }
 
       this.sortedListLength = data.length; // gross side effect. but lets us know how many pages of data there are
-      let start = (this.page - 1) * this.pageSize;
-      let end = Math.min(this.page * this.pageSize, data.length);
       this.showVendors = data.map(i => i.name).reduce((sv, k) => {
         sv[k] = this.$store.state.isCrawler; // show google all the results...
         return sv;
       }, {});
-      return data.slice(start, end);
-    },
-    // get number of filter pages
-    pages() {
-      const pages = Math.max(
-        Math.ceil(
-          (this.sortedListLength === -1
-            ? this.rows.length
-            : this.sortedListLength) / this.pageSize
-        ),
-        1
-      );
 
-      // if filter + old page num are out side of results, bring us to the end
-      if (this.page > pages) {
-        this.$emit("update:page", pages);
-      }
-
-      this.$emit("pages", pages);
-
-      return pages;
+      return data;
     }
   },
   methods: {
