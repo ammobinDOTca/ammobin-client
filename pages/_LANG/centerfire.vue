@@ -31,14 +31,13 @@ export default {
     }
 
     return {
-      title: this.calibre + " Centerfire Prices", //TODO: en francais
+      title: (this.calibre || "") + " Centerfire Prices", //TODO: en francais
       meta: [
         {
           hid: "description",
           name: "description",
-          content: `The place to view the best ${
-            this.calibre
-          } Centerfire prices across Canada.` //TODO: en francais
+          content: `The place to view the best ${this.calibre ||
+            ""} Centerfire prices across Canada.` //TODO: en francais
         }
       ],
       link
@@ -57,9 +56,12 @@ export default {
   },
   watch: {
     page: function() {
-      updateUrl("centerfire", this.page, this.calibre);
+      this.load();
     },
     pageSize() {
+      this.load();
+    },
+    calibre() {
       this.load();
     }
   },
