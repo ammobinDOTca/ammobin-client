@@ -1,12 +1,12 @@
 https://ammobin.ca
 https://ammobin.ca/rimfire?page=1
-https://ammobin.ca/rimfire?page=1&cailbre=.22%20LR
+https://ammobin.ca/rimfire?page=1&calibre=.22%20LR
 https://ammobin.ca/centerfire?page=1
-https://ammobin.ca/centerfire?page=1&cailbre=9MM
-https://ammobin.ca/centerfire?page=1&cailbre=7.62%20X%2054MMR
-https://ammobin.ca/centerfire?page=1&cailbre=7.62%20X%2039MM
-https://ammobin.ca/centerfire?page=1&cailbre=.308%20Winchester
-https://ammobin.ca/centerfire?page=1&cailbre=.223%20%2F%205.56%20NATO
+https://ammobin.ca/centerfire?page=1&calibre=9MM
+https://ammobin.ca/centerfire?page=1&calibre=7.62%20X%2054MMR
+https://ammobin.ca/centerfire?page=1&calibre=7.62%20X%2039MM
+https://ammobin.ca/centerfire?page=1&calibre=.308%20Winchester
+https://ammobin.ca/centerfire?page=1&calibre=.223%20%2F%205.56%20NATO
 https://ammobin.ca/shotgun?page=1
 https://ammobin.ca/shotgun?page=1&calibre=12 GA
 https://ammobin.ca/about
