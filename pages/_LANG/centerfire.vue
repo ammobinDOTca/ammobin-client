@@ -31,13 +31,13 @@ export default {
     }
 
     return {
-      title: (this.calibre || "") + " Centerfire Prices", //TODO: en francais
+      title: (this.calibre || "Centerfire") + " Prices", //TODO: en francais
       meta: [
         {
           hid: "description",
           name: "description",
           content: `The place to view the best ${this.calibre ||
-            ""} Centerfire prices across Canada.` //TODO: en francais
+            "Centerfire"} prices across ${this.province || "Canada"}.` //TODO: en francais
         }
       ],
       link

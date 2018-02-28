@@ -49,7 +49,7 @@ export default {
           name: "description",
           content: `The place to view the best ${
             this.calibre
-          } rimfire prices across Canada.` //TODO: en francais
+          } rimfire prices across ${this.province || "Canada"}.` //TODO: en francais
         }
       ],
       link

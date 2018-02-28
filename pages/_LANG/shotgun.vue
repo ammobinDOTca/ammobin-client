@@ -31,14 +31,13 @@ export default {
     }
 
     return {
-      title: this.calibre + " Shotgun Prices", //TODO: en francais
+      title: (this.calibre || "Shotgun") + "  Prices", //TODO: en francais
       meta: [
         {
           hid: "description",
           name: "description",
-          content: `The place to view the best ${
-            this.calibre
-          } shotgun shell prices across Canada.` //TODO: en francais
+          content: `The place to view the best ${this.calibre ||
+            "shotgun"}  shell prices across ${this.province || "Canada"}.` //TODO: en francais
         }
       ],
       link
