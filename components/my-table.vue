@@ -219,8 +219,6 @@ export default {
     },
     // apply filters + sorting + pagination to results
     filteredRows() {
-      this.pageSize = this.$store.state.isCrawler ? 100 : this.pageSize;
-
       let data = JSON.parse(
         JSON.stringify(this.rows && this.rows.length ? this.rows : [])
       ); // super fancy deep list of objects
