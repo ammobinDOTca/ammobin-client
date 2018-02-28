@@ -1,12 +1,14 @@
 <template>
   <div class="container">
     <h1>{{$t('default.rimfire')}}</h1>
-    <my-table v-if="!error" v-bind:rows="rows" :pages="pages"></my-table>
+    <my-table v-if="!error" v-bind:rows="rows" :pages="pages" :calibres="calibres"></my-table>
     <div v-if="error">{{$t('default.failedToLoad')}}</div>
   </div>
 </template>
 
 <script>
+import { rimfireCalibres } from "ammobin-classifier/build/rimfire-calibres";
+
 import MyTable from "~/components/my-table.vue";
 import { getUrl, updateUrl } from "~/helpers";
 
@@ -15,9 +17,8 @@ export default {
     return {
       error: null,
       rows: [],
-      calibre: "",
-      page: 1,
-      pages: 1
+      pages: 1,
+      calibres: [null, ...rimfireCalibres.map(l => l[0].toUpperCase()).sort()]
     };
   },
 
@@ -42,7 +43,7 @@ export default {
     }
 
     return {
-      title: this.calibre + " Rimfire Prices", //TODO: en francais
+      title: (this.calibre || "Rimfire") + " Prices", //TODO: en francais
       meta: [
         {
           hid: "description",
@@ -57,19 +58,32 @@ export default {
   components: {
     MyTable
   },
-  watch: {
-    page: function() {
-      updateUrl("rimfire", this.page, this.calibre);
+  computed: {
+    page() {
+      return Number(this.$route.query.page) || 1;
     },
     calibre() {
+      return this.$route.query.calibre;
+    },
+    pageSize() {
+      return Number(this.$route.query.pageSize) || 25;
+    }
+  },
+  watch: {
+    page() {
       this.load();
     },
     pageSize() {
+      this.load();
+    },
+    calibre() {
       this.load();
     }
   },
   methods: {
     async load() {
+      this.$nuxt.$loading.start();
+
       try {
         const page = this.page;
         const calibre = this.calibre || "";
@@ -88,6 +102,7 @@ export default {
         this.message = "Failed to load prices";
         this.error = true;
       }
+      this.$nuxt.$loading.finish();
     }
   },
   async asyncData({ error, query, app }) {

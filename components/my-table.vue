@@ -8,30 +8,30 @@
 
       <div class="pure-u-1 pure-u-md-1-6">
         <label for="pageSize"> {{$t('table.pageSize')}}</label>
-        <select id="pageSize" v-model.number="pageSize" class="pure-input-1">
-          <option>25</option>
-          <option>50</option>
-          <option>75</option>
-          <option>100</option>
+        <select id="pageSize" :value="pageSize" @change="updatePageSize($event.target.value)" class="pure-input-1">
+          <option >25</option>
+          <option >50</option>
+          <option >75</option>
+          <option >100</option>
         </select>
       </div>
       <div class="pure-u-1 pure-u-md-1-6">
-        <label for="pageSize"> {{$t('table.calibre')}}</label>
-        <select id="pageSize" :value="calibre" @change="updateCalibre($event.target.value)" class="pure-input-1">
+        <label for="calibre"> {{$t('table.calibre')}}</label>
+        <select id="calibre" :value="calibre" @change="updateCalibre($event.target.value)" class="pure-input-1">
           <option v-for="c in calibres" :key="c">{{c}}</option>
         </select>
       </div>
 
       <div class="pure-u-1 pure-u-md-1-6">
-        <label for="pageSize">{{$t('table.province')}}</label>
-        <select id="pageSize" v-model="province" class="pure-input-1">
+        <label for="province">{{$t('table.province')}}</label>
+        <select id="province" v-model="province" class="pure-input-1">
           <option v-for="c in provinces" :key="c">{{c}}</option>
         </select>
       </div>
 
       <div class="pure-u-1 pure-u-md-1-6">
-        <label for="pageSize">{{$t('table.vendor')}}</label>
-        <select id="pageSize" v-model="vendor" class="pure-input-1">
+        <label for="vendor">{{$t('table.vendor')}}</label>
+        <select id="vendor" v-model="vendor" class="pure-input-1">
           <option v-for="c in vendors" :key="c">{{c}}</option>
         </select>
       </div>
@@ -41,17 +41,17 @@
           {{$t('table.page')}}
         </label>
         <div>
-          <button @click="goto(1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
+          <button @click="updatePage(1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
             |<<
           </button>
-          <button @click="goto(page - 1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
+          <button @click="updatePage(page - 1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
             <
           </button>
           {{page}} {{$t('table.of')}} {{pages}}
-          <button @click="goto(page+1)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
+          <button @click="updatePage(page+1)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
             >
           </button>
-          <button @click="goto( pages)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
+          <button @click="updatePage( pages)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
             >>|
           </button>
         </div>
@@ -140,17 +140,17 @@
           {{$t('table.page')}}
         </div>
         <div>
-          <button @click="goto(1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
+          <button @click="updatePage(1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
             |<<
           </button>
-          <button @click="goto(page - 1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
+          <button @click="updatePage(page - 1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
             <
           </button>
           {{page}} {{$t('table.of')}} {{pages}}
-          <button @click="goto(page+1)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
+          <button @click="updatePage(page+1)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
             >
           </button>
-          <button @click="goto( pages)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
+          <button @click="updatePage( pages)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
             >>|
           </button>
         </div>
@@ -163,7 +163,6 @@
 export default {
   data: () => ({
     // default page size
-    pageSize: 25,
     searchQuery: "",
     sortKey: "minUnitCost",
     sortedListLength: -1,
@@ -195,6 +194,15 @@ export default {
   }),
   props: ["rows", "pages", "calibres"],
   computed: {
+    page() {
+      return Number(this.$route.query.page) || 1;
+    },
+    calibre() {
+      return this.$route.query.calibre;
+    },
+    pageSize() {
+      return Number(this.$route.query.pageSize) || 25;
+    },
     vendors() {
       if (!this.rows) {
         return [];
@@ -338,14 +346,6 @@ export default {
       this.sortKey = key;
       this.sortOrders[key] = this.sortOrders[key] * -1;
     },
-    goto(page) {
-      if (page > this.pages) {
-        this.$emit("update:page", this.pages);
-      } else {
-        this.$emit("update:page", page);
-      }
-      window.scroll(0, 0); //scroll to top of page
-    },
     toggleVendors(name, row) {
       const open = !!this.showVendors[name];
 
@@ -358,8 +358,24 @@ export default {
 
       this.showVendors[name] = !open;
     },
+    updatePage(page) {
+      this.$router.push({
+        name: this.$route.name,
+        query: Object.assign({}, this.$route.query, { page })
+      });
+      setImmediate(() => window.scroll(0, 0)); //scroll to top of page
+    },
     updateCalibre(calibre) {
-      this.$emit("update:calibre", calibre);
+      this.$router.push({
+        name: this.$route.name,
+        query: Object.assign({}, this.$route.query, { calibre })
+      });
+    },
+    updatePageSize(pageSize) {
+      this.$router.push({
+        name: this.$route.name,
+        query: Object.assign({}, this.$route.query, { pageSize })
+      });
     }
   }
 };

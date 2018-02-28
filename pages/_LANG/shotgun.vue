@@ -1,12 +1,14 @@
 <template>
   <div class="container">
     <h1>{{$t('default.shotgun')}}</h1>
-    <my-table v-if="!error" v-bind:rows="rows" :pages="pages"></my-table>
+    <my-table v-if="!error" v-bind:rows="rows" :pages="pages" :calibres="calibres"></my-table>
     <div v-if="error">{{$t('default.failedToLoad')}}</div>
   </div>
 </template>
 
 <script>
+import { shotgunGauges } from "ammobin-classifier/build/shotgun-gauges";
+
 import MyTable from "~/components/my-table.vue";
 import { getUrl, updateUrl } from "~/helpers";
 
@@ -46,21 +48,12 @@ export default {
   components: {
     MyTable
   },
-  watch: {
-    page: function() {
-      updateUrl("shotgun", this.page, this.calibre);
-    },
-    calibre: function() {
-      updateUrl("shotgun", this.page, this.calibre);
-    }
-  },
   data() {
     return {
       error: null,
       rows: [],
-      calibre: "",
-      page: 1,
-      pages: 1
+      pages: 1,
+      calibres: [null, ...shotgunGauges.map(l => l[0].toUpperCase()).sort()]
     };
   },
   computed: {
@@ -90,6 +83,8 @@ export default {
   },
   methods: {
     async load() {
+      this.$nuxt.$loading.start();
+
       try {
         const page = this.page;
         const calibre = this.calibre || "";
@@ -109,6 +104,7 @@ export default {
         this.message = "Failed to load prices";
         this.error = true;
       }
+      this.$nuxt.$loading.finish();
     }
   },
   async asyncData({ error, query, app }) {

@@ -51,11 +51,25 @@ export default {
       error: null,
       rows: [],
       pages: 1,
-      calibres: centerFireCalibres.map(l => l[0].toUpperCase()).sort()
+      calibres: [
+        null,
+        ...centerFireCalibres.map(l => l[0].toUpperCase()).sort()
+      ]
     };
   },
+  computed: {
+    page() {
+      return Number(this.$route.query.page) || 1;
+    },
+    calibre() {
+      return this.$route.query.calibre;
+    },
+    pageSize() {
+      return Number(this.$route.query.pageSize) || 25;
+    }
+  },
   watch: {
-    page: function() {
+    page() {
       this.load();
     },
     pageSize() {
@@ -67,6 +81,7 @@ export default {
   },
   methods: {
     async load() {
+      this.$nuxt.$loading.start();
       try {
         const page = this.page;
         const calibre = this.calibre || "";
@@ -85,6 +100,7 @@ export default {
         this.message = "Failed to load prices";
         this.error = true;
       }
+      this.$nuxt.$loading.finish();
     }
   },
   async asyncData({ error, query, app }) {
