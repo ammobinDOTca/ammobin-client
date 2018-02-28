@@ -47,9 +47,8 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: `The place to view the best ${
-            this.calibre
-          } rimfire prices across ${this.province || "Canada"}.` //TODO: en francais
+          content: `The place to view the best ${this.calibre ||
+            "rimfire"} prices across ${this.province || "Canada"}.` //TODO: en francais
         }
       ],
       link
