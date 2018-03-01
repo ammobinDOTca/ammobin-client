@@ -8,30 +8,30 @@
 
       <div class="pure-u-1 pure-u-md-1-6">
         <label for="pageSize"> {{$t('table.pageSize')}}</label>
-        <select id="pageSize" v-model.number="pageSize" class="pure-input-1">
-          <option>25</option>
-          <option>50</option>
-          <option>75</option>
-          <option>100</option>
+        <select id="pageSize" :value="pageSize" @change="updatePageSize($event.target.value)" class="pure-input-1">
+          <option >25</option>
+          <option >50</option>
+          <option >75</option>
+          <option >100</option>
         </select>
       </div>
       <div class="pure-u-1 pure-u-md-1-6">
-        <label for="pageSize"> {{$t('table.calibre')}}</label>
-        <select id="pageSize" :value="calibre" @change="updateCalibre($event.target.value)" class="pure-input-1">
+        <label for="calibre"> {{$t('table.calibre')}}</label>
+        <select id="calibre" :value="calibre" @change="updateCalibre($event.target.value)" class="pure-input-1">
           <option v-for="c in calibres" :key="c">{{c}}</option>
         </select>
       </div>
 
       <div class="pure-u-1 pure-u-md-1-6">
-        <label for="pageSize">{{$t('table.province')}}</label>
-        <select id="pageSize" v-model="province" class="pure-input-1">
+        <label for="province">{{$t('table.province')}}</label>
+        <select id="province" v-model="province" class="pure-input-1">
           <option v-for="c in provinces" :key="c">{{c}}</option>
         </select>
       </div>
 
       <div class="pure-u-1 pure-u-md-1-6">
-        <label for="pageSize">{{$t('table.vendor')}}</label>
-        <select id="pageSize" v-model="vendor" class="pure-input-1">
+        <label for="vendor">{{$t('table.vendor')}}</label>
+        <select id="vendor" v-model="vendor" class="pure-input-1">
           <option v-for="c in vendors" :key="c">{{c}}</option>
         </select>
       </div>
@@ -41,17 +41,17 @@
           {{$t('table.page')}}
         </label>
         <div>
-          <button @click="goto(1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
+          <button @click="updatePage(1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
             |<<
           </button>
-          <button @click="goto(page - 1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
+          <button @click="updatePage(page - 1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
             <
           </button>
           {{page}} {{$t('table.of')}} {{pages}}
-          <button @click="goto(page+1)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
+          <button @click="updatePage(page+1)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
             >
           </button>
-          <button @click="goto( pages)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
+          <button @click="updatePage( pages)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
             >>|
           </button>
         </div>
@@ -140,17 +140,17 @@
           {{$t('table.page')}}
         </div>
         <div>
-          <button @click="goto(1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
+          <button @click="updatePage(1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
             |<<
           </button>
-          <button @click="goto(page - 1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
+          <button @click="updatePage(page - 1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
             <
           </button>
           {{page}} {{$t('table.of')}} {{pages}}
-          <button @click="goto(page+1)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
+          <button @click="updatePage(page+1)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
             >
           </button>
-          <button @click="goto( pages)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
+          <button @click="updatePage( pages)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
             >>|
           </button>
         </div>
@@ -163,7 +163,6 @@
 export default {
   data: () => ({
     // default page size
-    pageSize: 25,
     searchQuery: "",
     sortKey: "minUnitCost",
     sortedListLength: -1,
@@ -193,8 +192,17 @@ export default {
     vendor: null,
     defaultImg: require("~/assets/blank.png")
   }),
-  props: ["rows", "calibre", "page"],
+  props: ["rows", "pages", "calibres"],
   computed: {
+    page() {
+      return Number(this.$route.query.page) || 1;
+    },
+    calibre() {
+      return this.$route.query.calibre;
+    },
+    pageSize() {
+      return Number(this.$route.query.pageSize) || 25;
+    },
     vendors() {
       if (!this.rows) {
         return [];
@@ -209,27 +217,8 @@ export default {
         )
       ).sort();
     },
-    // list of calibres from ALL results
-    calibres() {
-      if (!this.rows) {
-        return [];
-      }
-      return Object.keys(
-        this.rows.reduce(
-          (list, row) => {
-            if (!list[row.calibre]) {
-              list[row.calibre] = true;
-            }
-            return list;
-          },
-          { "": true }
-        )
-      ).sort();
-    },
     // apply filters + sorting + pagination to results
     filteredRows() {
-      this.pageSize = this.$store.state.isCrawler ? 100 : this.pageSize;
-
       let data = JSON.parse(
         JSON.stringify(this.rows && this.rows.length ? this.rows : [])
       ); // super fancy deep list of objects
@@ -249,11 +238,6 @@ export default {
             return d;
           })
           .filter(f => f.vendors && f.vendors.length);
-      }
-
-      // filter by calibre
-      if (this.calibre) {
-        data = data.filter(r => r.calibre === this.calibre);
       }
 
       // filter by province
@@ -347,47 +331,18 @@ export default {
       }
 
       this.sortedListLength = data.length; // gross side effect. but lets us know how many pages of data there are
-      let start = (this.page - 1) * this.pageSize;
-      let end = Math.min(this.page * this.pageSize, data.length);
       this.showVendors = data.map(i => i.name).reduce((sv, k) => {
         sv[k] = this.$store.state.isCrawler; // show google all the results...
         return sv;
       }, {});
-      return data.slice(start, end);
-    },
-    // get number of filter pages
-    pages() {
-      const pages = Math.max(
-        Math.ceil(
-          (this.sortedListLength === -1
-            ? this.rows.length
-            : this.sortedListLength) / this.pageSize
-        ),
-        1
-      );
 
-      // if filter + old page num are out side of results, bring us to the end
-      if (this.page > pages) {
-        this.$emit("update:page", pages);
-      }
-
-      this.$emit("pages", pages);
-
-      return pages;
+      return data;
     }
   },
   methods: {
     sortBy(key) {
       this.sortKey = key;
       this.sortOrders[key] = this.sortOrders[key] * -1;
-    },
-    goto(page) {
-      if (page > this.pages) {
-        this.$emit("update:page", this.pages);
-      } else {
-        this.$emit("update:page", page);
-      }
-      window.scroll(0, 0); //scroll to top of page
     },
     toggleVendors(name, row) {
       const open = !!this.showVendors[name];
@@ -401,8 +356,24 @@ export default {
 
       this.showVendors[name] = !open;
     },
+    updatePage(page) {
+      this.$router.push({
+        name: this.$route.name,
+        query: Object.assign({}, this.$route.query, { page })
+      });
+      setImmediate(() => window.scroll(0, 0)); //scroll to top of page
+    },
     updateCalibre(calibre) {
-      this.$emit("update:calibre", calibre);
+      this.$router.push({
+        name: this.$route.name,
+        query: Object.assign({}, this.$route.query, { calibre })
+      });
+    },
+    updatePageSize(pageSize) {
+      this.$router.push({
+        name: this.$route.name,
+        query: Object.assign({}, this.$route.query, { pageSize })
+      });
     }
   }
 };
