@@ -1,9 +1,9 @@
 https://ammobin.ca/
 https://ammobin.ca/about
 https://ammobin.ca/dank
-https://ammobin.ca/rimfire&pageSize=100
-https://ammobin.ca/shotgun&pageSize=100
-https://ammobin.ca/centerfire&pageSize=100
+https://ammobin.ca/rimfire?pageSize=100
+https://ammobin.ca/shotgun?pageSize=100
+https://ammobin.ca/centerfire?pageSize=100
 https://ammobin.ca/rimfire?calibre=.22%20LR&page=1&pageSize=100
 https://ammobin.ca/rimfire?calibre=.22%20WMR&page=1&pageSize=100
 https://ammobin.ca/rimfire?calibre=.17%20HMR&page=1&pageSize=100
