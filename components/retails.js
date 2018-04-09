@@ -198,6 +198,11 @@ export const list = shuffle([
     img: require('~/assets/northpro-logo.png'),
     background: true
   },
+  {
+    name: 'Wanstalls (Maple Ridge, BC)',
+    link: 'https://www.wanstallsonline.com',
+    img: require('~/assets/wanstalls.png')
+  }
 ].map((i, index) => {
   i.link += '?utm_source=ammobin.ca'
   i.id = index;
