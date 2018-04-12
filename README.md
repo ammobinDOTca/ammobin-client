@@ -30,7 +30,7 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - http://doctordeals.ca/product-category/smoking-gun/ammunition/rifle-ammo/
 - https://waspmunitions.ca/WASP-REMANUFACTURED-AMMUNITION-c14772333
 - https://rampartcorp.com/collections/ammunition
-
+- http://store.easthilloutdoors.com/ammo/bulk-ammo
 
 ## blocked
 - http://www.danchasse.com/shop_free/index.php?categoryID=109 (je ne parle en francis)
