@@ -5,7 +5,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.0.1",
     "@nuxtjs/pwa": "^2.0.2",
-    "ammobin-classifier": "0.0.22",
+    "ammobin-classifier": "0.0.24",
     "copy-webpack-plugin": "^4.2.3",
     "css-loader": "^0.28.1",
     "es6-promise": "^4.1.1",
