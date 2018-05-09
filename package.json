@@ -3,7 +3,7 @@
   "private": true,
   "description": "The place to view ammo prices across Canada",
   "dependencies": {
-    "@nuxtjs/axios": "^5.0.1",
+    "@nuxtjs/axios": "^5.3.1",
     "@nuxtjs/pwa": "^2.0.8",
     "ammobin-classifier": "0.0.21",
     "copy-webpack-plugin": "^4.2.3",
@@ -13,12 +13,12 @@
     "purecss": "^1.0.0",
     "v-img-fallback": "^0.1.1",
     "vue-i18n": "^7.3.2",
-    "vue-style-loader": "^3.0.1"
+    "vue-style-loader": "^4.1.0"
   },
   "devDependencies": {
-    "now": "^9.3.0",
+    "now": "^11.1.7",
     "ramda": "^0.25.0",
-    "snyk": "^1.68.0"
+    "snyk": "^1.78.0"
   },
   "scripts": {
     "test": "npm run build",
