@@ -19,6 +19,12 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - submit pr
 
 ## vendors to add
+- https://canadian-gunhub.myshopify.com/collections/ammunition +1
+- https://tillsonburggunshop.com/Ammunition/Centerfire +1
+- https://www.northernelitefirearms.ca/product-category/ammunition-rifles/ +1
+- https://shop.triggersandbows.com/ammunition/centerfire/ +1
+- http://www.crafm.com/ammunition.html (montreal)
+- https://www.budgetshootersupply.ca/product-category/categories/ammunition/centerfire-rifle-ammunition/ +.5
 - https://shophighfalls.com/collections/rifle-ammo?view=ALL (css rules hinder pulling data. will need to update scraper)
 - http://shop.sylvestresportinggoods.com/Rifle-Ammunition/?p=catalog&mode=catalog&parent=506&pg=1&CatalogSetSortBy=price
 - https://www.tesro.ca/ammunition-and-pellets/smallbore-ammunition.html?limit=36
@@ -31,6 +37,15 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - https://waspmunitions.ca/WASP-REMANUFACTURED-AMMUNITION-c14772333
 - https://rampartcorp.com/collections/ammunition
 - http://store.easthilloutdoors.com/ammo/bulk-ammo
+- http://www.armseast.ca/surplus_ammunition/
+
+# low priority
+- http://greendiamondoutfitters.ca/home/products_grid/category/rifle-ammunition/P24
+- http://practicalperformance.ca/accessories/ammunition/
+- http://www.rustywood.ca/shop/ammunition/
+- https://www.greatnorthprecision.com/collections/rifle-ammunition-1
+- http://targetshootingproducts.com/index.php?cPath=10&osCsid=b5dd02944271605ca93e19ea903cd3d2
+- http://www.thegunroom.ca/index.php?route=product/category&path=85 (6 items
 
 ## blocked
 - http://www.danchasse.com/shop_free/index.php?categoryID=109 (je ne parle en francis)
@@ -39,11 +54,18 @@ meta search site for ammo prices across canada. built with [nuxt.js](https://nux
 - https://www.siwashsports.ca/product-category/ammunition/centerfire-ammunition/ (cant buy things online as of dec 17 2017, will add once this feature is enabled on the site)
 - https://eccfirearms.blogspot.ca/2011/02/ammunition-ecc-firearms-has-widest.html  (cant buy oneline as of feb 17 2018)
 - gotenda (implemented bot detection on their site)
+- https://tandtarms.com/product-category/ammo/
+- http://www.armseast.ca/surplus_ammunition/ no items
+- https://selectshootingsupplies.com/pages/ammunition no online sales
 
 ## skipped
 - wholesalesports.com
 - marstar.ca
 - http://www.prairieshotammo.com/find-a-dealer-3.html (but should review these retailers to see if they have online shops)
+- http://www.generalgun.ca/ammunition only 1 item
+- https://www.kellysonline.ca/collections/ammunition only 1 item
+- https://armtac.com/category/ammunition only one 1 item
+
 ## incomplete vendors
 - none
 
