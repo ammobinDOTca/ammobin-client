@@ -16,7 +16,7 @@
     "vue-style-loader": "^4.1.0"
   },
   "devDependencies": {
-    "now": "^11.1.7",
+    "now": "^11.2.2",
     "ramda": "^0.25.0",
     "snyk": "^1.82.0"
   },
