@@ -4,8 +4,8 @@
   "description": "The place to view ammo prices across Canada",
   "dependencies": {
     "@nuxtjs/axios": "^5.3.1",
-    "@nuxtjs/pwa": "^2.0.2",
-    "ammobin-classifier": "0.0.26",
+    "@nuxtjs/pwa": "^2.0.8",
+    "ammobin-classifier": "0.0.21",
     "copy-webpack-plugin": "^4.2.3",
     "css-loader": "^0.28.1",
     "es6-promise": "^4.1.1",
