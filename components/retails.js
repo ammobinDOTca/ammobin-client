@@ -57,11 +57,11 @@ export const list = shuffle([
     img: require('~/assets/reliable-gun-logo.jpg'),
 
   },
-  // { // disabled 2018-05-08
-  //   name: 'Tenda (Richmond Hill, ON)',
-  //   link: 'https://www.gotenda.com/',
-  //   img: require('~/assets/tenda-logo.png'),
-  // },
+   { 
+     name: 'Tenda (Richmond Hill, ON)',
+     link: 'https://www.gotenda.com/',
+     img: require('~/assets/tenda-logo.png'),
+   },
   {
     name: 'Canada Ammo  (BC and ON)',
     link: 'https://www.canadaammo.com/',
