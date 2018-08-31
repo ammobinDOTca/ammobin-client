@@ -348,10 +348,16 @@ export default {
       const open = !!this.showVendors[name];
 
       if (!open) {
-        this.$axios.post(BASE_API_URL + "track-view", {
-          calibre: row.calibre,
-          brand: row.brand
+        const view = JSON.stringify({
+            calibre: row.calibre,
+            brand: row.brand
         });
+        
+        if (!navigator.sendBeacon) {
+          this.$axios.post(BASE_API_URL + "track-view", view);
+        } else {
+          navigator.sendBeacon(BASE_API_URL + "track-view",view);
+        }
       }
 
       this.showVendors[name] = !open;
