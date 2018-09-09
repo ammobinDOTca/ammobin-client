@@ -1,10 +1,10 @@
-FROM node:8-alpine
-RUN apk --no-cache add wget git
+FROM node:10-alpine
+RUN apk --no-cache add wget git g++ make python
 
 WORKDIR /build
 COPY package.json /build
 RUN npm install --production
-RUN apk --no-cache del git
+RUN apk --no-cache del git g++ make python
 COPY . /build
 
 EXPOSE 3000
