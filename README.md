@@ -1,6 +1,6 @@
-# AmmoBin.ca [ ![Codeship Status for ammobinDOTca/ammobin-client](https://app.codeship.com/projects/992b88f0-d18a-0135-270c-42cf0d64356b/status?branch=master)](https://app.codeship.com/projects/262429) [![Greenkeeper badge](https://badges.greenkeeper.io/ammobinDOTca/ammobin-client.svg)](https://greenkeeper.io/)
+# AmmoBin.ca [ ![Codeship Status for ammobinDOTca/ammobin-client](https://app.codeship.com/projects/992b88f0-d18a-0135-270c-42cf0d64356b/status?branch=master)](https://app.codeship.com/projects/262429) [![Greenkeeper badge](https://badges.greenkeeper.io/ammobinDOTca/ammobin-client.svg)](https://greenkeeper.io/) [![docker pulls](https://img.shields.io/docker/pulls/ammobindotca/ammobin-client.svg)](https://hub.docker.com/r/ammobindotca/ammobin-client 'DockerHub')
 
-meta search site for ammo prices across canada. built with [nuxt.js](https://nuxtjs.org) (and thus vue.js).
+The meta search site for ammo prices across Canada. built with [nuxt.js](https://nuxtjs.org) (and thus vue.js).
 
 ![Screenshot-2017-9-27 The place to view the best online ammo prices across Canada.png](https://raw.githubusercontent.com/ammobinDOTca/ammobin-client/master/Screenshot-2017-9-27%20The%20place%20to%20view%20the%20best%20online%20ammo%20prices%20across%20Canada%20.png)
 
