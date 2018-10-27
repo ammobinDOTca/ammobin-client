@@ -25,7 +25,7 @@
   "devDependencies": {
     "now": "^11.4.5",
     "ramda": "^0.25.0",
-    "snyk": "^1.97.0"
+    "snyk": "^1.103.4"
   },
   "scripts": {
     "test": "npm run build",
