@@ -2,7 +2,7 @@ FROM node:10-alpine
 RUN apk --no-cache add wget git g++ make python
 
 WORKDIR /build
-COPY package.json /build
+COPY package*.json /build/
 RUN npm install --production
 RUN apk --no-cache del git g++ make python
 COPY . /build
