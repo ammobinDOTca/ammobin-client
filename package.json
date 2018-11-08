@@ -23,7 +23,7 @@
     "vue-style-loader": "^4.1.0"
   },
   "devDependencies": {
-    "now": "^11.4.5",
+    "now": "^12.0.0",
     "ramda": "^0.25.0",
     "snyk": "^1.103.4"
   },
