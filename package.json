@@ -1,7 +1,7 @@
 {
   "name": "ammobin.ca",
   "private": true,
-  "author":"Simon Ramsay",
+  "author": "Simon Ramsay",
   "license": "MIT",
   "description": "The place to view ammo prices across Canada",
   "dependencies": {

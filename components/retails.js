@@ -203,7 +203,12 @@ export const list = shuffle([
     name: 'Wanstalls (Maple Ridge, BC)',
     link: 'https://www.wanstallsonline.com',
     img: require('~/assets/wanstalls.png')
-  }
+  },
+    {
+        name: 'Gothic Line Armoury (Calgary, AB)',
+        link: 'https://gothiclinearmoury.ca',
+        img: require('~/assets/gothic-line-armoury.jpg')
+    },
 ].map((i, index) => {
   i.link += '?utm_source=ammobin.ca'
   i.id = index;
