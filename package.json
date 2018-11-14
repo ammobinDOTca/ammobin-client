@@ -5,27 +5,27 @@
   "license": "MIT",
   "description": "The place to view ammo prices across Canada",
   "dependencies": {
-    "@nuxtjs/axios": "^5.3.2",
+    "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/icon": "^2.6.0",
     "@nuxtjs/manifest": "^2.6.0",
     "@nuxtjs/meta": "^2.6.0",
     "@nuxtjs/pwa": "^2.6.0",
     "@nuxtjs/workbox": "^2.6.0",
     "ammobin-classifier": "^0.0.27",
-    "browserslist": "^4.1.1",
-    "copy-webpack-plugin": "^4.2.3",
-    "css-loader": "^1.0.0",
+    "browserslist": "^4.3.4",
+    "copy-webpack-plugin": "^4.6.0",
+    "css-loader": "^1.0.1",
     "es6-promise": "^4.2.5",
     "nuxt": "^2.0.0",
     "purecss": "^1.0.0",
     "v-img-fallback": "^0.1.1",
-    "vue-i18n": "^8.1.0",
+    "vue-i18n": "^8.3.1",
     "vue-style-loader": "^4.1.0"
   },
   "devDependencies": {
-    "now": "^11.4.5",
+    "now": "^11.5.2",
     "ramda": "^0.25.0",
-    "snyk": "^1.103.4"
+    "snyk": "^1.108.2"
   },
   "scripts": {
     "test": "npm run build",
