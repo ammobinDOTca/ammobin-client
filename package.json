@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "now": "^11.5.2",
-    "ramda": "^0.25.0",
+    "ramda": "^0.26.0",
     "snyk": "^1.108.2"
   },
   "scripts": {
