@@ -16,7 +16,7 @@
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^1.0.1",
     "es6-promise": "^4.2.5",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.3.2",
     "purecss": "^1.0.0",
     "v-img-fallback": "^0.1.1",
     "vue-i18n": "^8.3.1",
