@@ -9,7 +9,7 @@ module.exports = {
   build: {
     plugins: [
       new webpack.DefinePlugin({
-        BASE_API_URL: !!process.env.PROD ? '"https://api.ammobin.ca/"' : '"http://localhost:8080/"',
+        BASE_API_URL: !!process.env.PROD ? '"https://ammobin.ca/api/"' : '"http://localhost:8080/"',
         PROD: process.env.PROD ? 'true' : 'false'
       }),
       new CopyWebpackPlugin([{ from: 'static' }]),
