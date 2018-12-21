@@ -18,8 +18,10 @@
       <img style="position: absolute; top: 0; right: 0; border: 0;" src="~/assets/fork.png" alt="Fork me on GitHub" title="Fork me on GitHub">
     </a>
     <div class="pure-menu pure-menu-horizontal pure-menu-scrollable light-grey">
-      <a :href="path('/')" class="pure-menu-heading pure-menu-link">AmmoBin.ca</a>
       <ul class="pure-menu-list">
+        <li class="pure-menu-item">
+          <nuxt-link class="pure-menu-link" :class="{'pure-menu-selected': currentPage === '/'}" :to="path('/')">AMMOBIN.CA</nuxt-link>
+        </li>
         <li class="pure-menu-item">
           <nuxt-link class="pure-menu-link" :class="{'pure-menu-selected': currentPage === '/rimfire'}" :to="path('/rimfire')">{{$t('default.rimfire')}}</nuxt-link>
         </li>
