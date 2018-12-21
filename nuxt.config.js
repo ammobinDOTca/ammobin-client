@@ -16,7 +16,6 @@ module.exports = {
 
     ],
     extractCSS: true,
-    vendor: ['axios', 'vue-i18n'] // Add axios in the vendor.bundle.js
   },
   loading: {
     color: '#4FC08D',
