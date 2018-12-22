@@ -80,6 +80,9 @@ module.exports = {
     "display": "standalone"
   },
   workbox: {
+    importScripts: [
+      'custom-service-worker.js'
+    ],
     globIgnores: ['sw.js', '**/workbox*.js']
   }
 }
