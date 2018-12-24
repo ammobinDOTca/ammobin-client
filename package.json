@@ -12,20 +12,21 @@
     "@nuxtjs/pwa": "^2.6.0",
     "@nuxtjs/workbox": "^2.6.0",
     "ammobin-classifier": "^0.0.29",
-    "browserslist": "^4.3.4",
+    "browserslist": "^4.3.6",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^1.0.1",
     "es6-promise": "^4.2.5",
-    "nuxt": "^2.3.2",
+    "nuxt": "^2.3.4",
     "purecss": "^1.0.0",
-    "v-img-fallback": "^0.1.1",
-    "vue-i18n": "^8.3.1",
+    "v-img-fallback": "^0.1.4",
+    "vue-i18n": "^8.5.0",
     "vue-style-loader": "^4.1.0"
   },
   "devDependencies": {
-    "now": "^12.0.0",
-    "ramda": "^0.26.0",
-    "snyk": "^1.108.2"
+    "now": "^12.1.14",
+    "ramda": "^0.26.1",
+    "snyk": "^1.118.2",
+    "surge": "^0.20.1"
   },
   "scripts": {
     "test": "npm run build",
@@ -33,6 +34,7 @@
     "build": "PROD=true nuxt build --universal",
     "start": "HOST=0.0.0.0 NODE_ENV=production PROD=true nuxt start",
     "generate": "PROD=true nuxt generate",
+    "surge": "surge --project ./dist --domain ammobin.surge.sh",
     "snyk-protect": "snyk protect",
     "prepublish": "npm run snyk-protect",
     "deploy": "now -e NODE_ENV=production --token $NOW_TOKEN --npm --public",
