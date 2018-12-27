@@ -20,15 +20,17 @@
     "purecss": "^1.0.0",
     "v-img-fallback": "^0.1.4",
     "vue-i18n": "^8.5.0",
-    "vue-style-loader": "^4.1.0"
+    "vue-style-loader": "^4.1.0",
+    "ts-loader": "^5.3.2",
+    "typescript": "^3.2.2"
   },
   "devDependencies": {
+    "ammobin-api": "^1.0.0",
     "now": "^12.1.14",
     "ramda": "^0.26.1",
     "snyk": "^1.118.2",
-    "surge": "^0.20.1",
-    "ts-loader": "^5.3.2",
-    "typescript": "^3.2.2"
+    "surge": "^0.20.1"
+
   },
   "scripts": {
     "test": "npm run build",
