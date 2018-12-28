@@ -60,35 +60,35 @@
 export default {
   head() {
     return {
-      title: "AmmoBin.ca",
+      title: 'AmmoBin.ca',
       meta: [
         {
-          hid: "description",
-          name: "description",
-          content: this.$t("home.tagline")
-        }
+          hid: 'description',
+          name: 'description',
+          content: this.$t('home.tagline'),
+        },
       ],
       htmlAttrs: {
-        lang: this.$i18n.locale || "en"
-      }
-    };
+        lang: this.$i18n.locale || 'en',
+      },
+    }
   },
   computed: {
     currentPage() {
-      return this.$router.path;
-    }
+      return this.$router.path
+    },
   },
   data() {
     return {
-      mail: "mailto:" + "contact" + "@" + "ammobin.ca" // this probably will do nothing to stop bots...
-    };
+      mail: 'mailto:' + 'contact' + '@' + 'ammobin.ca', // this probably will do nothing to stop bots...
+    }
   },
   methods: {
     path(url) {
-      return this.$i18n.locale === "en" ? url : "/" + this.$i18n.locale + url;
-    }
-  }
-};
+      return this.$i18n.locale === 'en' ? url : '/' + this.$i18n.locale + url
+    },
+  },
+}
 </script>
 
 <style>
