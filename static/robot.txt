@@ -1,2 +1,2 @@
 User-agent: *
-Disallow: https://api.ammobin.ca/track-outbound-click?
+Disallow: https://ammobin.ca/api?

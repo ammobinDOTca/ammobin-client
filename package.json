@@ -5,6 +5,7 @@
   "license": "MIT",
   "description": "The place to view ammo prices across Canada",
   "dependencies": {
+    "@nuxtjs/apollo": "^4.0.0-rc2.3",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/icon": "^2.6.0",
     "@nuxtjs/manifest": "^2.6.0",
@@ -12,25 +13,29 @@
     "@nuxtjs/pwa": "^2.6.0",
     "@nuxtjs/workbox": "^2.6.0",
     "ammobin-classifier": "^0.0.29",
+    "apollo-boost": "^0.1.23",
     "browserslist": "^4.3.6",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^1.0.1",
     "es6-promise": "^4.2.5",
+    "graphql": "^14.0.2",
+    "graphql-tag": "^2.10.0",
     "nuxt": "^2.3.4",
     "purecss": "^1.0.0",
+    "ts-loader": "^5.3.2",
+    "typescript": "^3.2.2",
     "v-img-fallback": "^0.1.4",
     "vue-i18n": "^8.5.0",
-    "vue-style-loader": "^4.1.0",
-    "ts-loader": "^5.3.2",
-    "typescript": "^3.2.2"
+    "vue-style-loader": "^4.1.0"
   },
   "devDependencies": {
     "ammobin-api": "^1.0.0",
+    "husky": "^1.2.1",
     "now": "^12.1.14",
+    "pretty-quick": "^1.8.0",
     "ramda": "^0.26.1",
     "snyk": "^1.118.2",
     "surge": "^0.20.1"
-
   },
   "scripts": {
     "test": "npm run build",
@@ -43,11 +48,17 @@
     "prepublish": "npm run snyk-protect",
     "deploy": "now -e NODE_ENV=production --token $NOW_TOKEN --npm --public",
     "alias": "now alias --token=$NOW_TOKEN",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "format": "pretty-quick"
   },
   "snyk": true,
   "now": {
     "name": "ammobin",
     "alias": "ammobin.now.sh"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick"
+    }
   }
 }

@@ -97,7 +97,7 @@
           ${{row.minPrice.toFixed(2)}} - ${{row.maxPrice.toFixed(2)}}
         </div>
         <div v-else>
-          ${{row.minPrice.toFixed(2)}}
+          ${{row.minPrice}}
         </div>
       </div>
       <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
@@ -105,7 +105,7 @@
           ${{ row.minUnitCost.toFixed(2) }} - ${{ row.maxUnitCost.toFixed(2) }}
         </div>
         <div v-else-if=" row.minUnitCost && row.minUnitCost === row.maxUnitCost">
-          ${{row.minUnitCost.toFixed(2)}}
+          ${{row.minUnitCost}}
         </div>
         <div v-else if="!row.minUnitCost">
           N/A
@@ -159,230 +159,209 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+declare const BASE_API_URL: string
 export default {
   data: () => ({
     // default page size
-    searchQuery: "",
-    sortKey: "minUnitCost",
+    searchQuery: '',
+    sortKey: 'minUnitCost',
     sortedListLength: -1,
     sortOrders: {
       name: 1,
       link: 1,
       minPrice: 1,
-      minUnitCost: 1
+      minUnitCost: 1,
     },
     province: null,
     showVendors: {},
-    provinces: [
-      null,
-      "AB",
-      "BC",
-      "MB",
-      "NB",
-      "NS",
-      "NT",
-      "NU",
-      "ON",
-      "PE",
-      "QC",
-      "SK",
-      "YT"
-    ],
+    provinces: [null, 'AB', 'BC', 'MB', 'NB', 'NS', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'],
     vendor: null,
-    defaultImg: require("~/assets/blank.png")
+    defaultImg: require('~/assets/blank.png'),
   }),
-  props: ["rows", "pages", "calibres"],
+  props: ['rows', 'pages', 'calibres'],
   computed: {
     page() {
-      return Number(this.$route.query.page) || 1;
+      return Number(this.$route.query.page) || 1
     },
     calibre() {
-      return this.$route.query.calibre;
+      return this.$route.query.calibre
     },
     pageSize() {
-      return Number(this.$route.query.pageSize) || 25;
+      return Number(this.$route.query.pageSize) || 25
     },
     vendors() {
       if (!this.rows) {
-        return [];
+        return []
       }
       return Object.keys(
         this.rows.reduce(
           (list, row) => {
-            row.vendors.forEach(i => (list[i.vendor] = true));
-            return list;
+            row.vendors.forEach(i => (list[i.vendor] = true))
+            return list
           },
-          { "": true }
+          { '': true }
         )
-      ).sort();
+      ).sort()
     },
     // apply filters + sorting + pagination to results
     filteredRows() {
-      let data = JSON.parse(
-        JSON.stringify(this.rows && this.rows.length ? this.rows : [])
-      ); // super fancy deep list of objects
-      let sortKey = this.sortKey;
-      let order = this.sortOrders[sortKey];
+      let data = JSON.parse(JSON.stringify(this.rows && this.rows.length ? this.rows : [])) // super fancy deep list of objects
+      let sortKey = this.sortKey
+      let order = this.sortOrders[sortKey]
 
       // filter by name
       if (this.searchQuery) {
-        const q = this.searchQuery.toLowerCase();
+        const q = this.searchQuery.toLowerCase()
         // data = data.filter(r => (r.name &&
         //   r.name.toLowerCase().indexOf(q) >= 0));
         data = data
           .map(d => {
-            d.vendors = d.vendors.filter(
-              r => r.name && r.name.toLowerCase().indexOf(q) >= 0
-            );
-            return d;
+            d.vendors = d.vendors.filter(r => r.name && r.name.toLowerCase().indexOf(q) >= 0)
+            return d
           })
-          .filter(f => f.vendors && f.vendors.length);
+          .filter(f => f.vendors && f.vendors.length)
       }
 
       // filter by province
       if (this.province) {
         data = data
           .map(d => {
-            d.vendors = d.vendors.filter(
-              r => r.province && r.province.indexOf(this.province) >= 0
-            );
-            return d;
+            d.vendors = d.vendors.filter(r => r.province && r.province.indexOf(this.province) >= 0)
+            return d
           })
-          .filter(f => f.vendors && f.vendors.length);
+          .filter(f => f.vendors && f.vendors.length)
       }
 
       // filter by vendor
       if (this.vendor) {
         data = data
           .map(d => {
-            d.vendors = d.vendors.filter(
-              r => r.vendor && r.vendor.indexOf(this.vendor) >= 0
-            );
-            return d;
+            d.vendors = d.vendors.filter(r => r.vendor && r.vendor.indexOf(this.vendor) >= 0)
+            return d
           })
-          .filter(f => f.vendors && f.vendors.length);
+          .filter(f => f.vendors && f.vendors.length)
       }
 
       if (sortKey) {
         data = data.sort(function(a, b) {
-          let aa = a[sortKey];
-          let bb = b[sortKey];
+          let aa = a[sortKey]
+          let bb = b[sortKey]
           // put unknown unit costs at the bottom of the sort order
-          if (sortKey === "minUnitCost") {
+          if (sortKey === 'minUnitCost') {
             if (aa <= 0) {
-              aa = Number.MAX_SAFE_INTEGER;
+              aa = Number.MAX_SAFE_INTEGER
             }
             if (bb <= 0) {
-              bb = Number.MAX_SAFE_INTEGER;
+              bb = Number.MAX_SAFE_INTEGER
             }
           }
 
           if (aa === bb) {
-            return 0;
+            return 0
           } else if (aa > bb) {
-            return 1 * order;
+            return 1 * order
           } else {
-            return -1 * order;
+            return -1 * order
           }
-        });
+        })
         data = data.map(row => {
           row.vendors = row.vendors.sort(function(a, b) {
-            let groupedKey;
+            let groupedKey
             switch (sortKey) {
-              case "minUnitCost":
-                groupedKey = "unitCost";
-                break;
-              case "name":
-                groupedKey = "name";
-                break;
-              case "minPrice":
-                groupedKey = "price";
-                break;
-              case "link":
-                groupedKey = "vendor";
-                break;
+              case 'minUnitCost':
+                groupedKey = 'unitCost'
+                break
+              case 'name':
+                groupedKey = 'name'
+                break
+              case 'minPrice':
+                groupedKey = 'price'
+                break
+              case 'link':
+                groupedKey = 'vendor'
+                break
               default:
-                console.error("unhandled sort key", sortKey);
+                console.error('unhandled sort key', sortKey)
             }
 
-            let aa = a[groupedKey];
-            let bb = b[groupedKey];
+            let aa = a[groupedKey]
+            let bb = b[groupedKey]
             // put unknown unit costs at the bottom of the sort order
-            if (groupedKey === "unitCost") {
+            if (groupedKey === 'unitCost') {
               if (aa <= 0) {
-                aa = Number.MAX_SAFE_INTEGER;
+                aa = Number.MAX_SAFE_INTEGER
               }
               if (bb <= 0) {
-                bb = Number.MAX_SAFE_INTEGER;
+                bb = Number.MAX_SAFE_INTEGER
               }
             }
 
             if (aa === bb) {
-              return 0;
+              return 0
             } else if (aa > bb) {
-              return 1 * order;
+              return 1 * order
             } else {
-              return -1 * order;
+              return -1 * order
             }
-          });
-          return row;
-        });
+          })
+          return row
+        })
       }
 
-      this.sortedListLength = data.length; // gross side effect. but lets us know how many pages of data there are
+      this.sortedListLength = data.length // gross side effect. but lets us know how many pages of data there are
       this.showVendors = data.map(i => i.name).reduce((sv, k) => {
-        sv[k] = this.$store.state.isCrawler; // show google all the results...
-        return sv;
-      }, {});
+        sv[k] = this.$store.state.isCrawler // show google all the results...
+        return sv
+      }, {})
 
-      return data;
-    }
+      return data
+    },
   },
   methods: {
     sortBy(key) {
-      this.sortKey = key;
-      this.sortOrders[key] = this.sortOrders[key] * -1;
+      this.sortKey = key
+      this.sortOrders[key] = this.sortOrders[key] * -1
     },
     toggleVendors(name, row) {
-      const open = !!this.showVendors[name];
+      const open = !!this.showVendors[name]
 
       if (!open) {
         const view = JSON.stringify({
-            calibre: row.calibre,
-            brand: row.brand
-        });
-        
+          calibre: row.calibre,
+          brand: row.brand,
+        })
+
         if (!navigator.sendBeacon) {
-          this.$axios.post(BASE_API_URL + "track-view", view);
+          this.$axios.post(BASE_API_URL + 'track-view', view)
         } else {
-          navigator.sendBeacon(BASE_API_URL + "track-view",view);
+          navigator.sendBeacon(BASE_API_URL + 'track-view', view)
         }
       }
 
-      this.showVendors[name] = !open;
+      this.showVendors[name] = !open
     },
     updatePage(page) {
       this.$router.push({
         name: this.$route.name,
-        query: Object.assign({}, this.$route.query, { page })
-      });
-      setImmediate(() => window.scroll(0, 0)); //scroll to top of page
+        query: Object.assign({}, this.$route.query, { page }),
+      })
+      setImmediate(() => window.scroll(0, 0)) //scroll to top of page
     },
     updateCalibre(calibre) {
       this.$router.push({
         name: this.$route.name,
-        query: Object.assign({}, this.$route.query, { calibre })
-      });
+        query: Object.assign({}, this.$route.query, { calibre }),
+      })
     },
     updatePageSize(pageSize) {
       this.$router.push({
         name: this.$route.name,
-        query: Object.assign({}, this.$route.query, { pageSize })
-      });
-    }
-  }
-};
+        query: Object.assign({}, this.$route.query, { pageSize }),
+      })
+    },
+  },
+}
 </script>
 
 <style>
