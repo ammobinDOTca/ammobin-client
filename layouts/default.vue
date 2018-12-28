@@ -8,9 +8,7 @@
       "url": "https://ammobin.ca",
       "sameAs": [
         "https://github.com/ammobindotca",
-        "https://www.instagram.com/ammobin.ca",
-        "https://twitter.com/ammobinca",
-        "https://www.facebook.com/ammobinca-329189654220485"
+        "https://www.instagram.com/ammobin.ca"
       ]
     }
     </script>
