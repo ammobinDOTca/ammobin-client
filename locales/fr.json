@@ -3,6 +3,7 @@
     "rimfire": "Percussion annulaire",
     "centerfire": "Percussion centrale",
     "shotgun": "Fusil à pompe",
+    "ammo": "Munitions",
     "about": "À propos",
     "contact": "Contact",
     "failedToLoad": "échec du chargement de la liste des munitions"
@@ -20,7 +21,8 @@
   "about": {
     "supportedRetailers": "Détaillants supportés",
     "disclaimerTitle": "Avertissement",
-    "disclaimer": "En date du 15 juin 2017, tous les frais d'ammobin.ca sont déboursé par le créateur. Le site ne reçoit aucune prime de référencement de la part des détaillants figurant sur ce site. De plus, ammobin.ca n'utilise aucun logiciel ou librairie d'analyse ou de suivi côté client. Toutes les statistiques du site sont collectées à partir des journaux du serveur nginx (c'est-à-dire: ce que votre navigateur envoie lorsqu'il demande une page) et en utilisant la redirection d'URL pour suivre les clics vers les fournisseurs.",
+    "disclaimer":
+      "En date du 15 juin 2017, tous les frais d'ammobin.ca sont déboursé par le créateur. Le site ne reçoit aucune prime de référencement de la part des détaillants figurant sur ce site. De plus, ammobin.ca n'utilise aucun logiciel ou librairie d'analyse ou de suivi côté client. Toutes les statistiques du site sont collectées à partir des journaux du serveur nginx (c'est-à-dire: ce que votre navigateur envoie lorsqu'il demande une page) et en utilisant la redirection d'URL pour suivre les clics vers les fournisseurs.",
     "sendEmail": "ou écrivez un courriel à",
     "submitIssue": "Créer un “Issue” ou un “Pull request” sur",
     "contactInfo": "Informations de contact",
@@ -29,9 +31,11 @@
     "contactQuestion3": "Une suggestion?",
     "contactQuestion4": "Besoin d'un détaillant qui n'est pas encore sur le site?",
     "wikiamrsLink": "Vous cherchez des munitions / armes à feu chez nos voisins du sud? Essayez",
-    "main1": "récupère quotidiennement les prix des munitions auprès des détaillants en ligne canadiens pour vous aider à trouver les meilleures offres disponibles.",
+    "main1":
+      "récupère quotidiennement les prix des munitions auprès des détaillants en ligne canadiens pour vous aider à trouver les meilleures offres disponibles.",
     "main2": "Les prix sont mis à jour chaque matin.",
-    "main3": "Aucune munitions ne sont vendues sur le site, nous affichons uniquement de liens vers les sites des détaillants.",
+    "main3":
+      "Aucune munitions ne sont vendues sur le site, nous affichons uniquement de liens vers les sites des détaillants.",
     "moreRetailers": "plus à venir..."
   },
   "links": {

@@ -2,7 +2,7 @@ const webpack = require('webpack')
 const { join } = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 module.exports = {
-  modules: ['@nuxtjs/pwa', '@nuxtjs/axios', '~/modules/typescript', '@nuxtjs/apollo'],
+  modules: ['@nuxtjs/pwa', '@nuxtjs/axios', '@nuxtjs/apollo', '~/modules/typescript'],
   build: {
     plugins: [
       new webpack.DefinePlugin({
@@ -82,9 +82,7 @@ module.exports = {
   apollo: {
     clientConfigs: {
       default: {
-        // required
         httpEndpoint: 'https://ammobin.ca/api/graphql',
-        cache: null, //disable caching for now
       },
     },
   },
