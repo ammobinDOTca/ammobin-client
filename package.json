@@ -12,7 +12,7 @@
     "@nuxtjs/meta": "^2.6.0",
     "@nuxtjs/pwa": "^2.6.0",
     "@nuxtjs/workbox": "^2.6.0",
-    "ammobin-classifier": "^0.0.29",
+    "ammobin-classifier": "^0.0.30",
     "apollo-boost": "^0.1.23",
     "browserslist": "^4.3.6",
     "copy-webpack-plugin": "^4.6.0",
