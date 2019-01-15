@@ -15,11 +15,8 @@ import MyTable from '~/components/my-table.vue'
 import { getUrl, updateUrl } from '~/helpers'
 import gql from 'graphql-tag'
 const nop = () => {}
+
 export default {
-  validate({ params }) {
-    console.log(params)
-    return true
-  },
   head() {
     const link: any[] = []
     const url = `https://ammobin.ca/${this.$i18n.locale !== 'en' ? this.$i18n.locale + '/' : ''}${this.ammotype ||
@@ -36,7 +33,6 @@ export default {
         href: getUrl(url, this.page + 1, this.calibre),
       })
     }
-    console.log(link)
     return {
       title: (this.calibre || this.ammotype || 'Ammo') + ' Prices', //TODO: en francais
       meta: [
@@ -111,12 +107,17 @@ export default {
         }
       },
       prefetch: ({ route }) => {
+        let ammoType = route.params.ammotype || route.query.ammotype || null
+        if (['rimfire', 'centerfire', 'shotgun'].indexOf(ammoType) === -1) {
+          return false // hard 404
+        }
+
         return {
           page: Number(route.query.page) || 1,
           calibre: route.query.calibre || null,
           pageSize: Number(route.query.pageSize) || 25,
           province: route.query.province || null,
-          ammoType: route.params.ammotype || route.query.ammotype || null,
+          ammoType,
           vendor: route.query.vendor || null,
           query: route.query.query || null,
           sortField: route.query.sortField || null,
@@ -155,7 +156,11 @@ export default {
       return Number(this.$route.query.pageSize) || 25
     },
     ammotype() {
-      return this.$route.params.ammotype || this.$route.query.ammotype || null
+      let ammoType = this.$route.params.ammotype || this.$route.query.ammotype || null
+      if (ammoType === 'ammo') {
+        ammoType = null
+      }
+      return ammoType
     },
     vendor() {
       return this.$route.query.vendor || null
@@ -172,6 +177,10 @@ export default {
   },
   components: {
     MyTable,
+  },
+  validate({ params }) {
+    // todo: use proper const here
+    return [null, 'rimfire', 'centerfire', 'shotgun'].indexOf(params.ammotype) >= 0
   },
 }
 </script>

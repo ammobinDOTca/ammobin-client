@@ -86,4 +86,7 @@ module.exports = {
       },
     },
   },
+  generate: {
+    routes: ['/rimfire', '/centerfire', '/shotgun', '/fr/rimfire', '/fr/centerfire', '/fr/shotgun'],
+  },
 }

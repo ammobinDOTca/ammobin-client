@@ -104,56 +104,56 @@
       <div
         class="pure-u-lg-1-5 pure-u-1-4 title"
         @click="sortBy('name')"
-        :class="{ active: sortKey == 'name' }"
+        :class="{ active: sortField == 'name' }"
       >
         <h4>
           {{$t('table.name')}}
-          <span class="arrow" :class="sortOrders['name'] > 0 ? 'asc' : 'dsc'"></span>
+          <span class="arrow" :class="sortOrder"></span>
         </h4>
       </div>
       <div
         class="pure-u-lg-1-5 pure-u-1-4 title"
         @click="sortBy('minPrice')"
-        :class="{ active: sortKey == 'minPrice' }"
+        :class="{ active: sortField == 'minPrice' }"
       >
         <h4>
           {{$t('table.price')}}
           <span
             class="arrow"
-            :class="sortOrders['minPrice'] > 0 ? 'asc' : 'dsc'"
+            :class="sortOrder"
           ></span>
         </h4>
       </div>
       <div
         class="pure-u-lg-1-5 pure-u-1-4 title"
         @click="sortBy('minUnitCost')"
-        :class="{ active: sortKey == 'minUnitCost' }"
+        :class="{ active: sortField == 'minUnitCost' }"
       >
         <h4>
           {{$t('table.unitCost')}}
           <span
             class="arrow"
-            :class="sortOrders['minUnitCost'] > 0 ? 'asc' : 'dsc'"
+            :class="sortOrder"
           ></span>
         </h4>
       </div>
       <div
         class="pure-u-lg-1-5 pure-u-1-4 title"
         @click="sortBy('link')"
-        :class="{ active: sortKey == 'link' }"
+        :class="{ active: sortField == 'link' }"
       >
         <h4>
           {{$t('table.link')}}
-          <span class="arrow" :class="sortOrders['link'] > 0 ? 'asc' : 'dsc'"></span>
+          <span class="arrow" :class="sortOrder"></span>
         </h4>
       </div>
     </div>
 
-    <div v-if="filteredRows.length === 0" class="pure-g row fix-row">
+    <div v-if="!rows || rows.length === 0" class="pure-g row fix-row">
       <div class="pure-u-1">{{$t('table.noResult')}}</div>
     </div>
 
-    <div v-for="(row, index) in filteredRows" :key="row.name" class="pure-g row fix-row item">
+    <div v-for="(row, index) in rows" :key="row.name" class="pure-g row fix-row item">
       <div class="pure-u-lg-1-5 pure-u-md-1 pure-u-1">
         <img
           class="pure-img img-cell"
@@ -243,14 +243,6 @@ export default {
     centerfireCalibres: centerFireCalibres.map(l => l[0].toUpperCase()).sort(),
     rimfireCalibres: rimfireCalibres.map(l => l[0].toUpperCase()).sort(),
     shotgunGauges: shotgunGauges.map(l => l[0].toUpperCase()).sort(),
-    sortedListLength: -1,
-    sortOrders: {
-      name: 1,
-      link: 1,
-      minPrice: 1,
-      minUnitCost: 1,
-    },
-    showVendors: {},
     provinces: [null, 'AB', 'BC', 'MB', 'NB', 'NS', 'NT', 'NL', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'],
     defaultImg: require('~/assets/blank.png'),
   }),
@@ -274,11 +266,11 @@ export default {
     query() {
       return this.$route.query.query
     },
-    sortKey() {
-      return this.$route.query.sortKey
+    sortField() {
+      return this.$route.query.sortField || 'minPrice'
     },
     sortOrder() {
-      return this.$route.query.sortOrder
+      return this.$route.query.sortOrder || 'ASC'
     },
     showCenterfireCalibres() {
       return !this.ammotype || this.ammotype === 'centerfire'
@@ -304,107 +296,35 @@ export default {
         )
       ).sort()
     },
-    // apply filters + sorting + pagination to results
-    filteredRows() {
-      let data = JSON.parse(JSON.stringify(this.rows && this.rows.length ? this.rows : [])) // super fancy deep list of objects
-      let sortKey = this.sortKey
-      let order = this.sortOrders[sortKey]
-
-      // filter by name
-      if (this.searchQuery) {
-        const q = this.searchQuery.toLowerCase()
-        // data = data.filter(r => (r.name &&
-        //   r.name.toLowerCase().indexOf(q) >= 0));
-        data = data
-          .map(d => {
-            d.vendors = d.vendors.filter(r => r.name && r.name.toLowerCase().indexOf(q) >= 0)
-            return d
-          })
-          .filter(f => f.vendors && f.vendors.length)
+    showVendors() {
+      if (!this.rows) {
+        return {}
       }
 
-      if (sortKey) {
-        data = data.sort(function(a, b) {
-          let aa = a[sortKey]
-          let bb = b[sortKey]
-          // put unknown unit costs at the bottom of the sort order
-          if (sortKey === 'minUnitCost') {
-            if (aa <= 0) {
-              aa = Number.MAX_SAFE_INTEGER
-            }
-            if (bb <= 0) {
-              bb = Number.MAX_SAFE_INTEGER
-            }
-          }
-
-          if (aa === bb) {
-            return 0
-          } else if (aa > bb) {
-            return 1 * order
-          } else {
-            return -1 * order
-          }
-        })
-        data = data.map(row => {
-          row.vendors = row.vendors.sort(function(a, b) {
-            let groupedKey
-            switch (sortKey) {
-              case 'minUnitCost':
-                groupedKey = 'unitCost'
-                break
-              case 'name':
-                groupedKey = 'name'
-                break
-              case 'minPrice':
-                groupedKey = 'price'
-                break
-              case 'link':
-                groupedKey = 'vendor'
-                break
-              default:
-                console.error('unhandled sort key', sortKey)
-            }
-
-            let aa = a[groupedKey]
-            let bb = b[groupedKey]
-            // put unknown unit costs at the bottom of the sort order
-            if (groupedKey === 'unitCost') {
-              if (aa <= 0) {
-                aa = Number.MAX_SAFE_INTEGER
-              }
-              if (bb <= 0) {
-                bb = Number.MAX_SAFE_INTEGER
-              }
-            }
-
-            if (aa === bb) {
-              return 0
-            } else if (aa > bb) {
-              return 1 * order
-            } else {
-              return -1 * order
-            }
-          })
-          return row
-        })
-      }
-
-      this.sortedListLength = data.length // gross side effect. but lets us know how many pages of data there are
-      this.showVendors = data.map(i => i.name).reduce((sv, k) => {
+      return this.rows.map(i => i.name).reduce((sv, k) => {
         sv[k] = this.$store.state.isCrawler // show google all the results...
         return sv
       }, {})
-
-      return data
     },
   },
   methods: {
     sortBy(key) {
-      this.sortOrders[key] = this.sortOrders[key] * -1
+      let sortOrder
+
+      if (key === this.sortField) {
+        if (this.sortOrder === 'DES') {
+          sortOrder = 'ASC'
+        } else {
+          sortOrder = 'DES'
+        }
+      } else {
+        sortOrder = 'DES'
+      }
+
       this.$router.push({
         name: this.$route.name,
         query: Object.assign({}, this.$route.query, {
-          sortOrder: this.sortOrders[key] > 0 ? 'ASC' : 'DES',
+          sortOrder,
           sortField: key,
         }),
       })
@@ -516,13 +436,13 @@ export default {
   opacity: 0.66;
 }
 
-.arrow.asc {
+.active .arrow.ASC {
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
   border-bottom: 4px solid black;
 }
 
-.arrow.dsc {
+.active .arrow.DES {
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
   border-top: 4px solid black;
