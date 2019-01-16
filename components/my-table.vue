@@ -181,8 +181,11 @@
       <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
         <button
           class="pure-button"
-          @click="toggleVendors(row.name, row)"
-        >{{showVendors[row.name]? $t('table.hide') : $t('table.show')}} {{$t('table.vendors')}}</button>
+          @click="toggleVendors(row)"
+        >
+
+
+        {{showVendors[row.name]? $t('table.hide') : $t('table.show')}} {{$t('table.vendors')}}</button>
       </div>
       <div class="pure-u-1" v-if="showVendors[row.name] === true">
         <div v-for="v in row.vendors" :key="v.link" class="pure-g m-b-1">
@@ -239,13 +242,20 @@ import { rimfireCalibres } from 'ammobin-classifier/build/rimfire-calibres'
 import { shotgunGauges } from 'ammobin-classifier/build/shotgun-gauges'
 
 export default {
-  data: () => ({
-    centerfireCalibres: centerFireCalibres.map(l => l[0].toUpperCase()).sort(),
-    rimfireCalibres: rimfireCalibres.map(l => l[0].toUpperCase()).sort(),
-    shotgunGauges: shotgunGauges.map(l => l[0].toUpperCase()).sort(),
-    provinces: [null, 'AB', 'BC', 'MB', 'NB', 'NS', 'NT', 'NL', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'],
-    defaultImg: require('~/assets/blank.png'),
-  }),
+  data: function() {
+    return {
+      centerfireCalibres: centerFireCalibres.map(l => l[0].toUpperCase()).sort(),
+      rimfireCalibres: rimfireCalibres.map(l => l[0].toUpperCase()).sort(),
+      shotgunGauges: shotgunGauges.map(l => l[0].toUpperCase()).sort(),
+      provinces: [null, 'AB', 'BC', 'MB', 'NB', 'NS', 'NT', 'NL', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'],
+      defaultImg: require('~/assets/blank.png'),
+      showVendors:
+        this.rows.map(i => i.name).reduce((sv, k) => {
+          sv[k] = this.$store.state.isCrawler // show google all the results...
+          return sv
+        }, {}) || {},
+    }
+  },
   props: ['rows', 'pages', 'ammotype'],
   computed: {
     page() {
@@ -296,16 +306,6 @@ export default {
         )
       ).sort()
     },
-    showVendors() {
-      if (!this.rows) {
-        return {}
-      }
-
-      return this.rows.map(i => i.name).reduce((sv, k) => {
-        sv[k] = this.$store.state.isCrawler // show google all the results...
-        return sv
-      }, {})
-    },
   },
   methods: {
     sortBy(key) {
@@ -329,13 +329,15 @@ export default {
         }),
       })
     },
-    toggleVendors(name, row) {
+    toggleVendors(row) {
+      const { name, brand, calibre } = row
       const open = !!this.showVendors[name]
+      this.showVendors[name] = !open
 
       if (!open) {
         const view = JSON.stringify({
-          calibre: row.calibre,
-          brand: row.brand,
+          calibre,
+          brand,
         })
 
         if (!navigator.sendBeacon) {
@@ -344,8 +346,6 @@ export default {
           navigator.sendBeacon(BASE_API_URL + 'track-view', view)
         }
       }
-
-      this.showVendors[name] = !open
     },
     updatePage(page) {
       this.$router.push({
