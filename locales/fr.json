@@ -36,7 +36,10 @@
     "main2": "Les prix sont mis à jour chaque matin.",
     "main3":
       "Aucune munitions ne sont vendues sur le site, nous affichons uniquement de liens vers les sites des détaillants.",
-    "moreRetailers": "plus à venir..."
+    "moreRetailers": "plus à venir...",
+    "incorrectCountTitle": "Coûts unitaires incorrects",
+    "incorrectCountText":
+      "Depuis le début d’Ammobin, les coûts unitaires ne sont pas corrects à 100%. Cela est en partie dû aux détaillants, y compris les flans ou les quantités multiples dans le titre. D'autres fois, ammobin-classifer analyse d'autres nombres dans le titre en tant que nombre d'éléments. Puisque ammobin utilise le déchiquetage automatisé, il n’est pas possible de corriger manuellement ces erreurs (il serait bien de ne pas avoir à les voir)."
   },
   "links": {
     "french": "FR",

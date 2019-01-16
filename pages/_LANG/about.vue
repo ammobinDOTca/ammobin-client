@@ -39,6 +39,11 @@
 
     <hr>
 
+    <h2>{{$t('about.incorrectCountTitle')}}</h2>
+    <p>{{$t('about.incorrectCountText')}}</p>
+
+    <hr>
+
     <h2 id="supportedRetailers">{{$t('about.supportedRetailers')}}</h2>
     <supported-retailers></supported-retailers>
 
