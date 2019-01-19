@@ -1,17 +1,5 @@
 <template>
   <div class="main">
-    <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "Person",
-      "name": "Ammobin.ca",
-      "url": "https://ammobin.ca",
-      "sameAs": [
-        "https://github.com/ammobindotca",
-        "https://www.instagram.com/ammobin.ca"
-      ]
-    }
-    </script>
     <a class="fork-me-hard-dady" href="https://github.com/ammobindotca" target="_blank" rel="noopener">
       <img style="position: absolute; top: 0; right: 0; border: 0;" src="~/assets/fork.png" alt="Fork me on GitHub" title="Fork me on GitHub">
     </a>
@@ -71,6 +59,19 @@ export default {
       htmlAttrs: {
         lang: this.$i18n.locale || 'en',
       },
+      __dangerouslyDisableSanitizers: ['script'],
+      script: [
+        {
+          innerHTML: JSON.stringify({
+            '@context': 'http://schema.org',
+            '@type': 'Person',
+            name: 'Ammobin.ca',
+            url: 'https://ammobin.ca',
+            sameAs: ['https://github.com/ammobindotca', 'https://www.instagram.com/ammobin.ca'],
+          }),
+          type: 'application/ld+json',
+        },
+      ],
     }
   },
   computed: {
