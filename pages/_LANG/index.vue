@@ -6,7 +6,7 @@
     <h4>{{ $t('home.tagline') }}</h4>
     <h4>
       {{ $t('home.searching') }}
-      <nuxt-link :to="{ path: 'about#supportedRetailers'}">{{retailerCount}} retailers</nuxt-link>
+      <nuxt-link :to="{ path: 'about#supportedRetailers'}">{{vendorCount}} retailers</nuxt-link>
       {{ $t('home.daily') }}
     </h4>
 
@@ -31,7 +31,7 @@
 
     <div class="margin-y m-t-30">
       <a
-        href="http://www.thefirearmblog.com/blog/2017/08/13/%e2%9c%89tfbtv-mailbag-episode-4-new-hope?utm_src=ammobin.ca"
+        href="https://www.thefirearmblog.com/blog/2017/08/13/%e2%9c%89tfbtv-mailbag-episode-4-new-hope?utm_src=ammobin.ca"
         target="_blank"
         rel="noopener"
         title="TFBTV Mailbag Episode 4: A New Hope"
@@ -52,23 +52,37 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { getBestPopularPrices } from '~/api'
-import SupportedRetailers from '~/components/supported-retailers.vue'
-import { list } from '~/components/retails'
+import gql from 'graphql-tag'
+
+declare const BASE_API_URL: string
 
 export default {
-  components: {
-    SupportedRetailers,
+  apollo: {
+    vendors: {
+      query: gql`
+        query getVendors {
+          vendors {
+            background # just need to get a list, picked this because just a boolean
+          }
+        }
+      `,
+      prefetch: () => ({}), // trigger serverside lookup
+    },
   },
   data() {
     return {
       failedToLoadMainPrices: false,
-      retailerCount: list.length,
       min762Price: 0,
       min9Price: 0,
       min556Price: 0,
     }
+  },
+  computed: {
+    vendorCount() {
+      return this.vendors ? this.vendors.length : null
+    },
   },
   async asyncData({ error, app }) {
     try {
