@@ -2,7 +2,7 @@
   <div class>
     <div class="pure-form pure-form-stacked">
       <div id="search" class="pure-u-1 pure-u-md-1-6">
-        <label>{{$t('table.search')}}</label>
+        <label for="query">{{$t('table.search')}}</label>
         <input
           name="query"
           :value="query"
