@@ -257,6 +257,14 @@ export default {
     }
   },
   props: ['rows', 'pages', 'ammotype'],
+  watch : {
+    rows() {
+      this.showVendors = this.rows.map(i => i.name).reduce((sv, k) => {
+          sv[k] = this.$store.state.isCrawler // show google all the results...
+          return sv
+        }, {}) || {}
+    }
+  },
   computed: {
     page() {
       return Number(this.$route.query.page) || 1
