@@ -6,7 +6,8 @@
     "ammo": "Munitions",
     "about": "À propos",
     "contact": "Contact",
-    "failedToLoad": "échec du chargement de la liste des munitions"
+    "failedToLoad": "échec du chargement de la liste des munitions",
+    "loading":"chargement"
   },
   "home": {
     "title": "Bienvenue",

@@ -7,6 +7,8 @@
       :pages="ammoListings.pages"
       v-bind:ammotype="ammotype"
     ></my-table>
+      <div v-if="error">ERROR {{error}}</div>
+      <div v-if="!ammoListing">{{$t('default.loading')}}</div>
   </div>
 </template>
 

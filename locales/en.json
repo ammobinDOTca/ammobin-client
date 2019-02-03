@@ -6,7 +6,8 @@
     "ammo": "Ammo",
     "about": "About",
     "contact": "Contact",
-    "failedToLoad": "failed to load ammo list"
+    "failedToLoad": "failed to load ammo list",
+    "loading":"loading"
   },
   "home": {
     "title": "Welcome",
