@@ -196,6 +196,7 @@
           </div>
           <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1-5">
             <a
+              @click="itemClicked(v.link)"
               v-bind:href="v.link"
               target="_blank"
               rel="nofollow noopener"
@@ -257,13 +258,14 @@ export default {
     }
   },
   props: ['rows', 'pages', 'ammotype'],
-  watch : {
+  watch: {
     rows() {
-      this.showVendors = this.rows.map(i => i.name).reduce((sv, k) => {
+      this.showVendors =
+        this.rows.map(i => i.name).reduce((sv, k) => {
           sv[k] = this.$store.state.isCrawler // show google all the results...
           return sv
         }, {}) || {}
-    }
+    },
   },
   computed: {
     page() {
@@ -316,6 +318,14 @@ export default {
     },
   },
   methods: {
+    itemClicked(link) {
+      const click = JSON.stringify({ link })
+      if (!navigator.sendBeacon) {
+        this.$axios.post(BASE_API_URL + 'track-click', click)
+      } else {
+        navigator.sendBeacon(BASE_API_URL + 'track-click', click)
+      }
+    },
     sortBy(key) {
       let sortOrder
 
