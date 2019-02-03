@@ -52,10 +52,10 @@ export default {
     bestPrices: {
       query: gql`
         query getBestPrices {
-           bestPrices(calibres:["9MM",".223 / 5.56 NATO", "7.62 X 39MM" ]){
-             calibre
-             unitCost
-           }
+          bestPrices(calibres: ["9MM", ".223 / 5.56 NATO", "7.62 X 39MM"]) {
+            calibre
+            unitCost
+          }
         }
       `,
       prefetch: () => ({}), // trigger serverside lookup
@@ -76,8 +76,7 @@ export default {
       return this.vendors ? this.vendors.length : null
     },
   },
-  async asyncData({  }) {
-  },
+  async asyncData({}) {},
   head() {
     return {
       title: 'The place to view the best online ammo prices across Canada.', //TODO: en francais
