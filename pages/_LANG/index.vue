@@ -12,20 +12,10 @@
 
     <h2 class="m-t-30">{{ $t('home.currentlyPopular') }}</h2>
     <div class="pure-g row">
-      <div class="pure-u-md-1-3 pure-u-1 margin-y">
-        <nuxt-link :to="{ path: 'centerfire', query: { calibre: '.223 / 5.56 NATO' }}">5.56 NATO</nuxt-link>
+      <div v-for="v in bestPrices" class="pure-u-md-1-3 pure-u-1 margin-y">
+        <nuxt-link :to="{ path: 'centerfire', query: { calibre: v.calibre }}">{{v.calibre}}</nuxt-link>
         <div>{{$t('home.startingAt')}}</div>
-        <div>${{min556Price.toFixed(2)}} {{$t('home.perRound')}}</div>
-      </div>
-      <div class="pure-u-md-1-3 pure-u-1 margin-y">
-        <nuxt-link :to="{ path: 'centerfire', query: { calibre: '7.62 X 39MM' }}">7.62 x 39mm</nuxt-link>
-        <div>{{$t('home.startingAt')}}</div>
-        <div>${{min762Price.toFixed(2)}} {{$t('home.perRound')}}</div>
-      </div>
-      <div class="pure-u-md-1-3 pure-u-1 margin-y">
-        <nuxt-link :to="{ path: 'centerfire', query: { calibre: '9MM' }}">9mm</nuxt-link>
-        <div>{{$t('home.startingAt')}}</div>
-        <div>${{min9Price.toFixed(2)}} {{$t('home.perRound')}}</div>
+        <div>${{v.unitCost.toFixed(2)}} {{$t('home.perRound')}}</div>
       </div>
     </div>
 
@@ -39,7 +29,6 @@
         <img src="~/assets/aso-tfbtv2.svg" width="100px">
       </a>
     </div>
-
     <div style="margin-top: 2rem">
       {{$t('home.gunsaleLink')}}
       <a
@@ -60,6 +49,17 @@ declare const BASE_API_URL: string
 
 export default {
   apollo: {
+    bestPrices: {
+      query: gql`
+        query getBestPrices {
+           bestPrices(calibres:["9MM",".223 / 5.56 NATO", "7.62 X 39MM" ]){
+             calibre
+             unitCost
+           }
+        }
+      `,
+      prefetch: () => ({}), // trigger serverside lookup
+    },
     vendors: {
       query: gql`
         query getVendors {
@@ -71,32 +71,12 @@ export default {
       prefetch: () => ({}), // trigger serverside lookup
     },
   },
-  data() {
-    return {
-      failedToLoadMainPrices: false,
-      min762Price: 0,
-      min9Price: 0,
-      min556Price: 0,
-    }
-  },
   computed: {
     vendorCount() {
       return this.vendors ? this.vendors.length : null
     },
   },
-  async asyncData({ error, app }) {
-    try {
-      let res = await app.$axios.get(BASE_API_URL + 'best-popular-prices')
-      const mainPrices = res.data
-      return {
-        min762Price: mainPrices['7.62 X 39MM'] || 0,
-        min9Price: mainPrices['9MM'] || 0,
-        min556Price: mainPrices['.223 / 5.56 NATO'] || 0,
-      }
-    } catch (e) {
-      console.error('Error: failed to get best popular prices', e && e.message ? e.message : e) // ignore
-      return { failedToLoadMainPrices: true }
-    }
+  async asyncData({  }) {
   },
   head() {
     return {
