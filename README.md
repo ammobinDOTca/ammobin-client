@@ -5,20 +5,25 @@ The meta search site for ammo prices across Canada. built with [nuxt.js](https:/
 ![Screenshot-2017-9-27 The place to view the best online ammo prices across Canada.png](https://raw.githubusercontent.com/ammobinDOTca/ammobin-client/master/Screenshot-2017-9-27%20The%20place%20to%20view%20the%20best%20online%20ammo%20prices%20across%20Canada%20.png)
 
 ## how to run
-1. ```docker run ammobindotca/ammo-bin-client -p 3000:3000```
+
+1.  `docker run ammobindotca/ammo-bin-client -p 3000:3000`
 
 ## how to run locally
-- ```npm i```
-- ```PROD=true npm run dev``` (will target prod api)
+
+- `npm i`
+- `PROD=true npm run dev` (will target prod api)
 
 ## todo
+
 - https://github.com/WICG/BackgroundSync/blob/master/explainer.md
 
 ## contributing
+
 - do some work
 - submit pr
 
 ## vendors to add
+
 - https://canadian-gunhub.myshopify.com/collections/ammunition +1
 - https://tillsonburggunshop.com/Ammunition/Centerfire +1
 - https://www.northernelitefirearms.ca/product-category/ammunition-rifles/ +1
@@ -40,10 +45,10 @@ The meta search site for ammo prices across Canada. built with [nuxt.js](https:/
 - http://www.armseast.ca/surplus_ammunition/
 
 - https://www.siwashsports.ca/product-category/ammunition/centerfire-ammunition/ (cant buy things online as of dec 17 2017, will add once this feature is enabled on the site)
-- http://www.westcoasthunting.ca/ (prices + counts hidden on item page. would need to scrape everypage)
 - http://www.danchasse.com/shop_free/index.php?categoryID=109 (je ne parle en francis)
 
 # low priority
+
 - http://greendiamondoutfitters.ca/home/products_grid/category/rifle-ammunition/P24
 - http://practicalperformance.ca/accessories/ammunition/
 - http://www.rustywood.ca/shop/ammunition/
@@ -52,13 +57,15 @@ The meta search site for ammo prices across Canada. built with [nuxt.js](https:/
 - http://www.thegunroom.ca/index.php?route=product/category&path=85 (6 items
 
 ## blocked
+
 - http://westrifle.com/wrstore/index.php?main_page=index&cPath=2 (everything was sold out nov 2017)
-- https://eccfirearms.blogspot.ca/2011/02/ammunition-ecc-firearms-has-widest.html  (cant buy oneline as of feb 17 2018)
+- https://eccfirearms.blogspot.ca/2011/02/ammunition-ecc-firearms-has-widest.html (cant buy oneline as of feb 17 2018)
 - https://tandtarms.com/product-category/ammo/
 - http://www.armseast.ca/surplus_ammunition/ no items
 - https://selectshootingsupplies.com/pages/ammunition no online sales
 
 ## skipped
+
 - wholesalesports.com
 - marstar.ca
 - http://www.prairieshotammo.com/find-a-dealer-3.html (but should review these retailers to see if they have online shops)
@@ -67,7 +74,9 @@ The meta search site for ammo prices across Canada. built with [nuxt.js](https:/
 - https://armtac.com/category/ammunition only one 1 item
 
 ## incomplete vendors
+
 - none
 
 ## docker hub
+
 https://hub.docker.com/r/ammobindotca/ammobin-client/
