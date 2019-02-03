@@ -39,6 +39,10 @@ The meta search site for ammo prices across Canada. built with [nuxt.js](https:/
 - http://store.easthilloutdoors.com/ammo/bulk-ammo
 - http://www.armseast.ca/surplus_ammunition/
 
+- https://www.siwashsports.ca/product-category/ammunition/centerfire-ammunition/ (cant buy things online as of dec 17 2017, will add once this feature is enabled on the site)
+- http://www.westcoasthunting.ca/ (prices + counts hidden on item page. would need to scrape everypage)
+- http://www.danchasse.com/shop_free/index.php?categoryID=109 (je ne parle en francis)
+
 # low priority
 - http://greendiamondoutfitters.ca/home/products_grid/category/rifle-ammunition/P24
 - http://practicalperformance.ca/accessories/ammunition/
@@ -48,12 +52,8 @@ The meta search site for ammo prices across Canada. built with [nuxt.js](https:/
 - http://www.thegunroom.ca/index.php?route=product/category&path=85 (6 items
 
 ## blocked
-- http://www.danchasse.com/shop_free/index.php?categoryID=109 (je ne parle en francis)
-- http://www.westcoasthunting.ca/ (prices + counts hidden on item page. would need to scrape everypage)
 - http://westrifle.com/wrstore/index.php?main_page=index&cPath=2 (everything was sold out nov 2017)
-- https://www.siwashsports.ca/product-category/ammunition/centerfire-ammunition/ (cant buy things online as of dec 17 2017, will add once this feature is enabled on the site)
 - https://eccfirearms.blogspot.ca/2011/02/ammunition-ecc-firearms-has-widest.html  (cant buy oneline as of feb 17 2018)
-- gotenda (implemented bot detection on their site)
 - https://tandtarms.com/product-category/ammo/
 - http://www.armseast.ca/surplus_ammunition/ no items
 - https://selectshootingsupplies.com/pages/ammunition no online sales
