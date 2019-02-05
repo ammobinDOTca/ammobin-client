@@ -1,22 +1,21 @@
 <template>
   <div class="container">
-    <h1>{{$t('default.'+ (ammotype || 'ammo'))}}</h1>
+    <h1>{{ $t('default.' + (ammotype || 'ammo')) }}</h1>
     <my-table
       v-if="!error && ammoListings"
       v-bind:rows="ammoListings.items"
       :pages="ammoListings.pages"
       v-bind:ammotype="ammotype"
     ></my-table>
-      <div v-if="error">ERROR {{error}}</div>
-      <div v-if="!ammoListing">{{$t('default.loading')}}</div>
+    <div v-if="error">ERROR {{ error }}</div>
+    <div v-if="!ammoListing">{{ $t('default.loading') }}</div>
   </div>
 </template>
 
 <script lang="ts">
 import MyTable from '~/components/my-table.vue'
-import { getUrl, updateUrl } from '~/helpers'
+import { getUrl } from '~/helpers'
 import gql from 'graphql-tag'
-const nop = () => {}
 
 export default {
   head() {
@@ -126,7 +125,7 @@ export default {
           sorderOrder: route.query.sortOrder || null,
         }
       },
-      watchLoading(isLoading, countModifier) {
+      watchLoading(isLoading /*, countModifier*/) {
         if (this.$nuxt && this.$nuxt.$loading && this.$nuxt.$loading.start) {
           if (isLoading) {
             this.$nuxt.$loading.start()
@@ -142,6 +141,7 @@ export default {
   data() {
     return {
       error: null,
+      ammoListing:null
     }
   },
   computed: {

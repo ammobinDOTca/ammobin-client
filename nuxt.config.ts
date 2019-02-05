@@ -1,8 +1,9 @@
 const webpack = require('webpack')
 const { join } = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-module.exports = {
-  modules: ['@nuxtjs/pwa', '@nuxtjs/axios', '@nuxtjs/apollo', '~/modules/typescript'],
+
+export default {
+  modules: ['@nuxtjs/pwa', '@nuxtjs/axios', '@nuxtjs/apollo'],
   build: {
     plugins: [
       new webpack.DefinePlugin({
@@ -62,7 +63,7 @@ module.exports = {
   router: {
     middleware: 'i18n',
   },
-  plugins: ['~/plugins/i18n.js', { src: '~/plugins/vue-img', ssr: false }],
+  plugins: ['~/plugins/i18n', { src: '~/plugins/vue-img', ssr: false }],
   /*
   disabled while working on api memory useage
   cache: {
