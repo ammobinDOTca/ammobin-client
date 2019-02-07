@@ -8,7 +8,7 @@
       v-bind:ammotype="ammotype"
     ></my-table>
     <div v-if="error">ERROR {{ error }}</div>
-    <div v-if="!ammoListing">{{ $t('default.loading') }}</div>
+    <div v-if="!ammoListings">{{ $t('default.loading') }}</div>
   </div>
 </template>
 
@@ -141,7 +141,7 @@ export default {
   data() {
     return {
       error: null,
-      ammoListing:null
+      ammoListing: null,
     }
   },
   computed: {
