@@ -62,6 +62,13 @@ export default {
   },
   router: {
     middleware: 'i18n',
+    extendRoutes (routes, resolve) {
+      routes.unshift({
+        name: 'fr-home',
+        path: '/fr',
+        component: resolve(__dirname, 'pages/index.vue')
+      })
+    }
   },
   plugins: ['~/plugins/i18n', { src: '~/plugins/vue-img', ssr: false }],
   /*
