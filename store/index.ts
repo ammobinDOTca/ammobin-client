@@ -1,29 +1,24 @@
-import Vuex from 'vuex'
 import { isCrawler } from '~/helpers'
 
-const createStore = () => {
-  return new Vuex.Store({
-    state: {
-      isCrawler: undefined,
-      locales: ['en', 'fr'],
-      locale: 'en',
-    },
-    mutations: {
-      setCrawler(state, val) {
-        return (state.isCrawler = val)
-      },
-      SET_LANG(state, locale) {
-        if (state.locales.includes(locale)) {
-          state.locale = locale
-        }
-      },
-    },
-    actions: {
-      nuxtServerInit({ commit }, { req }) {
-        commit('setCrawler', isCrawler(req))
-      },
-    },
-  })
+export const state = () => ({
+  isCrawler: undefined,
+  locales: ['en', 'fr'],
+  locale: 'en',
+})
+
+export const mutations = {
+  setCrawler(state, val) {
+    return (state.isCrawler = val)
+  },
+  SET_LANG(state, locale) {
+    if (state.locales.includes(locale)) {
+      state.locale = locale
+    }
+  },
 }
 
-export default createStore
+export const actions = {
+  nuxtServerInit({ commit }, { req }) {
+    commit('setCrawler', isCrawler(req))
+  },
+}
