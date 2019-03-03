@@ -24,8 +24,6 @@ The meta search site for ammo prices across Canada. built with [nuxt.js](https:/
 
 ## vendors to add
 
-- https://canadian-gunhub.myshopify.com/collections/ammunition +1
-- https://www.northernelitefirearms.ca/product-category/ammunition-rifles/ +1
 - https://shop.triggersandbows.com/ammunition/centerfire/ +1
 - https://www.budgetshootersupply.ca/product-category/categories/ammunition/centerfire-rifle-ammunition/ +.5
 - https://shophighfalls.com/collections/rifle-ammo?view=ALL (css rules hinder pulling data. will need to update scraper)
