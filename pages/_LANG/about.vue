@@ -59,7 +59,7 @@
     </div>
     <hr />
 
-    <!-- 
+    <!--
       <div style="margin-top: 2rem">
       {{$t('home.gunsaleLink')}}
       <a
