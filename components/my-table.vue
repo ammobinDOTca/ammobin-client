@@ -257,7 +257,7 @@ export default {
         }, {}) || {},
     }
   },
-  props: ['rows', 'pages', 'ammotype'],
+  props: ['rows', 'pages', 'ammotype', 'vendors'],
   watch: {
     rows() {
       this.showVendors =
@@ -300,21 +300,6 @@ export default {
     },
     showShotgunGuages() {
       return !this.ammotype || this.ammotype === 'shotgun'
-    },
-    vendors() {
-      // todo: use common list of vendors always
-      if (!this.rows) {
-        return []
-      }
-      return Object.keys(
-        this.rows.reduce(
-          (list, row) => {
-            row.vendors.forEach(i => (list[i.vendor] = true))
-            return list
-          },
-          { '': true }
-        )
-      ).sort()
     },
   },
   methods: {

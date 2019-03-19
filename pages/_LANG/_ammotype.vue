@@ -6,6 +6,7 @@
       v-bind:rows="ammoListings.items"
       :pages="ammoListings.pages"
       v-bind:ammotype="ammotype"
+      v-bind:vendors="vendors.map(i => i.name)"
     ></my-table>
     <div v-if="error">ERROR {{ error }}</div>
     <div v-if="!ammoListings">{{ $t('default.loading') }}</div>
@@ -48,6 +49,15 @@ export default {
     }
   },
   apollo: {
+    vendors: {
+      query: gql`
+        query getVendors{
+          vendors {
+            name
+          }
+        }
+      `
+    },
     ammoListings: {
       query: gql`
         query getAmmoListings(
@@ -91,6 +101,7 @@ export default {
               }
             }
           }
+
         }
       `,
       variables() {
