@@ -52,7 +52,7 @@
         </select>
       </div>
 
-      <div class="pure-u-1 pure-u-md-1-3">
+      <div v-if="pages>0" class="pure-u-1 pure-u-md-1-3">
         <label>{{ $t('table.page') }}</label>
         <div>
           <button @click="updatePage(1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">|<<</button>
@@ -146,7 +146,7 @@
       </div>
     </div>
     <div>
-      <div class="pure-u-lg-1-2 pure-u-1">
+      <div class="pure-u-lg-1-2 pure-u-1" v-if="pages > 0">
         <div>{{ $t('table.page') }}</div>
         <div>
           <button @click="updatePage(1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">|<<</button>
