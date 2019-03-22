@@ -28,12 +28,12 @@
         <img src="~/assets/aso-tfbtv2.svg" width="100px" />
       </a>
     </div>
-    <div style="margin-top: 2rem">
+    <!--<div style="margin-top: 2rem">
       {{ $t('home.gunsaleLink') }}
       <a href="http://gunsale.ca/?utm_source=ammobin.ca" target="_blank" rel="noopener" title="gunsale.ca"
         >gunsale.ca</a
       >
-    </div>
+    </div>-->
   </div>
 </template>
 
