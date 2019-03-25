@@ -13,7 +13,7 @@
     "@nuxtjs/pwa": "^2.6.0",
     "@nuxtjs/workbox": "^2.6.0",
     "@vue/cli-shared-utils": "^3.4.0",
-    "ammobin-classifier": "0.0.32",
+    "ammobin-classifier": "0.0.33",
     "apollo-boost": "^0.1.23",
     "browserslist": "^4.4.0",
     "copy-webpack-plugin": "^5.0.0",
