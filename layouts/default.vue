@@ -18,14 +18,6 @@
         <li class="pure-menu-item">
           <nuxt-link
             class="pure-menu-link"
-            :class="{ 'pure-menu-selected': currentPage === '/rimfire' }"
-            :to="path('/rimfire')"
-            >{{ $t('default.rimfire') }}</nuxt-link
-          >
-        </li>
-        <li class="pure-menu-item">
-          <nuxt-link
-            class="pure-menu-link"
             :class="{ 'pure-menu-selected': currentPage === '/centerfire' }"
             :to="path('/centerfire')"
             >{{ $t('default.centerfire') }}</nuxt-link
@@ -37,6 +29,14 @@
             :class="{ 'pure-menu-selected': currentPage === '/shotgun' }"
             :to="path('/shotgun')"
             >{{ $t('default.shotgun') }}</nuxt-link
+          >
+        </li>
+        <li class="pure-menu-item">
+          <nuxt-link
+            class="pure-menu-link"
+            :class="{ 'pure-menu-selected': currentPage === '/rimfire' }"
+            :to="path('/rimfire')"
+            >{{ $t('default.rimfire') }}</nuxt-link
           >
         </li>
         <li class="pure-menu-item">

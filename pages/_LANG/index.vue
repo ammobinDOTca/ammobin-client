@@ -72,7 +72,7 @@ export default {
   async asyncData({}) {},
   head() {
     return {
-      title: 'The place to view the best online ammo prices across Canada.', //TODO: en francais
+      title: this.$t('home.tagline'),
       meta: [
         {
           hid: 'description',
