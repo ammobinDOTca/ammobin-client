@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <img src="~/assets/logo-medium.png" class="pure-img img" alt="ammobin.ca logo" />
+    <img src="~/assets/logo-medium.png" class="pure-img img" alt="ammobin.ca logo">
     <h1 class="m-b-30">AmmoBin.ca</h1>
     <h4>{{ $t('home.tagline') }}</h4>
     <h4>
@@ -25,7 +25,7 @@
         rel="noopener"
         title="TFBTV Mailbag Episode 4: A New Hope"
       >
-        <img src="~/assets/aso-tfbtv2.svg" width="100px" />
+        <img src="~/assets/aso-tfbtv2.svg" width="100px">
       </a>
     </div>
     <!--<div style="margin-top: 2rem">
@@ -45,7 +45,7 @@ export default {
     bestPrices: {
       query: gql`
         query getBestPrices {
-          bestPrices(calibres: ["9MM", ".223 / 5.56 NATO", "7.62 X 39MM"]) {
+          bestPrices(calibres: ["9MM", ".223 / 5.56 NATO", "7.62X39MM"]) {
             calibre
             unitCost
           }
