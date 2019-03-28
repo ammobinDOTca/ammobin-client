@@ -1,8 +1,9 @@
 const webpack = require('webpack')
 const { join } = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+import NuxtConfiguration from '@nuxt/config'
 
-export default {
+export default <NuxtConfiguration>{
   modules: ['@nuxtjs/pwa', '@nuxtjs/axios', '@nuxtjs/apollo'],
   build: {
     plugins: [
@@ -63,7 +64,7 @@ export default {
   router: {
     middleware: 'i18n',
     extendRoutes(routes, resolve) {
-      routes.unshift({
+      routes.unshift(<any>{
         name: 'fr-home',
         path: '/fr',
         component: resolve(__dirname, 'pages/index.vue'),

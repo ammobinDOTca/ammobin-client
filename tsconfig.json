@@ -1,6 +1,4 @@
 {
-  "extends": "@nuxt/typescript",
-
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "es2015", "es2016.array.include"],
@@ -16,7 +14,13 @@
     "baseUrl": ".",
     "allowJs": true,
     "paths": {
-      "~/*": ["./*"]
-    }
+      "~/*": ["./*"],
+      "@/*": ["./*"]
+    },
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "strict": true,
+    "noEmit": true,
+    "types": ["@types/node", "@nuxt/vue-app"]
   }
 }
