@@ -25,7 +25,6 @@ The meta search site for ammo prices across Canada. built with [nuxt.js](https:/
 ## vendors to add
 
 - https://shop.triggersandbows.com/ammunition/centerfire/ +1
-- https://www.budgetshootersupply.ca/product-category/categories/ammunition/centerfire-rifle-ammunition/ +.5
 - https://shophighfalls.com/collections/rifle-ammo?view=ALL (css rules hinder pulling data. will need to update scraper)
 - http://shop.sylvestresportinggoods.com/Rifle-Ammunition/?p=catalog&mode=catalog&parent=506&pg=1&CatalogSetSortBy=price
 - https://www.tesro.ca/ammunition-and-pellets/smallbore-ammunition.html?limit=36
@@ -35,8 +34,6 @@ The meta search site for ammo prices across Canada. built with [nuxt.js](https:/
 - https://gunworx.ca/collections/ammunition
 - https://www.latulippe.com/en/our-stores/
 - http://doctordeals.ca/product-category/smoking-gun/ammunition/rifle-ammo/
-- https://waspmunitions.ca/WASP-REMANUFACTURED-AMMUNITION-c14772333
-- https://rampartcorp.com/collections/ammunition
 - http://store.easthilloutdoors.com/ammo/bulk-ammo
 - http://www.armseast.ca/surplus_ammunition/
 
@@ -47,7 +44,6 @@ The meta search site for ammo prices across Canada. built with [nuxt.js](https:/
 
 - http://greendiamondoutfitters.ca/home/products_grid/category/rifle-ammunition/P24
 - http://practicalperformance.ca/accessories/ammunition/
-- http://www.rustywood.ca/shop/ammunition/
 - https://www.greatnorthprecision.com/collections/rifle-ammunition-1
 - http://targetshootingproducts.com/index.php?cPath=10&osCsid=b5dd02944271605ca93e19ea903cd3d2
 - http://www.thegunroom.ca/index.php?route=product/category&path=85 (6 items
