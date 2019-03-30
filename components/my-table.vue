@@ -394,6 +394,7 @@ export default {
 }
 
 .item {
-  min-height: 171px;
+  padding-bottom: 15px;
+  padding-top: 15px;
 }
 </style>
