@@ -35,7 +35,7 @@
     "@nuxt/typescript": "^2.5.1",
     "ammobin-api": "^1.0.0",
     "husky": "^1.2.1",
-    "now": "^14.0.0",
+    "now": "^15.0.0",
     "pretty-quick": "^1.8.0",
     "ramda": "^0.26.1",
     "snyk": "^1.122.0",
