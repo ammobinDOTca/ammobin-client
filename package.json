@@ -23,7 +23,6 @@
     "es6-promise": "^4.2.5",
     "graphql": "^14.2.1",
     "graphql-tag": "^2.10.0",
-
     "node-fetch": "^2.3.0",
     "nuxt": "^2.6.1",
     "purecss": "^1.0.0",

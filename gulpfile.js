@@ -1,8 +1,8 @@
 var gulp = require('gulp')
 var imageResize = require('gulp-image-resize')
-const imagemin = require('gulp-imagemin');
+const imagemin = require('gulp-imagemin')
 
-gulp.task('default', function () {
+gulp.task('default', function() {
   gulp
     .src('static/logos/*')
     .pipe(
