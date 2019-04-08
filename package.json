@@ -23,8 +23,7 @@
     "es6-promise": "^4.2.5",
     "graphql": "^14.2.1",
     "graphql-tag": "^2.10.0",
-    "gulp": "^4.0.0",
-    "gulp-image-resize": "^0.13.0",
+
     "node-fetch": "^2.3.0",
     "nuxt": "^2.6.1",
     "purecss": "^1.0.0",
@@ -35,7 +34,9 @@
   },
   "devDependencies": {
     "@nuxt/typescript": "^2.6.1",
-    "ammobin-api": "^1.0.0",
+    "gulp": "^4.0.0",
+    "gulp-image-resize": "^0.13.0",
+    "gulp-imagemin": "^5.0.3",
     "husky": "^1.2.1",
     "now": "^15.0.0",
     "pretty-quick": "^1.8.0",
