@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/nexusuw
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://ammobin.ca
+  * I am nexusuw (https://keybase.io/nexusuw) on keybase.
+  * I have a public key ASAIlDoO5lW-1VOUKt8ChFnHjrQppy_3UCVT2CtYDFfddAo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120feb3eb89a0c59d1a13681ee6c57a58260371429f06d82aed70304b18d54514c00a",
+      "host": "keybase.io",
+      "kid": "012008943a0ee655bed553942adf028459c78eb429a72ff7502553d82b580c57dd740a",
+      "uid": "bc97354d2260eebc5a7b5e4a5de10f19",
+      "username": "nexusuw"
+    },
+    "merkle_root": {
+      "ctime": 1555201950,
+      "hash": "343d376b68b6b9b6d519d9f494e63d3d0f9bd692febe843d63d723768024fa5c6be70924ec81dd91adf51beb85dbe9747b319ce0c7e4d23c0a74aaf0f00c27f7",
+      "hash_meta": "d99ec7969cfc165f80ea01dd1ea60bb50c9365432225b21308b6ec6a60952223",
+      "seqno": 5162920
+    },
+    "service": {
+      "entropy": "T+FnO7Qvkp/3/cEPPb4Yvovz",
+      "hostname": "ammobin.ca",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "3.2.2"
+  },
+  "ctime": 1555201959,
+  "expire_in": 504576000,
+  "prev": "50b003f983aadbab1c5dd745401f2db2391c39cf0f2e8648aa51db3ecad95e5c",
+  "seqno": 31,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgCJQ6DuZVvtVTlCrfAoRZx460Kacv91AlU9grWAxX3XQKp3BheWxvYWTESpcCH8QgULAD+YOq26scXddFQB8tsjkcOc8PLoZIqlHbPsrZXlzEIMjC8+IMIYeXNMd+gYHS1qzuc/0WxLfiO3RTCjsYJERxAgHCo3NpZ8RAy7lePFKS0C143vzr63oZ39sInbuDTmi0CDqTqMRMcbND6KYwwkus2juHyWngiHdhlXolcbdXwxrhSekwmhhCDqhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIDCry36zHnt3sAkW4/p+K4dyopHMeTyJxFBd0JEwhFWyo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/nexusuw
+
+==================================================================
