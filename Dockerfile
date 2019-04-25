@@ -1,4 +1,5 @@
-FROM node:10-alpine
+# TODO: move to 12-alpine once available
+FROM node:12-alpine
 RUN apk --no-cache add wget git g++ make python
 
 WORKDIR /build
