@@ -1,6 +1,8 @@
 const webpack = require('webpack')
 const { join } = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+
+import { ITEM_TYPES } from './components/constants'
 import NuxtConfiguration from '@nuxt/config'
 
 export default <NuxtConfiguration>{
@@ -91,11 +93,11 @@ export default <NuxtConfiguration>{
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: 'https://ammobin.ca/api/graphql',
+        httpEndpoint: !!process.env.PROD ? 'https://ammobin.ca/api/graphql' : 'http://localhost:8080/graphql',
       },
     },
   },
   generate: {
-    routes: ['/rimfire', '/centerfire', '/shotgun', '/fr/rimfire', '/fr/centerfire', '/fr/shotgun'],
+    routes: ['/', '/fr/'].reduce((lst, prep) => [...lst, ...ITEM_TYPES.map(post => prep + post)], [] as Array<string>),
   },
 }

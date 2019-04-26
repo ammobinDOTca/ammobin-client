@@ -1,47 +1,49 @@
 <template>
   <div class="container">
-    <h1>{{ $t('default.' + (ammotype || 'ammo')) }}</h1>
+    <div v-if="!isAmmoType">{{ $t('default.betaWarning') }}</div>
+    <h1>{{ $t('default.' + (itemType || 'ammo')) }}</h1>
     <my-table
-      v-if="!error && ammoListings"
-      v-bind:rows="ammoListings.items"
-      :pages="ammoListings.pages"
-      v-bind:ammotype="ammotype"
+      v-if="!error && itemsListings"
+      v-bind:rows="itemsListings.items"
+      :pages="itemsListings.pages"
+      v-bind:itemType="itemType"
       v-bind:vendors="[null].concat(vendors.map(i => i.name))"
     ></my-table>
     <div v-if="error">ERROR {{ error }}</div>
-    <div v-if="!ammoListings">{{ $t('default.loading') }}</div>
+    <div v-if="!itemsListings">{{ $t('default.loading') }}</div>
   </div>
 </template>
 
 <script lang="ts">
 import MyTable from '~/components/my-table.vue'
 import { getUrl } from '~/helpers'
+import { ITEM_TYPES, AMMO_TYPES } from '~/components/constants'
 import gql from 'graphql-tag'
 
 export default {
   head() {
     const link: any[] = []
-    const url = `https://ammobin.ca/${this.$i18n.locale !== 'en' ? this.$i18n.locale + '/' : ''}${this.ammotype ||
+    const url = `https://ammobin.ca/${this.$i18n.locale !== 'en' ? this.$i18n.locale + '/' : ''}${this.itemType ||
       'ammo'}`
     if (this.page > 1) {
       link.push({
         rel: 'prev',
-        href: getUrl(url, this.page - 1, this.calibre),
+        href: getUrl(url, this.page - 1, this.subType),
       })
     }
-    if (this.ammoListings && this.ammoListings.pages > this.page) {
+    if (this.itemsListings && this.itemsListings.pages > this.page) {
       link.push({
         rel: 'next',
-        href: getUrl(url, this.page + 1, this.calibre),
+        href: getUrl(url, this.page + 1, this.subType),
       })
     }
     return {
-      title: (this.calibre || this.ammotype || 'Ammo') + ' Prices', //TODO: en francais
+      title: (this.subType || this.itemType || 'Ammo') + ' Prices', //TODO: en francais
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: `The place to view the best ${this.calibre || this.ammotype || 'ammo'} prices across ${this
+          content: `The place to view the best ${this.subType || this.itemType || 'ammo'} prices across ${this
             .province || 'Canada'}.`, //TODO: en francais
         },
       ],
@@ -58,24 +60,24 @@ export default {
         }
       `,
     },
-    ammoListings: {
+    itemsListings: {
       query: gql`
-        query getAmmoListings(
-          $ammoType: AmmoType
+        query getitemsListings(
+          $itemType: ItemType
           $page: Int
           $pageSize: Int
-          $calibre: String
+          $subType: String
           $province: Province
           $vendor: String
           $query: String
           $sortField: SortField
           $sortOrder: SortOrder
         ) {
-          ammoListings(
-            ammoType: $ammoType
+          itemsListings(
+            itemType: $itemType
             page: $page
             pageSize: $pageSize
-            calibre: $calibre
+            subType: $subType
             province: $province
             vendor: $vendor
             sortField: $sortField
@@ -86,7 +88,7 @@ export default {
             items {
               name
               brand
-              calibre
+              subType
               minPrice
               maxPrice
               minUnitCost
@@ -107,9 +109,9 @@ export default {
         // Use vue reactive properties here
         return {
           page: this.page,
-          calibre: this.calibre || null,
+          subType: this.subType || null,
           pageSize: this.pageSize,
-          ammoType: this.ammotype || null,
+          itemType: this.itemType || null,
           province: this.province || null,
           vendor: this.vendor || null,
           query: this.query || null,
@@ -118,17 +120,18 @@ export default {
         }
       },
       prefetch: ({ route }) => {
-        let ammoType = route.params.ammotype || route.query.ammotype || null
-        if (['rimfire', 'centerfire', 'shotgun'].indexOf(ammoType) === -1) {
+        let itemType = route.params.itemType || route.query.itemType || null
+        // todo: fix this
+        if (false && ![ITEM_TYPES].includes(itemType)) {
           return false // hard 404
         }
 
         return {
           page: Number(route.query.page) || 1,
-          calibre: route.query.calibre || null,
+          subType: route.query.subType || route.query.calibre || null,
           pageSize: Number(route.query.pageSize) || 25,
           province: route.query.province || null,
-          ammoType,
+          itemType,
           vendor: route.query.vendor || null,
           query: route.query.query || null,
           sortField: route.query.sortField || null,
@@ -142,8 +145,6 @@ export default {
           } else {
             this.$nuxt.$loading.finish()
           }
-        } else {
-          console.log('no loading start/finish')
         }
       },
     },
@@ -155,11 +156,15 @@ export default {
     }
   },
   computed: {
+    isAmmoType() {
+      return AMMO_TYPES.includes(this.itemType)
+    },
     page() {
       return Number(this.$route.query.page) || 1
     },
-    calibre() {
-      return this.$route.query.calibre || null
+    subType() {
+      // query was old param, dont want to break links
+      return this.$route.query.subType || this.$route.query.calibre || null
     },
     province() {
       return this.$route.query.province || null
@@ -167,12 +172,9 @@ export default {
     pageSize() {
       return Number(this.$route.query.pageSize) || 25
     },
-    ammotype() {
-      let ammoType = this.$route.params.ammotype || this.$route.query.ammotype || null
-      if (ammoType === 'ammo') {
-        ammoType = null
-      }
-      return ammoType
+    itemType() {
+      let itemType = this.$route.params.itemType || this.$route.query.itemType || null
+      return itemType
     },
     vendor() {
       return this.$route.query.vendor || null
@@ -191,8 +193,8 @@ export default {
     MyTable,
   },
   validate({ params }) {
-    // todo: use proper const here
-    return [null, 'rimfire', 'centerfire', 'shotgun'].indexOf(params.ammotype) >= 0
+    // todo: use proper const here + reloading
+    return true || [null, ...ITEM_TYPES].includes(params.itemType)
   },
 }
 </script>

@@ -4,10 +4,16 @@
     "centerfire": "Percussion centrale",
     "shotgun": "Fusil à pompe",
     "ammo": "Munitions",
+    "reloading": "rechargement",
+    "powder": "poudre",
+    "shot": "balle",
+    "case": "cas",
+    "primer": "l'apprêt",
     "about": "À propos",
     "contact": "Contact",
     "failedToLoad": "échec du chargement de la liste des munitions",
-    "loading": "chargement"
+    "loading": "chargement",
+    "betaWarning": "Cette page est toujours en version bêta. S'il vous plaît soyez patient sur les erreurs."
   },
   "home": {
     "title": "Bienvenue",
@@ -17,13 +23,13 @@
     "startingAt": "À partir de",
     "perRound": "par cartouche",
     "currentlyPopular": "Populaire présentement",
-    "searching": "Recherche sur"
+    "searching": "Recherche sur",
+    "newBeta": "nouvelles fonctionnalités actuellement en version bêta"
   },
   "about": {
     "supportedRetailers": "Détaillants supportés",
     "disclaimerTitle": "Avertissement",
-    "disclaimer":
-      "En date du 15 juin 2017, tous les frais d'ammobin.ca sont déboursé par le créateur. Le site ne reçoit aucune prime de référencement de la part des détaillants figurant sur ce site. De plus, ammobin.ca n'utilise aucun logiciel ou librairie d'analyse ou de suivi côté client. Toutes les statistiques du site sont collectées à partir des journaux du serveur nginx (c'est-à-dire: ce que votre navigateur envoie lorsqu'il demande une page) et en utilisant la redirection d'URL pour suivre les clics vers les fournisseurs.",
+    "disclaimer": "En date du 15 juin 2017, tous les frais d'ammobin.ca sont déboursé par le créateur. Le site ne reçoit aucune prime de référencement de la part des détaillants figurant sur ce site. De plus, ammobin.ca n'utilise aucun logiciel ou librairie d'analyse ou de suivi côté client. Toutes les statistiques du site sont collectées à partir des journaux du serveur nginx (c'est-à-dire: ce que votre navigateur envoie lorsqu'il demande une page) et en utilisant la redirection d'URL pour suivre les clics vers les fournisseurs.",
     "sendEmail": "ou écrivez un courriel à",
     "submitIssue": "Créer un “Issue” ou un “Pull request” sur",
     "contactInfo": "Informations de contact",
@@ -32,15 +38,12 @@
     "contactQuestion3": "Une suggestion?",
     "contactQuestion4": "Besoin d'un détaillant qui n'est pas encore sur le site?",
     "wikiamrsLink": "Vous cherchez des munitions / armes à feu chez nos voisins du sud? Essayez",
-    "main1":
-      "récupère quotidiennement les prix des munitions auprès des détaillants en ligne canadiens pour vous aider à trouver les meilleures offres disponibles.",
+    "main1": "récupère quotidiennement les prix des munitions auprès des détaillants en ligne canadiens pour vous aider à trouver les meilleures offres disponibles.",
     "main2": "Les prix sont mis à jour chaque matin.",
-    "main3":
-      "Aucune munitions ne sont vendues sur le site, nous affichons uniquement de liens vers les sites des détaillants.",
+    "main3": "Aucune munitions ne sont vendues sur le site, nous affichons uniquement de liens vers les sites des détaillants.",
     "moreRetailers": "plus à venir...",
     "incorrectCountTitle": "Coûts unitaires incorrects",
-    "incorrectCountText":
-      "Depuis le début d’Ammobin, les coûts unitaires ne sont pas corrects à 100%. Cela est en partie dû aux détaillants, y compris les flans ou les quantités multiples dans le titre. D'autres fois, ammobin-classifer analyse d'autres nombres dans le titre en tant que nombre d'éléments. Puisque ammobin utilise le déchiquetage automatisé, il n’est pas possible de corriger manuellement ces erreurs (il serait bien de ne pas avoir à les voir)."
+    "incorrectCountText": "Depuis le début d’Ammobin, les coûts unitaires ne sont pas corrects à 100%. Cela est en partie dû aux détaillants, y compris les flans ou les quantités multiples dans le titre. D'autres fois, ammobin-classifer analyse d'autres nombres dans le titre en tant que nombre d'éléments. Puisque ammobin utilise le déchiquetage automatisé, il n’est pas possible de corriger manuellement ces erreurs (il serait bien de ne pas avoir à les voir)."
   },
   "links": {
     "french": "FR",

@@ -4,6 +4,11 @@ https://ammobin.ca/dank
 https://ammobin.ca/rimfire
 https://ammobin.ca/shotgun
 https://ammobin.ca/centerfire
+https://ammobin.ca/reloading
+https://ammobin.ca/powder
+https://ammobin.ca/shot
+https://ammobin.ca/case
+https://ammobin.ca/primer
 https://ammobin.ca/rimfire?calibre=.22%20WMR&page=1
 https://ammobin.ca/rimfire?calibre=.22%20LR&page=1
 https://ammobin.ca/rimfire?calibre=.17%20HMR&page=1
@@ -102,6 +107,11 @@ https://ammobin.ca/fr/dank
 https://ammobin.ca/fr/rimfire
 https://ammobin.ca/fr/shotgun
 https://ammobin.ca/fr/centerfire
+https://ammobin.ca/fr/reloading
+https://ammobin.ca/fr/powder
+https://ammobin.ca/fr/shot
+https://ammobin.ca/fr/case
+https://ammobin.ca/fr/primer
 https://ammobin.ca/fr/rimfire?calibre=.22%20WMR&page=1
 https://ammobin.ca/fr/rimfire?calibre=.22%20LR&page=1
 https://ammobin.ca/fr/rimfire?calibre=.17%20HMR&page=1

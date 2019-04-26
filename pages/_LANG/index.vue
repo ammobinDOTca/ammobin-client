@@ -9,7 +9,20 @@
       {{ $t('home.daily') }}
     </h4>
 
-    <h2 class="m-t-30">{{ $t('home.currentlyPopular') }}</h2>
+    <h2 class="m-t-30 cap">{{ $t('home.newBeta') }}</h2>
+    <div class="row">
+      <div class="pure-u-md-1-3 pure-u-1 margin-y">
+        <nuxt-link :to="{ path: 'reloading' }">reloading supplies</nuxt-link>
+      </div>
+      <div class="pure-u-md-1-3 pure-u-1 margin-y"><nuxt-link :to="{ path: 'powder' }">Powder</nuxt-link></div>
+      <div class="pure-u-md-1-3 pure-u-1 margin-y"><nuxt-link :to="{ path: 'primer' }">Primers</nuxt-link></div>
+      <div class="pure-u-md-1-3 pure-u-1 margin-y"><nuxt-link :to="{ path: 'shot' }">Bullets / Shot</nuxt-link></div>
+      <div class="pure-u-md-1-3 pure-u-1 margin-y">
+        <nuxt-link :to="{ path: 'case' }">Cartridges / Shells</nuxt-link>
+      </div>
+    </div>
+
+    <h2 class="m-t-30 cap">{{ $t('home.currentlyPopular') }}</h2>
     <div class="pure-g row">
       <div v-for="v in bestPrices" class="pure-u-md-1-3 pure-u-1 margin-y">
         <nuxt-link :to="{ path: 'centerfire', query: { calibre: v.calibre } }">{{ v.calibre }}</nuxt-link>
@@ -102,5 +115,9 @@ export default {
 
 .m-t-30 {
   margin-top: 30px;
+}
+
+.cap {
+  text-transform: capitalize;
 }
 </style>

@@ -4,10 +4,16 @@
     "centerfire": "Centerfire",
     "shotgun": "Shotgun",
     "ammo": "Ammo",
+    "reloading": "reloading",
+    "powder": "powder",
+    "shot": "shot",
+    "case": "case",
+    "primer": "primer",
     "about": "About",
     "contact": "Contact",
     "failedToLoad": "failed to load ammo list",
-    "loading": "loading"
+    "loading": "loading",
+    "betaWarning": "This page is still is in beta. Please be patient about any errors."
   },
   "home": {
     "title": "Welcome",
@@ -17,7 +23,8 @@
     "startingAt": "starting at",
     "perRound": "per round",
     "currentlyPopular": "currently popular",
-    "searching": "Searching"
+    "searching": "Searching",
+    "newBeta": "new features currently in beta"
   },
   "about": {
     "supportedRetailers": "Supported Retailers",

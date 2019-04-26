@@ -42,6 +42,14 @@
         <li class="pure-menu-item">
           <nuxt-link
             class="pure-menu-link"
+            :class="{ 'pure-menu-selected': currentPage === '/reloading' }"
+            :to="path('/reloading')"
+            >{{ $t('default.reloading') }} (BETA)</nuxt-link
+          >
+        </li>
+        <li class="pure-menu-item">
+          <nuxt-link
+            class="pure-menu-link"
             :class="{ 'pure-menu-selected': currentPage === '/about' }"
             :to="path('/about')"
             >{{ $t('default.about') }}</nuxt-link
@@ -54,18 +62,16 @@
             :to="`/fr` + $route.fullPath"
             active-class="none"
             exact
+            >{{ $t('links.french') }}</nuxt-link
           >
-            {{ $t('links.french') }}
-          </nuxt-link>
           <nuxt-link
             class="pure-menu-link"
             v-else
             :to="$route.fullPath.replace(/^\/[^\/]+/, '')"
             active-class="none"
             exact
+            >{{ $t('links.english') }}</nuxt-link
           >
-            {{ $t('links.english') }}
-          </nuxt-link>
         </li>
       </ul>
     </div>
