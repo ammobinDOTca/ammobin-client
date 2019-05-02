@@ -36,7 +36,7 @@
     "gulp": "^4.0.0",
     "gulp-image-resize": "^0.13.0",
     "gulp-imagemin": "^5.0.3",
-    "husky": "^1.2.1",
+    "husky": "^2.0.0",
     "now": "^15.0.0",
     "pretty-quick": "^1.8.0",
     "ramda": "^0.26.1",
