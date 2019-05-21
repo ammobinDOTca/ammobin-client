@@ -14,7 +14,7 @@
     "@nuxtjs/workbox": "^2.6.0",
     "@vue/cli-shared-utils": "^3.4.0",
     "ammobin-classifier": "^0.0.35",
-    "apollo-boost": "^0.3.0",
+    "apollo-boost": "^0.4.0",
     "boxen": "^3.1.0",
     "browserslist": "^4.5.4",
     "copy-webpack-plugin": "^5.0.0",
