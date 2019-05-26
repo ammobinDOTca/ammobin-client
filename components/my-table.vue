@@ -70,15 +70,15 @@
       </div>
     </div>
     <div class="pure-g row">
-      <div class="pure-u-lg-1-5 pure-u-1"></div>
-      <div class="pure-u-lg-1-5 pure-u-1-4 title" @click="sortBy('name')" :class="{ active: sortField == 'name' }">
+      <div class="pure-u-lg-1-4 pure-u-1"></div>
+      <div class="pure-u-lg-1-4 pure-u-1-4 title" @click="sortBy('name')" :class="{ active: sortField == 'name' }">
         <h4>
           {{ $t('table.name') }}
           <span class="arrow" :class="sortOrder"></span>
         </h4>
       </div>
       <div
-        class="pure-u-lg-1-5 pure-u-1-4 title"
+        class="pure-u-lg-1-4 pure-u-1-4 title"
         @click="sortBy('minPrice')"
         :class="{ active: sortField == 'minPrice' }"
       >
@@ -87,7 +87,7 @@
           <span class="arrow" :class="sortOrder"></span>
         </h4>
       </div>
-      <div
+      <!--<div
         class="pure-u-lg-1-5 pure-u-1-4 title"
         @click="sortBy('minUnitCost')"
         :class="{ active: sortField == 'minUnitCost' }"
@@ -96,8 +96,8 @@
           {{ $t('table.unitCost') }}
           <span class="arrow" :class="sortOrder"></span>
         </h4>
-      </div>
-      <div class="pure-u-lg-1-5 pure-u-1-4 title" @click="sortBy('link')" :class="{ active: sortField == 'link' }">
+      </div>-->
+      <div class="pure-u-lg-1-4 pure-u-1-4 title" @click="sortBy('link')" :class="{ active: sortField == 'link' }">
         <h4>
           {{ $t('table.link') }}
           <span class="arrow" :class="sortOrder"></span>
@@ -110,34 +110,34 @@
     </div>
 
     <div v-for="(row, index) in rows" :key="row.name" class="pure-g row fix-row item">
-      <div class="pure-u-lg-1-5 pure-u-md-1 pure-u-1">
+      <div class="pure-u-lg-1-4 pure-u-md-1 pure-u-1">
         <img class="pure-img img-cell" v-bind:src="row.img || defaultImg" v-img-fallback="defaultImg" :alt="row.name" />
       </div>
-      <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1 capitalize">{{ row.name }}</div>
-      <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
+      <div class="pure-u-lg-1-4 pure-u-md-1-4 pure-u-1 m-b-1 capitalize">{{ row.name }}</div>
+      <div class="pure-u-lg-1-4 pure-u-md-1-4 pure-u-1 m-b-1">
         <div v-if="row.minPrice !== row.maxPrice">${{ row.minPrice.toFixed(2) }} - ${{ row.maxPrice.toFixed(2) }}</div>
         <div v-else>${{ row.minPrice.toFixed(2) }}</div>
       </div>
-      <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
+      <!--<div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
         <div v-if="row.minUnitCost && row.minUnitCost !== row.maxUnitCost">
           ${{ row.minUnitCost.toFixed(2) }} - ${{ row.maxUnitCost.toFixed(2) }}
         </div>
         <div v-else-if="row.minUnitCost && row.minUnitCost === row.maxUnitCost">${{ row.minUnitCost.toFixed(2) }}</div>
         <div v-else if="!row.minUnitCost">N/A</div>
-      </div>
-      <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
+      </div>-->
+      <div class="pure-u-lg-1-4 pure-u-md-1-4 pure-u-1 m-b-1">
         <button class="pure-button" @click="toggleVendors(row)">
           {{ showVendors[row.name] ? $t('table.hide') : $t('table.show') }} {{ $t('table.vendors') }}
         </button>
       </div>
       <div class="pure-u-1" v-if="showVendors[row.name] === true">
         <div v-for="v in row.vendors" :key="v.link" class="pure-g m-b-1">
-          <div class="pure-u-lg-2-5 pure-u-md-1-4 pure-u-2-5">{{ v.name }}</div>
-          <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1-5">${{ v.price.toFixed(2) }}</div>
-          <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1-5">
+          <div class="pure-u-lg-1-2 pure-u-md-1-4 pure-u-1-2">{{ v.name }}</div>
+          <div class="pure-u-lg-1-4 pure-u-md-1-4 pure-u-1-4">${{ v.price.toFixed(2) }}</div>
+          <!--<div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1-5">
             <span v-if="v.unitCost">({{ v.unitCost.toFixed(2) }} {{ $t('table.perRound') }})</span>
-          </div>
-          <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1-5">
+          </div>-->
+          <div class="pure-u-lg-1-4 pure-u-md-1-4 pure-u-1-4">
             <a @click="itemClicked(v.link)" v-bind:href="v.link" target="_blank" rel="nofollow noopener"
               >{{ $t('table.buyFrom') }} {{ v.vendor }}</a
             >

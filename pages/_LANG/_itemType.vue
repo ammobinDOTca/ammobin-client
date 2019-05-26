@@ -91,8 +91,8 @@ export default {
               subType
               minPrice
               maxPrice
-              minUnitCost
-              maxUnitCost
+              #minUnitCost
+              #maxUnitCost
               img
               vendors {
                 name
@@ -134,8 +134,8 @@ export default {
           itemType,
           vendor: route.query.vendor || null,
           query: route.query.query || null,
-          sortField: route.query.sortField || null,
-          sorderOrder: route.query.sortOrder || null,
+          sortField: route.query.sortField || 'minPrice' || null,
+          sorderOrder: route.query.sortOrder || 'DES' || null,
         }
       },
       watchLoading(isLoading /*, countModifier*/) {
@@ -183,10 +183,10 @@ export default {
       return this.$route.query.query || null
     },
     sortOrder() {
-      return this.$route.query.sortOrder || null
+      return this.$route.query.sortOrder || 'DES' // null
     },
     sortField() {
-      return this.$route.query.sortField || null
+      return this.$route.query.sortField || 'minPrice'
     },
   },
   components: {

@@ -93,7 +93,7 @@ export default <NuxtConfiguration>{
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: !!process.env.PROD ? 'https://ammobin.ca/api/graphql' : 'http://localhost:8080/graphql',
+        httpEndpoint: true || !!process.env.PROD ? 'https://ammobin.ca/api/graphql' : 'http://localhost:8080/graphql',
       },
     },
   },

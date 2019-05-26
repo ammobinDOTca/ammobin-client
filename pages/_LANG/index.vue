@@ -24,10 +24,8 @@
 
     <h2 class="m-t-30 cap">{{ $t('home.currentlyPopular') }}</h2>
     <div class="pure-g row">
-      <div v-for="v in bestPrices" class="pure-u-md-1-3 pure-u-1 margin-y">
-        <nuxt-link :to="{ path: 'centerfire', query: { calibre: v.calibre } }">{{ v.calibre }}</nuxt-link>
-        <div>{{ $t('home.startingAt') }}</div>
-        <div>${{ v.unitCost.toFixed(2) }} {{ $t('home.perRound') }}</div>
+      <div v-for="v in topCalibres" class="pure-u-md-1-3 pure-u-1 margin-y">
+        <nuxt-link :to="{ path: 'centerfire', query: { subType: v } }">{{ v }}</nuxt-link>
       </div>
     </div>
 
@@ -55,7 +53,7 @@ import gql from 'graphql-tag'
 
 export default {
   apollo: {
-    bestPrices: {
+    /*bestPrices: {
       query: gql`
         query getBestPrices {
           bestPrices(calibres: ["9MM", ".223 / 5.56 NATO", "7.62X39MM"]) {
@@ -65,7 +63,7 @@ export default {
         }
       `,
       prefetch: () => ({}), // trigger serverside lookup
-    },
+    },*/
     vendors: {
       query: gql`
         query getVendors {
@@ -76,6 +74,11 @@ export default {
       `,
       prefetch: () => ({}), // trigger serverside lookup
     },
+  },
+  data() {
+    return {
+      topCalibres: ['9MM', '7.62X39MM', '.223 / 5.56 NATO'],
+    }
   },
   computed: {
     vendorCount() {
