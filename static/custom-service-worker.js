@@ -1,4 +1,4 @@
-console.log('Custom service worker! workbox?', !!workbox)
+console.log('hi there. I have a clean API open to use over at https://ammobin.ca/api/graphql')
 
 // cache api GET requests
 workbox.routing.registerRoute(
