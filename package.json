@@ -24,7 +24,7 @@
     "graphql": "^14.2.1",
     "graphql-tag": "^2.10.0",
     "gulp-gm": "0.0.9",
-    "node-fetch": "^2.3.0",
+    "node-fetch": "^2.5.0",
     "nuxt": "^2.7.1",
     "purecss": "^1.0.0",
     "v-img-fallback": "^0.1.4",
@@ -34,6 +34,16 @@
   },
   "devDependencies": {
     "@nuxt/typescript": "^2.6.1",
+    "@nuxtjs/eslint-config": "0.0.1",
+    "@typescript-eslint/eslint-plugin": "^1.9.0",
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jest": "^22.6.4",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^5.2.2",
     "gulp": "^4.0.0",
     "gulp-image-resize": "^0.13.0",
     "gulp-imagemin": "^5.0.3",
@@ -52,7 +62,9 @@
     "surge": "surge --project ./dist --domain ammobin.surge.sh",
     "snyk-protect": "snyk protect",
     "heroku-postbuild": "npm run build",
-    "format": "pretty-quick"
+    "format": "pretty-quick",
+    "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore .",
+    "lint:fix": "eslint --ext .ts,.js,.vue --ignore-path .gitignore --fix ."
   },
   "snyk": true,
   "husky": {

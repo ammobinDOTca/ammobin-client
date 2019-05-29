@@ -1,5 +1,5 @@
-var gulp = require('gulp')
-var imageResize = require('gulp-image-resize')
+const gulp = require('gulp')
+const imageResize = require('gulp-image-resize')
 const imagemin = require('gulp-imagemin')
 
 gulp.task('default', function() {

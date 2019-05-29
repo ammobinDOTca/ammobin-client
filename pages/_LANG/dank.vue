@@ -3,23 +3,20 @@
     <h1>Today's Dankest Ammo Listings</h1>
     <div class="row">
       <div class="pure-u-1-3">
-        <img v-bind:src="img1" class="dank-img">
+        <img :src="img1" class="dank-img" />
       </div>
-      <h3 class="pure-u-1-3">Everything that failed to be classified</h3>
+      <h3 class="pure-u-1-3">
+        Everything that failed to be classified
+      </h3>
       <div class="pure-u-1-3">
-        <img v-bind:src="img2" class="dank-img">
+        <img :src="img2" class="dank-img" />
       </div>
     </div>
     <div class>
       <div class="pure-form pure-form-stacked">
         <div id="search" class="pure-u-1 pure-u-md-1-6">
           <label>Search</label>
-          <input
-            name="query"
-            v-model="searchQuery"
-            class="pure-input-1"
-            placeholder="ie: Barnaul, surplus, 00 Buck"
-          >
+          <input v-model="searchQuery" name="query" class="pure-input-1" placeholder="ie: Barnaul, surplus, 00 Buck" />
         </div>
 
         <div class="pure-u-1 pure-u-md-1-6">
@@ -35,117 +32,95 @@
         <div class="pure-u-1 pure-u-md-1-3">
           <label>Page</label>
           <div>
-            <button
-              @click="goto(1)"
-              class="pure-button button-xsmall"
-              v-bind:disabled="page === 1"
-            >First</button>
-            <button
-              @click="goto(page - 1)"
-              class="pure-button button-xsmall"
-              v-bind:disabled="page === 1"
-            >Prev</button>
-            {{page}} of {{pages}}
-            <button
-              @click="goto(page+1)"
-              class="pure-button button-xsmall"
-              v-bind:disabled="page === pages"
-            >Next</button>
-            <button
-              @click="goto( pages)"
-              class="pure-button button-xsmall"
-              v-bind:disabled="page === pages"
-            >Last</button>
+            <button class="pure-button button-xsmall" :disabled="page === 1" @click="goto(1)">
+              First
+            </button>
+            <button class="pure-button button-xsmall" :disabled="page === 1" @click="goto(page - 1)">
+              Prev
+            </button>
+            {{ page }} of {{ pages }}
+            <button class="pure-button button-xsmall" :disabled="page === pages" @click="goto(page + 1)">
+              Next
+            </button>
+            <button class="pure-button button-xsmall" :disabled="page === pages" @click="goto(pages)">
+              Last
+            </button>
           </div>
         </div>
       </div>
       <div class="pure-g row">
-        <div class="pure-u-lg-1-5 pure-u-1"></div>
-        <div
-          class="pure-u-lg-1-5 pure-u-1-4 title"
-          @click="sortBy('name')"
-          :class="{ active: sortKey == 'name' }"
-        >
+        <div class="pure-u-lg-1-5 pure-u-1" />
+        <div class="pure-u-lg-1-5 pure-u-1-4 title" :class="{ active: sortKey == 'name' }" @click="sortBy('name')">
           <h4>
             Name
-            <span class="arrow" :class="sortOrders['name'] > 0 ? 'asc' : 'dsc'"></span>
+            <span class="arrow" :class="sortOrders['name'] > 0 ? 'asc' : 'dsc'" />
           </h4>
         </div>
-        <div
-          class="pure-u-lg-1-5 pure-u-1-4 title"
-          @click="sortBy('price')"
-          :class="{ active: sortKey == 'price' }"
-        >
+        <div class="pure-u-lg-1-5 pure-u-1-4 title" :class="{ active: sortKey == 'price' }" @click="sortBy('price')">
           <h4>
             Price
-            <span class="arrow" :class="sortOrders['price'] > 0 ? 'asc' : 'dsc'"></span>
+            <span class="arrow" :class="sortOrders['price'] > 0 ? 'asc' : 'dsc'" />
           </h4>
         </div>
-        <div
-          class="pure-u-lg-1-5 pure-u-1-4 title"
-          @click="sortBy('vendor')"
-          :class="{ active: sortKey == 'vendor' }"
-        >
+        <div class="pure-u-lg-1-5 pure-u-1-4 title" :class="{ active: sortKey == 'vendor' }" @click="sortBy('vendor')">
           <h4>
             Link
-            <span class="arrow" :class="sortOrders['vendor'] > 0 ? 'asc' : 'dsc'"></span>
+            <span class="arrow" :class="sortOrders['vendor'] > 0 ? 'asc' : 'dsc'" />
           </h4>
         </div>
       </div>
 
       <div v-if="filteredRows.length === 0" class="pure-g row fix-row no-res">
-        <div class="pure-u-1">no results found.</div>
+        <div class="pure-u-1">
+          no results found.
+        </div>
       </div>
 
       <div v-for="(row, index) in filteredRows" class="pure-g row fix-row">
         <div class="pure-u-lg-1-4 pure-u-md-1 pure-u-1">
-          <img class="pure-img img-cell" v-bind:src="row.img || defaultImg">
+          <img class="pure-img img-cell" :src="row.img || defaultImg" />
         </div>
-        <div class="pure-u-lg-1-4 pure-u-md-1-4 pure-u-1 m-b-1 capitalize">{{row.name}}</div>
-        <div
-          class="pure-u-lg-1-4 pure-u-md-1-4 pure-u-1 m-b-1"
-        >${{row.price ? row.price.toFixed(2) : '???'}}</div>
+        <div class="pure-u-lg-1-4 pure-u-md-1-4 pure-u-1 m-b-1 capitalize">
+          {{ row.name }}
+        </div>
+        <div class="pure-u-lg-1-4 pure-u-md-1-4 pure-u-1 m-b-1">${{ row.price ? row.price.toFixed(2) : '???' }}</div>
         <div class="pure-u-lg-1-4 pure-u-md-1-4 pure-u-1 m-b-1">
-          <a v-bind:href="row.link" target="_blank" rel="nofollow">Buy From {{row.vendor}}</a>
+          <a :href="row.link" target="_blank" rel="nofollow">Buy From {{ row.vendor }}</a>
         </div>
       </div>
       <div>
         <div class="pure-u-lg-1-2 pure-u-1">
           <div>Page</div>
           <div>
-            <button
-              @click="goto(1)"
-              class="pure-button button-xsmall"
-              v-bind:disabled="page === 1"
-            >First</button>
-            <button
-              @click="goto(page - 1)"
-              class="pure-button button-xsmall"
-              v-bind:disabled="page === 1"
-            >Prev</button>
-            {{page}} of {{pages}}
-            <button
-              @click="goto(page+1)"
-              class="pure-button button-xsmall"
-              v-bind:disabled="page === pages"
-            >Next</button>
-            <button
-              @click="goto( pages)"
-              class="pure-button button-xsmall"
-              v-bind:disabled="page === pages"
-            >Last</button>
+            <button class="pure-button button-xsmall" :disabled="page === 1" @click="goto(1)">
+              First
+            </button>
+            <button class="pure-button button-xsmall" :disabled="page === 1" @click="goto(page - 1)">
+              Prev
+            </button>
+            {{ page }} of {{ pages }}
+            <button class="pure-button button-xsmall" :disabled="page === pages" @click="goto(page + 1)">
+              Next
+            </button>
+            <button class="pure-button button-xsmall" :disabled="page === pages" @click="goto(pages)">
+              Last
+            </button>
           </div>
         </div>
       </div>
     </div>
-    <div v-if="error">Failed to load the dankest.</div>
+    <div v-if="error">
+      Failed to load the dankest.
+    </div>
     <div class="row">
       <div class="pure-u-1-3">
-        <img v-bind:src="img3" class="dank-img">
+        <img :src="img3" class="dank-img" />
       </div>
-      <h3 class="pure-u-1-3">Everything that failed to be classified</h3>
+      <h3 class="pure-u-1-3">
+        Everything that failed to be classified
+      </h3>
       <div class="pure-u-1-3">
-        <img v-bind:src="img4" class="dank-img">
+        <img :src="img4" class="dank-img" />
       </div>
     </div>
   </div>
@@ -168,12 +143,12 @@ import MyTable from '~/components/my-table.vue'
 
 export default {
   head: {
-    title: 'Dankest Ammo Items Found Today', //TODO: en francais
+    title: 'Dankest Ammo Items Found Today', // TODO: en francais
     meta: [
       {
         hid: 'description',
         name: 'description',
-        content: 'The dankest list of ammo items for sale online today in Canada.', //TODO: en francais
+        content: 'The dankest list of ammo items for sale online today in Canada.', // TODO: en francais
       },
     ],
   },
@@ -201,9 +176,9 @@ export default {
   computed: {
     filteredRows() {
       let data = this.rows
-      let sortKey = this.sortKey
-      let order = this.order
-      let searchQuery = this.searchQuery.toLowerCase()
+      const sortKey = this.sortKey
+      const order = this.order
+      const searchQuery = this.searchQuery.toLowerCase()
 
       if (searchQuery) {
         data = data.filter(r => r.name.toLowerCase().indexOf(searchQuery) >= 0)
@@ -211,8 +186,8 @@ export default {
 
       if (sortKey) {
         data = data.sort(function(a, b) {
-          let aa = a[sortKey]
-          let bb = b[sortKey]
+          const aa = a[sortKey]
+          const bb = b[sortKey]
 
           if (aa === bb) {
             return 0
@@ -225,8 +200,8 @@ export default {
       }
 
       this.sortedListLength = data.length // gross side effect. but lets us know how many pages of data there are
-      let start = (this.page - 1) * this.pageSize
-      let end = Math.min(this.page * this.pageSize, data.length)
+      const start = (this.page - 1) * this.pageSize
+      const end = Math.min(this.page * this.pageSize, data.length)
       return data.slice(start, end)
     },
     pages() {
@@ -238,20 +213,6 @@ export default {
       }
 
       return pages
-    },
-  },
-  methods: {
-    sortBy(key) {
-      this.sortKey = key
-      this.sortOrders[key] = this.sortOrders[key] * -1
-    },
-    goto(page) {
-      if (page > this.pages) {
-        this.page = this.pages
-      } else {
-        this.page = page
-      }
-      window.scroll(0, 0) //scroll to top of page
     },
   },
   async asyncData({ error, query, app }) {
@@ -268,7 +229,7 @@ export default {
       require('~/assets/dank/svt-moose.jpg'),
     ]
     try {
-      let res = await app.$axios.get(BASE_API_URL + 'dank')
+      const res = await app.$axios.get(BASE_API_URL + 'dank')
       const rows = res.data
       return {
         rows,
@@ -286,6 +247,20 @@ export default {
         error: true,
       }
     }
+  },
+  methods: {
+    sortBy(key) {
+      this.sortKey = key
+      this.sortOrders[key] = this.sortOrders[key] * -1
+    },
+    goto(page) {
+      if (page > this.pages) {
+        this.page = this.pages
+      } else {
+        this.page = page
+      }
+      window.scroll(0, 0) // scroll to top of page
+    },
   },
 }
 </script>

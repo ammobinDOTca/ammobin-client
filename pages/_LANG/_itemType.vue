@@ -1,16 +1,20 @@
 <template>
   <div class="container">
-    <div v-if="!isAmmoType">{{ $t('default.betaWarning') }}</div>
+    <div v-if="!isAmmoType">
+      {{ $t('default.betaWarning') }}
+    </div>
     <h1>{{ $t('default.' + (itemType || 'ammo')) }}</h1>
     <my-table
       v-if="!error && itemsListings"
-      v-bind:rows="itemsListings.items"
+      :rows="itemsListings.items"
       :pages="itemsListings.pages"
-      v-bind:itemType="itemType"
-      v-bind:vendors="[null].concat(vendors.map(i => i.name))"
-    ></my-table>
+      :item-type="itemType"
+      :vendors="[null].concat(vendors.map(i => i.name))"
+    />
     <div v-if="error">ERROR {{ error }}</div>
-    <div v-if="!itemsListings">{{ $t('default.loading') }}</div>
+    <div v-if="!itemsListings">
+      {{ $t('default.loading') }}
+    </div>
   </div>
 </template>
 
@@ -19,32 +23,35 @@ import MyTable from '~/components/my-table.vue'
 import { getUrl } from '~/helpers'
 import { ITEM_TYPES, AMMO_TYPES } from '~/components/constants'
 import gql from 'graphql-tag'
+import '@nuxt/vue-app'
+import { Component, Vue } from 'vue-property-decorator'
 
-export default {
+@Component({
   head() {
+    const that: any = this
     const link: any[] = []
-    const url = `https://ammobin.ca/${this.$i18n.locale !== 'en' ? this.$i18n.locale + '/' : ''}${this.itemType ||
+    const url = `https://ammobin.ca/${that.$i18n.locale !== 'en' ? that.$i18n.locale + '/' : ''}${that.itemType ||
       'ammo'}`
-    if (this.page > 1) {
+    if (that.page > 1) {
       link.push({
         rel: 'prev',
-        href: getUrl(url, this.page - 1, this.subType),
+        href: getUrl(url, that.page - 1, that.subType),
       })
     }
-    if (this.itemsListings && this.itemsListings.pages > this.page) {
+    if (that.itemsListings && that.itemsListings.pages > this.page) {
       link.push({
         rel: 'next',
-        href: getUrl(url, this.page + 1, this.subType),
+        href: getUrl(url, that.page + 1, that.subType),
       })
     }
     return {
-      title: (this.subType || this.itemType || 'Ammo') + ' Prices', //TODO: en francais
+      title: (that.subType || that.itemType || 'Ammo') + ' Prices', // TODO: en francais
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: `The place to view the best ${this.subType || this.itemType || 'ammo'} prices across ${this
-            .province || 'Canada'}.`, //TODO: en francais
+          content: `The place to view the best ${that.subType || that.itemType || 'ammo'} prices across ${this
+            .province || 'Canada'}.`, // TODO: en francais
         },
       ],
       link,
@@ -107,20 +114,21 @@ export default {
       `,
       variables() {
         // Use vue reactive properties here
+        const that: any = this
         return {
-          page: this.page,
-          subType: this.subType || null,
-          pageSize: this.pageSize,
-          itemType: this.itemType || null,
-          province: this.province || null,
-          vendor: this.vendor || null,
-          query: this.query || null,
-          sortField: this.sortField || null,
-          sortOrder: this.sortOrder || null,
+          page: that.page,
+          subType: that.subType || null,
+          pageSize: that.pageSize,
+          itemType: that.itemType || null,
+          province: that.province || null,
+          vendor: that.vendor || null,
+          query: that.query || null,
+          sortField: that.sortField || null,
+          sortOrder: that.sortOrder || null,
         }
       },
       prefetch: ({ route }) => {
-        let itemType = route.params.itemType || route.query.itemType || null
+        const itemType = route.params.itemType || route.query.itemType || null
         // todo: fix this
         if (false && ![ITEM_TYPES].includes(itemType)) {
           return false // hard 404
@@ -138,55 +146,16 @@ export default {
           sorderOrder: route.query.sortOrder || 'DES' || null,
         }
       },
-      watchLoading(isLoading /*, countModifier*/) {
-        if (this.$nuxt && this.$nuxt.$loading && this.$nuxt.$loading.start) {
+      watchLoading(isLoading /*, countModifier */) {
+        const that: any = this // lazy ts
+        if (that.$nuxt && that.$nuxt.$loading && that.$nuxt.$loading.start) {
           if (isLoading) {
-            this.$nuxt.$loading.start()
+            that.$nuxt.$loading.start()
           } else {
-            this.$nuxt.$loading.finish()
+            that.$nuxt.$loading.finish()
           }
         }
       },
-    },
-  },
-  data() {
-    return {
-      error: null,
-      ammoListing: null,
-    }
-  },
-  computed: {
-    isAmmoType() {
-      return AMMO_TYPES.includes(this.itemType)
-    },
-    page() {
-      return Number(this.$route.query.page) || 1
-    },
-    subType() {
-      // query was old param, dont want to break links
-      return this.$route.query.subType || this.$route.query.calibre || null
-    },
-    province() {
-      return this.$route.query.province || null
-    },
-    pageSize() {
-      return Number(this.$route.query.pageSize) || 25
-    },
-    itemType() {
-      let itemType = this.$route.params.itemType || this.$route.query.itemType || null
-      return itemType
-    },
-    vendor() {
-      return this.$route.query.vendor || null
-    },
-    query() {
-      return this.$route.query.query || null
-    },
-    sortOrder() {
-      return this.$route.query.sortOrder || 'DES' // null
-    },
-    sortField() {
-      return this.$route.query.sortField || 'minPrice'
     },
   },
   components: {
@@ -196,5 +165,45 @@ export default {
     // todo: use proper const here + reloading
     return true || [null, ...ITEM_TYPES].includes(params.itemType)
   },
+} as any)
+export default class ListingPage extends Vue {
+  $route: any
+  $axios: any
+
+  error = null
+  ammoListing = null
+
+  get isAmmoType() {
+    return AMMO_TYPES.includes(this.itemType as string)
+  }
+  get page() {
+    return Number(this.$route.query.page) || 1
+  }
+  get subType() {
+    // query was old param, dont want to break links
+    return this.$route.query.subType || this.$route.query.calibre || null
+  }
+  get province() {
+    return this.$route.query.province || null
+  }
+  get pageSize() {
+    return Number(this.$route.query.pageSize) || 25
+  }
+  get itemType() {
+    const itemType = this.$route.params.itemType || this.$route.query.itemType || null
+    return itemType
+  }
+  get vendor() {
+    return this.$route.query.vendor || null
+  }
+  get query() {
+    return this.$route.query.query || null
+  }
+  get sortOrder() {
+    return this.$route.query.sortOrder || 'DES' // null
+  }
+  get sortField() {
+    return this.$route.query.sortField || 'minPrice'
+  }
 }
 </script>

@@ -24,7 +24,7 @@
       </div>
       <div>
         {{ $t('about.sendEmail') }}
-        <a v-bind:href="mail">{{ email }}</a>
+        <a :href="mail">{{ email }}</a>
       </div>
     </div>
 
@@ -40,16 +40,18 @@
 
     <hr />-->
 
-    <h2 id="supportedRetailers">{{ $t('about.supportedRetailers') }}</h2>
+    <h2 id="supportedRetailers">
+      {{ $t('about.supportedRetailers') }}
+    </h2>
     <div class="pure-g">
-      <div v-if="vendors" class="pure-u-1 pure-u-md-1-3 m-t-2 m-r-2" v-for="row in randomVendors" :key="row.link">
-        <a v-bind:href="row.link" target="_blank" rel="noopener">
+      <div v-for="row in randomVendors" v-if="vendors" :key="row.link" class="pure-u-1 pure-u-md-1-3 m-t-2 m-r-2">
+        <a :href="row.link" target="_blank" rel="noopener">
           <img
-            v-bind:src="row.logo"
+            :src="row.logo"
             class="pure-img img"
-            v-bind:class="{ 'grey-background': row.background }"
-            v-bind:alt="row.name"
-            v-bind:title="row.name"
+            :class="{ 'grey-background': row.background }"
+            :alt="row.name"
+            :title="row.name"
           />
         </a>
       </div>
@@ -83,15 +85,15 @@
 
 <script lang="ts">
 import gql from 'graphql-tag'
-
+import { Component, Vue } from 'vue-property-decorator'
 function shuffle(input: any[]): any[] {
   const array = [...input]
 
-  var currentIndex = array.length,
-    temporaryValue,
-    randomIndex
+  let currentIndex = array.length
+  let temporaryValue
+  let randomIndex
   // // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
+  while (currentIndex !== 0) {
     // Pick a remaining element...
     randomIndex = Math.floor(Math.random() * currentIndex)
     currentIndex -= 1
@@ -104,15 +106,14 @@ function shuffle(input: any[]): any[] {
 
   return array
 }
-
-export default {
+@Component({
   head: {
-    title: 'About AmmoBin.ca', //TODO: en francais
+    title: 'About AmmoBin.ca', // TODO: en francais
     meta: [
       {
         hid: 'description',
         name: 'description',
-        content: 'All about ammobin.ca', //TODO: en francais
+        content: 'All about ammobin.ca', // TODO: en francais
       },
     ],
   },
@@ -133,20 +134,18 @@ export default {
       prefetch: () => ({}), // load serverside
     },
   },
-  data() {
-    return {
-      email: 'contact' + '@' + 'ammobin.ca',
-      mail: 'mailto:' + 'contact' + '@' + 'ammobin.ca', // this probably will do nothing to stop bots...
-    }
-  },
-  computed: {
-    randomVendors() {
-      return shuffle(this.vendors || []).map(v => {
-        v.link += '?utm_source=ammobin.ca'
-        return v
-      })
-    },
-  },
+} as any)
+export default class AboutPage extends Vue {
+  vendors!: string[]
+
+  email = 'contact' + '@' + 'ammobin.ca'
+  mail = 'mailto:' + 'contact' + '@' + 'ammobin.ca' // this probably will do nothing to stop bots...
+  get randomVendors() {
+    return shuffle(this.vendors || []).map(v => {
+      v.link += '?utm_source=ammobin.ca'
+      return v
+    })
+  }
 }
 </script>
 <style>

@@ -1,16 +1,16 @@
+import NuxtConfiguration from '@nuxt/config'
+import { ITEM_TYPES } from './components/constants'
+
 const webpack = require('webpack')
 const { join } = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-
-import { ITEM_TYPES } from './components/constants'
-import NuxtConfiguration from '@nuxt/config'
 
 export default <NuxtConfiguration>{
   modules: ['@nuxtjs/pwa', '@nuxtjs/axios', '@nuxtjs/apollo'],
   build: {
     plugins: [
       new webpack.DefinePlugin({
-        BASE_API_URL: !!process.env.PROD ? '"https://ammobin.ca/api/"' : '"http://localhost:8080/"',
+        BASE_API_URL: process.env.PROD ? '"https://ammobin.ca/api/"' : '"http://localhost:8080/"',
         PROD: process.env.PROD ? 'true' : 'false',
       }),
       new CopyWebpackPlugin([{ from: 'static' }]),
@@ -43,7 +43,7 @@ export default <NuxtConfiguration>{
         content: '330D6A0BB2221C7F78C038494DE50309',
       },
       {
-        //yandex also feeds duckduckgo
+        // yandex also feeds duckduckgo
         name: 'yandex-verification',
         content: '99071bdc94d7e5ed',
       },
@@ -79,7 +79,7 @@ export default <NuxtConfiguration>{
   cache: {
      max: 1000,
      maxAge: 86400000
-   },*/
+   }, */
   manifest: {
     start_url: '/?launcher=true',
     background_color: '#f4f4f4',

@@ -6,85 +6,97 @@
         <input
           name="query"
           :value="query"
-          @change="updateQuery($event.target.value)"
           class="pure-input-1"
           placeholder="ie: Barnaul, surplus, 00 Buck"
+          @change="updateQuery($event.target.value)"
         />
       </div>
 
       <div class="pure-u-1 pure-u-md-1-6">
         <label for="pageSize">{{ $t('table.pageSize') }}</label>
-        <select id="pageSize" :value="pageSize" @change="updatePageSize($event.target.value)" class="pure-input-1">
+        <select id="pageSize" :value="pageSize" class="pure-input-1" @change="updatePageSize($event.target.value)">
           <option>25</option>
           <option>50</option>
           <option>75</option>
           <option>100</option>
         </select>
       </div>
-      <div class="pure-u-1 pure-u-md-1-6" v-if="isAmmoType">
+      <div v-if="isAmmoType" class="pure-u-1 pure-u-md-1-6">
         <label for="subRype">{{ $t('table.calibre') }}</label>
 
-        <select name="subType" :value="subType" @change="updateSubType($event.target.value)" class="pure-input-1">
-          <option></option>
-          <optgroup :label="$t('default.centerfire')" v-if="showCenterfireCalibres">
-            <option v-for="c in centerfireCalibres" :key="c">{{ c }}</option>
+        <select name="subType" :value="subType" class="pure-input-1" @change="updateSubType($event.target.value)">
+          <option />
+          <optgroup v-if="showCenterfireCalibres" :label="$t('default.centerfire')">
+            <option v-for="c in centerfireCalibres" :key="c">
+              {{ c }}
+            </option>
           </optgroup>
-          <optgroup :label="$t('default.rimfire')" v-if="showRimfireCalibres">
-            <option v-for="c in rimfireCalibres" :key="c">{{ c }}</option>
+          <optgroup v-if="showRimfireCalibres" :label="$t('default.rimfire')">
+            <option v-for="c in rimfireCalibres" :key="c">
+              {{ c }}
+            </option>
           </optgroup>
-          <optgroup :label="$t('default.shotgun')" v-if="showShotgunGuages">
-            <option v-for="c in shotgunGauges" :key="c">{{ c }}</option>
+          <optgroup v-if="showShotgunGuages" :label="$t('default.shotgun')">
+            <option v-for="c in shotgunGauges" :key="c">
+              {{ c }}
+            </option>
           </optgroup>
         </select>
       </div>
 
       <div class="pure-u-1 pure-u-md-1-6">
         <label for="province">{{ $t('table.province') }}</label>
-        <select id="province" :value="province" @change="updateProvince($event.target.value)" class="pure-input-1">
-          <option v-for="c in provinces" :key="c">{{ c }}</option>
+        <select id="province" :value="province" class="pure-input-1" @change="updateProvince($event.target.value)">
+          <option v-for="c in provinces" :key="c">
+            {{ c }}
+          </option>
         </select>
       </div>
 
       <div class="pure-u-1 pure-u-md-1-6">
         <label for="vendor">{{ $t('table.vendor') }}</label>
-        <select id="vendor" :value="vendor" @change="updateVendor($event.target.value)" class="pure-input-1">
-          <option v-for="c in vendors" :key="c">{{ c }}</option>
+        <select id="vendor" :value="vendor" class="pure-input-1" @change="updateVendor($event.target.value)">
+          <option v-for="c in vendors" :key="c">
+            {{ c }}
+          </option>
         </select>
       </div>
 
       <div v-if="pages > 0" class="pure-u-1 pure-u-md-1-3">
         <label>{{ $t('table.page') }}</label>
         <div>
-          <button @click="updatePage(1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">|<<</button>
-          <button @click="updatePage(page - 1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
+          <button class="pure-button button-xsmall" :disabled="page === 1" @click="updatePage(1)">
+            |<<
+          </button>
+          <button class="pure-button button-xsmall" :disabled="page === 1" @click="updatePage(page - 1)">
             <
           </button>
           {{ page }} {{ $t('table.of') }} {{ pages }}
-          <button @click="updatePage(page + 1)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
+          <button class="pure-button button-xsmall" :disabled="page === pages" @click="updatePage(page + 1)">
             >
           </button>
-          <button @click="updatePage(pages)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
+          <button class="pure-button button-xsmall" :disabled="page === pages" @click="updatePage(pages)">
             >>|
           </button>
         </div>
       </div>
     </div>
     <div class="pure-g row">
-      <div class="pure-u-lg-1-4 pure-u-1"></div>
-      <div class="pure-u-lg-1-4 pure-u-1-4 title" @click="sortBy('name')" :class="{ active: sortField == 'name' }">
+      <div class="pure-u-lg-1-4 pure-u-1" />
+      <div class="pure-u-lg-1-4 pure-u-1-4 title" :class="{ active: sortField == 'name' }" @click="sortBy('name')">
         <h4>
           {{ $t('table.name') }}
-          <span class="arrow" :class="sortOrder"></span>
+          <span class="arrow" :class="sortOrder" />
         </h4>
       </div>
       <div
         class="pure-u-lg-1-4 pure-u-1-4 title"
-        @click="sortBy('minPrice')"
         :class="{ active: sortField == 'minPrice' }"
+        @click="sortBy('minPrice')"
       >
         <h4>
           {{ $t('table.price') }}
-          <span class="arrow" :class="sortOrder"></span>
+          <span class="arrow" :class="sortOrder" />
         </h4>
       </div>
       <!--<div
@@ -97,23 +109,27 @@
           <span class="arrow" :class="sortOrder"></span>
         </h4>
       </div>-->
-      <div class="pure-u-lg-1-4 pure-u-1-4 title" @click="sortBy('link')" :class="{ active: sortField == 'link' }">
+      <div class="pure-u-lg-1-4 pure-u-1-4 title" :class="{ active: sortField == 'link' }" @click="sortBy('link')">
         <h4>
           {{ $t('table.link') }}
-          <span class="arrow" :class="sortOrder"></span>
+          <span class="arrow" :class="sortOrder" />
         </h4>
       </div>
     </div>
 
     <div v-if="!rows || rows.length === 0" class="pure-g row fix-row">
-      <div class="pure-u-1">{{ $t('table.noResult') }}</div>
+      <div class="pure-u-1">
+        {{ $t('table.noResult') }}
+      </div>
     </div>
 
     <div v-for="(row, index) in rows" :key="row.name" class="pure-g row fix-row item">
       <div class="pure-u-lg-1-4 pure-u-md-1 pure-u-1">
-        <img class="pure-img img-cell" v-bind:src="row.img || defaultImg" v-img-fallback="defaultImg" :alt="row.name" />
+        <img v-img-fallback="defaultImg" class="pure-img img-cell" :src="row.img || defaultImg" :alt="row.name" />
       </div>
-      <div class="pure-u-lg-1-4 pure-u-md-1-4 pure-u-1 m-b-1 capitalize">{{ row.name }}</div>
+      <div class="pure-u-lg-1-4 pure-u-md-1-4 pure-u-1 m-b-1 capitalize">
+        {{ row.name }}
+      </div>
       <div class="pure-u-lg-1-4 pure-u-md-1-4 pure-u-1 m-b-1">
         <div v-if="row.minPrice !== row.maxPrice">${{ row.minPrice.toFixed(2) }} - ${{ row.maxPrice.toFixed(2) }}</div>
         <div v-else>${{ row.minPrice.toFixed(2) }}</div>
@@ -130,15 +146,17 @@
           {{ showVendors[row.name] ? $t('table.hide') : $t('table.show') }} {{ $t('table.vendors') }}
         </button>
       </div>
-      <div class="pure-u-1" v-if="showVendors[row.name] === true">
+      <div v-if="showVendors[row.name] === true" class="pure-u-1">
         <div v-for="v in row.vendors" :key="v.link" class="pure-g m-b-1">
-          <div class="pure-u-lg-1-2 pure-u-md-1-4 pure-u-1-2">{{ v.name }}</div>
+          <div class="pure-u-lg-1-2 pure-u-md-1-4 pure-u-1-2">
+            {{ v.name }}
+          </div>
           <div class="pure-u-lg-1-4 pure-u-md-1-4 pure-u-1-4">${{ v.price.toFixed(2) }}</div>
           <!--<div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1-5">
             <span v-if="v.unitCost">({{ v.unitCost.toFixed(2) }} {{ $t('table.perRound') }})</span>
           </div>-->
           <div class="pure-u-lg-1-4 pure-u-md-1-4 pure-u-1-4">
-            <a @click="itemClicked(v.link)" v-bind:href="v.link" target="_blank" rel="nofollow noopener"
+            <a :href="v.link" target="_blank" rel="nofollow noopener" @click="itemClicked(v.link)"
               >{{ $t('table.buyFrom') }} {{ v.vendor }}</a
             >
           </div>
@@ -146,18 +164,20 @@
       </div>
     </div>
     <div>
-      <div class="pure-u-lg-1-2 pure-u-1" v-if="pages > 0">
+      <div v-if="pages > 0" class="pure-u-lg-1-2 pure-u-1">
         <div>{{ $t('table.page') }}</div>
         <div>
-          <button @click="updatePage(1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">|<<</button>
-          <button @click="updatePage(page - 1)" class="pure-button button-xsmall" v-bind:disabled="page === 1">
+          <button class="pure-button button-xsmall" :disabled="page === 1" @click="updatePage(1)">
+            |<<
+          </button>
+          <button class="pure-button button-xsmall" :disabled="page === 1" @click="updatePage(page - 1)">
             <
           </button>
           {{ page }} {{ $t('table.of') }} {{ pages }}
-          <button @click="updatePage(page + 1)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
+          <button class="pure-button button-xsmall" :disabled="page === pages" @click="updatePage(page + 1)">
             >
           </button>
-          <button @click="updatePage(pages)" class="pure-button button-xsmall" v-bind:disabled="page === pages">
+          <button class="pure-button button-xsmall" :disabled="page === pages" @click="updatePage(pages)">
             >>|
           </button>
         </div>
@@ -167,171 +187,172 @@
 </template>
 
 <script lang="ts">
-declare const BASE_API_URL: string
 import { centerFireCalibres } from 'ammobin-classifier/build/centerfire-calibres'
 import { rimfireCalibres } from 'ammobin-classifier/build/rimfire-calibres'
 import { shotgunGauges } from 'ammobin-classifier/build/shotgun-gauges'
+import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 import { AMMO_TYPES } from './constants'
+declare const BASE_API_URL: string
 
-export default {
-  data: function() {
-    return {
-      centerfireCalibres: centerFireCalibres.map(l => l[0].toUpperCase()).sort(),
-      rimfireCalibres: rimfireCalibres.map(l => l[0].toUpperCase()).sort(),
-      shotgunGauges: shotgunGauges.map(l => l[0].toUpperCase()).sort(),
-      provinces: [null, 'AB', 'BC', 'MB', 'NB', 'NS', 'NT', 'NL', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'],
-      defaultImg: require('~/assets/blank.png'),
-      showVendors:
-        this.rows
-          .map(i => i.name)
-          .reduce((sv, k) => {
-            sv[k] = this.$store.state.isCrawler // show google all the results...
-            return sv
-          }, {}) || {},
+@Component({})
+export default class ItemsTable extends Vue {
+  $route: any
+  $axios: any
+
+  @Prop() rows
+  centerfireCalibres = centerFireCalibres.map(l => l[0].toUpperCase()).sort()
+  rimfireCalibres = rimfireCalibres.map(l => l[0].toUpperCase()).sort()
+  shotgunGauges = shotgunGauges.map(l => l[0].toUpperCase()).sort()
+  provinces = [null, 'AB', 'BC', 'MB', 'NB', 'NS', 'NT', 'NL', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT']
+  defaultImg = require('~/assets/blank.png')
+  showVendors =
+    this.rows
+      .map(i => i.name)
+      .reduce((sv, k) => {
+        sv[k] = this.$store.state.isCrawler // show google all the results...
+        return sv
+      }, {}) || {}
+
+  @Prop() pages
+  @Prop() itemType
+  @Prop() vendors
+  @Watch('rows')
+  onRowsChange() {
+    this.showVendors =
+      this.rows
+        .map(i => i.name)
+        .reduce((sv, k) => {
+          sv[k] = this.$store.state.isCrawler // show google all the results...
+          return sv
+        }, {}) || {}
+  }
+
+  // is the current item type ammo ? (as opposed to reloading)
+  get isAmmoType() {
+    return AMMO_TYPES.includes(this.itemType)
+  }
+  get page() {
+    return Number(this.$route.query.page) || 1
+  }
+  get subType() {
+    return this.$route.query.subType || this.$route.query.calibre
+  }
+  get pageSize() {
+    return Number(this.$route.query.pageSize) || 25
+  }
+  get province() {
+    return this.$route.query.province
+  }
+  get vendor() {
+    return this.$route.query.vendor
+  }
+  get query() {
+    return this.$route.query.query
+  }
+  get sortField() {
+    return this.$route.query.sortField || 'minPrice'
+  }
+  get sortOrder() {
+    return this.$route.query.sortOrder || 'ASC'
+  }
+  get showCenterfireCalibres() {
+    return !this.itemType || this.itemType === 'centerfire'
+  }
+  get showRimfireCalibres() {
+    return !this.itemType || this.itemType === 'rimfire'
+  }
+  get showShotgunGuages() {
+    return !this.itemType || this.itemType === 'shotgun'
+  }
+  itemClicked(link) {
+    const click = JSON.stringify({
+      link,
+      itemType: this.itemType,
+      subType: this.subType,
+    })
+    if (!navigator.sendBeacon) {
+      this.$axios.post(BASE_API_URL + 'track-click', click)
+    } else {
+      navigator.sendBeacon(BASE_API_URL + 'track-click', click)
     }
-  },
-  props: ['rows', 'pages', 'itemType', 'vendors'],
-  watch: {
-    rows() {
-      this.showVendors =
-        this.rows
-          .map(i => i.name)
-          .reduce((sv, k) => {
-            sv[k] = this.$store.state.isCrawler // show google all the results...
-            return sv
-          }, {}) || {}
-    },
-  },
-  computed: {
-    // is the current item type ammo ? (as opposed to reloading)
-    isAmmoType() {
-      return AMMO_TYPES.includes(this.itemType)
-    },
-    page() {
-      return Number(this.$route.query.page) || 1
-    },
-    subType() {
-      return this.$route.query.subType || this.$route.query.calibre
-    },
-    pageSize() {
-      return Number(this.$route.query.pageSize) || 25
-    },
-    province() {
-      return this.$route.query.province
-    },
-    vendor() {
-      return this.$route.query.vendor
-    },
-    query() {
-      return this.$route.query.query
-    },
-    sortField() {
-      return this.$route.query.sortField || 'minPrice'
-    },
-    sortOrder() {
-      return this.$route.query.sortOrder || 'ASC'
-    },
-    showCenterfireCalibres() {
-      return !this.itemType || this.itemType === 'centerfire'
-    },
-    showRimfireCalibres() {
-      return !this.itemType || this.itemType === 'rimfire'
-    },
-    showShotgunGuages() {
-      return !this.itemType || this.itemType === 'shotgun'
-    },
-  },
-  methods: {
-    itemClicked(link) {
-      const click = JSON.stringify({
-        link,
-        itemType: this.itemType,
-        subType: this.subType,
-      })
-      if (!navigator.sendBeacon) {
-        this.$axios.post(BASE_API_URL + 'track-click', click)
-      } else {
-        navigator.sendBeacon(BASE_API_URL + 'track-click', click)
-      }
-    },
-    sortBy(key) {
-      let sortOrder
+  }
+  sortBy(key) {
+    let sortOrder
 
-      if (key === this.sortField) {
-        if (this.sortOrder === 'DES') {
-          sortOrder = 'ASC'
-        } else {
-          sortOrder = 'DES'
-        }
+    if (key === this.sortField) {
+      if (this.sortOrder === 'DES') {
+        sortOrder = 'ASC'
       } else {
         sortOrder = 'DES'
       }
+    } else {
+      sortOrder = 'DES'
+    }
 
-      this.$router.push({
-        name: this.$route.name,
-        query: Object.assign({}, this.$route.query, {
-          sortOrder,
-          sortField: key,
-        }),
+    this.$router.push({
+      name: this.$route.name,
+      query: Object.assign({}, this.$route.query, {
+        sortOrder,
+        sortField: key,
+      }),
+    })
+  }
+  toggleVendors(row) {
+    const { name, brand, subType } = row
+    const open = !!this.showVendors[name]
+    this.showVendors[name] = !open
+
+    if (!open) {
+      const view = JSON.stringify({
+        subType,
+        brand,
+        itemType: this.itemType,
       })
-    },
-    toggleVendors(row) {
-      const { name, brand, subType } = row
-      const open = !!this.showVendors[name]
-      this.showVendors[name] = !open
 
-      if (!open) {
-        const view = JSON.stringify({
-          subType,
-          brand,
-          itemType: this.itemType,
-        })
-
-        if (!navigator.sendBeacon) {
-          this.$axios.post(BASE_API_URL + 'track-view', view)
-        } else {
-          navigator.sendBeacon(BASE_API_URL + 'track-view', view)
-        }
+      if (!navigator.sendBeacon) {
+        this.$axios.post(BASE_API_URL + 'track-view', view)
+      } else {
+        navigator.sendBeacon(BASE_API_URL + 'track-view', view)
       }
-    },
-    updatePage(page) {
-      this.$router.push({
-        name: this.$route.name,
-        query: Object.assign({}, this.$route.query, { page }),
-      })
-      setImmediate(() => window.scroll(0, 0)) //scroll to top of page
-    },
-    updateSubType(subType) {
-      this.$router.push({
-        name: this.$route.name,
-        query: Object.assign({}, this.$route.query, { subType }),
-      })
-    },
-    updatePageSize(pageSize) {
-      this.$router.push({
-        name: this.$route.name,
-        query: Object.assign({}, this.$route.query, { pageSize }),
-      })
-    },
-    updateProvince(province) {
-      this.$router.push({
-        name: this.$route.name,
-        query: Object.assign({}, this.$route.query, { province }),
-      })
-    },
-    updateVendor(vendor) {
-      this.$router.push({
-        name: this.$route.name,
-        query: Object.assign({}, this.$route.query, { vendor }),
-      })
-    },
-    updateQuery(query) {
-      this.$router.push({
-        name: this.$route.name,
-        query: Object.assign({}, this.$route.query, { query }),
-      })
-    },
-  },
+    }
+  }
+  updatePage(page) {
+    this.$router.push({
+      name: this.$route.name,
+      query: Object.assign({}, this.$route.query, { page }),
+    })
+    setImmediate(() => window.scroll(0, 0)) // scroll to top of page
+  }
+  updateSubType(subType) {
+    this.$router.push({
+      name: this.$route.name,
+      query: Object.assign({}, this.$route.query, { subType }),
+    })
+  }
+  updatePageSize(pageSize) {
+    this.$router.push({
+      name: this.$route.name,
+      query: Object.assign({}, this.$route.query, { pageSize }),
+    })
+  }
+  updateProvince(province) {
+    this.$router.push({
+      name: this.$route.name,
+      query: Object.assign({}, this.$route.query, { province }),
+    })
+  }
+  updateVendor(vendor) {
+    this.$router.push({
+      name: this.$route.name,
+      query: Object.assign({}, this.$route.query, { vendor }),
+    })
+  }
+  updateQuery(query) {
+    this.$router.push({
+      name: this.$route.name,
+      query: Object.assign({}, this.$route.query, { query }),
+    })
+  }
 }
 </script>
 
