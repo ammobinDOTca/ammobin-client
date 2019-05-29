@@ -38,7 +38,6 @@
     "gulp-image-resize": "^0.13.0",
     "gulp-imagemin": "^5.0.3",
     "husky": "^2.0.0",
-    "now": "^15.0.0",
     "pretty-quick": "^1.8.0",
     "ramda": "^0.26.1",
     "snyk": "^1.147.4",
@@ -52,9 +51,6 @@
     "generate": "PROD=true nuxt generate",
     "surge": "surge --project ./dist --domain ammobin.surge.sh",
     "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect",
-    "deploy": "now -e NODE_ENV=production --token $NOW_TOKEN --npm --public",
-    "alias": "now alias --token=$NOW_TOKEN",
     "heroku-postbuild": "npm run build",
     "format": "pretty-quick"
   },
