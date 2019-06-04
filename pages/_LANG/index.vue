@@ -1,55 +1,37 @@
 <template>
   <div class="container">
-    <img src="~/assets/logo-medium.png" class="pure-img img" alt="ammobin.ca logo" />
-    <h1 class="m-b-30">
-      AmmoBin.ca
-    </h1>
+    <img src="~/assets/logo-medium.png" class="pure-img img" alt="ammobin.ca logo">
+    <h1 class="m-b-30">AmmoBin.ca</h1>
     <h4>{{ $t('home.tagline') }}</h4>
     <h4>
       {{ $t('home.searching') }}
-      <nuxt-link :to="{ path: 'about#supportedRetailers' }"> {{ vendorCount }} retailers </nuxt-link>
+      <nuxt-link :to="{ path: 'about#supportedRetailers' }">{{ vendorCount }} retailers</nuxt-link>
       {{ $t('home.daily') }}
     </h4>
 
-    <h2 class="m-t-30 cap">
-      {{ $t('home.newBeta') }}
-    </h2>
+    <h2 class="m-t-30 cap">{{ $t('home.newBeta') }}</h2>
     <div class="row">
       <div class="pure-u-md-1-3 pure-u-1 margin-y">
-        <nuxt-link :to="{ path: 'reloading' }">
-          reloading supplies
-        </nuxt-link>
+        <nuxt-link :to="{ path: 'reloading' }">reloading supplies</nuxt-link>
       </div>
       <div class="pure-u-md-1-3 pure-u-1 margin-y">
-        <nuxt-link :to="{ path: 'powder' }">
-          Powder
-        </nuxt-link>
+        <nuxt-link :to="{ path: 'powder' }">Powder</nuxt-link>
       </div>
       <div class="pure-u-md-1-3 pure-u-1 margin-y">
-        <nuxt-link :to="{ path: 'primer' }">
-          Primers
-        </nuxt-link>
+        <nuxt-link :to="{ path: 'primer' }">Primers</nuxt-link>
       </div>
       <div class="pure-u-md-1-3 pure-u-1 margin-y">
-        <nuxt-link :to="{ path: 'shot' }">
-          Bullets / Shot
-        </nuxt-link>
+        <nuxt-link :to="{ path: 'shot' }">Bullets / Shot</nuxt-link>
       </div>
       <div class="pure-u-md-1-3 pure-u-1 margin-y">
-        <nuxt-link :to="{ path: 'case' }">
-          Cartridges / Shells
-        </nuxt-link>
+        <nuxt-link :to="{ path: 'case' }">Cartridges / Shells</nuxt-link>
       </div>
     </div>
 
-    <h2 class="m-t-30 cap">
-      {{ $t('home.currentlyPopular') }}
-    </h2>
+    <h2 class="m-t-30 cap">{{ $t('home.currentlyPopular') }}</h2>
     <div class="pure-g row">
       <div v-for="v in topCalibres" class="pure-u-md-1-3 pure-u-1 margin-y">
-        <nuxt-link :to="{ path: 'centerfire', query: { subType: v } }">
-          {{ v }}
-        </nuxt-link>
+        <nuxt-link :to="{ path: 'centerfire', query: { subType: v } }">{{ v }}</nuxt-link>
       </div>
     </div>
 
@@ -60,7 +42,7 @@
         rel="noopener"
         title="TFBTV Mailbag Episode 4: A New Hope"
       >
-        <img src="~/assets/aso-tfbtv2.svg" width="100px" />
+        <img src="~/assets/aso-tfbtv2.svg" width="100px">
       </a>
     </div>
     <!--<div style="margin-top: 2rem">
@@ -75,8 +57,22 @@
 <script lang="ts">
 import gql from 'graphql-tag'
 import { Component, Vue } from 'vue-property-decorator'
+import '~/types'
+import { MetaInfo } from 'vue-meta'
 
 @Component({
+  head() {
+    return {
+      title: this.$t('home.tagline'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('home.tagline'),
+        },
+      ],
+    } as MetaInfo
+  },
   apollo: {
     /* bestPrices: {
       query: gql`
@@ -100,7 +96,7 @@ import { Component, Vue } from 'vue-property-decorator'
       prefetch: () => ({}), // trigger serverside lookup
     },
   },
-} as any)
+})
 export default class HomePage extends Vue {
   private vendors!: string[]
   $t: any
@@ -108,19 +104,6 @@ export default class HomePage extends Vue {
   topCalibres = ['9MM', '7.62X39MM', '.223 / 5.56 NATO']
   get vendorCount() {
     return this.vendors ? this.vendors.length : null
-  }
-
-  get head() {
-    return {
-      title: this.$t('home.tagline'),
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('home.tagline'),
-        },
-      ],
-    }
   }
 }
 </script>

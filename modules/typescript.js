@@ -15,8 +15,7 @@ export default function () {
     }
     // Add TypeScript loader
     config.module.rules.push(
-      Object.assign(
-        {
+      Object.assign({
           test: /((client|server)\.js)|(\.tsx?)$/
         },
         tsLoader
@@ -26,5 +25,6 @@ export default function () {
     if (config.resolve.extensions.indexOf('.ts') === -1) {
       config.resolve.extensions.push('.ts')
     }
+
   })
 }

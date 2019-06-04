@@ -1,8 +1,6 @@
 <template>
   <div class="container">
-    <div v-if="!isAmmoType">
-      {{ $t('default.betaWarning') }}
-    </div>
+    <div v-if="!isAmmoType">{{ $t('default.betaWarning') }}</div>
     <h1>{{ $t('default.' + (itemType || 'ammo')) }}</h1>
     <my-table
       v-if="!error && itemsListings"
@@ -12,9 +10,7 @@
       :vendors="[null].concat(vendors.map(i => i.name))"
     />
     <div v-if="error">ERROR {{ error }}</div>
-    <div v-if="!itemsListings">
-      {{ $t('default.loading') }}
-    </div>
+    <div v-if="!itemsListings">{{ $t('default.loading') }}</div>
   </div>
 </template>
 
@@ -25,38 +21,9 @@ import { ITEM_TYPES, AMMO_TYPES } from '~/components/constants'
 import gql from 'graphql-tag'
 import '@nuxt/vue-app'
 import { Component, Vue } from 'vue-property-decorator'
+import '~/types'
 
 @Component({
-  head() {
-    const that: any = this
-    const link: any[] = []
-    const url = `https://ammobin.ca/${that.$i18n.locale !== 'en' ? that.$i18n.locale + '/' : ''}${that.itemType ||
-      'ammo'}`
-    if (that.page > 1) {
-      link.push({
-        rel: 'prev',
-        href: getUrl(url, that.page - 1, that.subType),
-      })
-    }
-    if (that.itemsListings && that.itemsListings.pages > this.page) {
-      link.push({
-        rel: 'next',
-        href: getUrl(url, that.page + 1, that.subType),
-      })
-    }
-    return {
-      title: (that.subType || that.itemType || 'Ammo') + ' Prices', // TODO: en francais
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: `The place to view the best ${that.subType || that.itemType || 'ammo'} prices across ${this
-            .province || 'Canada'}.`, // TODO: en francais
-        },
-      ],
-      link,
-    }
-  },
   apollo: {
     vendors: {
       query: gql`
@@ -165,11 +132,40 @@ import { Component, Vue } from 'vue-property-decorator'
     // todo: use proper const here + reloading
     return true || [null, ...ITEM_TYPES].includes(params.itemType)
   },
-} as any)
+  head() {
+    const that: any = this
+    const link: any[] = []
+    const url = `https://ammobin.ca/${
+      this.$i18n.locale !== 'en' ? this.$i18n.locale + '/' : ''
+    }${that.itemType || 'ammo'}`
+    if (that.page > 1) {
+      link.push({
+        rel: 'prev',
+        href: getUrl(url, that.page - 1, that.subType),
+      })
+    }
+    if (that.itemsListings && that.itemsListings.pages > that.page) {
+      link.push({
+        rel: 'next',
+        href: getUrl(url, that.page + 1, that.subType),
+      })
+    }
+    return {
+      title: (that.subType || that.itemType || 'Ammo') + ' Prices', // TODO: en francais
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `The place to view the best ${that.subType ||
+            that.itemType ||
+            'ammo'} prices across ${that.province || 'Canada'}.`, // TODO: en francais
+        },
+      ],
+      link,
+    }
+  },
+})
 export default class ListingPage extends Vue {
-  $route: any
-  $axios: any
-
   error = null
   ammoListing = null
 
@@ -190,7 +186,8 @@ export default class ListingPage extends Vue {
     return Number(this.$route.query.pageSize) || 25
   }
   get itemType() {
-    const itemType = this.$route.params.itemType || this.$route.query.itemType || null
+    const itemType =
+      this.$route.params.itemType || this.$route.query.itemType || null
     return itemType
   }
   get vendor() {
