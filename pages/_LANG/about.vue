@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <img src="~/assets/logo-medium.png" class="pure-img img" alt="ammobin.ca logo">
+    <img src="~/assets/logo-medium.png" class="pure-img img" alt="ammobin.ca logo" />
     <h1>{{ $t('default.about') }}</h1>
     <div>
       <a href="/">ammobin.ca</a>
@@ -9,7 +9,7 @@
     <div>{{ $t('about.main2') }}</div>
     <div>{{ $t('about.main3') }}</div>
 
-    <hr>
+    <hr />
 
     <h2>{{ $t('about.contactInfo') }}</h2>
     <div>
@@ -20,11 +20,7 @@
 
       <div style="margin-top:10px;">
         {{ $t('about.submitIssue') }}
-        <a
-          href="https://github.com/ammobinDOTca"
-          target="_blank"
-          rel="noopener"
-        >https://github.com/ammobindotca</a>
+        <a href="https://github.com/ammobinDOTca" target="_blank" rel="noopener">https://github.com/ammobindotca</a>
       </div>
       <div>
         {{ $t('about.sendEmail') }}
@@ -32,12 +28,12 @@
       </div>
     </div>
 
-    <hr>
+    <hr />
 
     <h2>{{ $t('about.disclaimerTitle') }}</h2>
     <p>{{ $t('about.disclaimer') }}</p>
 
-    <hr>
+    <hr />
 
     <!--    <h2>{{ $t('about.incorrectCountTitle') }}</h2>
     <p>{{ $t('about.incorrectCountText') }}</p>
@@ -46,12 +42,7 @@
 
     <h2 id="supportedRetailers">{{ $t('about.supportedRetailers') }}</h2>
     <div class="pure-g">
-      <div
-        v-for="row in randomVendors"
-        v-if="vendors"
-        :key="row.link"
-        class="pure-u-1 pure-u-md-1-3 m-t-2 m-r-2"
-      >
+      <div v-for="row in randomVendors" v-if="vendors" :key="row.link" class="pure-u-1 pure-u-md-1-3 m-t-2 m-r-2">
         <a :href="row.link" target="_blank" rel="noopener">
           <img
             :src="row.logo"
@@ -59,14 +50,14 @@
             :class="{ 'grey-background': row.background }"
             :alt="row.name"
             :title="row.name"
-          >
+          />
         </a>
       </div>
       <div class="pure-u-1 pure-u-md-1-3 m-t-2">
         <h4>{{ $t('about.moreRetailers') }}</h4>
       </div>
     </div>
-    <hr>
+    <hr />
 
     <!--
       <div style="margin-top: 2rem">

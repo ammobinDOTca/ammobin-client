@@ -16,6 +16,7 @@ The meta search site for ammo prices across Canada. built with [nuxt.js](https:/
 ## todo
 
 - https://github.com/WICG/BackgroundSync/blob/master/explainer.md
+https://nuxt-community.github.io/nuxt-i18n/
 
 ## contributing
 
@@ -24,10 +25,10 @@ The meta search site for ammo prices across Canada. built with [nuxt.js](https:/
 
 ## vendors to add
 
-- https://shop.triggersandbows.com/ammunition/centerfire/ +1
+
 - https://shophighfalls.com/collections/rifle-ammo?view=ALL (css rules hinder pulling data. will need to update scraper)
 - http://shop.sylvestresportinggoods.com/Rifle-Ammunition/?p=catalog&mode=catalog&parent=506&pg=1&CatalogSetSortBy=price
-- https://www.tesro.ca/ammunition-and-pellets/smallbore-ammunition.html?limit=36
+
 - http://www.grouseriver.com/Hunting-Shooting/Ammunition
 - https://blue-wolf-firearms-canada.myshopify.com/collections/rimfire
 - https://www.londerosports.com/firearms/ammunitions/rifle?limit=all
@@ -35,9 +36,9 @@ The meta search site for ammo prices across Canada. built with [nuxt.js](https:/
 - https://www.latulippe.com/en/our-stores/
 - http://doctordeals.ca/product-category/smoking-gun/ammunition/rifle-ammo/
 - http://store.easthilloutdoors.com/ammo/bulk-ammo
-- http://www.armseast.ca/surplus_ammunition/
 
-- https://www.siwashsports.ca/product-category/ammunition/centerfire-ammunition/ (cant buy things online as of dec 17 2017, will add once this feature is enabled on the site)
+
+
 - http://www.danchasse.com/shop_free/index.php?categoryID=109 (je ne parle en francis)
 
 # low priority

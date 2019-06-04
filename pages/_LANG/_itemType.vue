@@ -135,9 +135,8 @@ import '~/types'
   head() {
     const that: any = this
     const link: any[] = []
-    const url = `https://ammobin.ca/${
-      this.$i18n.locale !== 'en' ? this.$i18n.locale + '/' : ''
-    }${that.itemType || 'ammo'}`
+    const url = `https://ammobin.ca/${this.$i18n.locale !== 'en' ? this.$i18n.locale + '/' : ''}${that.itemType ||
+      'ammo'}`
     if (that.page > 1) {
       link.push({
         rel: 'prev',
@@ -186,8 +185,7 @@ export default class ListingPage extends Vue {
     return Number(this.$route.query.pageSize) || 25
   }
   get itemType() {
-    const itemType =
-      this.$route.params.itemType || this.$route.query.itemType || null
+    const itemType = this.$route.params.itemType || this.$route.query.itemType || null
     return itemType
   }
   get vendor() {

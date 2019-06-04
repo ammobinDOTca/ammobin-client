@@ -1,61 +1,59 @@
 <template>
   <div class="main">
-    <a
-      class="fork-me-hard-dady"
-      href="https://github.com/ammobindotca"
-      target="_blank"
-      rel="noopener"
-    >
+    <a class="fork-me-hard-dady" href="https://github.com/ammobindotca" target="_blank" rel="noopener">
       <img
         style="position: absolute; top: 0; right: 0; border: 0;"
         src="~/assets/fork.png"
         alt="Fork me on GitHub"
         title="Fork me on GitHub"
-      >
+      />
     </a>
     <div class="pure-menu pure-menu-horizontal pure-menu-scrollable light-grey">
       <ul class="pure-menu-list">
         <li class="pure-menu-item">
-          <nuxt-link
-            class="pure-menu-link"
-            :class="{ 'pure-menu-selected': currentPage === '/' }"
-            :to="path('/')"
-          >AMMOBIN.CA</nuxt-link>
+          <nuxt-link class="pure-menu-link" :class="{ 'pure-menu-selected': currentPage === '/' }" :to="path('/')"
+            >AMMOBIN.CA</nuxt-link
+          >
         </li>
         <li class="pure-menu-item">
           <nuxt-link
             class="pure-menu-link"
             :class="{ 'pure-menu-selected': currentPage === '/centerfire' }"
             :to="path('/centerfire')"
-          >{{ $t('default.centerfire') }}</nuxt-link>
+            >{{ $t('default.centerfire') }}</nuxt-link
+          >
         </li>
         <li class="pure-menu-item">
           <nuxt-link
             class="pure-menu-link"
             :class="{ 'pure-menu-selected': currentPage === '/shotgun' }"
             :to="path('/shotgun')"
-          >{{ $t('default.shotgun') }}</nuxt-link>
+            >{{ $t('default.shotgun') }}</nuxt-link
+          >
         </li>
         <li class="pure-menu-item">
           <nuxt-link
             class="pure-menu-link"
             :class="{ 'pure-menu-selected': currentPage === '/rimfire' }"
             :to="path('/rimfire')"
-          >{{ $t('default.rimfire') }}</nuxt-link>
+            >{{ $t('default.rimfire') }}</nuxt-link
+          >
         </li>
         <li class="pure-menu-item">
           <nuxt-link
             class="pure-menu-link"
             :class="{ 'pure-menu-selected': currentPage === '/reloading' }"
             :to="path('/reloading')"
-          >{{ $t('default.reloading') }} (BETA)</nuxt-link>
+            >{{ $t('default.reloading') }} (BETA)</nuxt-link
+          >
         </li>
         <li class="pure-menu-item">
           <nuxt-link
             class="pure-menu-link"
             :class="{ 'pure-menu-selected': currentPage === '/about' }"
             :to="path('/about')"
-          >{{ $t('default.about') }}</nuxt-link>
+            >{{ $t('default.about') }}</nuxt-link
+          >
         </li>
         <li class="pure-menu-item">
           <nuxt-link
@@ -64,18 +62,20 @@
             :to="`/fr` + $route.fullPath"
             active-class="none"
             exact
-          >{{ $t('links.french') }}</nuxt-link>
+            >{{ $t('links.french') }}</nuxt-link
+          >
           <nuxt-link
             v-else
             class="pure-menu-link"
             :to="$route.fullPath.replace(/^\/[^\/]+/, '')"
             active-class="none"
             exact
-          >{{ $t('links.english') }}</nuxt-link>
+            >{{ $t('links.english') }}</nuxt-link
+          >
         </li>
       </ul>
     </div>
-    <nuxt/>
+    <nuxt />
     <footer class="footer">
       AmmoBin.ca {{ new Date().getFullYear() }}
       <a :href="mail">Contact</a>
@@ -117,15 +117,12 @@ import { Component, Vue } from 'vue-property-decorator'
             '@type': 'Person',
             name: 'Ammobin.ca',
             url: 'https://ammobin.ca',
-            sameAs: [
-              'https://github.com/ammobindotca',
-              'https://www.instagram.com/ammobin.ca',
-            ],
+            sameAs: ['https://github.com/ammobindotca', 'https://www.instagram.com/ammobin.ca'],
           }),
           type: 'application/ld+json',
         },
       ],
-    }as any
+    } as any
   },
 })
 export default class Layout extends Vue {

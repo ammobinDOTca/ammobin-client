@@ -1,22 +1,20 @@
-export default function () {
+export default function() {
   // Add .ts extension for store, middleware and more
   this.nuxt.options.extensions.push('ts')
   // Extend build
-  this.extendBuild((config) => {
+  this.extendBuild(config => {
     const tsLoader = {
       loader: 'ts-loader',
       options: {
-        appendTsSuffixTo: [/\.vue$/]
+        appendTsSuffixTo: [/\.vue$/],
       },
-      exclude: [
-        /dist/,
-        /\.temp/
-      ]
+      exclude: [/dist/, /\.temp/],
     }
     // Add TypeScript loader
     config.module.rules.push(
-      Object.assign({
-          test: /((client|server)\.js)|(\.tsx?)$/
+      Object.assign(
+        {
+          test: /((client|server)\.js)|(\.tsx?)$/,
         },
         tsLoader
       )
@@ -25,6 +23,5 @@ export default function () {
     if (config.resolve.extensions.indexOf('.ts') === -1) {
       config.resolve.extensions.push('.ts')
     }
-
   })
 }

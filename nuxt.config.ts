@@ -17,13 +17,11 @@ export default <NuxtConfiguration>{
     ],
     extractCSS: true,
 
-    extend: function (config, { isDev, isClient }) {
-
+    extend: function(config, { isDev, isClient }) {
       config.node = {
-
-        fs: "empty"
-      };
-    }
+        fs: 'empty',
+      }
+    },
   },
   loading: {
     color: '#4FC08D',
