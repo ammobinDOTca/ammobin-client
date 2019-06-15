@@ -125,7 +125,14 @@
 
     <div v-for="(row, index) in rows" :key="row.name" class="pure-g row fix-row item">
       <div class="pure-u-lg-1-4 pure-u-md-1 pure-u-1">
-        <img v-img-fallback="defaultImg" class="pure-img img-cell" :src="row.img || defaultImg" :alt="row.name" />
+        <img
+          v-img-fallback="defaultImg"
+          class="pure-img img-cell"
+          :src="row.img || defaultImg"
+          :alt="row.name"
+          decoding="async"
+          importance="low"
+        />
       </div>
       <div class="pure-u-lg-1-4 pure-u-md-1-4 pure-u-1 m-b-1 capitalize">
         {{ row.name }}
