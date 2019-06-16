@@ -49,6 +49,7 @@
     "gulp-image-resize": "^0.13.0",
     "gulp-imagemin": "^6.0.0",
     "husky": "^2.4.0",
+    "next": "^8.1.0",
     "pretty-quick": "^1.11.0",
     "ramda": "^0.26.1",
     "snyk": "^1.174.1",
