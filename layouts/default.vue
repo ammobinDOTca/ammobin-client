@@ -10,50 +10,23 @@
     </a>
     <div class="pure-menu pure-menu-horizontal pure-menu-scrollable light-grey">
       <ul class="pure-menu-list">
-        <li class="pure-menu-item">
-          <nuxt-link class="pure-menu-link" :class="{ 'pure-menu-selected': currentPage === '/' }" :to="path('/')"
-            >AMMOBIN.CA</nuxt-link
-          >
+        <li class="pure-menu-item" :class="{ 'pure-menu-selected': currentPage === '/' }">
+          <nuxt-link class="pure-menu-link" :to="path('/')">AMMOBIN.CA</nuxt-link>
         </li>
-        <li class="pure-menu-item">
-          <nuxt-link
-            class="pure-menu-link"
-            :class="{ 'pure-menu-selected': currentPage === '/centerfire' }"
-            :to="path('/centerfire')"
-            >{{ $t('default.centerfire') }}</nuxt-link
-          >
+        <li :class="{ 'pure-menu-selected': currentPage === '/centerfire' }" class="pure-menu-item">
+          <nuxt-link class="pure-menu-link" :to="path('/centerfire')">{{ $t('default.centerfire') }}</nuxt-link>
         </li>
-        <li class="pure-menu-item">
-          <nuxt-link
-            class="pure-menu-link"
-            :class="{ 'pure-menu-selected': currentPage === '/shotgun' }"
-            :to="path('/shotgun')"
-            >{{ $t('default.shotgun') }}</nuxt-link
-          >
+        <li class="pure-menu-item" :class="{ 'pure-menu-selected': currentPage === '/shotgun' }">
+          <nuxt-link class="pure-menu-link" :to="path('/shotgun')">{{ $t('default.shotgun') }}</nuxt-link>
         </li>
-        <li class="pure-menu-item">
-          <nuxt-link
-            class="pure-menu-link"
-            :class="{ 'pure-menu-selected': currentPage === '/rimfire' }"
-            :to="path('/rimfire')"
-            >{{ $t('default.rimfire') }}</nuxt-link
-          >
+        <li class="pure-menu-item" :class="{ 'pure-menu-selected': currentPage === '/rimfire' }">
+          <nuxt-link class="pure-menu-link" :to="path('/rimfire')">{{ $t('default.rimfire') }}</nuxt-link>
         </li>
-        <li class="pure-menu-item">
-          <nuxt-link
-            class="pure-menu-link"
-            :class="{ 'pure-menu-selected': currentPage === '/reloading' }"
-            :to="path('/reloading')"
-            >{{ $t('default.reloading') }} (BETA)</nuxt-link
-          >
+        <li class="pure-menu-item" :class="{ 'pure-menu-selected': currentPage === '/reloading' }">
+          <nuxt-link class="pure-menu-link" :to="path('/reloading')">{{ $t('default.reloading') }} (BETA)</nuxt-link>
         </li>
-        <li class="pure-menu-item">
-          <nuxt-link
-            class="pure-menu-link"
-            :class="{ 'pure-menu-selected': currentPage === '/about' }"
-            :to="path('/about')"
-            >{{ $t('default.about') }}</nuxt-link
-          >
+        <li class="pure-menu-item" :class="{ 'pure-menu-selected': currentPage === '/about' }">
+          <nuxt-link class="pure-menu-link" :to="path('/about')">{{ $t('default.about') }}</nuxt-link>
         </li>
         <li class="pure-menu-item">
           <nuxt-link
@@ -129,7 +102,7 @@ export default class Layout extends Vue {
   // todo: attach correct types
 
   get currentPage() {
-    return this.$router.currentRoute.path
+    return this.$route.path
   }
 
   mail = 'mailto:' + 'contact' + '@' + 'ammobin.ca' // this probably will do nothing to stop bots...
@@ -146,10 +119,13 @@ export default class Layout extends Vue {
   margin-top: 100px;
 }
 
+.pure-menu-link {
+  color: #4f4f4f;
+}
+
 .light-grey {
   background-color: #f1f1f1;
 }
-
 /* hide fork me link on mobile*/
 
 @media screen and (max-width: 35.5em) {

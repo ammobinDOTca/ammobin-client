@@ -42,7 +42,7 @@
         rel="noopener"
         title="TFBTV Mailbag Episode 4: A New Hope"
       >
-        <img src="~/assets/aso-tfbtv2.svg" width="100px" />
+        <img src="~/assets/aso-tfbtv2.svg" width="100px" alt="as seen on TFBTV" />
       </a>
     </div>
     <!--<div style="margin-top: 2rem">
