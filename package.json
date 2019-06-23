@@ -52,7 +52,6 @@
     "next": "^8.1.0",
     "pretty-quick": "^1.11.0",
     "ramda": "^0.26.1",
-    "snyk": "^1.174.1",
     "surge": "^0.21.3"
   },
   "scripts": {
@@ -63,13 +62,12 @@
     "start": "HOST=0.0.0.0 NODE_ENV=production PROD=true nuxt start",
     "generate": "PROD=true nuxt generate",
     "surge": "surge --project ./dist --domain ammobin.surge.sh",
-    "snyk-protect": "snyk protect",
     "heroku-postbuild": "npm run build",
     "format": "pretty-quick",
     "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore .",
     "lint:fix": "eslint --ext .ts,.js,.vue --ignore-path .gitignore --fix ."
   },
-  "snyk": true,
+ 
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick"
