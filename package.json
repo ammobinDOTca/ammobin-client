@@ -58,6 +58,7 @@
   "scripts": {
     "test": "npm run build",
     "dev": "HOST=0.0.0.0 nuxt",
+    "now-build": "npm run build",
     "build": "PROD=true nuxt build --universal",
     "start": "HOST=0.0.0.0 NODE_ENV=production PROD=true nuxt start",
     "generate": "PROD=true nuxt generate",
