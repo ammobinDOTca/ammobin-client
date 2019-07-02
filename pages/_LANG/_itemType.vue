@@ -96,8 +96,7 @@ import '~/types'
       },
       prefetch: ({ route }) => {
         const itemType = route.params.itemType || route.query.itemType || null
-        // todo: fix this
-        if (false && ![ITEM_TYPES].includes(itemType)) {
+        if (![...ITEM_TYPES].includes(itemType)) {
           return false // hard 404
         }
 
@@ -129,8 +128,7 @@ import '~/types'
     MyTable,
   },
   validate({ params }) {
-    // todo: use proper const here + reloading
-    return true || [null, ...ITEM_TYPES].includes(params.itemType)
+    return [null, ...ITEM_TYPES].includes(params.itemType)
   },
   head() {
     const that: any = this
