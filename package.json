@@ -19,7 +19,7 @@
     "browserslist": "^4.6.6",
     "copy-webpack-plugin": "^5.0.3",
     "core-js": "^2.6.9",
-    "css-loader": "^2.1.0",
+    "css-loader": "^3.1.0",
     "es6-promise": "^4.2.8",
     "graphql": "^14.4.2",
     "graphql-tag": "^2.10.0",
