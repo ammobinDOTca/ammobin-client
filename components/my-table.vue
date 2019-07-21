@@ -4,7 +4,7 @@
       <div id="search" class="pure-u-1 pure-u-md-1-6">
         <label for="query">{{ $t('table.search') }}</label>
         <input
-          name="query"
+          id="query"
           :value="query"
           class="pure-input-1"
           placeholder="ie: Barnaul, surplus, 00 Buck"
@@ -24,7 +24,7 @@
       <div v-if="isAmmoType" class="pure-u-1 pure-u-md-1-6">
         <label for="subRype">{{ $t('table.calibre') }}</label>
 
-        <select name="subType" :value="subType" class="pure-input-1" @change="updateSubType($event.target.value)">
+        <select id="subType" :value="subType" class="pure-input-1" @change="updateSubType($event.target.value)">
           <option />
           <optgroup v-if="showCenterfireCalibres" :label="$t('default.centerfire')">
             <option v-for="c in centerfireCalibres" :key="c">
