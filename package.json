@@ -79,5 +79,8 @@
     "> 5% in CA",
     "ie >= 11",
     "not dead"
-  ]
+  ],
+  "engines": {
+    "node": ">=12"
+  }
 }
