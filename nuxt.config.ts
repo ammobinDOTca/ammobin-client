@@ -1,12 +1,14 @@
-import NuxtConfiguration from '@nuxt/config'
+//import NuxtConfiguration from '@nuxt/config'
+import { Configuration } from '@nuxt/types'
+
 import { ITEM_TYPES } from './components/constants'
 
 const webpack = require('webpack')
 const { join } = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-export default <NuxtConfiguration>{
-  modules: ['@nuxtjs/pwa', '@nuxtjs/axios', '@nuxtjs/apollo'],
+export default <Configuration>{
+  modules: ['@nuxt/typescript-build', '@nuxtjs/pwa', '@nuxtjs/axios', '@nuxtjs/apollo'],
   build: {
     plugins: [
       new webpack.DefinePlugin({
