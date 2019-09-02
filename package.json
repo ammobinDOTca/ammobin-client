@@ -78,7 +78,6 @@
     "last 2 versions",
     "> 5% in CA",
     "ie >= 11",
-    "node >= 12",
     "not dead"
   ]
 }
