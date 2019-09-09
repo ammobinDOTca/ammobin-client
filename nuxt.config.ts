@@ -19,7 +19,7 @@ export default <Configuration>{
     ],
     extractCSS: true,
 
-    extend: function(config, { isDev, isClient }) {
+    extend: function (config, { isDev, isClient }) {
       config.node = {
         fs: 'empty',
       }
@@ -104,6 +104,7 @@ export default <Configuration>{
         httpEndpoint: true || !!process.env.PROD ? 'https://ammobin.ca/api/graphql' : 'http://localhost:8080/graphql',
       },
     },
+    errorHandler: '~/plugins/apollo-error-handler.ts',
   },
   generate: {
     routes: ['/', '/fr/'].reduce((lst, prep) => [...lst, ...ITEM_TYPES.map(post => prep + post)], [] as Array<string>),
