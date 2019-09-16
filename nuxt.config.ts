@@ -81,7 +81,12 @@ export default <Configuration>{
       })
     },
   },
-  plugins: ['~/plugins/i18n', { src: '~/plugins/vue-img', ssr: false }, { src: '~/plugins/preformance', ssr: false }],
+  plugins: [
+    '~/plugins/i18n',
+    { src: '~/plugins/vue-img', ssr: false },
+    { src: '~/plugins/preformance', ssr: false },
+    { src: '~/plugins/error-reporter', ssr: false },
+  ],
   /*
   disabled while working on api memory useage
   cache: {
