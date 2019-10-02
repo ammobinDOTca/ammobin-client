@@ -5,7 +5,7 @@
   "license": "MIT",
   "description": "The place to view ammo prices across Canada",
   "dependencies": {
-    "@nuxt/typescript-runtime": "^0.1.4",
+    "@nuxt/typescript-runtime": "^0.2.0",
     "@nuxtjs/apollo": "^4.0.0-rc12",
     "@nuxtjs/axios": "^5.6.0",
     "@nuxtjs/icon": "^2.6.0",
