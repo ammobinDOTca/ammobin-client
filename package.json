@@ -34,7 +34,7 @@
     "vue-style-loader": "^4.1.0"
   },
   "devDependencies": {
-    "@nuxt/typescript-build": "^0.2.0",
+    "@nuxt/typescript-build": "^0.3.0",
     "@nuxtjs/eslint-config": "^1.1.2",
     "@typescript-eslint/eslint-plugin": "^2.3.0",
     "@typescript-eslint/parser": "^2.0.0",
