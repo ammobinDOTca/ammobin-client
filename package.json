@@ -61,7 +61,7 @@
     "dev": "HOST=0.0.0.0 nuxt-ts",
     "now-build": "npm run build",
     "build": "PROD=true nuxt-ts build --universal",
-    "start": "HOST=0.0.0.0 NODE_ENV=production PROD=true nuxt-ts start",
+    "start": "HOST=0.0.0.0 NODE_ENV=production PROD=true nuxt start",
     "generate": "PROD=true nuxt-ts generate",
     "surge": "surge --project ./dist --domain ammobin.surge.sh",
     "heroku-postbuild": "npm run build",
