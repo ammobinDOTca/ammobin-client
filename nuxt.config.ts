@@ -19,7 +19,7 @@ export default <Configuration>{
     ],
     extractCSS: true,
 
-    extend: function (config, { isDev, isClient }) {
+    extend: function(config, { isDev, isClient }) {
       config.node = {
         fs: 'empty',
       }
@@ -84,7 +84,7 @@ export default <Configuration>{
   plugins: [
     '~/plugins/i18n',
     { src: '~/plugins/vue-img', ssr: false },
-    { src: '~/plugins/preformance', ssr: false },
+    { src: '~/plugins/performance', ssr: false },
     { src: '~/plugins/error-reporter', ssr: false },
   ],
   /*
