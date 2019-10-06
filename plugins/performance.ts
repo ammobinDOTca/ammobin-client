@@ -4,7 +4,7 @@ declare const BASE_API_URL: string
 
 if (!process.server) {
   window.onload = () => {
-    const perfData = { preformance: window.performance.timing, href: window.location.href }
+    const perfData = { performance: window.performance.timing, href: window.location.href }
     setTimeout(() => {
       const endpoint = BASE_API_URL + 'track-performance'
       if (!navigator.sendBeacon) {
