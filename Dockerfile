@@ -23,9 +23,10 @@ WORKDIR /build
 COPY --from=build /build/package*.json /build/
 RUN npm install --production
 
-
+# copy min needed to run (built) app
 COPY --from=build /build/nuxt.config.ts /build
 COPY --from=build /build/.nuxt /build/.nuxt
+COPY --from=build /build/static /build/static
 RUN apk --no-cache add wget
 
 EXPOSE 3000
