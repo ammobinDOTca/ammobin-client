@@ -13,7 +13,7 @@
     "vue-property-decorator": "^8.2.2"
   },
   "devDependencies": {
-    "@nuxt/typescript-runtime": "^0.1.4",
+    "@nuxt/typescript-runtime": "^0.2.1",
     "@nuxtjs/icon": "^2.6.0",
     "@nuxtjs/manifest": "^2.6.0",
     "@nuxtjs/meta": "^2.6.0",
