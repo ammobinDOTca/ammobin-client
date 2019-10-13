@@ -28,7 +28,7 @@
     "boxen": "^4.1.0",
     "browserslist": "^4.7.0",
     "copy-webpack-plugin": "^5.0.4",
-    "core-js": "^2.6.9",
+    "core-js": "^3.3.0",
     "css-loader": "^3.2.0",
     "es6-promise": "^4.2.8",
     "graphql": "^14.5.6",
