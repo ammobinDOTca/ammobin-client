@@ -1,5 +1,6 @@
-export default function({ isHMR, app, store, route, params, error, redirect }) {
+export default function({ isHMR, app, store, route, params, error, redirect, ...props }) {
   // If middleware is called from hot module replacement, ignore it
+  console.log(props)
   if (isHMR) {
     return
   }

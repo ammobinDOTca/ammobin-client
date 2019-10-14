@@ -1,21 +1,28 @@
 //import NuxtConfiguration from '@nuxt/config'
 import { Configuration } from '@nuxt/types'
 
-import { ITEM_TYPES } from './components/constants'
+const AMMO_TYPES = ['ammo', 'centerfire', 'rimfire', 'shotgun']
+const RELOADING_TYPES = ['reloading', 'powder', 'shot', 'case', 'primer']
+const ITEM_TYPES = [...AMMO_TYPES, ...RELOADING_TYPES]
 
 const webpack = require('webpack')
 const { join } = require('path')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+// const CopyWebpackPlugin = require('copy-webpack-plugin')
+
+// was https://ammobin.ca/api before
+const PROD_API = 'https://api.aws.ammobin.ca/api'
 
 export default <Configuration>{
-  modules: ['@nuxt/typescript-build', '@nuxtjs/pwa', '@nuxtjs/axios', '@nuxtjs/apollo'],
+  //'@nuxt/typescript-build', '@nuxtjs/pwa',
+  // todo: disable the above when running on lambda
+  modules: ['@nuxt/typescript-build', , '@nuxtjs/pwa', '@nuxtjs/axios', '@nuxtjs/apollo'],
   build: {
     plugins: [
       new webpack.DefinePlugin({
-        BASE_API_URL: process.env.PROD ? '"https://ammobin.ca/api/"' : '"http://localhost:8080/"',
+        BASE_API_URL: process.env.PROD ? `"${PROD_API}"` : '"http://localhost:8080/"',
         PROD: process.env.PROD ? 'true' : 'false',
       }),
-      new CopyWebpackPlugin([{ from: 'static' }]),
+      // new CopyWebpackPlugin([{ from: 'static' }]),
     ],
     extractCSS: true,
 
@@ -106,12 +113,19 @@ export default <Configuration>{
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: true || !!process.env.PROD ? 'https://ammobin.ca/api/graphql' : 'http://localhost:8080/graphql',
+        httpEndpoint:
+          true || !!process.env.PROD
+            ? // 'https://ammobin.ca/api/graphql' :
+              PROD_API + '/graphql'
+            : 'http://localhost:8080/graphql',
       },
     },
     errorHandler: '~/plugins/apollo-error-handler.ts',
   },
   generate: {
+    // todo: add in subTypes?
     routes: ['/', '/fr/'].reduce((lst, prep) => [...lst, ...ITEM_TYPES.map(post => prep + post)], [] as Array<string>),
+    subFolders: false, // https://nuxtjs.org/api/configuration-generate/#subfolders
+    // we want centerfire.html NOT centerfire/index.html (for better )
   },
 }
