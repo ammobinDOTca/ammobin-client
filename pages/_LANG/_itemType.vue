@@ -21,7 +21,7 @@ import { ITEM_TYPES, AMMO_TYPES } from '~/components/constants'
 import gql from 'graphql-tag'
 import '@nuxt/vue-app'
 import { Component, Vue } from 'vue-property-decorator'
-import '~/types'
+// import '~/types'
 
 @Component({
   apollo: {
