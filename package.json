@@ -23,7 +23,7 @@
     "@nuxtjs/workbox": "^2.6.0",
     "@typescript-eslint/eslint-plugin": "^2.3.0",
     "@typescript-eslint/parser": "^2.0.0",
-    "@vue/cli-shared-utils": "^3.11.0",
+    "@vue/cli-shared-utils": "^4.0.0",
     "apollo-boost": "^0.4.4",
     "boxen": "^4.1.0",
     "browserslist": "^4.7.0",
