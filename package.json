@@ -7,7 +7,7 @@
   "dependencies": {
     "@nuxtjs/apollo": "^4.0.0-rc12",
     "@nuxtjs/axios": "^5.6.0",
-    "ammobin-classifier": "^0.0.35",
+    "ammobin-classifier": "^0.0.36",
     "nuxt": "^2.9.2",
     "vue-i18n": "^8.14.0",
     "vue-property-decorator": "^8.2.2"
