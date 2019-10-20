@@ -10,6 +10,7 @@
     </a>
     <div class="pure-menu pure-menu-horizontal pure-menu-scrollable light-grey">
       <ul class="pure-menu-list">
+        <li><a href="https://elections.ca/home.aspx/" style="font-weight:bold;">VOTE ON MONDAY OCT 21 2019</a></li>
         <li class="pure-menu-item" :class="{ 'pure-menu-selected': currentPage === '/' }">
           <nuxt-link class="pure-menu-link" :to="path('/')">AMMOBIN.CA</nuxt-link>
         </li>
