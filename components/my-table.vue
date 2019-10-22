@@ -274,6 +274,7 @@ export default class ItemsTable extends Vue {
   itemClicked(link) {
     const click = JSON.stringify({
       link,
+      href: window.location.href,
       query: this.$route.query,
       itemType: this.itemType,
       subType: this.subType,
@@ -314,6 +315,7 @@ export default class ItemsTable extends Vue {
       const view = JSON.stringify({
         subType,
         brand,
+        href: window.location.href,
         query: this.$route.query,
         itemType: this.itemType,
       })
