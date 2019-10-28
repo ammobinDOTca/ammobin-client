@@ -109,7 +109,7 @@ function shuffle(input: any[]): any[] {
 @Component({
   head() {
     return {
-      title: 'About AmmoBin.ca', // TODO: en francais
+      title: this.$t('about'), // TODO: en francais
       meta: [
         {
           hid: 'description',
@@ -125,8 +125,6 @@ function shuffle(input: any[]): any[] {
         query getVendors {
           vendors {
             name
-            #provinces
-            #location
             logo
             link
             background

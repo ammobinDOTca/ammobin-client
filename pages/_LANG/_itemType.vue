@@ -147,15 +147,15 @@ import '~/types'
         href: getUrl(url, that.page + 1, that.subType),
       })
     }
+    const type = that.subType || that.itemType || 'Ammo'
+    const area = that.province || 'Canada'
     return {
-      title: (that.subType || that.itemType || 'Ammo') + ' Prices', // TODO: en francais
+      title:this.$t('table.title',{type}),
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: `The place to view the best ${that.subType ||
-            that.itemType ||
-            'ammo'} prices across ${that.province || 'Canada'}.`, // TODO: en francais
+          content: this.$t('table.description',{type,area})
         },
       ],
       link,

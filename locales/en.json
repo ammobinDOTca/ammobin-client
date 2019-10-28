@@ -66,6 +66,8 @@
     "perRound": "per round",
     "buyFrom": "buy from",
     "show": "Show",
-    "hide": "Hide"
+    "hide": "Hide",
+    "title": "{type} prices | Ammobin.ca",
+    "description": "The place to view the best {type} prices across {area}"
   }
 }

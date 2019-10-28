@@ -66,6 +66,8 @@
     "perRound": "par cartouche",
     "buyFrom": "Acheter chez",
     "show": "Afficher",
-    "hide": "Masquer"
+    "hide": "Masquer",
+    "title": "{type} prix | Ammobin.ca",
+    "description": "L'endroit pour trouver les meilleurs prix de {type} au {area}."
   }
 }
