@@ -1,6 +1,5 @@
 https://ammobin.ca/
 https://ammobin.ca/about
-https://ammobin.ca/dank
 https://ammobin.ca/rimfire
 https://ammobin.ca/shotgun
 https://ammobin.ca/centerfire
@@ -32,6 +31,7 @@ https://ammobin.ca/centerfire?calibre=7.62X39MM&page=1
 https://ammobin.ca/centerfire?calibre=338%20LAPUA%20MAGNUM&page=1
 https://ammobin.ca/centerfire?calibre=.338%20WINCHESTER%20MAGNUM&page=1
 https://ammobin.ca/centerfire?calibre=6.5MM%20CREEDMOOR&page=1
+https://ammobin.ca/centerfire?calibre=6MM%20CREEDMOOR&page=1
 https://ammobin.ca/centerfire?calibre=.460%20S%26W%20MAGNUM&page=1
 https://ammobin.ca/centerfire?calibre=.500%20S%26W%20MAGNUM&page=1
 https://ammobin.ca/centerfire?calibre=.44%20MAGNUM&page=1
@@ -103,7 +103,6 @@ https://ammobin.ca/shotgun?calibre=28%20GA&page=1
 https://ammobin.ca/shotgun?calibre=.410%20GA&page=1
 https://ammobin.ca/fr/
 https://ammobin.ca/fr/about
-https://ammobin.ca/fr/dank
 https://ammobin.ca/fr/rimfire
 https://ammobin.ca/fr/shotgun
 https://ammobin.ca/fr/centerfire
@@ -135,6 +134,7 @@ https://ammobin.ca/fr/centerfire?calibre=7.62X39MM&page=1
 https://ammobin.ca/fr/centerfire?calibre=338%20LAPUA%20MAGNUM&page=1
 https://ammobin.ca/fr/centerfire?calibre=.338%20WINCHESTER%20MAGNUM&page=1
 https://ammobin.ca/fr/centerfire?calibre=6.5MM%20CREEDMOOR&page=1
+https://ammobin.ca/fr/centerfire?calibre=6MM%20CREEDMOOR&page=1
 https://ammobin.ca/fr/centerfire?calibre=.460%20S%26W%20MAGNUM&page=1
 https://ammobin.ca/fr/centerfire?calibre=.500%20S%26W%20MAGNUM&page=1
 https://ammobin.ca/fr/centerfire?calibre=.44%20MAGNUM&page=1
