@@ -150,12 +150,12 @@ import '~/types'
     const type = that.subType || that.itemType || 'Ammo'
     const area = that.province || 'Canada'
     return {
-      title:this.$t('table.title',{type}),
+      title: this.$t('table.title', { type }),
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('table.description',{type,area})
+          content: this.$t('table.description', { type, area }),
         },
       ],
       link,
