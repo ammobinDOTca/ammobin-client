@@ -109,12 +109,12 @@ function shuffle(input: any[]): any[] {
 @Component({
   head() {
     return {
-      title: this.$t('about'), // TODO: en francais
+      title: this.$t('about') as string,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'All about ammobin.ca', // TODO: en francais
+          content: 'All about ammobin.ca',
         },
       ],
     }

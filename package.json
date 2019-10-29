@@ -21,8 +21,6 @@
     "@nuxtjs/meta": "^2.6.0",
     "@nuxtjs/pwa": "^2.6.0",
     "@nuxtjs/workbox": "^2.6.0",
-    "@typescript-eslint/eslint-plugin": "^2.5.0",
-    "@typescript-eslint/parser": "^2.5.0",
     "@vue/cli-shared-utils": "^3.12.1",
     "apollo-boost": "^0.4.4",
     "boxen": "^4.1.0",
