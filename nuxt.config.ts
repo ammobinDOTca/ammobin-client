@@ -26,7 +26,7 @@ export default <Configuration>{
     ],
     extractCSS: true,
 
-    extend: function (config, { isDev, isClient }) {
+    extend: function(config, { isDev, isClient }) {
       config.node = {
         fs: 'empty',
       }
@@ -106,10 +106,12 @@ export default <Configuration>{
     theme_color: '#41b883',
     display: 'standalone',
   },
-  workbox: process.env.PROD ? {
-    importScripts: ['custom-service-worker.js'],
-    globIgnores: ['sw.js', '**/workbox*.js'],
-  } : false,
+  workbox: process.env.PROD
+    ? {
+        importScripts: ['custom-service-worker.js'],
+        globIgnores: ['sw.js', '**/workbox*.js'],
+      }
+    : false,
   apollo: {
     clientConfigs: {
       default: {
