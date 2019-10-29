@@ -1,4 +1,4 @@
-export default function({ isHMR, app, store, route, params, error, redirect, res }) {
+export default function ({ isHMR, app, store, route, params, error, redirect, res }) {
   // If middleware is called from hot module replacement, ignore it
   if (isHMR) {
     return
@@ -13,7 +13,8 @@ export default function({ isHMR, app, store, route, params, error, redirect, res
     return error({ message: 'This page could not be found.', statusCode: 404 })
   }
 
-  if (process.server) {
+  // if running on server (and not part of nuxt generate)
+  if (process.server && res) {
     res.setHeader('Content-Language', `${locale}-CA`)
   }
 
