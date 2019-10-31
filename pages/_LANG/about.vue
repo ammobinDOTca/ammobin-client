@@ -109,7 +109,7 @@ function shuffle(input: any[]): any[] {
 @Component({
   head() {
     return {
-      title: this.$t('about') as string,
+      title: this.$t('default.about') as string,
       meta: [
         {
           hid: 'description',
