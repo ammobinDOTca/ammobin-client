@@ -20,12 +20,6 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
--task: DeleteFiles@1
-  inputs:
-    Contents: |
-      node_modules
-      .nuxt'
-
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(System.DefaultWorkingDirectory)'
