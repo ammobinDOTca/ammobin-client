@@ -18,6 +18,7 @@ steps:
 - script: |
     npm install
     npm run build
+    rm -rf node_modules .nuxt
   displayName: 'npm install and build'
 
 - task: PublishBuildArtifacts@1
