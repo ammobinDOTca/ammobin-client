@@ -42,7 +42,7 @@
 
       <div class="pure-u-1 pure-u-md-1-6">
         <label for="brands">{{ $t('table.brand') }}</label>
-        <select id="brands" :value="brands" class="pure-input-1" @change="updateBrand($event.target.value)">
+        <select id="brands" :value="brands" class="pure-input-1" @change="updateBrand($event.target.value)" disabled>
           <option v-for="b in brands" :key="b">
             {{ b }}
           </option>
@@ -69,15 +69,19 @@
       </div>
     </div>
     <div class="pure-g row">
-      <div class="pure-u-lg-1-4 pure-u-1" />
-      <div class="pure-u-lg-1-4 pure-u-1-4 title" :class="{ active: sortField == 'name' }" @click="sortBy('name')">
+      <div class="pure-u-lg-1-5 pure-u-1" />
+      <div
+        class="pure-u-lg-1-5 pure-u-md-1-3 pure-u-1-4 title"
+        :class="{ active: sortField == 'name' }"
+        @click="sortBy('name')"
+      >
         <h4>
           {{ $t('table.name') }}
           <span class="arrow" :class="sortOrder" />
         </h4>
       </div>
       <div
-        class="pure-u-lg-1-4 pure-u-1-4 title"
+        class="pure-u-lg-1-5 pure-u-md-1-3 pure-u-1-4 title"
         :class="{ active: sortField == 'minPrice' }"
         @click="sortBy('minPrice')"
       >
@@ -86,7 +90,7 @@
           <span class="arrow" :class="sortOrder" />
         </h4>
       </div>
-      <!--<div
+      <div
         class="pure-u-lg-1-5 pure-u-1-4 title"
         @click="sortBy('minUnitCost')"
         :class="{ active: sortField == 'minUnitCost' }"
@@ -95,8 +99,8 @@
           {{ $t('table.unitCost') }}
           <span class="arrow" :class="sortOrder"></span>
         </h4>
-      </div>-->
-      <div class="pure-u-lg-1-4 pure-u-1-4 title" :class="{ active: sortField == 'link' }" @click="sortBy('link')">
+      </div>
+      <div class="pure-u-lg-1-5 pure-u-1-4 title" :class="{ active: sortField == 'link' }" @click="sortBy('link')">
         <h4>
           {{ $t('table.link') }}
           <span class="arrow" :class="sortOrder" />
@@ -110,8 +114,8 @@
       </div>
     </div>
 
-    <div v-for="(row, index) in rows" :key="row.name" class="pure-g row fix-row item">
-      <div class="pure-u-lg-1-4 pure-u-md-1 pure-u-1">
+    <div v-for="(row, index) in rows" class="pure-g row fix-row item">
+      <div class="pure-u-lg-1-5 pure-u-md-1 pure-u-1">
         <img
           v-img-fallback="defaultImg"
           class="pure-img img-cell"
@@ -121,20 +125,17 @@
           importance="low"
         />
       </div>
-      <div class="pure-u-lg-1-4 pure-u-md-1-4 pure-u-1 m-b-1 capitalize">
+      <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1 capitalize">
         {{ row.name }}
       </div>
-      <div class="pure-u-lg-1-4 pure-u-md-1-4 pure-u-1 m-b-1">
+      <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
         <div>${{ row.price.toFixed(2) }}</div>
       </div>
-      <!--<div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
-        <div v-if="row.minUnitCost && row.minUnitCost !== row.maxUnitCost">
-          ${{ row.minUnitCost.toFixed(2) }} - ${{ row.maxUnitCost.toFixed(2) }}
-        </div>
-        <div v-else-if="row.minUnitCost && row.minUnitCost === row.maxUnitCost">${{ row.minUnitCost.toFixed(2) }}</div>
+      <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
+        <div v-if="row.unitCost">${{ row.unitCost.toFixed(2) }}</div>
         <div v-else if="!row.minUnitCost">N/A</div>
-      </div>-->
-      <div class="pure-u-lg-1-4 pure-u-md-1-4 pure-u-1-4">
+      </div>
+      <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
         <a :href="row.link" target="_blank" rel="nofollow noopener" @click="itemClicked(row.link)"
           >{{ $t('table.buyFrom') }} {{ row.vendor }}</a
         >
@@ -182,7 +183,6 @@ export default class FlatList extends Vue {
   @Prop() pages
   @Prop() itemType
   @Prop() vendors
-  @Watch('rows')
 
   // is the current item type ammo ? (as opposed to reloading)
   get isAmmoType() {

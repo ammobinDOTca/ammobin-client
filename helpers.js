@@ -34,3 +34,8 @@ export function isCrawler(req) {
     'w3m', // let elite haxors see all content b/c they are too cool for JS
   ].some(bot => userAgent.indexOf(bot) >= 0)
 }
+
+export function provinceCodeToName(code) {
+  // todo implement
+  return code
+}

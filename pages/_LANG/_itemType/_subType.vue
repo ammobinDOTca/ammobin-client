@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div v-if="!isAmmoType">{{ $t('default.betaWarning') }}</div>
-    <h1>{{ $t('default.' + (itemType || 'ammo')) }}</h1>
+    <h1>{{ $t('subType.title', { type, area, subType }) }}</h1>
     <flat-list
       v-if="!error && itemsFlatListings"
       :rows="itemsFlatListings.items"
@@ -24,6 +24,9 @@ import { Component, Vue } from 'vue-property-decorator'
 import '~/types'
 
 @Component({
+  validate({ params }) {
+    return ITEM_TYPES.includes(params.itemType)
+  },
   apollo: {
     vendors: {
       query: gql`
@@ -39,6 +42,7 @@ import '~/types'
         query getItemsFlatListings(
           $page: Int
           $pageSize: Int
+          $itemType: ItemType
           $subType: String
           $province: Province
           $vendor: String
@@ -49,6 +53,7 @@ import '~/types'
           itemsFlatListings(
             page: $page
             pageSize: $pageSize
+            itemType: $itemType
             subType: $subType
             province: $province
             vendor: $vendor
@@ -76,40 +81,13 @@ import '~/types'
           page: that.page,
           subType: that.subType || null,
           pageSize: that.pageSize,
+          itemType: that.itemType,
 
           province: that.province || null,
           vendor: that.vendor || null,
           query: that.query || null,
           sortField: that.sortField || null,
           sortOrder: that.sortOrder || null,
-        }
-      },
-      prefetch: ({ route }) => {
-        console.log('prefetech??')
-        const itemType = route.params.itemType || route.query.itemType || null
-        // if (![...ITEM_TYPES].includes(itemType)) {
-        //   return false // hard 404
-        // }
-        console.log({
-          ...route.params,
-          ...route.query,
-          ...{
-            page: 1,
-            pageSize: 25,
-            sortField: 'minPrice',
-            sorderOrder: 'DES',
-          },
-        })
-        return {
-          page: Number(route.query.page) || 1,
-          subType: route.query.subType || route.query.calibre || null,
-          pageSize: Number(route.query.pageSize) || 25,
-          province: route.query.province || null,
-          itemType,
-          vendor: route.query.vendor || null,
-          query: route.query.query || null,
-          sortField: route.query.sortField || 'minPrice' || null,
-          sorderOrder: route.query.sortOrder || 'DES' || null,
         }
       },
       watchLoading(isLoading /*, countModifier */) {
@@ -147,14 +125,15 @@ import '~/types'
       })
     }
     const type = that.subType || that.itemType || 'Ammo'
-    const area = that.province || 'Canada'
+    const area = that.area
+    const subType = that.subType
     return {
-      title: this.$t('table.title', { type }),
+      title: this.$t('subType.title', { type, area, subType }) + ' | ammobin.ca',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('table.description', { type, area }),
+          content: this.$t('subType.description', { type, area, subType }),
         },
       ],
       link,
@@ -164,6 +143,10 @@ import '~/types'
 export default class ListingPage extends Vue {
   error = null
   ammoListing = null
+
+  get area() {
+    return this.province || 'Canada'
+  }
 
   get isAmmoType() {
     return AMMO_TYPES.includes(this.itemType as string)
@@ -182,6 +165,7 @@ export default class ListingPage extends Vue {
     return Number(this.$route.query.pageSize) || 25
   }
   get itemType() {
+    console.log('itemType', this.$route.params.itemType)
     return this.$route.params.itemType
   }
   get vendor() {

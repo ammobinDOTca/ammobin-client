@@ -1,9 +1,10 @@
 <template>
   <div class="container">
     <h1>{{ $t('table.title', { type: itemType }) }}</h1>
-
-    <div v-for="subType in subtypes" :key="subType">
-      <nuxt-link :to="path(subType)">{{ subType }}</nuxt-link>
+    <div class="pure-g row">
+      <div v-for="subType in subtypes" :key="subType" class="pure-u-md-1-3 pure-u-1 margin-y capitalize">
+        <nuxt-link :to="path(subType)">{{ subType }}</nuxt-link>
+      </div>
     </div>
   </div>
 </template>
@@ -65,8 +66,8 @@ export default class ListingPage extends Vue {
     const itemType = this.$route.params.itemType || this.$route.query.itemType || null
     return itemType
   }
-  path(url) {
-    return '/' + this.$i18n.locale + url
+  path(subType) {
+    return `/${this.$i18n.locale}/${this.itemType}/${subType}`
   }
 
   get subtypes() {

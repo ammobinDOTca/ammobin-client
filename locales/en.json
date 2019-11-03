@@ -50,6 +50,7 @@
     "english": "EN"
   },
   "table": {
+    "brand": "brand",
     "search": "Search",
     "pageSize": "Page Size",
     "calibre": "Calibre",
@@ -67,7 +68,10 @@
     "buyFrom": "buy from",
     "show": "Show",
     "hide": "Hide",
-    "title": "{type} prices | Ammobin.ca",
+    "title": "{type} Prices",
     "description": "The place to view the best {type} prices across {area}"
+  },
+  "subType": {
+    "title": "Best {subType} Prices Across {area}"
   }
 }
