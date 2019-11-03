@@ -31,7 +31,7 @@
     <h2 class="m-t-30 cap">{{ $t('home.currentlyPopular') }}</h2>
     <div class="pure-g row">
       <div v-for="v in topCalibres" :key="v" class="pure-u-md-1-3 pure-u-1 margin-y">
-        <nuxt-link :to="{ path: `centerfire/${v}`}">{{ v }}</nuxt-link>
+        <nuxt-link :to="{ path: `centerfire/${v}` }">{{ v }}</nuxt-link>
       </div>
     </div>
 

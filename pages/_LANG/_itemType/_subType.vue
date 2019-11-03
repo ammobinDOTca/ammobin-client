@@ -85,11 +85,21 @@ import '~/types'
         }
       },
       prefetch: ({ route }) => {
+        console.log('prefetech??')
         const itemType = route.params.itemType || route.query.itemType || null
         // if (![...ITEM_TYPES].includes(itemType)) {
         //   return false // hard 404
         // }
-
+        console.log({
+          ...route.params,
+          ...route.query,
+          ...{
+            page: 1,
+            pageSize: 25,
+            sortField: 'minPrice',
+            sorderOrder: 'DES',
+          },
+        })
         return {
           page: Number(route.query.page) || 1,
           subType: route.query.subType || route.query.calibre || null,
@@ -120,37 +130,36 @@ import '~/types'
   // validate({ params }) {
   //   return [null, ...ITEM_TYPES].includes(params.itemType)
   // },
-  // head() {
-  //   const that: any = this
-  //   const link: any[] = []
-  //   const url = `https://ammobin.ca/${this.$i18n.locale !== 'en' ? this.$i18n.locale + '/' : ''}${that.itemType ||
-  //     'ammo'}`
-  //   if (that.page > 1) {
-  //     link.push({
-  //       rel: 'prev',
-  //       href: getUrl(url, that.page - 1, that.subType),
-  //     })
-  //   }
-  //   if (that.itemsListings && that.itemsListings.pages > that.page) {
-  //     link.push({
-  //       rel: 'next',
-  //       href: getUrl(url, that.page + 1, that.subType),
-  //     })
-  //   }
-  //   const type = that.subType || that.itemType || 'Ammo'
-  //   const area = that.province || 'Canada'
-  //   return {
-  //     title: this.$t('table.title', { type }),
-  //     meta: [
-  //       {
-  //         hid: 'description',
-  //         name: 'description',
-  //         content: this.$t('table.description', { type, area }),
-  //       },
-  //     ],
-  //     link,
-  //   }
-  // },
+  head() {
+    const that: any = this
+    const link: any[] = []
+    const url = `https://ammobin.ca/${this.$i18n.locale}/${that.itemType}/${that.subType}`
+    if (that.page > 1) {
+      link.push({
+        rel: 'prev',
+        href: getUrl(url, that.page - 1, that.subType),
+      })
+    }
+    if (that.itemsFlatListings && that.itemsFlatListings.pages > that.page) {
+      link.push({
+        rel: 'next',
+        href: getUrl(url, that.page + 1, that.subType),
+      })
+    }
+    const type = that.subType || that.itemType || 'Ammo'
+    const area = that.province || 'Canada'
+    return {
+      title: this.$t('table.title', { type }),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('table.description', { type, area }),
+        },
+      ],
+      link,
+    }
+  },
 })
 export default class ListingPage extends Vue {
   error = null
@@ -164,7 +173,7 @@ export default class ListingPage extends Vue {
   }
   get subType() {
     // query was old param, dont want to break links
-    return this.$route.query.subType || this.$route.query.calibre || null
+    return this.$route.params.subType
   }
   get province() {
     return this.$route.query.province || null
@@ -173,8 +182,7 @@ export default class ListingPage extends Vue {
     return Number(this.$route.query.pageSize) || 25
   }
   get itemType() {
-    const itemType = this.$route.params.itemType || this.$route.query.itemType || null
-    return itemType
+    return this.$route.params.itemType
   }
   get vendor() {
     return this.$route.query.vendor || null
