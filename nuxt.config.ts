@@ -9,8 +9,8 @@ const webpack = require('webpack')
 const { join } = require('path')
 // const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-// was https://ammobin.ca/api before
-const PROD_API = 'https://api.aws.ammobin.ca/api'
+const PROD_API = 'https://ammobin.ca/api'
+// const PROD_API = 'https://api.aws.ammobin.ca/api'
 
 export default <Configuration>{
   //'@nuxt/typescript-build', '@nuxtjs/pwa',
@@ -125,8 +125,10 @@ export default <Configuration>{
     errorHandler: '~/plugins/apollo-error-handler.ts',
   },
   generate: {
-    // todo: add in subTypes?
-    routes: ['/', '/fr/'].reduce((lst, prep) => [...lst, ...ITEM_TYPES.map(post => prep + post)], [] as Array<string>),
+    // todo: add in subTypes
+    routes: ['/', '/en', '/fr/'].reduce((lst, prep) => [...lst, ...ITEM_TYPES.map(post => prep + post)], [] as Array<
+      string
+    >),
     subFolders: false, // https://nuxtjs.org/api/configuration-generate/#subfolders
     // we want centerfire.html NOT centerfire/index.html (for better )
   },
