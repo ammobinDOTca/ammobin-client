@@ -89,12 +89,12 @@ function shuffle(input: any[]): any[] {
 @Component({
   head() {
     return {
-      title: this.$t('about') as string,
+      title: this.$t('about.title') + ' | ammobin.ca',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'All about ammobin.ca', // TODO i18n
+          content: this.$('about.description') as string,
         },
       ],
     }

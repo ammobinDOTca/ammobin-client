@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>{{ $t('table.title', { type: itemType }) }}</h1>
+    <h1 class="capitalize">{{ $t('itemTypes.title', { type: $t('default.' + itemType) }) }}</h1>
     <div class="pure-g row">
       <div v-for="subType in subtypes" :key="subType" class="pure-u-md-1-3 pure-u-1 margin-y capitalize">
         <nuxt-link :to="path(subType)">{{ subType }}</nuxt-link>
@@ -42,15 +42,15 @@ import { shotgunGauges } from 'ammobin-classifier/build/shotgun-gauges'
         href: getUrl(url, that.page + 1, that.subType),
       })
     }
-    const type = that.subType || that.itemType || 'Ammo'
+    const type = this.$t('default.' + that.itemType)
     const area = that.province || 'Canada'
     return {
-      title: this.$t('table.title', { type }) as string,
+      title: this.$t('itemTypes.title', { type }) as string,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('table.description', { type, area }) as string,
+          content: this.$t('itemTypes.description', { type }) as string,
         },
       ],
       link,

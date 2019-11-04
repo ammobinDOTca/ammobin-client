@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div v-if="!isAmmoType">{{ $t('default.betaWarning') }}</div>
-    <h1>{{ $t('subType.title', { type, area, subType }) }}</h1>
+    <h1>{{ $t('subType.title', { area, subType }) }}</h1>
     <flat-list
       v-if="!error && itemsFlatListings"
       :rows="itemsFlatListings.items"
@@ -105,9 +105,6 @@ import '~/types'
   components: {
     FlatList,
   },
-  // validate({ params }) {
-  //   return [null, ...ITEM_TYPES].includes(params.itemType)
-  // },
   head() {
     const that: any = this
     const link: any[] = []
@@ -124,16 +121,15 @@ import '~/types'
         href: getUrl(url, that.page + 1, that.subType),
       })
     }
-    const type = that.subType || that.itemType || 'Ammo'
     const area = that.area
     const subType = that.subType
     return {
-      title: this.$t('subType.title', { type, area, subType }) + ' | ammobin.ca',
+      title: this.$t('subType.title', { area, subType }) + ' | ammobin.ca',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('subType.description', { type, area, subType }),
+          content: this.$t('subType.description', { area, subType }),
         },
       ],
       link,
@@ -165,7 +161,6 @@ export default class ListingPage extends Vue {
     return Number(this.$route.query.pageSize) || 25
   }
   get itemType() {
-    console.log('itemType', this.$route.params.itemType)
     return this.$route.params.itemType
   }
   get vendor() {
