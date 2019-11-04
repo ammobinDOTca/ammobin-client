@@ -8,8 +8,8 @@ const webpack = require('webpack')
 const { join } = require('path')
 // const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-const PROD_API = 'https://ammobin.ca/api'
-// const PROD_API = 'https://api.aws.ammobin.ca/api'
+// const PROD_API = 'https://ammobin.ca/api/'
+const PROD_API = 'https://api.aws.ammobin.ca/api/'
 
 export default <Configuration>{
   //'@nuxt/typescript-build', '@nuxtjs/pwa',
@@ -25,7 +25,7 @@ export default <Configuration>{
     ],
     extractCSS: true,
 
-    extend: function(config, { isDev, isClient }) {
+    extend: function (config, { isDev, isClient }) {
       config.node = {
         fs: 'empty',
       }
@@ -107,18 +107,14 @@ export default <Configuration>{
   },
   workbox: process.env.PROD
     ? {
-        importScripts: ['custom-service-worker.js'],
-        globIgnores: ['sw.js', '**/workbox*.js'],
-      }
+      importScripts: ['custom-service-worker.js'],
+      globIgnores: ['sw.js', '**/workbox*.js'],
+    }
     : false,
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint:
-          true || !!process.env.PROD
-            ? // 'https://ammobin.ca/api/graphql' :
-              PROD_API + '/graphql'
-            : 'http://localhost:8080/graphql',
+        httpEndpoint: true || !!process.env.PROD ? PROD_API + 'graphql' : 'http://localhost:8080/graphql',
       },
     },
     errorHandler: '~/plugins/apollo-error-handler.ts',
