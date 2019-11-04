@@ -94,7 +94,7 @@ function shuffle(input: any[]): any[] {
         {
           hid: 'description',
           name: 'description',
-          content: this.$('about.description') as string,
+          content: this.$t('about.description') as string,
         },
       ],
     }
