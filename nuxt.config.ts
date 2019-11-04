@@ -1,9 +1,8 @@
 //import NuxtConfiguration from '@nuxt/config'
 import { Configuration } from '@nuxt/types'
-
+import { generateRoutes } from './generate-routes'
 const AMMO_TYPES = ['ammo', 'centerfire', 'rimfire', 'shotgun']
 const RELOADING_TYPES = ['reloading', 'powder', 'shot', 'case', 'primer']
-const ITEM_TYPES = [...AMMO_TYPES, ...RELOADING_TYPES]
 
 const webpack = require('webpack')
 const { join } = require('path')
@@ -74,8 +73,8 @@ export default <Configuration>{
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'alternate', hreflang: 'fr-ca', href: 'https://ammobin.ca/fr' },
-      { rel: 'alternate', hreflang: 'en-ca', href: 'https://ammobin.ca/' },
-      { rel: 'alternate', hreflang: 'x-default', href: 'https://ammobin.ca/' },
+      { rel: 'alternate', hreflang: 'en-ca', href: 'https://ammobin.ca/en' },
+      { rel: 'alternate', hreflang: 'x-default', href: 'https://ammobin.ca/en' },
     ],
   },
   router: {
@@ -126,9 +125,7 @@ export default <Configuration>{
   },
   generate: {
     // todo: add in subTypes
-    routes: ['/', '/en', '/fr/'].reduce((lst, prep) => [...lst, ...ITEM_TYPES.map(post => prep + post)], [] as Array<
-      string
-    >),
+    routes: ['/', ...generateRoutes()],
     subFolders: false, // https://nuxtjs.org/api/configuration-generate/#subfolders
     // we want centerfire.html NOT centerfire/index.html (for better )
   },
