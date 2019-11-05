@@ -23,7 +23,8 @@ export default function({ isHMR, app, store, route, params, error, redirect, res
   store.commit('SET_LANG', locale)
   app.i18n.locale = store.state.locale
   // If route is /en/... -> redirect to /...
-  if (locale === 'en' && !route.fullPath.startsWith('/en')) {
+  // leave route alone (need it for generate command and new visitors), will default to english
+  if (locale === 'en' && !route.fullPath.startsWith('/en') && route.fullPath !== '/') {
     return redirect('/en' + route.fullPath)
   }
 }

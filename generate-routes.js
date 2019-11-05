@@ -2,9 +2,10 @@ module.exports.generateRoutes = function generateRoutes() {
   const head = l => l[0]
 
   return ['en', 'fr'].reduce((routes, lang) => {
-    let lst = ['', 'about', 'rimfire', 'shotgun', 'centerfire', 'reloading', 'powder', 'shot', 'case', 'primer'].map(
+    let lst = ['about', 'rimfire', 'shotgun', 'centerfire', 'reloading', 'powder', 'shot', 'case', 'primer'].map(
       s => `/${lang}/${s}`
     )
+    lst = lst.concat([`/${lang}`])
 
     lst = lst.concat(
       require('ammobin-classifier/build/rimfire-calibres')
