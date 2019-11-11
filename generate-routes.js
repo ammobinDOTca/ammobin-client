@@ -7,6 +7,8 @@ module.exports.generateRoutes = function generateRoutes() {
     )
     lst = lst.concat([`/${lang}`])
 
+    lst = lst.concat(['rimfire', 'shotgun', 'centerfire'].map(t => `/${lang}/${t}/UNKNOWN`))
+
     lst = lst.concat(
       require('ammobin-classifier/build/rimfire-calibres')
         .rimfireCalibres.map(l => head(l).toUpperCase())

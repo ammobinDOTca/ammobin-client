@@ -9,6 +9,9 @@ https://ammobin.ca/en/shot
 https://ammobin.ca/en/case
 https://ammobin.ca/en/primer
 https://ammobin.ca/en
+https://ammobin.ca/en/rimfire/UNKNOWN
+https://ammobin.ca/en/shotgun/UNKNOWN
+https://ammobin.ca/en/centerfire/UNKNOWN
 https://ammobin.ca/en/rimfire/.22 WMR
 https://ammobin.ca/en/rimfire/.22 LR
 https://ammobin.ca/en/rimfire/.17 HMR
@@ -112,6 +115,9 @@ https://ammobin.ca/fr/shot
 https://ammobin.ca/fr/case
 https://ammobin.ca/fr/primer
 https://ammobin.ca/fr
+https://ammobin.ca/fr/rimfire/UNKNOWN
+https://ammobin.ca/fr/shotgun/UNKNOWN
+https://ammobin.ca/fr/centerfire/UNKNOWN
 https://ammobin.ca/fr/rimfire/.22 WMR
 https://ammobin.ca/fr/rimfire/.22 LR
 https://ammobin.ca/fr/rimfire/.17 HMR
