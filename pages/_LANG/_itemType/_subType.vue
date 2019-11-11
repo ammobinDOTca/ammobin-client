@@ -4,7 +4,7 @@
     <h1>{{ $t('subType.title', { area, subType }) }}</h1>
     <flat-list
       v-show="!error && itemsFlatListings"
-      :rows="itemsFlatListings ? itemsFlatListings.items :[]"
+      :rows="itemsFlatListings ? itemsFlatListings.items : []"
       :pages="itemsFlatListings ? itemsFlatListings.pages : 0"
       :item-type="itemType"
       :vendors="[null].concat(vendors.map(i => i.name))"
