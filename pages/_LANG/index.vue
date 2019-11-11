@@ -80,8 +80,8 @@ export default class HomePage extends Vue {
     ...[
       '9MM',
       '7.62X39MM',
-      '.223 / 5.56 NATO',
-      '.308 / 7.62 NATO',
+      '5.56 NATO',
+      '7.62 NATO',
       '6.5MM CREEDMOOR',
       '7MM-08 REMINGTON',
       '.300 WEATHERBY MAGNUM',

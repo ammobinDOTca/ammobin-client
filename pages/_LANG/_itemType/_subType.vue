@@ -3,14 +3,14 @@
     <div v-if="!isAmmoType">{{ $t('default.betaWarning') }}</div>
     <h1>{{ $t('subType.title', { area, subType }) }}</h1>
     <flat-list
-      v-if="!error && itemsFlatListings"
-      :rows="itemsFlatListings.items"
-      :pages="itemsFlatListings.pages"
+      v-show="!error && itemsFlatListings"
+      :rows="itemsFlatListings ? itemsFlatListings.items :[]"
+      :pages="itemsFlatListings ? itemsFlatListings.pages : 0"
       :item-type="itemType"
       :vendors="[null].concat(vendors.map(i => i.name))"
     />
-    <div v-if="error">ERROR {{ error }}</div>
-    <div v-if="!itemsFlatListings">{{ $t('default.loading') }}</div>
+    <div v-show="error">ERROR {{ error }}</div>
+    <div v-show="!itemsFlatListings">{{ $t('default.loading') }}</div>
   </div>
 </template>
 

@@ -9,7 +9,7 @@ const { join } = require('path')
 // const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 // const PROD_API = 'https://ammobin.ca/api/'
-const PROD_API = 'https://api.aws.ammobin.ca/api/'
+const PROD_API = 'https://aws.ammobin.ca/api/'
 
 export default <Configuration>{
   //'@nuxt/typescript-build', '@nuxtjs/pwa',
@@ -25,7 +25,7 @@ export default <Configuration>{
     ],
     extractCSS: true,
 
-    extend: function (config, { isDev, isClient }) {
+    extend: (config) => {
       config.node = {
         fs: 'empty',
       }
@@ -120,7 +120,7 @@ export default <Configuration>{
     errorHandler: '~/plugins/apollo-error-handler.ts',
   },
   generate: {
-    // todo: add in subTypes
+    interval: 500,
     routes: ['/', ...generateRoutes()],
     subFolders: false, // https://nuxtjs.org/api/configuration-generate/#subfolders
     // we want centerfire.html NOT centerfire/index.html (for better )
