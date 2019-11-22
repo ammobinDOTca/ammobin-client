@@ -24,3 +24,5 @@ steps:
       npm run generate
       npm run upload
     displayName: 'generate + upload'
+    env:
+      BUCKET_NAME: $(BUCKET_NAME)
