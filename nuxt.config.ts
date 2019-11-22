@@ -2,7 +2,6 @@
 import { Configuration } from '@nuxt/types'
 import { generateRoutes } from './generate-routes'
 
-
 const webpack = require('webpack')
 const { join } = require('path')
 // const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -106,9 +105,9 @@ export default <Configuration>{
   },
   workbox: process.env.PROD
     ? {
-      importScripts: ['custom-service-worker.js'],
-      globIgnores: ['sw.js', '**/workbox*.js'],
-    }
+        importScripts: ['custom-service-worker.js'],
+        globIgnores: ['sw.js', '**/workbox*.js'],
+      }
     : false,
   apollo: {
     clientConfigs: {
