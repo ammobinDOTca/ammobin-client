@@ -26,3 +26,5 @@ steps:
     displayName: 'generate + upload'
     env:
       BUCKET_NAME: $(BUCKET_NAME)
+      AWS_ACCESS_KEY: $(AWS_ACCESS_KEY)
+      AWS_SECRET_ACCESS_KEY: $(AWS_SECRET_ACCESS_KEY)
