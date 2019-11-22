@@ -22,6 +22,7 @@
     "@nuxtjs/workbox": "^2.6.0",
     "@vue/cli-shared-utils": "^3.12.1",
     "apollo-boost": "^0.4.4",
+    "aws-sdk": "^2.577.0",
     "boxen": "^4.1.0",
     "browserslist": "^4.7.2",
     "copy-webpack-plugin": "^5.0.4",
@@ -43,6 +44,7 @@
     "build": "PROD=true nuxt-ts build --universal",
     "start": "HOST=0.0.0.0 NODE_ENV=production PROD=true nuxt start",
     "generate": "PROD=true nuxt-ts generate",
+    "upload": "node ./upload.js",
     "heroku-postbuild": "npm run build",
     "format": "pretty-quick"
   },
