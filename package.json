@@ -5,10 +5,10 @@
   "license": "MIT",
   "description": "The place to view ammo prices across Canada",
   "dependencies": {
-    "@nuxtjs/apollo": "^4.0.0-rc15",
-    "@nuxtjs/axios": "^5.6.0",
-    "ammobin-classifier": "^0.0.36",
-    "nuxt": "^2.10.1",
+    "@nuxtjs/apollo": "^4.0.0-rc16",
+    "@nuxtjs/axios": "^5.8.0",
+    "ammobin-classifier": "^0.1.0",
+    "nuxt": "^2.10.2",
     "vue-i18n": "^8.15.0",
     "vue-property-decorator": "^8.3.0"
   },
@@ -23,7 +23,7 @@
     "@vue/cli-shared-utils": "^3.12.1",
     "apollo-boost": "^0.4.4",
     "boxen": "^4.1.0",
-    "browserslist": "^4.7.1",
+    "browserslist": "^4.7.2",
     "copy-webpack-plugin": "^5.0.4",
     "core-js": "^2.6.10",
     "css-loader": "^3.2.0",
@@ -39,7 +39,7 @@
   },
   "scripts": {
     "test": "npm run build",
-    "dev": "PORT=9999 HOST=0.0.0.0 nuxt-ts",
+    "dev": "NUXT_HOST=0.0.0.0 NUXT_PORT=3333 nuxt-ts",
     "build": "PROD=true nuxt-ts build --universal",
     "start": "HOST=0.0.0.0 NODE_ENV=production PROD=true nuxt start",
     "generate": "PROD=true nuxt-ts generate",

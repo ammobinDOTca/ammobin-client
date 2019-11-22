@@ -1,16 +1,14 @@
 //import NuxtConfiguration from '@nuxt/config'
 import { Configuration } from '@nuxt/types'
+import { generateRoutes } from './generate-routes'
 
-const AMMO_TYPES = ['ammo', 'centerfire', 'rimfire', 'shotgun']
-const RELOADING_TYPES = ['reloading', 'powder', 'shot', 'case', 'primer']
-const ITEM_TYPES = [...AMMO_TYPES, ...RELOADING_TYPES]
 
 const webpack = require('webpack')
 const { join } = require('path')
 // const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-// was https://ammobin.ca/api before
-const PROD_API = 'https://api.aws.ammobin.ca/api'
+// const PROD_API = 'https://ammobin.ca/api/'
+const PROD_API = 'https://aws.ammobin.ca/api/'
 
 export default <Configuration>{
   //'@nuxt/typescript-build', '@nuxtjs/pwa',
@@ -26,7 +24,7 @@ export default <Configuration>{
     ],
     extractCSS: true,
 
-    extend: function(config, { isDev, isClient }) {
+    extend: config => {
       config.node = {
         fs: 'empty',
       }
@@ -74,8 +72,8 @@ export default <Configuration>{
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'alternate', hreflang: 'fr-ca', href: 'https://ammobin.ca/fr' },
-      { rel: 'alternate', hreflang: 'en-ca', href: 'https://ammobin.ca/' },
-      { rel: 'alternate', hreflang: 'x-default', href: 'https://ammobin.ca/' },
+      { rel: 'alternate', hreflang: 'en-ca', href: 'https://ammobin.ca/en' },
+      { rel: 'alternate', hreflang: 'x-default', href: 'https://ammobin.ca/en' },
     ],
   },
   router: {
@@ -106,25 +104,23 @@ export default <Configuration>{
     theme_color: '#41b883',
     display: 'standalone',
   },
-  workbox: {
-    importScripts: ['custom-service-worker.js'],
-    globIgnores: ['sw.js', '**/workbox*.js'],
-  },
+  workbox: process.env.PROD
+    ? {
+      importScripts: ['custom-service-worker.js'],
+      globIgnores: ['sw.js', '**/workbox*.js'],
+    }
+    : false,
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint:
-          true || !!process.env.PROD
-            ? // 'https://ammobin.ca/api/graphql' :
-              PROD_API + '/graphql'
-            : 'http://localhost:8080/graphql',
+        httpEndpoint: true || !!process.env.PROD ? PROD_API + 'graphql' : 'http://localhost:8080/graphql',
       },
     },
     errorHandler: '~/plugins/apollo-error-handler.ts',
   },
   generate: {
-    // todo: add in subTypes?
-    routes: ['/', '/fr/'].reduce((lst, prep) => [...lst, ...ITEM_TYPES.map(post => prep + post)], [] as Array<string>),
+    interval: 500,
+    routes: ['/', ...generateRoutes()],
     subFolders: false, // https://nuxtjs.org/api/configuration-generate/#subfolders
     // we want centerfire.html NOT centerfire/index.html (for better )
   },

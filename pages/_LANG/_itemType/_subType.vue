@@ -1,21 +1,21 @@
 <template>
   <div class="container">
     <div v-if="!isAmmoType">{{ $t('default.betaWarning') }}</div>
-    <h1>{{ $t('default.' + (itemType || 'ammo')) }}</h1>
-    <my-table
-      v-if="!error && itemsListings"
-      :rows="itemsListings.items"
-      :pages="itemsListings.pages"
+    <h1>{{ $t('subType.title', { area, subType }) }}</h1>
+    <flat-list
+      v-show="!error && itemsFlatListings"
+      :rows="itemsFlatListings ? itemsFlatListings.items : []"
+      :pages="itemsFlatListings ? itemsFlatListings.pages : 0"
       :item-type="itemType"
       :vendors="[null].concat(vendors.map(i => i.name))"
     />
-    <div v-if="error">ERROR {{ error }}</div>
-    <div v-if="!itemsListings">{{ $t('default.loading') }}</div>
+    <div v-show="error">ERROR {{ error }}</div>
+    <div v-show="!itemsFlatListings">{{ $t('default.loading') }}</div>
   </div>
 </template>
 
 <script lang="ts">
-import MyTable from '~/components/my-table.vue'
+import FlatList from '~/components/flat-list.vue'
 import { getUrl } from '~/helpers'
 import { ITEM_TYPES, AMMO_TYPES } from '~/components/constants'
 import gql from 'graphql-tag'
@@ -24,6 +24,9 @@ import { Component, Vue } from 'vue-property-decorator'
 // import '~/types'
 
 @Component({
+  validate({ params }) {
+    return ITEM_TYPES.includes(params.itemType)
+  },
   apollo: {
     vendors: {
       query: gql`
@@ -34,12 +37,12 @@ import { Component, Vue } from 'vue-property-decorator'
         }
       `,
     },
-    itemsListings: {
+    itemsFlatListings: {
       query: gql`
-        query getitemsListings(
-          $itemType: ItemType
+        query getItemsFlatListings(
           $page: Int
           $pageSize: Int
+          $itemType: ItemType
           $subType: String
           $province: Province
           $vendor: String
@@ -47,10 +50,10 @@ import { Component, Vue } from 'vue-property-decorator'
           $sortField: SortField
           $sortOrder: SortOrder
         ) {
-          itemsListings(
-            itemType: $itemType
+          itemsFlatListings(
             page: $page
             pageSize: $pageSize
+            itemType: $itemType
             subType: $subType
             province: $province
             vendor: $vendor
@@ -62,19 +65,11 @@ import { Component, Vue } from 'vue-property-decorator'
             items {
               name
               brand
-              subType
-              minPrice
-              maxPrice
-              #minUnitCost
-              #maxUnitCost
               img
-              vendors {
-                name
-                price
-                link
-                unitCost
-                vendor
-              }
+              price
+              link
+              unitCost
+              vendor
             }
           }
         }
@@ -86,30 +81,13 @@ import { Component, Vue } from 'vue-property-decorator'
           page: that.page,
           subType: that.subType || null,
           pageSize: that.pageSize,
-          itemType: that.itemType || null,
+          itemType: that.itemType,
+
           province: that.province || null,
           vendor: that.vendor || null,
           query: that.query || null,
           sortField: that.sortField || null,
           sortOrder: that.sortOrder || null,
-        }
-      },
-      prefetch: ({ route }) => {
-        const itemType = route.params.itemType || route.query.itemType || null
-        if (![...ITEM_TYPES].includes(itemType)) {
-          return false // hard 404
-        }
-
-        return {
-          page: Number(route.query.page) || 1,
-          subType: route.query.subType || route.query.calibre || null,
-          pageSize: Number(route.query.pageSize) || 25,
-          province: route.query.province || null,
-          itemType,
-          vendor: route.query.vendor || null,
-          query: route.query.query || null,
-          sortField: route.query.sortField || 'minPrice' || null,
-          sorderOrder: route.query.sortOrder || 'DES' || null,
         }
       },
       watchLoading(isLoading /*, countModifier */) {
@@ -125,37 +103,33 @@ import { Component, Vue } from 'vue-property-decorator'
     },
   },
   components: {
-    MyTable,
-  },
-  validate({ params }) {
-    return [null, ...ITEM_TYPES].includes(params.itemType)
+    FlatList,
   },
   head() {
     const that: any = this
     const link: any[] = []
-    const url = `https://ammobin.ca/${this.$i18n.locale !== 'en' ? this.$i18n.locale + '/' : ''}${that.itemType ||
-      'ammo'}`
+    const url = `https://ammobin.ca/${this.$i18n.locale}/${that.itemType}/${that.subType}`
     if (that.page > 1) {
       link.push({
         rel: 'prev',
         href: getUrl(url, that.page - 1, that.subType),
       })
     }
-    if (that.itemsListings && that.itemsListings.pages > that.page) {
+    if (that.itemsFlatListings && that.itemsFlatListings.pages > that.page) {
       link.push({
         rel: 'next',
         href: getUrl(url, that.page + 1, that.subType),
       })
     }
+    const area = that.area
+    const subType = that.subType
     return {
-      title: (that.subType || that.itemType || 'Ammo') + ' Prices', // TODO: en francais
+      title: this.$t('subType.title', { area, subType }) + ' | ammobin.ca',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: `The place to view the best ${that.subType ||
-            that.itemType ||
-            'ammo'} prices across ${that.province || 'Canada'}.`, // TODO: en francais
+          content: this.$t('subType.description', { area, subType }),
         },
       ],
       link,
@@ -166,6 +140,10 @@ export default class ListingPage extends Vue {
   error = null
   ammoListing = null
 
+  get area() {
+    return this.province || 'Canada'
+  }
+
   get isAmmoType() {
     return AMMO_TYPES.includes(this.itemType as string)
   }
@@ -174,7 +152,7 @@ export default class ListingPage extends Vue {
   }
   get subType() {
     // query was old param, dont want to break links
-    return this.$route.query.subType || this.$route.query.calibre || null
+    return this.$route.params.subType
   }
   get province() {
     return this.$route.query.province || null
@@ -183,8 +161,7 @@ export default class ListingPage extends Vue {
     return Number(this.$route.query.pageSize) || 25
   }
   get itemType() {
-    const itemType = this.$route.params.itemType || this.$route.query.itemType || null
-    return itemType
+    return this.$route.params.itemType
   }
   get vendor() {
     return this.$route.query.vendor || null
