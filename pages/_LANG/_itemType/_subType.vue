@@ -3,14 +3,14 @@
     <div v-if="!isAmmoType">{{ $t('default.betaWarning') }}</div>
     <h1>{{ $t('subType.title', { area, subType }) }}</h1>
     <flat-list
-      v-show="!error && itemsFlatListings"
+      v-show="!error"
       :rows="itemsFlatListings ? itemsFlatListings.items : []"
       :pages="itemsFlatListings ? itemsFlatListings.pages : 0"
       :item-type="itemType"
       :vendors="[null].concat(vendors.map(i => i.name))"
+      :loading="!itemsFlatListings || loading"
     />
     <div v-show="error">ERROR {{ error }}</div>
-    <div v-show="!itemsFlatListings">{{ $t('default.loading') }}</div>
   </div>
 </template>
 
@@ -91,14 +91,7 @@ import { Component, Vue } from 'vue-property-decorator'
         }
       },
       watchLoading(isLoading /*, countModifier */) {
-        const that: any = this // lazy ts
-        if (that.$nuxt && that.$nuxt.$loading && that.$nuxt.$loading.start) {
-          if (isLoading) {
-            that.$nuxt.$loading.start()
-          } else {
-            that.$nuxt.$loading.finish()
-          }
-        }
+        this.loading = isLoading
       },
     },
   },
@@ -139,6 +132,7 @@ import { Component, Vue } from 'vue-property-decorator'
 export default class ListingPage extends Vue {
   error = null
   ammoListing = null
+  loading = false
 
   get area() {
     return this.province || 'Canada'

@@ -9,12 +9,19 @@
           class="pure-input-1"
           placeholder="ie: Barnaul, surplus, 00 Buck"
           @change="updateQuery($event.target.value)"
+          :disabled="loading"
         />
       </div>
 
       <div class="pure-u-1 pure-u-md-1-6">
         <label for="pageSize">{{ $t('table.pageSize') }}</label>
-        <select id="pageSize" :value="pageSize" class="pure-input-1" @change="updatePageSize($event.target.value)">
+        <select
+          id="pageSize"
+          :value="pageSize"
+          class="pure-input-1"
+          @change="updatePageSize($event.target.value)"
+          :disabled="loading"
+        >
           <option>25</option>
           <option>50</option>
           <option>75</option>
@@ -24,47 +31,67 @@
 
       <div class="pure-u-1 pure-u-md-1-6">
         <label for="province">{{ $t('table.province') }}</label>
-        <select id="province" :value="province" class="pure-input-1" @change="updateProvince($event.target.value)">
-          <option v-for="c in provinces" :key="c">
-            {{ c }}
-          </option>
+        <select
+          id="province"
+          :value="province"
+          class="pure-input-1"
+          @change="updateProvince($event.target.value)"
+          :disabled="loading"
+        >
+          <option v-for="c in provinces" :key="c">{{ c }}</option>
         </select>
       </div>
 
       <div class="pure-u-1 pure-u-md-1-6">
         <label for="vendor">{{ $t('table.vendor') }}</label>
-        <select id="vendor" :value="vendor" class="pure-input-1" @change="updateVendor($event.target.value)">
-          <option v-for="c in vendors" :key="c">
-            {{ c }}
-          </option>
+        <select
+          id="vendor"
+          :value="vendor"
+          class="pure-input-1"
+          @change="updateVendor($event.target.value)"
+          :disabled="loading"
+        >
+          <option v-for="c in vendors" :key="c">{{ c }}</option>
         </select>
       </div>
 
       <div class="pure-u-1 pure-u-md-1-6">
         <label for="brands">{{ $t('table.brand') }}</label>
-        <select id="brands" :value="brands" class="pure-input-1" @change="updateBrand($event.target.value)" disabled>
-          <option v-for="b in brands" :key="b">
-            {{ b }}
-          </option>
+        <select
+          id="brands"
+          :value="brands"
+          class="pure-input-1"
+          @change="updateBrand($event.target.value)"
+          :disabled="true"
+        >
+          <option v-for="b in brands" :key="b">{{ b }}</option>
         </select>
       </div>
 
       <div v-if="pages > 0" class="pure-u-1 pure-u-md-1-3">
         <label>{{ $t('table.page') }}</label>
         <div>
-          <button class="pure-button button-xsmall" :disabled="page === 1" @click="updatePage(1)">
-            |<<
-          </button>
-          <button class="pure-button button-xsmall" :disabled="page === 1" @click="updatePage(page - 1)">
-            <
-          </button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page === 1 || loading"
+            @click="updatePage(1)"
+          >|<<</button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page === 1 || loading"
+            @click="updatePage(page - 1)"
+          ><</button>
           {{ page }} {{ $t('table.of') }} {{ pages }}
-          <button class="pure-button button-xsmall" :disabled="page === pages" @click="updatePage(page + 1)">
-            >
-          </button>
-          <button class="pure-button button-xsmall" :disabled="page === pages" @click="updatePage(pages)">
-            >>|
-          </button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page === pages || loading"
+            @click="updatePage(page + 1)"
+          >></button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page === pages || loading"
+            @click="updatePage(pages)"
+          >>>|</button>
         </div>
       </div>
     </div>
@@ -74,6 +101,7 @@
         class="pure-u-lg-1-5 pure-u-md-1-3 pure-u-1-4 title"
         :class="{ active: sortField == 'name' }"
         @click="sortBy('name')"
+        :disabled="loading"
       >
         <h4>
           {{ $t('table.name') }}
@@ -83,6 +111,7 @@
       <div
         class="pure-u-lg-1-5 pure-u-md-1-3 pure-u-1-4 title"
         :class="{ active: sortField == 'minPrice' }"
+        :disabled="loading"
         @click="sortBy('minPrice')"
       >
         <h4>
@@ -92,6 +121,7 @@
       </div>
       <div
         class="pure-u-lg-1-5 pure-u-1-4 title"
+        :disabled="loading"
         @click="sortBy('minUnitCost')"
         :class="{ active: sortField == 'minUnitCost' }"
       >
@@ -100,7 +130,12 @@
           <span class="arrow" :class="sortOrder"></span>
         </h4>
       </div>
-      <div class="pure-u-lg-1-5 pure-u-1-4 title" :class="{ active: sortField == 'link' }" @click="sortBy('link')">
+      <div
+        class="pure-u-lg-1-5 pure-u-1-4 title"
+        :disabled="loading"
+        :class="{ active: sortField == 'link' }"
+        @click="sortBy('link')"
+      >
         <h4>
           {{ $t('table.link') }}
           <span class="arrow" :class="sortOrder" />
@@ -109,12 +144,14 @@
     </div>
 
     <div v-if="!rows || rows.length === 0" class="pure-g row fix-row">
-      <div class="pure-u-1">
-        {{ $t('table.noResult') }}
-      </div>
+      <div class="pure-u-1">{{ $t('table.noResult') }}</div>
     </div>
 
-    <div v-for="(row, index) in rows" class="pure-g row fix-row item">
+    <div v-if="loading" class="pure-g row fix-row">
+      <div class="pure-u-1">{{ $t('default.loading') }}...</div>
+    </div>
+
+    <div v-if="!loading" v-for="(row, index) in rows" class="pure-g row fix-row item">
       <div class="pure-u-lg-1-5 pure-u-md-1 pure-u-1">
         <img
           v-img-fallback="defaultImg"
@@ -125,9 +162,7 @@
           importance="low"
         />
       </div>
-      <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1 capitalize">
-        {{ row.name }}
-      </div>
+      <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1 capitalize">{{ row.name }}</div>
       <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
         <div>${{ row.price.toFixed(2) }}</div>
       </div>
@@ -136,28 +171,39 @@
         <div v-else if="!row.minUnitCost">N/A</div>
       </div>
       <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
-        <a :href="row.link" target="_blank" rel="nofollow noopener" @click="itemClicked(row.link)"
-          >{{ $t('table.buyFrom') }} {{ row.vendor }}</a
-        >
+        <a
+          :href="row.link"
+          target="_blank"
+          rel="nofollow noopener"
+          @click="itemClicked(row.link, index)"
+        >{{ $t('table.buyFrom') }} {{ row.vendor }}</a>
       </div>
     </div>
     <div>
       <div v-if="pages > 0" class="pure-u-lg-1-2 pure-u-1">
         <div>{{ $t('table.page') }}</div>
         <div>
-          <button class="pure-button button-xsmall" :disabled="page === 1" @click="updatePage(1)">
-            |<<
-          </button>
-          <button class="pure-button button-xsmall" :disabled="page === 1" @click="updatePage(page - 1)">
-            <
-          </button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page === 1 || loading"
+            @click="updatePage(1)"
+          >|<<</button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page === 1 || loading"
+            @click="updatePage(page - 1)"
+          ><</button>
           {{ page }} {{ $t('table.of') }} {{ pages }}
-          <button class="pure-button button-xsmall" :disabled="page === pages" @click="updatePage(page + 1)">
-            >
-          </button>
-          <button class="pure-button button-xsmall" :disabled="page === pages" @click="updatePage(pages)">
-            >>|
-          </button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page === pages || loading"
+            @click="updatePage(page + 1)"
+          >></button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page === pages || loading"
+            @click="updatePage(pages)"
+          >>>|</button>
         </div>
       </div>
     </div>
@@ -175,7 +221,22 @@ export default class FlatList extends Vue {
   $axios: any
 
   @Prop() rows
-  provinces = [null, 'AB', 'BC', 'MB', 'NB', 'NS', 'NT', 'NL', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT']
+  provinces = [
+    null,
+    'AB',
+    'BC',
+    'MB',
+    'NB',
+    'NS',
+    'NT',
+    'NL',
+    'NU',
+    'ON',
+    'PE',
+    'QC',
+    'SK',
+    'YT',
+  ]
   defaultImg = require('~/assets/blank.png')
 
   brands = []
@@ -183,6 +244,7 @@ export default class FlatList extends Vue {
   @Prop() pages
   @Prop() itemType
   @Prop() vendors
+  @Prop() loading
 
   // is the current item type ammo ? (as opposed to reloading)
   get isAmmoType() {
