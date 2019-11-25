@@ -1,7 +1,7 @@
 <template>
   <div class>
     <div class="pure-form pure-form-stacked">
-      <div id="search" class="pure-u-1 pure-u-md-1-6">
+      <div id="search" class="pure-u-1 pure-u-md-1-4">
         <label for="query">{{ $t('table.search') }}</label>
         <input
           id="query"
@@ -13,7 +13,7 @@
         />
       </div>
 
-      <div class="pure-u-1 pure-u-md-1-6">
+      <div class="pure-u-1 pure-u-md-1-5">
         <label for="pageSize">{{ $t('table.pageSize') }}</label>
         <select
           id="pageSize"
@@ -29,7 +29,7 @@
         </select>
       </div>
 
-      <div class="pure-u-1 pure-u-md-1-6">
+      <div class="pure-u-1 pure-u-md-1-5">
         <label for="province">{{ $t('table.province') }}</label>
         <select
           id="province"
@@ -42,7 +42,7 @@
         </select>
       </div>
 
-      <div class="pure-u-1 pure-u-md-1-6">
+      <div class="pure-u-1 pure-u-md-1-5">
         <label for="vendor">{{ $t('table.vendor') }}</label>
         <select
           id="vendor"
@@ -52,19 +52,6 @@
           :disabled="loading"
         >
           <option v-for="c in vendors" :key="c">{{ c }}</option>
-        </select>
-      </div>
-
-      <div class="pure-u-1 pure-u-md-1-6">
-        <label for="brands">{{ $t('table.brand') }}</label>
-        <select
-          id="brands"
-          :value="brands"
-          class="pure-input-1"
-          @change="updateBrand($event.target.value)"
-          :disabled="true"
-        >
-          <option v-for="b in brands" :key="b">{{ b }}</option>
         </select>
       </div>
 
