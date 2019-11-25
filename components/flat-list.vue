@@ -274,10 +274,15 @@ export default class FlatList extends Vue {
   get sortOrder() {
     return this.$route.query.sortOrder || 'ASC'
   }
-
-  itemClicked(link) {
+  /**
+   * track outbound link click
+   * link = url
+   * index = position in page
+   */
+  itemClicked(link, index) {
     const click = JSON.stringify({
       link,
+      index,
       href: window.location.href,
       query: this.$route.query,
       itemType: this.itemType,
