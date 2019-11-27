@@ -32,7 +32,7 @@
           <nuxt-link
             v-if="$i18n.locale === 'en'"
             class="pure-menu-link"
-            :to="$route.fullPath.replace('/en', '/fr')"
+            :to="$route.fullPath === '/' ? '/fr' : $route.fullPath.replace('/en', '/fr')"
             active-class="none"
             exact
             >{{ $t('links.french') }}</nuxt-link

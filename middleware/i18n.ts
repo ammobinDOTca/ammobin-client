@@ -4,7 +4,7 @@ export default function({ isHMR, app, store, route, params, error, redirect, res
     return
   }
   // Get locale from params. hack home page picking up lang
-  let locale = route.path === '/fr/' ? 'fr' : params.LANG || 'en'
+  let locale = route.path.startsWith('/fr') ? 'fr' : 'en'
 
   // todo: set lang to users current accept-lang header (if param not set)
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language
