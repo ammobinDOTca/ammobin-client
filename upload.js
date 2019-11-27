@@ -3,11 +3,6 @@
  */
 const BUCKET_NAME = process.env.BUCKET_NAME
 
-if (!BUCKET_NAME) {
-  console.error('BUCKET_NAME env not set.')
-  return -1
-}
-
 const fs = require('fs')
 const aws = require('aws-sdk')
 const path = require('path')
@@ -16,6 +11,7 @@ const s3 = new aws.S3({
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 })
 
+const dist = 'dist/'
 function uploadFolder(folder) {
   const files = fs.readdirSync(folder).map(f => path.join(folder, f))
 
@@ -27,10 +23,11 @@ function uploadFolder(folder) {
         // tell s3 to delete file after 30 days (should be regenerated well before)
         const expiry = new Date()
         expiry.setDate(expiry.getDate() + 30)
+
         s3.upload(
           {
             Bucket: BUCKET_NAME,
-            Key: fileName,
+            Key: fileName.replace(dist, ''),
             Body: data,
             Expires: expiry,
           },
@@ -44,4 +41,4 @@ function uploadFolder(folder) {
   files.filter(f => fs.lstatSync(f).isDirectory()).forEach(f => uploadFolder(f))
 }
 
-uploadFolder('./dist')
+uploadFolder(dist)
