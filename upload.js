@@ -11,6 +11,30 @@ const s3 = new aws.S3({
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 })
 
+const getLangFromFileName = fileName => {
+  if (fileName.includes('/fr/')) {
+    return 'fr-CA'
+  } else {
+    return 'en-CA'
+  }
+}
+
+const getContentTypeFromFileName = fileName => {
+  if (fileName.endsWith('.js')) {
+    return 'text/javascript'
+  } else if (fileName.endsWith('.html')) {
+    return 'text/html'
+  } else if (fileName.endsWith('.css')) {
+    return 'text/css'
+  } else if (fileName.endsWith('.png')) {
+    return 'image/png'
+  } else if (fileName.endsWith('.ico')) {
+    return 'image/x-icon'
+  } else {
+    return 'text/plain'
+  }
+}
+
 const dist = 'dist/'
 function uploadFolder(folder) {
   const files = fs.readdirSync(folder).map(f => path.join(folder, f))
@@ -30,6 +54,8 @@ function uploadFolder(folder) {
             Key: fileName.replace(dist, ''),
             Body: data,
             Expires: expiry,
+            ContentType: getContentTypeFromFileName(fileName),
+            ContentLanguage: getLangFromFileName(fileName),
           },
           function(s3Err, data) {
             if (s3Err) throw s3Err
