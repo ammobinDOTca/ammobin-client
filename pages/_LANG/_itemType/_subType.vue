@@ -18,28 +18,29 @@
 import FlatList from '~/components/flat-list.vue'
 import { getUrl } from '~/helpers'
 import { ITEM_TYPES, AMMO_TYPES } from '~/components/constants'
-import gql from 'graphql-tag'
 import '@nuxt/vue-app'
 import { Component, Vue } from 'vue-property-decorator'
 // import '~/types'
+declare const BASE_API_URL: string
 
 @Component({
   validate({ params }) {
     return ITEM_TYPES.includes(params.itemType)
   },
-  apollo: {
-    vendors: {
-      query: gql`
-        query getVendors {
-          vendors {
-            name
-          }
-        }
-      `,
+  async asyncData({
+    $axios,
+    route: {
+      params: { itemType, subType },
+      query: { page, pageSize, province, vendor, query, sortField, sortOrder },
     },
-    itemsFlatListings: {
-      query: gql`
-        query getItemsFlatListings(
+  }) {
+    console.log('async data')
+
+    const f = await $axios.post(BASE_API_URL + 'graphql', [
+      //{ query: '{vendors{name}}' },
+      {
+        query: `
+      query getItemsFlatListings(
           $page: Int
           $pageSize: Int
           $itemType: ItemType
@@ -74,26 +75,33 @@ import { Component, Vue } from 'vue-property-decorator'
           }
         }
       `,
-      variables() {
-        // Use vue reactive properties here
-        const that: any = this
-        return {
-          page: that.page,
-          subType: that.subType || null,
-          pageSize: that.pageSize,
-          itemType: that.itemType,
+        variables: {
+          itemType,
+          subType,
+          page: page ? Number.parseInt(page as string) : undefined,
+          pageSize: pageSize ? Number.parseInt(pageSize as string) : undefined,
 
-          province: that.province || null,
-          vendor: that.vendor || null,
-          query: that.query || null,
-          sortField: that.sortField || null,
-          sortOrder: that.sortOrder || null,
-        }
+          province,
+          vendor,
+          query,
+          sortField,
+          sortOrder,
+        },
       },
-      watchLoading(isLoading /*, countModifier */) {
-        this.loading = isLoading
-      },
-    },
+    ])
+
+    const {
+      data: { itemsFlatListings, errors },
+    } = f.data[0]
+
+    // const {
+    //   data: { vendors },
+    // } = f.data[0]
+
+    return {
+      vendors: [],
+      itemsFlatListings,
+    }
   },
   components: {
     FlatList,

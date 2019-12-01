@@ -20,7 +20,11 @@
 
       <div style="margin-top:10px;">
         {{ $t('about.submitIssue') }}
-        <a href="https://github.com/ammobinDOTca" target="_blank" rel="noopener">https://github.com/ammobindotca</a>
+        <a
+          href="https://github.com/ammobinDOTca"
+          target="_blank"
+          rel="noopener"
+        >https://github.com/ammobindotca</a>
       </div>
       <div>
         {{ $t('about.sendEmail') }}
@@ -35,10 +39,10 @@
 
     <hr />
 
-    <!--    <h2>{{ $t('about.incorrectCountTitle') }}</h2>
+    <h2>{{ $t('about.incorrectCountTitle') }}</h2>
     <p>{{ $t('about.incorrectCountText') }}</p>
 
-    <hr />-->
+    <hr />
 
     <h2 id="supportedRetailers">{{ $t('about.supportedRetailers') }}</h2>
     <div class="pure-g" v-if="vendors">
@@ -62,9 +66,10 @@
 </template>
 
 <script lang="ts">
-import gql from 'graphql-tag'
 import { Component, Vue } from 'vue-property-decorator'
 import '~/types'
+
+declare const BASE_API_URL: string
 
 function shuffle(input: any[]): any[] {
   const array = [...input]
@@ -99,20 +104,13 @@ function shuffle(input: any[]): any[] {
       ],
     }
   },
-  apollo: {
-    vendors: {
-      query: gql`
-        query getVendors {
-          vendors {
-            name
-            logo
-            link
-            background
-          }
-        }
-      `,
-      prefetch: () => ({}), // load serverside
-    },
+  async asyncData({ $axios, store }) {
+    const f = await $axios.get(BASE_API_URL + 'graphql', {
+      params: {
+        query: `{vendors{ name logo link background }}`,
+      },
+    })
+    store.commit('setVendors', f.data.data.vendors)
   },
 })
 export default class AboutPage extends Vue {
