@@ -7,7 +7,7 @@
       :rows="itemsFlatListings ? itemsFlatListings.items : []"
       :pages="itemsFlatListings ? itemsFlatListings.pages : 0"
       :item-type="itemType"
-      :vendors="[null].concat(vendors.map(i => i.name))"
+      :vendors="[null].concat((vendors||[]).map(i => i.name))"
       :loading="!itemsFlatListings || loading"
     />
     <div v-show="error">ERROR {{ error }}</div>

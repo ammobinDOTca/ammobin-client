@@ -55,7 +55,7 @@
         </select>
       </div>
 
-      <div v-if="pages > 0" class="pure-u-1 pure-u-md-1-3">
+      <div v-show="pages > 0" class="pure-u-1 pure-u-md-1-3">
         <label>{{ $t('table.page') }}</label>
         <div>
           <button
@@ -130,44 +130,45 @@
       </div>
     </div>
 
-    <div v-if="!rows || rows.length === 0" class="pure-g row fix-row">
+    <div v-show="!rows || rows.length === 0" class="pure-g row fix-row">
       <div class="pure-u-1">{{ $t('table.noResult') }}</div>
     </div>
 
-    <div v-if="loading" class="pure-g row fix-row">
+    <div v-show="loading" class="pure-g row fix-row">
       <div class="pure-u-1">{{ $t('default.loading') }}...</div>
     </div>
-
-    <div v-if="!loading" v-for="(row, index) in rows" class="pure-g row fix-row item">
-      <div class="pure-u-lg-1-5 pure-u-md-1 pure-u-1">
-        <img
-          v-img-fallback="defaultImg"
-          class="pure-img img-cell"
-          :src="row.img || defaultImg"
-          :alt="row.name"
-          decoding="async"
-          importance="low"
-        />
-      </div>
-      <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1 capitalize">{{ row.name }}</div>
-      <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
-        <div>${{ row.price.toFixed(2) }}</div>
-      </div>
-      <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
-        <div v-if="row.unitCost">${{ row.unitCost.toFixed(2) }}</div>
-        <div v-else if="!row.minUnitCost">N/A</div>
-      </div>
-      <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
-        <a
-          :href="row.link"
-          target="_blank"
-          rel="nofollow noopener"
-          @click="itemClicked(row.link, index)"
-        >{{ $t('table.buyFrom') }} {{ row.vendor }}</a>
+    <div v-show="!loading">
+      <div v-for="(row, index) in rows" :key="row.link+index" class="pure-g row fix-row item">
+        <div class="pure-u-lg-1-5 pure-u-md-1 pure-u-1">
+          <img
+            v-img-fallback="defaultImg"
+            class="pure-img img-cell"
+            :src="row.img || defaultImg"
+            :alt="row.name"
+            decoding="async"
+            importance="low"
+          />
+        </div>
+        <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1 capitalize">{{ row.name }}</div>
+        <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
+          <div>${{ row.price.toFixed(2) }}</div>
+        </div>
+        <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
+          <div v-if="row.unitCost">${{ row.unitCost.toFixed(2) }}</div>
+          <div v-else if="!row.minUnitCost">N/A</div>
+        </div>
+        <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
+          <a
+            :href="row.link"
+            target="_blank"
+            rel="nofollow noopener"
+            @click="itemClicked(row.link, index)"
+          >{{ $t('table.buyFrom') }} {{ row.vendor }}</a>
+        </div>
       </div>
     </div>
     <div>
-      <div v-if="pages > 0" class="pure-u-lg-1-2 pure-u-1">
+      <div v-show="pages > 0" class="pure-u-lg-1-2 pure-u-1">
         <div>{{ $t('table.page') }}</div>
         <div>
           <button
@@ -215,8 +216,8 @@ export default class FlatList extends Vue {
     'MB',
     'NB',
     'NS',
-    'NT',
     'NL',
+    'NT',
     'NU',
     'ON',
     'PE',
