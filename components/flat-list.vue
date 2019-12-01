@@ -138,7 +138,7 @@
       <div class="pure-u-1">{{ $t('default.loading') }}...</div>
     </div>
     <div v-show="!loading">
-      <div v-for="(row, index) in rows" :key="row.link+index" class="pure-g row fix-row item">
+      <div v-for="(row, index) in rows" :key="row.link + index" class="pure-g row fix-row item">
         <div class="pure-u-lg-1-5 pure-u-md-1 pure-u-1">
           <img
             v-img-fallback="defaultImg"
