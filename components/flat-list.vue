@@ -130,7 +130,7 @@
       </div>
     </div>
 
-    <div v-show="!rows || rows.length === 0" class="pure-g row fix-row">
+    <div v-show="!loading && (!rows || rows.length === 0) " class="pure-g row fix-row">
       <div class="pure-u-1">{{ $t('table.noResult') }}</div>
     </div>
 
