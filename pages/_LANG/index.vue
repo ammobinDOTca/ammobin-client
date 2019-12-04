@@ -30,10 +30,10 @@
 </template>
 
 <script lang="ts">
-import gql from 'graphql-tag'
 import { Component, Vue } from 'vue-property-decorator'
 import '~/types'
 import { MetaInfo } from 'vue-meta'
+declare const BASE_API_URL: string
 
 @Component({
   head() {
@@ -48,35 +48,19 @@ import { MetaInfo } from 'vue-meta'
       ],
     } as MetaInfo
   },
-  apollo: {
-    /* bestPrices: {
-      query: gql`
-        query getBestPrices {
-          bestPrices(calibres: ["9MM", ".223 / 5.56 NATO", "7.62X39MM"]) {
-            calibre
-            unitCost
-          }
-        }
-      `,
-      prefetch: () => ({}), // trigger serverside lookup
-    }, */
-    vendors: {
-      query: gql`
-        query getVendors {
-          vendors {
-            background # just need to get a list, picked this because just a boolean
-          }
-        }
-      `,
-      prefetch: () => ({}), // trigger serverside lookup
-    },
+  async asyncData({ $axios }) {
+    const f = await $axios.get(BASE_API_URL + 'graphql', {
+      params: { query: `{vendors{background}}` },
+    })
+    return {
+      vendorCount: f.data.data.vendors.length,
+    }
   },
 })
 export default class HomePage extends Vue {
-  private vendors!: string[]
+  vendorCount: number
   $t: any
-
-  topCalibres = [
+  private topCalibres = [
     ...[
       '9MM',
       '7.62X39MM',
@@ -89,9 +73,6 @@ export default class HomePage extends Vue {
     { itemType: 'rimfire', subType: '.22 LR' },
     { itemType: 'shotgun', subType: '12 GA' },
   ]
-  get vendorCount() {
-    return this.vendors ? this.vendors.length : null
-  }
 }
 </script>
 

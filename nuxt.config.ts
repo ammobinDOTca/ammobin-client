@@ -12,11 +12,12 @@ const PROD_API = 'https://aws.ammobin.ca/api/'
 export default <Configuration>{
   //'@nuxt/typescript-build', '@nuxtjs/pwa',
   // todo: disable the above when running on lambda
-  modules: ['@nuxt/typescript-build', , '@nuxtjs/pwa', '@nuxtjs/axios', '@nuxtjs/apollo'],
+  modules: ['@nuxt/typescript-build', '@nuxtjs/pwa', '@nuxtjs/axios'],
   build: {
     plugins: [
       new webpack.DefinePlugin({
-        BASE_API_URL: process.env.PROD ? `"${PROD_API}"` : '"http://localhost:8080/"',
+        BASE_API_URL: `"${PROD_API}"`,
+        //process.env.PROD ? `"${PROD_API}"` : '"http://localhost:8080/"',
         PROD: process.env.PROD ? 'true' : 'false',
       }),
       // new CopyWebpackPlugin([{ from: 'static' }]),
@@ -105,18 +106,10 @@ export default <Configuration>{
   },
   workbox: process.env.PROD
     ? {
-        importScripts: ['custom-service-worker.js'],
-        globIgnores: ['sw.js', '**/workbox*.js'],
-      }
+      importScripts: ['custom-service-worker.js'],
+      globIgnores: ['sw.js', '**/workbox*.js'],
+    }
     : false,
-  apollo: {
-    clientConfigs: {
-      default: {
-        httpEndpoint: true || !!process.env.PROD ? PROD_API + 'graphql' : 'http://localhost:8080/graphql',
-      },
-    },
-    errorHandler: '~/plugins/apollo-error-handler.ts',
-  },
   generate: {
     interval: 500,
     routes: ['/', ...generateRoutes()],

@@ -7,8 +7,16 @@
       :rows="itemsFlatListings ? itemsFlatListings.items : []"
       :pages="itemsFlatListings ? itemsFlatListings.pages : 0"
       :item-type="itemType"
+      :subType="subType"
       :vendors="[null].concat((vendors || []).map(i => i.name))"
       :loading="!itemsFlatListings || loading"
+      :page.sync="page"
+      :pageSize.sync="pageSize"
+      :province.sync="province"
+      :vendor.sync="vendor"
+      :query.sync="query"
+      :sortField.sync="sortField"
+      :sortOrder.sync="sortOrder"
     />
     <div v-show="error">ERROR {{ error }}</div>
   </div>
@@ -18,28 +26,30 @@
 import FlatList from '~/components/flat-list.vue'
 import { getUrl } from '~/helpers'
 import { ITEM_TYPES, AMMO_TYPES } from '~/components/constants'
-import gql from 'graphql-tag'
 import '@nuxt/vue-app'
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 // import '~/types'
+declare const BASE_API_URL: string
 
-@Component({
-  validate({ params }) {
-    return ITEM_TYPES.includes(params.itemType)
-  },
-  apollo: {
-    vendors: {
-      query: gql`
-        query getVendors {
-          vendors {
-            name
-          }
-        }
-      `,
-    },
-    itemsFlatListings: {
-      query: gql`
-        query getItemsFlatListings(
+async function getShit(
+  axios,
+  {
+    itemType,
+    subType,
+    page = 1,
+    pageSize = 25,
+
+    province = null,
+    vendor = null,
+    query = null,
+    sortField = null,
+    sortOrder = null,
+  }
+) {
+  const f = await axios.post(BASE_API_URL + 'graphql', [
+    {
+      query: `
+      query getItemsFlatListings(
           $page: Int
           $pageSize: Int
           $itemType: ItemType
@@ -74,26 +84,56 @@ import { Component, Vue } from 'vue-property-decorator'
           }
         }
       `,
-      variables() {
-        // Use vue reactive properties here
-        const that: any = this
-        return {
-          page: that.page,
-          subType: that.subType || null,
-          pageSize: that.pageSize,
-          itemType: that.itemType,
+      variables: {
+        itemType,
+        subType,
+        page,
+        pageSize,
 
-          province: that.province || null,
-          vendor: that.vendor || null,
-          query: that.query || null,
-          sortField: that.sortField || null,
-          sortOrder: that.sortOrder || null,
-        }
-      },
-      watchLoading(isLoading /*, countModifier */) {
-        this.loading = isLoading
+        province,
+        vendor,
+        query,
+        sortField,
+        sortOrder,
       },
     },
+    //{ query: '{vendors{name}}' },
+  ])
+
+  const {
+    data: { itemsFlatListings, errors },
+  } = f.data[0]
+
+  return itemsFlatListings
+}
+
+@Component({
+  validate({ params }) {
+    return ITEM_TYPES.includes(params.itemType)
+  },
+  async asyncData({
+    $axios,
+    route: {
+      params: { itemType, subType },
+      // todo: figure out generate issues before respecting query params
+      // query: { page, pageSize, province, vendor, query, sortField, sortOrder },
+    },
+  }) {
+    const [itemsFlatListings, vendors] = await Promise.all([
+      getShit($axios, {
+        itemType,
+        subType,
+      }),
+      // lazy, this should be cached...
+      $axios
+        .post(BASE_API_URL + 'graphql', [{ query: '{vendors{name}}' }])
+        .then(f => f.data[0].data.vendors),
+    ])
+
+    return {
+      vendors,
+      itemsFlatListings,
+    }
   },
   components: {
     FlatList,
@@ -131,43 +171,48 @@ import { Component, Vue } from 'vue-property-decorator'
 })
 export default class ListingPage extends Vue {
   error = null
-  ammoListing = null
+  itemsFlatListings = null
   loading = false
+  page = 1
+  province: string = null
+  pageSize = 25
+  vendor: string = null
+  query: string = null
+  sortOrder: string = 'DES'
+  sortField: string = 'minPrice'
 
   get area() {
     return this.province || 'Canada'
   }
-
   get isAmmoType() {
     return AMMO_TYPES.includes(this.itemType as string)
-  }
-  get page() {
-    return Number(this.$route.query.page) || 1
   }
   get subType() {
     // query was old param, dont want to break links
     return this.$route.params.subType
   }
-  get province() {
-    return this.$route.query.province || null
-  }
-  get pageSize() {
-    return Number(this.$route.query.pageSize) || 25
-  }
   get itemType() {
     return this.$route.params.itemType
   }
-  get vendor() {
-    return this.$route.query.vendor || null
-  }
-  get query() {
-    return this.$route.query.query || null
-  }
-  get sortOrder() {
-    return this.$route.query.sortOrder || 'DES' // null
-  }
-  get sortField() {
-    return this.$route.query.sortField || 'minPrice'
+
+  @Watch('page')
+  @Watch('province')
+  @Watch('pageSize')
+  @Watch('vendor')
+  @Watch('query')
+  @Watch('sortOrder')
+  @Watch('sortField')
+  async onQueryChange(value, ...ass) {
+    try {
+      this.loading = true
+      this.itemsFlatListings = await getShit(this.$axios, this)
+      if (this.page > this.itemsFlatListings.pages) {
+        this.page = this.itemsFlatListings.pages || 1
+      }
+      this.loading = false
+    } catch (e) {
+      this.error = e
+    }
   }
 }
 </script>

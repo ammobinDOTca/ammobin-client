@@ -1,5 +1,5 @@
-# Node.js with Vue
-# Build a Node.js project that uses Vue.
+# Node.js
+# Build a general Node.js project with npm.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
@@ -18,10 +18,9 @@ steps:
 - script: |
     npm install
     npm run build
-    rm -rf node_modules .nuxt
   displayName: 'npm install and build'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)'
-
+- script: |
+    npm run generate
+    npm run upload
+  displayName: 'generate + upload'
