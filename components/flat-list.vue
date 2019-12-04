@@ -58,19 +58,27 @@
       <div v-show="pages > 0" class="pure-u-1 pure-u-md-1-3">
         <label>{{ $t('table.page') }}</label>
         <div>
-          <button class="pure-button button-xsmall" :disabled="page === 1 || loading" @click="updatePage(1)">
-            |<<
-          </button>
-          <button class="pure-button button-xsmall" :disabled="page === 1 || loading" @click="updatePage(page - 1)">
-            <
-          </button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page <= 1 || loading"
+            @click="updatePage(1)"
+          >|<<</button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page <= 1 || loading"
+            @click="updatePage(page - 1)"
+          ><</button>
           {{ page }} {{ $t('table.of') }} {{ pages }}
-          <button class="pure-button button-xsmall" :disabled="page === pages || loading" @click="updatePage(page + 1)">
-            >
-          </button>
-          <button class="pure-button button-xsmall" :disabled="page === pages || loading" @click="updatePage(pages)">
-            >>|
-          </button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page >= pages || loading"
+            @click="updatePage(page + 1)"
+          >></button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page >= pages || loading"
+            @click="updatePage(pages)"
+          >>>|</button>
         </div>
       </div>
     </div>
@@ -163,19 +171,27 @@
       <div v-show="pages > 0" class="pure-u-lg-1-2 pure-u-1">
         <div>{{ $t('table.page') }}</div>
         <div>
-          <button class="pure-button button-xsmall" :disabled="page === 1 || loading" @click="updatePage(1)">
-            |<<
-          </button>
-          <button class="pure-button button-xsmall" :disabled="page === 1 || loading" @click="updatePage(page - 1)">
-            <
-          </button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page === 1 || loading"
+            @click="updatePage(1)"
+          >|<<</button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page === 1 || loading"
+            @click="updatePage(page - 1)"
+          ><</button>
           {{ page }} {{ $t('table.of') }} {{ pages }}
-          <button class="pure-button button-xsmall" :disabled="page === pages || loading" @click="updatePage(page + 1)">
-            >
-          </button>
-          <button class="pure-button button-xsmall" :disabled="page === pages || loading" @click="updatePage(pages)">
-            >>|
-          </button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page === pages || loading"
+            @click="updatePage(page + 1)"
+          >></button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page === pages || loading"
+            @click="updatePage(pages)"
+          >>>|</button>
         </div>
       </div>
     </div>
@@ -217,35 +233,19 @@ export default class FlatList extends Vue {
   @Prop() itemType
   @Prop() vendors
   @Prop() loading
-
+  @Prop() page // = 1
+  @Prop() subType
+  @Prop() pageSize // =25
+  @Prop() province
+  @Prop() vendor
+  @Prop() query
+  @Prop() sortField //= 'minPrice'
+  @Prop() sortOrder // = 'ASC'
   // is the current item type ammo ? (as opposed to reloading)
   get isAmmoType() {
     return AMMO_TYPES.includes(this.itemType)
   }
-  get page() {
-    return Number(this.$route.query.page) || 1
-  }
-  get subType() {
-    return this.$route.query.subType || this.$route.query.calibre
-  }
-  get pageSize() {
-    return Number(this.$route.query.pageSize) || 25
-  }
-  get province() {
-    return this.$route.query.province
-  }
-  get vendor() {
-    return this.$route.query.vendor
-  }
-  get query() {
-    return this.$route.query.query
-  }
-  get sortField() {
-    return this.$route.query.sortField || 'minPrice'
-  }
-  get sortOrder() {
-    return this.$route.query.sortOrder || 'ASC'
-  }
+
   /**
    * track outbound link click
    * link = url
@@ -266,10 +266,10 @@ export default class FlatList extends Vue {
       navigator.sendBeacon(BASE_API_URL + 'track-click', click)
     }
   }
-  sortBy(key) {
+  sortBy(newSortField) {
     let sortOrder
 
-    if (key === this.sortField) {
+    if (newSortField === this.sortField) {
       if (this.sortOrder === 'DES') {
         sortOrder = 'ASC'
       } else {
@@ -278,51 +278,27 @@ export default class FlatList extends Vue {
     } else {
       sortOrder = 'DES'
     }
-
-    this.$router.push({
-      name: this.$route.name,
-      query: Object.assign({}, this.$route.query, {
-        sortOrder,
-        sortField: key,
-      }),
-    })
+    this.$emit('update:sortOrder', sortOrder)
+    this.$emit('update:sortField', newSortField)
   }
   updateBrand(brand) {
-    this.$router.push({
-      name: this.$route.name,
-      query: Object.assign({}, this.$route.query, { brand }),
-    })
+    this.$emit('update:brand', brand)
   }
   updatePage(page) {
-    this.$router.push({
-      name: this.$route.name,
-      query: Object.assign({}, this.$route.query, { page }),
-    })
+    this.$emit('update:page', page)
     setImmediate(() => window.scroll(0, 0)) // scroll to top of page
   }
   updatePageSize(pageSize) {
-    this.$router.push({
-      name: this.$route.name,
-      query: Object.assign({}, this.$route.query, { pageSize }),
-    })
+    this.$emit('update:pageSize', parseInt(pageSize))
   }
   updateProvince(province) {
-    this.$router.push({
-      name: this.$route.name,
-      query: Object.assign({}, this.$route.query, { province }),
-    })
+    this.$emit('update:province', province ? province : null)
   }
   updateVendor(vendor) {
-    this.$router.push({
-      name: this.$route.name,
-      query: Object.assign({}, this.$route.query, { vendor }),
-    })
+    this.$emit('update:vendor', vendor)
   }
   updateQuery(query) {
-    this.$router.push({
-      name: this.$route.name,
-      query: Object.assign({}, this.$route.query, { query }),
-    })
+    this.$emit('update:query', query)
   }
 }
 </script>
