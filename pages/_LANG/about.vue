@@ -110,7 +110,11 @@ function shuffle(input: any[]): any[] {
         query: `{vendors{ name logo link background }}`,
       },
     })
-    store.commit('setVendors', f.data.data.vendors)
+    const { vendors } = f.data.data
+    // store.commit('setVendors', vendors)
+    return {
+      vendors,
+    }
   },
 })
 export default class AboutPage extends Vue {
