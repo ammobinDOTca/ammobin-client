@@ -29,7 +29,6 @@ export default function({ isHMR, app, store, route, params, error, redirect, req
   }
 
   // Get locale from params. hack home page picking up lang
-
   let locale = route.path.startsWith('/fr') ? 'fr' : 'en'
 
   // todo: set lang to users current accept-lang header (if param not set)
@@ -39,7 +38,6 @@ export default function({ isHMR, app, store, route, params, error, redirect, req
     //return error({ message: 'This page could not be found.', statusCode: 404 })
     locale = 'en'
   }
-
 
   if (process.server && res) {
     res.setHeader('Content-Language', `${locale}-CA`)
