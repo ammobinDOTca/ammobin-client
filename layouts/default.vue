@@ -32,7 +32,7 @@
           <nuxt-link
             v-if="$i18n.locale === 'en'"
             class="pure-menu-link"
-            :to="`/fr` + $route.fullPath"
+            :to="$route.fullPath === '/' ? '/fr' : $route.fullPath.replace('/en', '/fr')"
             active-class="none"
             exact
             >{{ $t('links.french') }}</nuxt-link
@@ -40,7 +40,7 @@
           <nuxt-link
             v-else
             class="pure-menu-link"
-            :to="$route.fullPath.replace(/^\/[^\/]+/, '')"
+            :to="$route.fullPath.replace('/fr', '/en')"
             active-class="none"
             exact
             >{{ $t('links.english') }}</nuxt-link
@@ -108,7 +108,7 @@ export default class Layout extends Vue {
   mail = 'mailto:' + 'contact' + '@' + 'ammobin.ca' // this probably will do nothing to stop bots...
 
   path(url) {
-    return this.$i18n.locale === 'en' ? url : '/' + this.$i18n.locale + url
+    return '/' + this.$i18n.locale + url
   }
 }
 </script>

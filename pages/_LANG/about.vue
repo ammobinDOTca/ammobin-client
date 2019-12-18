@@ -20,7 +20,11 @@
 
       <div style="margin-top:10px;">
         {{ $t('about.submitIssue') }}
-        <a href="https://github.com/ammobinDOTca" target="_blank" rel="noopener">https://github.com/ammobindotca</a>
+        <a
+          href="https://github.com/ammobinDOTca"
+          target="_blank"
+          rel="noopener"
+        >https://github.com/ammobindotca</a>
       </div>
       <div>
         {{ $t('about.sendEmail') }}
@@ -35,14 +39,14 @@
 
     <hr />
 
-    <!--    <h2>{{ $t('about.incorrectCountTitle') }}</h2>
+    <h2>{{ $t('about.incorrectCountTitle') }}</h2>
     <p>{{ $t('about.incorrectCountText') }}</p>
 
-    <hr />-->
+    <hr />
 
     <h2 id="supportedRetailers">{{ $t('about.supportedRetailers') }}</h2>
-    <div class="pure-g">
-      <div v-for="row in randomVendors" v-if="vendors" :key="row.link" class="pure-u-1 pure-u-md-1-3 m-t-2 m-r-2">
+    <div class="pure-g" v-if="vendors">
+      <div v-for="row in randomVendors" :key="row.link" class="pure-u-1 pure-u-md-1-3 m-t-2 m-r-2">
         <a :href="row.link" target="_blank" rel="noopener">
           <img
             :src="row.logo"
@@ -58,33 +62,14 @@
       </div>
     </div>
     <hr />
-
-    <!--
-      <div style="margin-top: 2rem">
-      {{$t('home.gunsaleLink')}}
-      <a
-        href="http://gunsale.ca/?utm_source=ammobin.ca"
-        target="_blank"
-        rel="noopener"
-      >gunsale.ca</a>
-    </div>
-    <div style="margin-top: 2rem">-->
-    <!-- TODO: only display this link if user ip is from USA + track clicks-->
-    <!-- not in any way connected with wikiarms, chosen b/c they have a mobile friendly website + https + display cost per round -->
-    <!-- {{$t('about.wikiamrsLink')}}
-      <a
-        href="https://www.wikiarms.com/?utm_source=ammobin.ca"
-        target="_blank"
-        rel="noopener"
-      >wikiarms.com</a>
-    </div>-->
   </div>
 </template>
 
 <script lang="ts">
-import gql from 'graphql-tag'
 import { Component, Vue } from 'vue-property-decorator'
 import '~/types'
+
+declare const BASE_API_URL: string
 
 function shuffle(input: any[]): any[] {
   const array = [...input]
@@ -109,30 +94,27 @@ function shuffle(input: any[]): any[] {
 @Component({
   head() {
     return {
-      title: this.$t('default.about') as string,
+      title: this.$t('about.title') + ' | ammobin.ca',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'All about ammobin.ca',
+          content: this.$t('about.description') as string,
         },
       ],
     }
   },
-  apollo: {
-    vendors: {
-      query: gql`
-        query getVendors {
-          vendors {
-            name
-            logo
-            link
-            background
-          }
-        }
-      `,
-      prefetch: () => ({}), // load serverside
-    },
+  async asyncData({ $axios, store }) {
+    const f = await $axios.get(BASE_API_URL + 'graphql', {
+      params: {
+        query: `{vendors{ name logo link background }}`,
+      },
+    })
+    const { vendors } = f.data.data
+    // store.commit('setVendors', vendors)
+    return {
+      vendors,
+    }
   },
 })
 export default class AboutPage extends Vue {

@@ -7,7 +7,7 @@
   "dependencies": {
     "@nuxtjs/apollo": "^4.0.0-rc16",
     "@nuxtjs/axios": "^5.8.0",
-    "ammobin-classifier": "^0.0.36",
+    "ammobin-classifier": "^0.1.0",
     "nuxt": "^2.10.2",
     "vue-i18n": "^8.15.0",
     "vue-property-decorator": "^8.3.0"
@@ -15,7 +15,6 @@
   "devDependencies": {
     "@nuxt/typescript-build": "^0.3.2",
     "@nuxt/typescript-runtime": "^0.2.2",
-    "@nuxtjs/eslint-config": "^1.1.2",
     "@nuxtjs/icon": "^2.6.0",
     "@nuxtjs/manifest": "^2.6.0",
     "@nuxtjs/meta": "^2.6.0",
@@ -23,13 +22,14 @@
     "@nuxtjs/workbox": "^2.6.0",
     "@vue/cli-shared-utils": "^3.12.1",
     "apollo-boost": "^0.4.4",
+    "aws-sdk": "^2.577.0",
     "boxen": "^4.1.0",
     "browserslist": "^4.7.2",
     "copy-webpack-plugin": "^5.0.4",
     "core-js": "^2.6.10",
     "css-loader": "^3.2.0",
     "es6-promise": "^4.2.8",
-    "graphql": "^14.5.6",
+    "graphql": "^14.5.8",
     "graphql-tag": "^2.10.0",
     "husky": "^3.0.5",
     "node-fetch": "^2.5.0",
@@ -40,10 +40,11 @@
   },
   "scripts": {
     "test": "npm run build",
-    "dev": "HOST=0.0.0.0 nuxt-ts",
+    "dev": "NUXT_HOST=0.0.0.0 NUXT_PORT=3333 nuxt-ts",
     "build": "PROD=true nuxt-ts build --universal",
     "start": "HOST=0.0.0.0 NODE_ENV=production PROD=true nuxt start",
     "generate": "PROD=true nuxt-ts generate",
+    "upload": "node ./upload.js",
     "heroku-postbuild": "npm run build",
     "format": "pretty-quick"
   },

@@ -9,29 +9,10 @@
       {{ $t('home.daily') }}
     </h4>
 
-    <h2 class="m-t-30 cap">{{ $t('home.newBeta') }}</h2>
-    <div class="row">
-      <div class="pure-u-md-1-3 pure-u-1 margin-y">
-        <nuxt-link :to="{ path: 'reloading' }">reloading supplies</nuxt-link>
-      </div>
-      <div class="pure-u-md-1-3 pure-u-1 margin-y">
-        <nuxt-link :to="{ path: 'powder' }">Powder</nuxt-link>
-      </div>
-      <div class="pure-u-md-1-3 pure-u-1 margin-y">
-        <nuxt-link :to="{ path: 'primer' }">Primers</nuxt-link>
-      </div>
-      <div class="pure-u-md-1-3 pure-u-1 margin-y">
-        <nuxt-link :to="{ path: 'shot' }">Bullets / Shot</nuxt-link>
-      </div>
-      <div class="pure-u-md-1-3 pure-u-1 margin-y">
-        <nuxt-link :to="{ path: 'case' }">Cartridges / Shells</nuxt-link>
-      </div>
-    </div>
-
     <h2 class="m-t-30 cap">{{ $t('home.currentlyPopular') }}</h2>
     <div class="pure-g row">
-      <div v-for="v in topCalibres" class="pure-u-md-1-3 pure-u-1 margin-y">
-        <nuxt-link :to="{ path: 'centerfire', query: { subType: v } }">{{ v }}</nuxt-link>
+      <div v-for="v in topCalibres" :key="v.subType" class="pure-u-md-1-3 pure-u-1 margin-y">
+        <nuxt-link :to="{ path: `${v.itemType}/${v.subType}` }">{{ v.subType }}</nuxt-link>
       </div>
     </div>
 
@@ -45,25 +26,19 @@
         <img src="~/assets/aso-tfbtv2.svg" width="100px" alt="as seen on TFBTV" />
       </a>
     </div>
-    <!--<div style="margin-top: 2rem">
-      {{ $t('home.gunsaleLink') }}
-      <a href="http://gunsale.ca/?utm_source=ammobin.ca" target="_blank" rel="noopener" title="gunsale.ca"
-        >gunsale.ca</a
-      >
-    </div>-->
   </div>
 </template>
 
 <script lang="ts">
-import gql from 'graphql-tag'
 import { Component, Vue } from 'vue-property-decorator'
 import '~/types'
 import { MetaInfo } from 'vue-meta'
+declare const BASE_API_URL: string
 
 @Component({
   head() {
     return {
-      title: this.$t('home.tagline'),
+      title: this.$t('home.tagline') + ' | ammobin.ca',
       meta: [
         {
           hid: 'description',
@@ -73,38 +48,31 @@ import { MetaInfo } from 'vue-meta'
       ],
     } as MetaInfo
   },
-  apollo: {
-    /* bestPrices: {
-      query: gql`
-        query getBestPrices {
-          bestPrices(calibres: ["9MM", ".223 / 5.56 NATO", "7.62X39MM"]) {
-            calibre
-            unitCost
-          }
-        }
-      `,
-      prefetch: () => ({}), // trigger serverside lookup
-    }, */
-    vendors: {
-      query: gql`
-        query getVendors {
-          vendors {
-            background # just need to get a list, picked this because just a boolean
-          }
-        }
-      `,
-      prefetch: () => ({}), // trigger serverside lookup
-    },
+  async asyncData({ $axios }) {
+    const f = await $axios.get(BASE_API_URL + 'graphql', {
+      params: { query: `{vendors{background}}` },
+    })
+    return {
+      vendorCount: f.data.data.vendors.length,
+    }
   },
 })
 export default class HomePage extends Vue {
-  private vendors!: string[]
+  vendorCount: number
   $t: any
-
-  topCalibres = ['9MM', '7.62X39MM', '.223 / 5.56 NATO']
-  get vendorCount() {
-    return this.vendors ? this.vendors.length : null
-  }
+  private topCalibres = [
+    ...[
+      '9MM',
+      '7.62X39MM',
+      '5.56 NATO',
+      '7.62 NATO',
+      '6.5MM CREEDMOOR',
+      '7MM-08 REMINGTON',
+      '.300 WEATHERBY MAGNUM',
+    ].map(subType => ({ itemType: 'centerfire', subType })),
+    { itemType: 'rimfire', subType: '.22 LR' },
+    { itemType: 'shotgun', subType: '12 GA' },
+  ]
 }
 </script>
 

@@ -27,6 +27,8 @@
     "newBeta": "nouvelles fonctionnalités actuellement en version bêta"
   },
   "about": {
+    "title": "À propos",
+    "description": "",
     "supportedRetailers": "Détaillants supportés",
     "disclaimerTitle": "Avertissement",
     "disclaimer": "En date du 15 juin 2017, tous les frais d'ammobin.ca sont déboursé par le créateur. Le site ne reçoit aucune prime de référencement de la part des détaillants figurant sur ce site. De plus, ammobin.ca n'utilise aucun logiciel ou librairie d'analyse ou de suivi côté client. Toutes les statistiques du site sont collectées à partir des journaux du serveur nginx (c'est-à-dire: ce que votre navigateur envoie lorsqu'il demande une page) et en utilisant la redirection d'URL pour suivre les clics vers les fournisseurs.",
@@ -69,5 +71,13 @@
     "hide": "Masquer",
     "title": "{type} prix | Ammobin.ca",
     "description": "L'endroit pour trouver les meilleurs prix de {type} au {area}."
+  },
+  "itemTypes": {
+    "title": "{type}",
+    "description": "{type} au ammobin.ca."
+  },
+  "subType": {
+    "title": "Meilluers prix de {subType} au {area}",
+    "description": "L'endroit pour trouver les meilleurs prix de {subType} au {area}.."
   }
 }
