@@ -6,7 +6,7 @@ const webpack = require('webpack')
 const { join } = require('path')
 // const CopyWebpackPlugin = require('copy-webpack-plugin')
 
- const PROD_API = 'https://ammobin.ca/api/'
+const PROD_API = 'https://ammobin.ca/api/'
 //const PROD_API = 'https://aws.ammobin.ca/api/'
 
 export default <Configuration>{
@@ -106,9 +106,9 @@ export default <Configuration>{
   },
   workbox: process.env.PROD
     ? {
-      importScripts: ['custom-service-worker.js'],
-      globIgnores: ['sw.js', '**/workbox*.js'],
-    }
+        importScripts: ['custom-service-worker.js'],
+        globIgnores: ['sw.js', '**/workbox*.js'],
+      }
     : false,
   generate: {
     interval: 500,

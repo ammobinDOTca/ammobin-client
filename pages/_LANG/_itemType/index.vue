@@ -16,7 +16,6 @@
 import MyTable from '~/components/my-table.vue'
 import { getUrl } from '~/helpers'
 import { ITEM_TYPES, AMMO_TYPES, RELOADING_TYPES } from '~/components/constants'
-import gql from 'graphql-tag'
 import '@nuxt/vue-app'
 import { Component, Vue } from 'vue-property-decorator'
 

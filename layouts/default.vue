@@ -62,8 +62,6 @@
 </template>
 
 <script lang="ts">
-import '@nuxtjs/apollo'
-
 import '@nuxtjs/axios'
 
 import { Component, Vue } from 'vue-property-decorator'
