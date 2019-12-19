@@ -6,8 +6,8 @@ const webpack = require('webpack')
 const { join } = require('path')
 // const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-// const PROD_API = 'https://ammobin.ca/api/'
-const PROD_API = 'https://aws.ammobin.ca/api/'
+ const PROD_API = 'https://ammobin.ca/api/'
+//const PROD_API = 'https://aws.ammobin.ca/api/'
 
 export default <Configuration>{
   //'@nuxt/typescript-build', '@nuxtjs/pwa',
