@@ -20,11 +20,7 @@
 
       <div style="margin-top:10px;">
         {{ $t('about.submitIssue') }}
-        <a
-          href="https://github.com/ammobinDOTca"
-          target="_blank"
-          rel="noopener"
-        >https://github.com/ammobindotca</a>
+        <a href="https://github.com/ammobinDOTca" target="_blank" rel="noopener">https://github.com/ammobindotca</a>
       </div>
       <div>
         {{ $t('about.sendEmail') }}

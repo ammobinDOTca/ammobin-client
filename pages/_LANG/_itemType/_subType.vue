@@ -127,9 +127,7 @@ async function getShit(
       }),
       // lazy, this should be cached...
       $axios
-        .post(BASE_API_URL + 'graphql', [
-          { query: '{vendors{name}}', operationName: 'vendors' },
-        ])
+        .post(BASE_API_URL + 'graphql', [{ query: '{vendors{name}}', operationName: 'vendors' }])
         .then(f => f.data[0].data.vendors),
     ])
 
