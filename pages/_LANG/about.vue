@@ -108,6 +108,7 @@ function shuffle(input: any[]): any[] {
     const f = await $axios.get(BASE_API_URL + 'graphql', {
       params: {
         query: `{vendors{ name logo link background }}`,
+        operationName: 'vendors',
       },
     })
     const { vendors } = f.data.data

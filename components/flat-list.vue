@@ -97,9 +97,9 @@
       </div>
       <div
         class="pure-u-lg-1-5 pure-u-md-1-3 pure-u-1-4 title"
-        :class="{ active: sortField == 'minPrice' }"
+        :class="{ active: sortField == 'price' }"
         :disabled="loading"
-        @click="sortBy('minPrice')"
+        @click="sortBy('price')"
       >
         <h4>
           {{ $t('table.price') }}
@@ -109,8 +109,8 @@
       <div
         class="pure-u-lg-1-5 pure-u-1-4 title"
         :disabled="loading"
-        @click="sortBy('minUnitCost')"
-        :class="{ active: sortField == 'minUnitCost' }"
+        @click="sortBy('unitCost')"
+        :class="{ active: sortField == 'unitCost' }"
       >
         <h4>
           {{ $t('table.unitCost') }}

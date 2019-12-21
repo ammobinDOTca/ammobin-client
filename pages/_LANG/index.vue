@@ -50,7 +50,7 @@ declare const BASE_API_URL: string
   },
   async asyncData({ $axios }) {
     const f = await $axios.get(BASE_API_URL + 'graphql', {
-      params: { query: `{vendors{background}}` },
+      params: { query: `{vendors{background}}`, operationNam },
     })
     return {
       vendorCount: f.data.data.vendors.length,
