@@ -58,7 +58,7 @@ async function getShit(
           $province: Province
           $vendor: String
           $query: String
-          $sortField: SortField
+          $sortField: FlatSortField
           $sortOrder: SortOrder
         ) {
           itemsFlatListings(
