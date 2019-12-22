@@ -6,10 +6,10 @@ const webpack = require('webpack')
 const { join } = require('path')
 // const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-const PROD_API = 'https://ammobin.ca'
+const PROD_API = 'https://ammobin.ca/api/'
 //const PROD_API = 'https://aws.ammobin.ca/api/'
 
-const DEV_API = 'http://localhost:8080'
+const DEV_API = 'http://localhost:8080/'
 
 export default <Configuration>{
   //'@nuxt/typescript-build', '@nuxtjs/pwa',
@@ -18,7 +18,7 @@ export default <Configuration>{
   build: {
     plugins: [
       new webpack.DefinePlugin({
-        BASE_API_URL: '/api/',//use proxy endpoint for  dev and running on other domains (aka aws.ammobin.ca),
+        BASE_API_URL: process.env.PROD ? `"${PROD_API}"` : `"${DEV_API}"`,
         PROD: process.env.PROD ? 'true' : 'false',
       }),
       // new CopyWebpackPlugin([{ from: 'static' }]),
@@ -86,12 +86,6 @@ export default <Configuration>{
         component: resolve(__dirname, 'pages/index.vue'),
       })
     },
-  },
-  axios: {
-    proxy: true
-  },
-  proxy: {
-    '/api/': process.env.PROD ? PROD_API : DEV_API,
   },
   plugins: [
     '~/plugins/i18n',
