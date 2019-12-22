@@ -48,7 +48,7 @@ async function getShit(
 ) {
   const f = await axios.post(BASE_API_URL + 'graphql', [
     {
-      operationName: 'getItemsFlatListings',
+      opName: 'getItemsFlatListings',
       query: `
       query getItemsFlatListings(
           $page: Int
@@ -127,7 +127,9 @@ async function getShit(
       }),
       // lazy, this should be cached...
       $axios
-        .post(BASE_API_URL + 'graphql', [{ query: '{vendors{name}}', operationName: 'vendors' }])
+        .post(BASE_API_URL + 'graphql', [
+          { query: '{vendors{name}}', opName: 'vendors' },
+        ])
         .then(f => f.data[0].data.vendors),
     ])
 
@@ -207,7 +209,6 @@ export default class ListingPage extends Vue {
     try {
       this.loading = true
       this.itemsFlatListings = await getShit(this.$axios, this)
-      console.log(this.page, this.itemsFlatListings.pages)
       if (this.page > this.itemsFlatListings.pages) {
         this.page = this.itemsFlatListings.pages || 1
       }

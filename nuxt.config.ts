@@ -9,6 +9,8 @@ const { join } = require('path')
 const PROD_API = 'https://ammobin.ca/api/'
 //const PROD_API = 'https://aws.ammobin.ca/api/'
 
+const DEV_API = 'http://localhost:8080/'
+
 export default <Configuration>{
   //'@nuxt/typescript-build', '@nuxtjs/pwa',
   // todo: disable the above when running on lambda
@@ -16,8 +18,7 @@ export default <Configuration>{
   build: {
     plugins: [
       new webpack.DefinePlugin({
-        BASE_API_URL: `"${PROD_API}"`,
-        //process.env.PROD ? `"${PROD_API}"` : '"http://localhost:8080/"',
+        BASE_API_URL: process.env.PROD ? `"${PROD_API}"` : `"${DEV_API}"`,
         PROD: process.env.PROD ? 'true' : 'false',
       }),
       // new CopyWebpackPlugin([{ from: 'static' }]),
@@ -106,9 +107,9 @@ export default <Configuration>{
   },
   workbox: process.env.PROD
     ? {
-        importScripts: ['custom-service-worker.js'],
-        globIgnores: ['sw.js', '**/workbox*.js'],
-      }
+      importScripts: ['custom-service-worker.js'],
+      globIgnores: ['sw.js', '**/workbox*.js'],
+    }
     : false,
   generate: {
     interval: 500,

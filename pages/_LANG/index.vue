@@ -49,12 +49,12 @@ declare const BASE_API_URL: string
     } as MetaInfo
   },
   async asyncData({ $axios }) {
-    const f = await $axios.get(BASE_API_URL + 'graphql', {
-      params: { query: `{vendors{background}}`, operationName: 'vendors' },
-    })
-    return {
-      vendorCount: f.data.data.vendors.length,
-    }
+      const f = await $axios.get(BASE_API_URL + 'graphql', {
+        params: { query: `{vendors{background}}`, opName: 'vendors' },
+      })
+      return {
+        vendorCount: f.data.data.vendors.length,
+      }
   },
 })
 export default class HomePage extends Vue {
