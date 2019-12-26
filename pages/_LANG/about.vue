@@ -43,7 +43,7 @@
     <h2 id="supportedRetailers">{{ $t('about.supportedRetailers') }}</h2>
     <div class="pure-g" v-if="vendors">
       <div v-for="row in randomVendors" :key="row.link" class="pure-u-1 pure-u-md-1-3 m-t-2 m-r-2">
-        <a :href="row.link" target="_blank" rel="noopener">
+        <a :href="'https://'+row.link" target="_blank" rel="noopener">
           <img
             :src="row.logo"
             class="pure-img img"
