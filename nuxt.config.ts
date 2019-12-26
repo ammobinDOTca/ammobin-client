@@ -78,7 +78,7 @@ export default <Configuration>{
     ],
   },
   router: {
-    middleware: 'i18n',
+    middleware:[ 'i18n','pageview-tracker'],
     extendRoutes(routes, resolve) {
       routes.unshift(<any>{
         name: 'fr-home',
