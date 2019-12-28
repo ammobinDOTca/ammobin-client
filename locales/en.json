@@ -70,6 +70,8 @@
     "buyFrom": "buy from",
     "show": "Show",
     "hide": "Hide",
+    "showFilters": "Show Filters",
+    "hideFilters": "Hide Filters",
     "title": "{type} Prices",
     "description": "The place to view the best {type} prices across {area}"
   },

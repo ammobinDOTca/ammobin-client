@@ -69,6 +69,8 @@
     "buyFrom": "Acheter chez",
     "show": "Afficher",
     "hide": "Masquer",
+    "showFilters": "Afficher les Filtres",
+    "hideFilters": "Masquer  les Filtres",
     "title": "{type} prix | Ammobin.ca",
     "description": "L'endroit pour trouver les meilleurs prix de {type} au {area}."
   },

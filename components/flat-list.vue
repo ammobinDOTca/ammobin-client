@@ -1,74 +1,95 @@
 <template>
   <div class>
     <div class="pure-form pure-form-stacked">
-      <div id="search" class="pure-u-1 pure-u-md-1-4">
-        <label for="query">{{ $t('table.search') }}</label>
-        <input
-          id="query"
-          :value="query"
-          class="pure-input-1"
-          placeholder="ie: Barnaul, surplus, 00 Buck"
-          @change="updateQuery($event.target.value)"
-          :disabled="loading"
-        />
-      </div>
+      <div class="pure-g">
+        <div id="search" class="pure-u-1 pure-u-md-1-3">
+          <label for="query">{{ $t('table.search') }}</label>
+          <input
+            id="query"
+            :value="query"
+            class="pure-input-1"
+            placeholder="ie: Barnaul, surplus, 00 Buck"
+            @change="updateQuery($event.target.value)"
+            :disabled="loading"
+          />
+        </div>
+        <div class="pure-u-1 show-on-mobile">
+          <div @click="toggleFilters()" class="active pure-button button-xsmall">
+            {{$t(!showFilters?'table.showFilters':'table.hideFilters')}}
+            <span
+              class="arrow"
+              :class="{'DES':!showFilters, 'ASC':showFilters}"
+            ></span>
+          </div>
+        </div>
+        <div class="pure-u-1 pure-u-md-2-3" v-show="showFilters">
+          <div class="pure-u-1 pure-u-md-1-4">
+            <label for="pageSize">{{ $t('table.pageSize') }}</label>
+            <select
+              id="pageSize"
+              :value="pageSize"
+              class="pure-input-1"
+              @change="updatePageSize($event.target.value)"
+              :disabled="loading"
+            >
+              <option>25</option>
+              <option>50</option>
+              <option>75</option>
+              <option>100</option>
+            </select>
+          </div>
 
-      <div class="pure-u-1 pure-u-md-1-5">
-        <label for="pageSize">{{ $t('table.pageSize') }}</label>
-        <select
-          id="pageSize"
-          :value="pageSize"
-          class="pure-input-1"
-          @change="updatePageSize($event.target.value)"
-          :disabled="loading"
-        >
-          <option>25</option>
-          <option>50</option>
-          <option>75</option>
-          <option>100</option>
-        </select>
-      </div>
+          <div class="pure-u-1 pure-u-md-1-3">
+            <label for="province">{{ $t('table.province') }}</label>
+            <select
+              id="province"
+              :value="province"
+              class="pure-input-1"
+              @change="updateProvince($event.target.value)"
+              :disabled="loading"
+            >
+              <option v-for="c in provinces" :key="c">{{ c }}</option>
+            </select>
+          </div>
 
-      <div class="pure-u-1 pure-u-md-1-5">
-        <label for="province">{{ $t('table.province') }}</label>
-        <select
-          id="province"
-          :value="province"
-          class="pure-input-1"
-          @change="updateProvince($event.target.value)"
-          :disabled="loading"
-        >
-          <option v-for="c in provinces" :key="c">{{ c }}</option>
-        </select>
+          <div class="pure-u-1 pure-u-md-1-3">
+            <label for="vendor">{{ $t('table.vendor') }}</label>
+            <select
+              id="vendor"
+              :value="vendor"
+              class="pure-input-1"
+              @change="updateVendor($event.target.value)"
+              :disabled="loading"
+            >
+              <option v-for="c in vendors" :key="c">{{ c }}</option>
+            </select>
+          </div>
+        </div>
       </div>
-
-      <div class="pure-u-1 pure-u-md-1-5">
-        <label for="vendor">{{ $t('table.vendor') }}</label>
-        <select
-          id="vendor"
-          :value="vendor"
-          class="pure-input-1"
-          @change="updateVendor($event.target.value)"
-          :disabled="loading"
-        >
-          <option v-for="c in vendors" :key="c">{{ c }}</option>
-        </select>
-      </div>
-
       <div v-show="pages > 0" class="pure-u-1 pure-u-md-1-3">
         <label>{{ $t('table.page') }}</label>
         <div>
-          <button class="pure-button button-xsmall" :disabled="page <= 1 || loading" @click="updatePage(1)">|<<</button>
-          <button class="pure-button button-xsmall" :disabled="page <= 1 || loading" @click="updatePage(page - 1)">
-            <
-          </button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page <= 1 || loading"
+            @click="updatePage(1)"
+          >|<<</button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page <= 1 || loading"
+            @click="updatePage(page - 1)"
+          ><</button>
           {{ page }} {{ $t('table.of') }} {{ pages }}
-          <button class="pure-button button-xsmall" :disabled="page >= pages || loading" @click="updatePage(page + 1)">
-            >
-          </button>
-          <button class="pure-button button-xsmall" :disabled="page >= pages || loading" @click="updatePage(pages)">
-            >>|
-          </button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page >= pages || loading"
+            @click="updatePage(page + 1)"
+          >></button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page >= pages || loading"
+            @click="updatePage(pages)"
+          >>>|</button>
         </div>
       </div>
     </div>
@@ -148,9 +169,12 @@
           <div v-else if="!row.minUnitCost">N/A</div>
         </div>
         <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
-          <a :href="row.link" target="_blank" rel="nofollow noopener" @click="itemClicked(row.link, index)"
-            >{{ $t('table.buyFrom') }} {{ row.vendor }}</a
-          >
+          <a
+            :href="row.link"
+            target="_blank"
+            rel="nofollow noopener"
+            @click="itemClicked(row.link, index)"
+          >{{ $t('table.buyFrom') }} {{ row.vendor }}</a>
         </div>
       </div>
     </div>
@@ -158,19 +182,27 @@
       <div v-show="pages > 0" class="pure-u-lg-1-2 pure-u-1">
         <div>{{ $t('table.page') }}</div>
         <div>
-          <button class="pure-button button-xsmall" :disabled="page === 1 || loading" @click="updatePage(1)">
-            |<<
-          </button>
-          <button class="pure-button button-xsmall" :disabled="page === 1 || loading" @click="updatePage(page - 1)">
-            <
-          </button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page === 1 || loading"
+            @click="updatePage(1)"
+          >|<<</button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page === 1 || loading"
+            @click="updatePage(page - 1)"
+          ><</button>
           {{ page }} {{ $t('table.of') }} {{ pages }}
-          <button class="pure-button button-xsmall" :disabled="page === pages || loading" @click="updatePage(page + 1)">
-            >
-          </button>
-          <button class="pure-button button-xsmall" :disabled="page === pages || loading" @click="updatePage(pages)">
-            >>|
-          </button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page === pages || loading"
+            @click="updatePage(page + 1)"
+          >></button>
+          <button
+            class="pure-button button-xsmall"
+            :disabled="page === pages || loading"
+            @click="updatePage(pages)"
+          >>>|</button>
         </div>
       </div>
     </div>
@@ -182,13 +214,34 @@ import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 import { AMMO_TYPES } from './constants'
 declare const BASE_API_URL: string
 
-@Component({})
+@Component({
+  mounted: function() {
+    this.showFilters = process.browser && window.outerWidth >= 759
+  },
+})
 export default class FlatList extends Vue {
   $route: any
   $axios: any
 
+  showFilters: boolean = true
+
   @Prop() rows
-  provinces = [null, 'AB', 'BC', 'MB', 'NB', 'NS', 'NL', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT']
+  provinces = [
+    null,
+    'AB',
+    'BC',
+    'MB',
+    'NB',
+    'NS',
+    'NL',
+    'NT',
+    'NU',
+    'ON',
+    'PE',
+    'QC',
+    'SK',
+    'YT',
+  ]
   defaultImg = require('~/assets/blank.png')
 
   brands = []
@@ -264,6 +317,9 @@ export default class FlatList extends Vue {
   updateQuery(query) {
     this.$emit('update:query', query)
   }
+  toggleFilters() {
+    this.showFilters = !this.showFilters
+  }
 }
 </script>
 
@@ -338,5 +394,15 @@ export default class FlatList extends Vue {
 .item {
   padding-bottom: 15px;
   padding-top: 15px;
+}
+
+.show-on-mobile {
+  display: none;
+}
+
+@media only screen and (max-width: 759px) {
+  .show-on-mobile {
+    display: block;
+  }
 }
 </style>
