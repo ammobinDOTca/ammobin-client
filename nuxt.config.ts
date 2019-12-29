@@ -9,11 +9,10 @@ const { join } = require('path')
 const PROD_API = 'https://ammobin.ca/api/'
 //const PROD_API = 'https://aws.ammobin.ca/api/'
 
-const DEV_API = 'http://localhost:8080/'
+const DEV_API = 'http://localhost:8080/api/'
 
 export default <Configuration>{
-  //'@nuxt/typescript-build', '@nuxtjs/pwa',
-  // todo: disable the above when running on lambda
+  modern: 'client',
   modules: ['@nuxt/typescript-build', '@nuxtjs/pwa', '@nuxtjs/axios'],
   build: {
     plugins: [
@@ -78,7 +77,7 @@ export default <Configuration>{
     ],
   },
   router: {
-    middleware:[ 'i18n','pageview-tracker'],
+    middleware: ['i18n', 'pageview-tracker'],
     extendRoutes(routes, resolve) {
       routes.unshift(<any>{
         name: 'fr-home',
@@ -107,9 +106,9 @@ export default <Configuration>{
   },
   workbox: process.env.PROD
     ? {
-      importScripts: ['custom-service-worker.js'],
-      globIgnores: ['sw.js', '**/workbox*.js'],
-    }
+        importScripts: ['custom-service-worker.js'],
+        globIgnores: ['sw.js', '**/workbox*.js'],
+      }
     : false,
   generate: {
     interval: 500,

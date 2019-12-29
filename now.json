@@ -1,6 +1,0 @@
-{
-  "version": 2,
-  "name": "ammobin",
-  "alias": "ammobinclient.now.sh",
-  "builds": [{ "src": "package.json", "use": "@now/static" }]
-}
