@@ -1,14 +1,9 @@
-//import NuxtConfiguration from '@nuxt/config'
 import { Configuration } from '@nuxt/types'
 import { generateRoutes } from './generate-routes'
 
-const webpack = require('webpack')
+const { DefinePlugin } = require('webpack')
 const { join } = require('path')
-// const CopyWebpackPlugin = require('copy-webpack-plugin')
-
 const PROD_API = 'https://ammobin.ca/api/'
-//const PROD_API = 'https://aws.ammobin.ca/api/'
-
 const DEV_API = 'http://localhost:8080/api/'
 
 export default <Configuration>{
@@ -16,11 +11,10 @@ export default <Configuration>{
   modules: ['@nuxt/typescript-build', '@nuxtjs/pwa', '@nuxtjs/axios'],
   build: {
     plugins: [
-      new webpack.DefinePlugin({
+      new DefinePlugin({
         BASE_API_URL: process.env.PROD ? `"${PROD_API}"` : `"${DEV_API}"`,
         PROD: process.env.PROD ? 'true' : 'false',
       }),
-      // new CopyWebpackPlugin([{ from: 'static' }]),
     ],
     extractCSS: true,
 
@@ -106,9 +100,9 @@ export default <Configuration>{
   },
   workbox: process.env.PROD
     ? {
-        importScripts: ['custom-service-worker.js'],
-        globIgnores: ['sw.js', '**/workbox*.js'],
-      }
+      importScripts: ['custom-service-worker.js'],
+      globIgnores: ['sw.js', '**/workbox*.js'],
+    }
     : false,
   generate: {
     interval: 500,

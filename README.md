@@ -31,7 +31,6 @@ https://nuxt-community.github.io/nuxt-i18n/
 
 - http://www.grouseriver.com/Hunting-Shooting/Ammunition
 - https://blue-wolf-firearms-canada.myshopify.com/collections/rimfire
-- https://www.londerosports.com/firearms/ammunitions/rifle?limit=all
 - https://gunworx.ca/collections/ammunition
 - https://www.latulippe.com/en/our-stores/
 - http://doctordeals.ca/product-category/smoking-gun/ammunition/rifle-ammo/
