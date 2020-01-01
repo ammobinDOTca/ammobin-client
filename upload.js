@@ -1,5 +1,6 @@
 /**
  * run nuxt generate + upload result to s3
+ * as of jan 2020, this is not used
  */
 const BUCKET_NAME = process.env.BUCKET_NAME
 
