@@ -2,6 +2,11 @@
   <div class="container">
     <div v-if="!isAmmoType">{{ $t('default.betaWarning') }}</div>
     <h1>{{ $t('subType.title', { area, subType }) }}</h1>
+    <!-- <div class="pure-g row">
+      <nuxt-link :to="'ads'" class="center">
+        <img class="pure-u-1" src="https://via.placeholder.com/468x60?text=Your%20Ad%20Here%20-%20contact@ammobin.ca" />
+      </nuxt-link>
+    </div> -->
     <flat-list
       v-show="!error"
       :rows="itemsFlatListings ? itemsFlatListings.items : []"
@@ -127,9 +132,7 @@ async function getShit(
       }),
       // lazy, this should be cached...
       $axios
-        .post(BASE_API_URL + 'graphql', [
-          { query: '{vendors{name}}', opName: 'vendors' },
-        ])
+        .post(BASE_API_URL + 'graphql', [{ query: '{vendors{name}}', opName: 'vendors' }])
         .then(f => f.data[0].data.vendors),
     ])
 
@@ -182,7 +185,7 @@ export default class ListingPage extends Vue {
   vendor: string = null
   query: string = null
   sortOrder: string = 'DES'
-  sortField: string = 'price'
+  sortField: string = 'unitPrice'
 
   get area() {
     return this.province || 'Canada'
@@ -219,3 +222,11 @@ export default class ListingPage extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.center {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+</style>
