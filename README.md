@@ -16,7 +16,7 @@ The meta search site for ammo prices across Canada. built with [nuxt.js](https:/
 ## todo
 
 - https://github.com/WICG/BackgroundSync/blob/master/explainer.md
-https://nuxt-community.github.io/nuxt-i18n/
+  https://nuxt-community.github.io/nuxt-i18n/
 
 ## contributing
 
@@ -24,7 +24,6 @@ https://nuxt-community.github.io/nuxt-i18n/
 - submit pr
 
 ## vendors to add
-
 
 - https://shophighfalls.com/collections/rifle-ammo?view=ALL (css rules hinder pulling data. will need to update scraper)
 - http://shop.sylvestresportinggoods.com/Rifle-Ammunition/?p=catalog&mode=catalog&parent=506&pg=1&CatalogSetSortBy=price
@@ -36,9 +35,7 @@ https://nuxt-community.github.io/nuxt-i18n/
 - http://doctordeals.ca/product-category/smoking-gun/ammunition/rifle-ammo/
 - http://store.easthilloutdoors.com/ammo/bulk-ammo
 
-
-
-- http://www.danchasse.com/shop_free/index.php?categoryID=109 (je ne parle en francis)
+* http://www.danchasse.com/shop_free/index.php?categoryID=109 (je ne parle en francis)
 
 # low priority
 
