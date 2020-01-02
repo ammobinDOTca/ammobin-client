@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@nuxt/typescript-build": "^0.5.4",
-    "@nuxt/typescript-runtime": "^0.3.5",
+    "@nuxt/typescript-runtime": "^0.3.6",
     "@nuxtjs/icon": "^3.0.0-beta.16",
     "@nuxtjs/manifest": "^3.0.0-beta.16",
     "@nuxtjs/meta": "^3.0.0-beta.16",
