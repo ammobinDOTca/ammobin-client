@@ -25,6 +25,8 @@ The meta search site for ammo prices across Canada. built with [nuxt.js](https:/
 
 ## vendors to add
 
+- https://www.italiansportinggoods.com/ammunition/rifle.html
+- https://internationalshootingsupplies.com/
 - https://shophighfalls.com/collections/rifle-ammo?view=ALL (css rules hinder pulling data. will need to update scraper)
 - http://shop.sylvestresportinggoods.com/Rifle-Ammunition/?p=catalog&mode=catalog&parent=506&pg=1&CatalogSetSortBy=price
 
@@ -52,6 +54,7 @@ The meta search site for ammo prices across Canada. built with [nuxt.js](https:/
 - https://tandtarms.com/product-category/ammo/
 - http://www.armseast.ca/surplus_ammunition/ no items
 - https://selectshootingsupplies.com/pages/ammunition no online sales
+- https://www.precisionoptics.net/category_s/761.htm html is too nasty to bother with
 
 ## skipped
 
