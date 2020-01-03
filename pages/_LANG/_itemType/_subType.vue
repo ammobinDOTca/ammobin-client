@@ -6,7 +6,7 @@
       <nuxt-link :to="'ads'" class="center">
         <img class="pure-u-1" src="https://via.placeholder.com/468x60?text=Your%20Ad%20Here%20-%20contact@ammobin.ca" />
       </nuxt-link>
-    </div> -->
+    </div>-->
     <flat-list
       v-show="!error"
       :rows="itemsFlatListings ? itemsFlatListings.items : []"
@@ -22,6 +22,7 @@
       :query.sync="query"
       :sortField.sync="sortField"
       :sortOrder.sync="sortOrder"
+      :brand.sync="brand"
     />
     <div v-show="error">ERROR {{ error }}</div>
   </div>
@@ -43,7 +44,7 @@ async function getShit(
     subType,
     page = 1,
     pageSize = 25,
-
+    brand = null,
     province = null,
     vendor = null,
     query = null,
@@ -64,7 +65,8 @@ async function getShit(
           $vendor: String
           $query: String
           $sortField: FlatSortField
-          $sortOrder: SortOrder
+          $sortOrder: SortOrder,
+          $brand: String
         ) {
           itemsFlatListings(
             page: $page
@@ -76,6 +78,7 @@ async function getShit(
             sortField: $sortField
             query: $query
             sortOrder: $sortOrder
+            brand: $brand
           ) {
             pages
             items {
@@ -95,7 +98,7 @@ async function getShit(
         subType,
         page,
         pageSize,
-
+        brand,
         province,
         vendor,
         query,
@@ -184,8 +187,9 @@ export default class ListingPage extends Vue {
   pageSize = 25
   vendor: string = null
   query: string = null
-  sortOrder: string = 'DES'
-  sortField: string = 'unitPrice'
+  sortOrder: string = 'ASC'
+  sortField: string = 'unitCost'
+  brand: string = null
 
   get area() {
     return this.province || 'Canada'
@@ -208,6 +212,7 @@ export default class ListingPage extends Vue {
   @Watch('query')
   @Watch('sortOrder')
   @Watch('sortField')
+  @Watch('brand')
   async onQueryChange(value, ...ass) {
     try {
       this.loading = true

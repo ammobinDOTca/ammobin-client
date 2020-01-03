@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="pure-u-1 pure-u-md-2-3" v-show="showFilters">
-          <div class="pure-u-1 pure-u-md-1-4">
+          <!--<div class="pure-u-1 pure-u-md-1-4">
             <label for="pageSize">{{ $t('table.pageSize') }}</label>
             <select
               id="pageSize"
@@ -34,9 +34,9 @@
               <option>75</option>
               <option>100</option>
             </select>
-          </div>
+          </div>-->
 
-          <div class="pure-u-1 pure-u-md-1-3">
+          <div class="pure-u-1 pure-u-md-1-4">
             <label for="province">{{ $t('table.province') }}</label>
             <select
               id="province"
@@ -59,6 +59,19 @@
               :disabled="loading"
             >
               <option v-for="c in vendors" :key="c">{{ c }}</option>
+            </select>
+          </div>
+
+          <div class="pure-u-1 pure-u-md-1-3 capitalize">
+            <label for="brand">{{ $t('table.brand') }}</label>
+            <select
+              id="brand"
+              :value="brand"
+              class="pure-input-1"
+              @change="updateBrand($event.target.value)"
+              :disabled="loading"
+            >
+              <option v-for="c in brands" :key="c" class="capitalize">{{ c }}</option>
             </select>
           </div>
         </div>
@@ -188,6 +201,7 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 import { AMMO_TYPES } from './constants'
+import { brands } from 'ammobin-classifier'
 declare const BASE_API_URL: string
 
 @Component({
@@ -205,7 +219,7 @@ export default class FlatList extends Vue {
   provinces = [null, 'AB', 'BC', 'MB', 'NB', 'NS', 'NL', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT']
   defaultImg = require('~/assets/blank.png')
 
-  brands = []
+  brands = [null, ...brands.map(l => l[0]).sort(), 'UNKNOWN']
 
   @Prop() pages
   @Prop() itemType
@@ -219,6 +233,7 @@ export default class FlatList extends Vue {
   @Prop() query
   @Prop() sortField //= 'minPrice'
   @Prop() sortOrder // = 'ASC'
+  @Prop() brand
   // is the current item type ammo ? (as opposed to reloading)
   get isAmmoType() {
     return AMMO_TYPES.includes(this.itemType)
@@ -234,7 +249,18 @@ export default class FlatList extends Vue {
       link,
       index,
       href: window.location.href,
-      query: this.$route.query,
+      query: {
+        itemType: this.itemType,
+        subType: this.subType,
+        page: this.page,
+        pageSize: this.pageSize,
+        province: this.province,
+        vendor: this.vendor,
+        query: this.query,
+        sortField: this.sortField,
+        sortOrder: this.sortOrder,
+        brand: this.brand,
+      },
       itemType: this.itemType,
       subType: this.subType,
       page: this.page,
