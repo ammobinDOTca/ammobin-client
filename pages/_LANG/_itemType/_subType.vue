@@ -128,6 +128,8 @@ async function getShit(
       // query: { page, pageSize, province, vendor, query, sortField, sortOrder },
     },
   }) {
+    // todo: make use of https://nuxtjs.org/api/context#-code-error-code-em-function-em-
+
     const [itemsFlatListings, vendors] = await Promise.all([
       getShit($axios, {
         itemType,
@@ -214,16 +216,18 @@ export default class ListingPage extends Vue {
   @Watch('sortField')
   @Watch('brand')
   async onQueryChange(value, ...ass) {
+    this.$nuxt.$loading.start()
     try {
       this.loading = true
       this.itemsFlatListings = await getShit(this.$axios, this)
       if (this.page > this.itemsFlatListings.pages) {
         this.page = this.itemsFlatListings.pages || 1
       }
-      this.loading = false
     } catch (e) {
       this.error = e
     }
+    this.loading = false
+    this.$nuxt.$loading.finish()
   }
 }
 </script>
