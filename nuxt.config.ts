@@ -28,6 +28,7 @@ export default <Configuration>{
     color: '#4FC08D',
     failedColor: '#bf5050',
     duration: 2000,
+    continuous: true,
   },
   css: [
     `purecss/build/pure${process.env.PROD ? '-min' : ''}.css`,
@@ -100,9 +101,9 @@ export default <Configuration>{
   },
   workbox: process.env.PROD
     ? {
-        importScripts: ['custom-service-worker.js'],
-        globIgnores: ['sw.js', '**/workbox*.js'],
-      }
+      importScripts: ['custom-service-worker.js'],
+      globIgnores: ['sw.js', '**/workbox*.js'],
+    }
     : false,
   generate: {
     interval: 500,
