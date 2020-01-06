@@ -18,7 +18,7 @@ function getPreferredLang(acceptLangs: string = ''): 'en' | 'fr' {
 
 export default function({ isHMR, app, store, route, params, error, redirect, req, res }) {
   // If middleware is called from hot module replacement, ignore it
-  if (isHMR) {
+  if (isHMR || route.path.startsWith('/api')) {
     return
   }
   let lang = 'en'
