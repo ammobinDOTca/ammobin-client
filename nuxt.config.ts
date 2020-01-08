@@ -101,13 +101,13 @@ export default <Configuration>{
   },
   workbox: process.env.PROD
     ? {
-        importScripts: ['custom-service-worker.js'],
-        globIgnores: ['sw.js', '**/workbox*.js'],
-      }
+      importScripts: ['custom-service-worker.js'],
+      globIgnores: ['sw.js', '**/workbox*.js'],
+    }
     : false,
   generate: {
     interval: 500,
-    routes: ['/', ...generateRoutes()],
+    routes: ['/', ...generateRoutes(process.env.PROD)],
     subFolders: false, // https://nuxtjs.org/api/configuration-generate/#subfolders
     // we want centerfire.html NOT centerfire/index.html (for better )
   },

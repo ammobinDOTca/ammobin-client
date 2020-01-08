@@ -2,14 +2,17 @@
  * run nuxt generate + upload result to s3
  * as of jan 2020, this is not used
  */
+console.log(`AWS_PROFILE ${process.env.AWS_PROFILE} BUCKET_NAME ${process.env.BUCKET_NAME}`)
 const BUCKET_NAME = process.env.BUCKET_NAME
 
 const fs = require('fs')
 const aws = require('aws-sdk')
 const path = require('path')
+var credentials = new aws.SharedIniFileCredentials({ profile: process.env.AWS_PROFILE })
+aws.config.credentials = credentials
 const s3 = new aws.S3({
-  accessKeyId: process.env.AWS_ACCESS_KEY,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  // accessKeyId: process.env.AWS_ACCESS_KEY,
+  // secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 })
 
 const getLangFromFileName = fileName => {
