@@ -41,6 +41,7 @@
     "build": "PROD=true nuxt-ts build --universal",
     "start": "HOST=0.0.0.0 NODE_ENV=production PROD=true nuxt start",
     "generate": "PROD=true nuxt-ts generate",
+    "generate-beta": "PROD=false nuxt-ts generate",
     "upload": "node ./upload.js",
     "heroku-postbuild": "npm run build",
     "format": "pretty-quick"

@@ -4,7 +4,10 @@ import { generateRoutes } from './generate-routes'
 const { DefinePlugin } = require('webpack')
 const { join } = require('path')
 const PROD_API = 'https://ammobin.ca/api/'
-const DEV_API = 'http://localhost:8080/api/'
+const BETA_API = 'https://beta.ammobin.ca/api/'
+// const DEV_API = 'http://localhost:8080/api/'
+
+const prod = process.env.PROD === 'true'
 
 export default <Configuration>{
   modern: 'client',
@@ -12,8 +15,8 @@ export default <Configuration>{
   build: {
     plugins: [
       new DefinePlugin({
-        BASE_API_URL: process.env.PROD ? `"${PROD_API}"` : `"${DEV_API}"`,
-        PROD: process.env.PROD ? 'true' : 'false',
+        BASE_API_URL: prod ? `"${PROD_API}"` : `"${BETA_API}"`, //`"${DEV_API}"`,
+        PROD: prod ? 'true' : 'false',
       }),
     ],
     extractCSS: true,
@@ -99,7 +102,7 @@ export default <Configuration>{
     theme_color: '#41b883',
     display: 'standalone',
   },
-  workbox: process.env.PROD
+  workbox: prod
     ? {
       importScripts: ['custom-service-worker.js'],
       globIgnores: ['sw.js', '**/workbox*.js'],
@@ -107,7 +110,7 @@ export default <Configuration>{
     : false,
   generate: {
     interval: 500,
-    routes: ['/', ...generateRoutes(process.env.PROD)],
+    routes: ['/', ...generateRoutes(prod)],
     subFolders: false, // https://nuxtjs.org/api/configuration-generate/#subfolders
     // we want centerfire.html NOT centerfire/index.html (for better )
   },
