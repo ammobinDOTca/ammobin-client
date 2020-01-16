@@ -48,70 +48,46 @@ async function getShit(
     province = null,
     vendor = null,
     query = null,
-    sortField = null,
-    sortOrder = null,
+    sortField = 'unitCost',
+    sortOrder = 'ASC',
   }
 ) {
-  const f = await axios.post(BASE_API_URL + 'graphql', [
-    {
+  function format(s) {
+    return s ? '"' + s + '"' : 'null'
+  }
+  const f = await axios.get(BASE_API_URL + 'graphql', {
+    params: {
+      query: `{
+itemsFlatListings(
+ page: ${page}
+ itemType: ${itemType}
+ subType: "${subType}"
+ brand:${format(brand)}
+ province:${province}
+ vendor:${format(vendor)}
+ query:${format(query)}
+ sortField:${sortField}
+ sortOrder:${sortOrder}
+) {
+ pages
+ items {
+  name
+  brand
+  img
+  price
+  link
+  unitCost
+  vendor
+  }
+ }
+}`,
       opName: 'getItemsFlatListings',
-      query: `
-      query getItemsFlatListings(
-          $page: Int
-          $pageSize: Int
-          $itemType: ItemType
-          $subType: String
-          $province: Province
-          $vendor: String
-          $query: String
-          $sortField: FlatSortField
-          $sortOrder: SortOrder,
-          $brand: String
-        ) {
-          itemsFlatListings(
-            page: $page
-            pageSize: $pageSize
-            itemType: $itemType
-            subType: $subType
-            province: $province
-            vendor: $vendor
-            sortField: $sortField
-            query: $query
-            sortOrder: $sortOrder
-            brand: $brand
-          ) {
-            pages
-            items {
-              name
-              brand
-              img
-              price
-              link
-              unitCost
-              vendor
-            }
-          }
-        }
-      `,
-      variables: {
-        itemType,
-        subType,
-        page,
-        pageSize,
-        brand,
-        province,
-        vendor,
-        query,
-        sortField,
-        sortOrder,
-      },
     },
-    //{ query: '{vendors{name}}' },
-  ])
+  })
 
   const {
     data: { itemsFlatListings, errors },
-  } = f.data[0]
+  } = f.data
 
   return itemsFlatListings
 }
@@ -137,7 +113,9 @@ async function getShit(
       }),
       // lazy, this should be cached...
       $axios
-        .post(BASE_API_URL + 'graphql', [{ query: '{vendors{name}}', opName: 'vendors' }])
+        .post(BASE_API_URL + 'graphql', [
+          { query: '{vendors{name}}', opName: 'vendors' },
+        ])
         .then(f => f.data[0].data.vendors),
     ])
 
