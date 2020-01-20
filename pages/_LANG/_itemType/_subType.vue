@@ -113,10 +113,13 @@ itemsFlatListings(
       }),
       // lazy, this should be cached...
       $axios
-        .post(BASE_API_URL + 'graphql', [
-          { query: '{vendors{name}}', opName: 'vendors' },
-        ])
-        .then(f => f.data[0].data.vendors),
+        .get(BASE_API_URL + 'graphql', {
+          params: {
+            query: '{vendors{name}}',
+            opName: 'vendors',
+          },
+        })
+        .then(f => f.data.data.vendors),
     ])
 
     return {
