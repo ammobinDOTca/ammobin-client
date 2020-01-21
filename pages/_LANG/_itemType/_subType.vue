@@ -82,6 +82,18 @@ itemsFlatListings(
  }
 }`,
       opName: 'getItemsFlatListings',
+      variables: {
+        itemType,
+        subType,
+        page,
+        pageSize,
+        brand,
+        province,
+        vendor,
+        query,
+        sortField,
+        sortOrder,
+      },
     },
   })
 
