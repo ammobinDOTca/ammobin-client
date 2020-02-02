@@ -102,12 +102,14 @@ export default <Configuration>{
     theme_color: '#41b883',
     display: 'standalone',
   },
-  workbox: prod
-    ? {
+  pwa: {
+    workbox: prod
+      ? {
         importScripts: ['custom-service-worker.js'],
         globIgnores: ['sw.js', '**/workbox*.js'],
       }
-    : false,
+      : false,
+  },
   generate: {
     interval: 500,
     routes: ['/', ...generateRoutes(prod)],

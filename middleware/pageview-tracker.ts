@@ -2,8 +2,7 @@ import axios from 'axios'
 declare const BASE_API_URL: string
 
 // track page changes
-export default function ({ route }) {
-
+export default function({ route }) {
   // dont track server side page changes...
   if (process.server) {
     return

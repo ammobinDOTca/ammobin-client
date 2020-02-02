@@ -13,6 +13,10 @@ The meta search site for ammo prices across Canada. built with [nuxt.js](https:/
 - `npm i`
 - `PROD=true npm run dev` (will target prod api)
 
+##
+
+`AWS_PROFILE=beta BUCKET_NAME=beta-ammobin-ca node upload.js`
+
 ## todo
 
 - https://github.com/WICG/BackgroundSync/blob/master/explainer.md
@@ -55,6 +59,8 @@ The meta search site for ammo prices across Canada. built with [nuxt.js](https:/
 - http://www.armseast.ca/surplus_ammunition/ no items
 - https://selectshootingsupplies.com/pages/ammunition no online sales
 - https://www.precisionoptics.net/category_s/761.htm html is too nasty to bother with
+
+(see commented out retailers in constants.ts for disabled integrations)
 
 ## skipped
 
