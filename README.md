@@ -65,7 +65,6 @@ The meta search site for ammo prices across Canada. built with [nuxt.js](https:/
 ## skipped
 
 - wholesalesports.com
-- marstar.ca
 - http://www.prairieshotammo.com/find-a-dealer-3.html (but should review these retailers to see if they have online shops)
 - http://www.generalgun.ca/ammunition only 1 item
 - https://www.kellysonline.ca/collections/ammunition only 1 item

@@ -1,30 +1,41 @@
 <template>
-  <div class="container">
-    <img src="~/assets/logo-medium.png" class="pure-img img" alt="ammobin.ca logo" />
-    <h1 class="m-b-30">AmmoBin.ca</h1>
-    <h4>{{ $t('home.tagline') }}</h4>
-    <h4>
-      {{ $t('home.searching') }}
-      <nuxt-link :to="{ path: 'about#supportedRetailers' }">{{ vendorCount }} retailers</nuxt-link>
-      {{ $t('home.daily') }}
-    </h4>
-
-    <h2 class="m-t-30 cap">{{ $t('home.currentlyPopular') }}</h2>
-    <div class="pure-g row">
-      <div v-for="v in topCalibres" :key="v.subType" class="pure-u-md-1-3 pure-u-1 margin-y">
-        <nuxt-link :to="{ path: `${v.itemType}/${v.subType}` }">{{ v.subType }}</nuxt-link>
-      </div>
+  <div>
+    <!-- <div class="left">
+      <nuxt-link :to="'ads'">
+        <img src="~/assets/120x600.png" />
+      </nuxt-link>
     </div>
+    <div class="right">
+      <nuxt-link :to="'ads'">
+        <img src="~/assets/120x600.png" />
+      </nuxt-link>
+    </div> -->
+    <div class="container">
+      <img src="~/assets/logo-medium.png" class="pure-img img" alt="ammobin.ca logo" />
+      <h1 class="m-b-30">AmmoBin.ca</h1>
+      <h4>{{ $t('home.tagline') }}</h4>
+      <h4>
+        {{ $t('home.searching') }}
+        <nuxt-link :to="{ path: 'about#supportedRetailers' }">{{ vendorCount }} retailers</nuxt-link>
+        {{ $t('home.daily') }}
+      </h4>
+      <h2 class="m-t-30 cap">{{ $t('home.currentlyPopular') }}</h2>
+      <div class="pure-g row">
+        <div v-for="v in topCalibres" :key="v.subType" class="pure-u-md-1-3 pure-u-1 margin-y">
+          <nuxt-link :to="{ path: `${v.itemType}/${v.subType}` }">{{ v.subType }}</nuxt-link>
+        </div>
+      </div>
 
-    <div class="margin-y m-t-30">
-      <a
-        href="https://www.thefirearmblog.com/blog/2017/08/13/%e2%9c%89tfbtv-mailbag-episode-4-new-hope?utm_src=ammobin.ca"
-        target="_blank"
-        rel="noopener"
-        title="TFBTV Mailbag Episode 4: A New Hope"
-      >
-        <img src="~/assets/aso-tfbtv2.svg" width="100px" alt="as seen on TFBTV" />
-      </a>
+      <div class="margin-y m-t-30">
+        <a
+          href="https://www.thefirearmblog.com/blog/2017/08/13/%e2%9c%89tfbtv-mailbag-episode-4-new-hope?utm_src=ammobin.ca"
+          target="_blank"
+          rel="noopener"
+          title="TFBTV Mailbag Episode 4: A New Hope"
+        >
+          <img src="~/assets/aso-tfbtv2.svg" width="100px" alt="as seen on TFBTV" />
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -49,12 +60,16 @@ declare const BASE_API_URL: string
     } as MetaInfo
   },
   async asyncData({ $axios }) {
+    try {
       const f = await $axios.get(BASE_API_URL + 'graphql', {
         params: { query: `{vendors{background}}`, opName: 'vendors' },
       })
       return {
         vendorCount: f.data.data.vendors.length,
       }
+    } catch (e) {
+      console.error('landing error', e)
+    }
   },
 })
 export default class HomePage extends Vue {
@@ -97,5 +112,12 @@ export default class HomePage extends Vue {
 
 .cap {
   text-transform: capitalize;
+}
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
 }
 </style>
