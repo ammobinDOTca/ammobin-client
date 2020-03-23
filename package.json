@@ -9,7 +9,7 @@
     "ammobin-classifier": "^0.1.1",
     "nuxt": "^2.11.0",
     "regenerator-runtime": "^0.13.3",
-    "vue-i18n": "^8.15.3",
+    "vue-i18n": "^8.15.4",
     "vue-property-decorator": "^8.3.0"
   },
   "devDependencies": {
