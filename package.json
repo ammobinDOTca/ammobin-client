@@ -5,7 +5,7 @@
   "license": "MIT",
   "description": "The place to view ammo prices across Canada",
   "dependencies": {
-    "@nuxtjs/axios": "^5.9.5",
+    "@nuxtjs/axios": "^5.9.6",
     "ammobin-classifier": "^0.1.1",
     "nuxt": "^2.11.0",
     "regenerator-runtime": "^0.13.4",
