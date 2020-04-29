@@ -20,7 +20,11 @@
 
       <div style="margin-top:10px;">
         {{ $t('about.submitIssue') }}
-        <a href="https://github.com/ammobinDOTca" target="_blank" rel="noopener">https://github.com/ammobindotca</a>
+        <a
+          href="https://github.com/ammobinDOTca"
+          target="_blank"
+          rel="noopener"
+        >https://github.com/ammobindotca</a>
       </div>
       <div>
         {{ $t('about.sendEmail') }}
@@ -37,6 +41,12 @@
 
     <h2>{{ $t('about.incorrectCountTitle') }}</h2>
     <p>{{ $t('about.incorrectCountText') }}</p>
+
+    <hr />
+    <h2>{{ $t('about.adsTitle') }}</h2>
+    <p>
+      <nuxt-link :to="`/${this.$i18n.locale}/ads`">see here</nuxt-link>
+    </p>
 
     <hr />
 
@@ -101,16 +111,23 @@ function shuffle(input: any[]): any[] {
     }
   },
   async asyncData({ $axios, store }) {
-    const f = await $axios.get(BASE_API_URL + 'graphql', {
-      params: {
-        query: `{vendors{ name logo link background }}`,
-        opName: 'vendors',
-      },
-    })
-    const { vendors } = f.data.data
-    // store.commit('setVendors', vendors)
-    return {
-      vendors,
+    try {
+      const f = await $axios.get(BASE_API_URL + 'graphql', {
+        params: {
+          query: `{vendors{ name logo link background }}`,
+          opName: 'vendors',
+        },
+      })
+      const { vendors } = f.data.data
+      // store.commit('setVendors', vendors)
+      return {
+        vendors,
+      }
+    } catch (e) {
+      console.error(e)
+      return {
+        vendors: [],
+      }
     }
   },
 })

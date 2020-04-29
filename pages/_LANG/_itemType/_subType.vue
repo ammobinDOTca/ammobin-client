@@ -2,11 +2,11 @@
   <div class="container">
     <div v-if="!isAmmoType">{{ $t('default.betaWarning') }}</div>
     <h1>{{ $t('subType.title', { area, subType }) }}</h1>
-    <!-- <div class="pure-g row">
-      <nuxt-link :to="'ads'" class="center">
-        <img class="pure-u-1" src="https://via.placeholder.com/468x60?text=Your%20Ad%20Here%20-%20contact@ammobin.ca" />
+    <div class="pure-g row">
+      <nuxt-link :to="`/${this.$i18n.locale}/ads`" class="center">
+        <img class="pure-u-1" src="~/assets/468x60.png" />
       </nuxt-link>
-    </div>-->
+    </div>
     <flat-list
       v-show="!error"
       :rows="itemsFlatListings ? itemsFlatListings.items : []"

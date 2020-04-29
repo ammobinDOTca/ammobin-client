@@ -61,7 +61,7 @@
     "of": "de",
     "name": "Nom",
     "price": "Prix",
-    "unitCost": "Coût unitaire",
+    "unitCost": "Coût unitaire*",
     "link": "Lien",
     "noResult": "Pas de résultats",
     "vendors": "les détaillants",

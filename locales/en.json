@@ -44,6 +44,7 @@
     "main2": "Prices are updated throughout the day.",
     "main3": "No ammo is sold through this site, it only links to retailer's product page.",
     "moreRetailers": "more to come...",
+    "adsTitle": "Advertising on ammobin.ca",
     "incorrectCountTitle": "Incorrect Unit Costs",
     "incorrectCountText": "Since the start of Ammobin, unit costs have not been 100% correct. Part of this is due to retailers including blanks or multiple quantities in the title. Other times, ammobin-classifer parses other numbers in the title as the item count. Since Ammobin uses automated scraping, it is not possible to manually correct these errors (as much as it would be great to not have to see it)."
   },
@@ -62,7 +63,7 @@
     "of": "of",
     "name": "Name",
     "price": "Price",
-    "unitCost": "Unit Cost",
+    "unitCost": "Unit Cost*",
     "link": "Link",
     "noResult": "No Results",
     "vendors": "vendors",
@@ -82,5 +83,6 @@
   "subType": {
     "title": "Best {subType} Prices Across {area}",
     "description": "The place to view the best {subType} prices across {area}. Refreshed mutliple times per day."
-  }
+  },
+  "ads": {}
 }

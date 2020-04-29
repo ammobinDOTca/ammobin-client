@@ -2,7 +2,16 @@
   <div class="container">
     <h1 class="capitalize">{{ $t('itemTypes.title', { type: $t('default.' + itemType) }) }}</h1>
     <div class="pure-g row">
-      <div v-for="subType in subtypes" :key="subType" class="pure-u-md-1-3 pure-u-1 margin-y capitalize">
+      <nuxt-link :to="`/${this.$i18n.locale}/ads`" class="center">
+        <img class="pure-u-1" src="~/assets/468x60.png" />
+      </nuxt-link>
+    </div>
+    <div class="pure-g row">
+      <div
+        v-for="subType in subtypes"
+        :key="subType"
+        class="pure-u-md-1-3 pure-u-1 margin-y capitalize"
+      >
         <nuxt-link :to="path(subType)">{{ subType }}</nuxt-link>
       </div>
       <div class="pure-u-md-1-3 pure-u-1 margin-y capitalize">
@@ -58,6 +67,12 @@ import { shotgunGauges } from 'ammobin-classifier/build/shotgun-gauges'
       link,
     }
   },
+  mounted() {
+    // redirect old subType routes to new page
+    if (this.$route.query && this.$route.query.subType) {
+      this.$router.push(this.$route.path + '/' + this.$route.query.subType)
+    }
+  },
 })
 export default class ListingPage extends Vue {
   get isAmmoType() {
@@ -65,7 +80,8 @@ export default class ListingPage extends Vue {
   }
 
   get itemType() {
-    const itemType = this.$route.params.itemType || this.$route.query.itemType || null
+    const itemType =
+      this.$route.params.itemType || this.$route.query.itemType || null
     return itemType
   }
   path(subType) {
@@ -90,3 +106,11 @@ export default class ListingPage extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.center {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+</style>
