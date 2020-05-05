@@ -31,7 +31,7 @@
     "husky": "^4.2.5",
     "node-fetch": "^2.5.0",
     "pretty-quick": "^2.0.1",
-    "purecss": "^1.0.1",
+    "purecss": "^2.0.0",
     "v-img-fallback": "^0.1.5",
     "vue-style-loader": "^4.1.0"
   },
