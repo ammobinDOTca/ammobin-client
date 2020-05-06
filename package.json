@@ -5,7 +5,7 @@
   "license": "MIT",
   "description": "The place to view ammo prices across Canada",
   "dependencies": {
-    "@nuxtjs/axios": "^5.10.2",
+    "@nuxtjs/axios": "^5.10.3",
     "ammobin-classifier": "^0.1.2",
     "nuxt": "^2.12.2",
     "regenerator-runtime": "^0.13.5",
@@ -21,7 +21,7 @@
     "@nuxtjs/pwa": "^3.0.0-beta.20",
     "@nuxtjs/workbox": "^3.0.0-beta.16",
     "@vue/cli-shared-utils": "^4.3.1",
-    "aws-sdk": "^2.666.0",
+    "aws-sdk": "^2.670.0",
     "boxen": "^4.2.0",
     "browserslist": "^4.12.0",
     "copy-webpack-plugin": "^5.1.1",
