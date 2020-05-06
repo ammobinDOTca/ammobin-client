@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="left">
+    <div class="left hide-mobile">
       <nuxt-link :to="`/${this.$i18n.locale}/ads`">
         <img src="~/assets/120x600.png" />
       </nuxt-link>
     </div>
-    <div class="right">
+    <div class="right hide-mobile">
       <nuxt-link :to="`/${this.$i18n.locale}/ads`">
         <img src="~/assets/120x600.png" />
       </nuxt-link>
@@ -19,6 +19,11 @@
         <nuxt-link :to="{ path: 'about#supportedRetailers' }">{{ vendorCount }} retailers</nuxt-link>
         {{ $t('home.daily') }}
       </h4>
+      <div class="pure-g row">
+        <nuxt-link :to="`/${this.$i18n.locale}/ads`" class="center show-mobile">
+          <img class="pure-u-1" src="~/assets/468x60.png" />
+        </nuxt-link>
+      </div>
       <h2 class="m-t-30 cap">{{ $t('home.currentlyPopular') }}</h2>
       <div class="pure-g row">
         <div v-for="v in topCalibres" :key="v.subType" class="pure-u-md-1-3 pure-u-1 margin-y">
@@ -119,5 +124,18 @@ export default class HomePage extends Vue {
 
 .right {
   float: right;
+}
+
+.show-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 48em) {
+  .hide-mobile {
+    display: none;
+  }
+  .show-mobile {
+    display: inherit;
+  }
 }
 </style>
