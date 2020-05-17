@@ -22,10 +22,8 @@ export default <Configuration>{
     extractCSS: true,
 
     extend: (config, { loaders: { imgUrl } }) => {
-
       config.node = {
         fs: 'empty',
-
       }
       imgUrl.limit = 1 // no inline imgs (csp wont allow them)
     },
@@ -108,9 +106,9 @@ export default <Configuration>{
   pwa: {
     workbox: prod
       ? {
-        importScripts: ['custom-service-worker.js'],
-        globIgnores: ['sw.js', '**/workbox*.js'],
-      }
+          importScripts: ['custom-service-worker.js'],
+          globIgnores: ['sw.js', '**/workbox*.js'],
+        }
       : false,
   },
   generate: {
