@@ -303,7 +303,11 @@ export default class FlatList extends Vue {
       itemType: this.itemType,
       subType: this.subType,
       page: this.page,
-      record: this.rows[index],
+      record: {
+        subType: this.subType,
+        itemType: this.itemType,
+        ...this.rows[index],
+      },
     })
     if (!navigator.sendBeacon) {
       this.$axios.post(BASE_API_URL + 'track-click', click)
