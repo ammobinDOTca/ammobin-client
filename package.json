@@ -20,7 +20,7 @@
     "@nuxtjs/meta": "^3.0.0-beta.16",
     "@nuxtjs/pwa": "^3.0.0-beta.20",
     "@nuxtjs/workbox": "^3.0.0-beta.16",
-    "@vue/cli-shared-utils": "^4.3.1",
+    "@vue/cli-shared-utils": "^4.4.1",
     "aws-sdk": "^2.670.0",
     "boxen": "^4.2.0",
     "browserslist": "^4.12.0",
