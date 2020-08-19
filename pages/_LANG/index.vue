@@ -1,15 +1,6 @@
 <template>
   <div>
-    <div class="left hide-mobile">
-      <nuxt-link :to="`/${this.$i18n.locale}/ads`">
-        <img src="~/assets/120x600.png" />
-      </nuxt-link>
-    </div>
-    <div class="right hide-mobile">
-      <nuxt-link :to="`/${this.$i18n.locale}/ads`">
-        <img src="~/assets/120x600.png" />
-      </nuxt-link>
-    </div>
+   
     <div class="container">
       <img src="~/assets/logo-medium.png" class="pure-img img" alt="ammobin.ca logo" />
       <h1 class="m-b-30">AmmoBin.ca</h1>
