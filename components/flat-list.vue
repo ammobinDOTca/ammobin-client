@@ -169,6 +169,8 @@
             class="pure-img img-cell"
             :src="row.img || defaultImg"
             :alt="row.name"
+            loading="lazy"
+	    referrerpolicy="origin"
             decoding="async"
             importance="low"
           />
