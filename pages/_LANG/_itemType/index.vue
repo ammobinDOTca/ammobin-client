@@ -1,7 +1,9 @@
 <template>
   <div class="container">
-    <h1 class="capitalize">{{ $t('itemTypes.title', { type: $t('default.' + itemType) }) }}</h1>
-   
+    <h1 class="capitalize">
+      {{ $t('itemTypes.title', { type: $t('default.' + itemType) }) }}
+    </h1>
+
     <div class="pure-g row">
       <div v-for="subType in subtypes" :key="subType" class="pure-u-md-1-3 pure-u-1 margin-y capitalize">
         <nuxt-link :to="path(subType)">{{ subType }}</nuxt-link>

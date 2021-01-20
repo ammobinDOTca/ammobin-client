@@ -206,7 +206,7 @@ export default class ItemsTable extends Vue {
   $route: any
   $axios: any
 
-  @Prop() rows
+  @Prop() rows = []
   centerfireCalibres = centerFireCalibres.map(l => l[0].toUpperCase()).sort()
   rimfireCalibres = rimfireCalibres.map(l => l[0].toUpperCase()).sort()
   shotgunGauges = shotgunGauges.map(l => l[0].toUpperCase()).sort()
@@ -223,6 +223,7 @@ export default class ItemsTable extends Vue {
   @Prop() pages
   @Prop() itemType
   @Prop() vendors
+  $store: any
   @Watch('rows')
   onRowsChange() {
     this.showVendors =
