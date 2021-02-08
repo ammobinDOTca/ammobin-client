@@ -43,6 +43,7 @@
     "start": "HOST=0.0.0.0 NODE_ENV=production PROD=true nuxt start",
     "generate": "PROD=true REGION=CA nuxt-ts generate && REGION=CA node ./generate-sitemap.j",
     "generate:us": "PROD=true REGION=US nuxt-ts generate && REGION=US node ./generate-sitemap.js",
+    "generate:us:beta": "PROD=false REGION=US nuxt-ts generate",
     "generate-beta": "PROD=false nuxt-ts generate",
     "upload": "node ./upload.js",
     "heroku-postbuild": "npm run build",
