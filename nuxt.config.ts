@@ -1,22 +1,96 @@
-import { Configuration } from '@nuxt/types'
+import { NuxtConfig } from '@nuxt/types'
 import { generateRoutes } from './generate-routes'
 
 const { DefinePlugin } = require('webpack')
 const { join } = require('path')
-const PROD_API = 'https://ammobin.ca/api/'
-const BETA_API = 'https://beta.ammobin.ca/api/'
+
 // const DEV_API = 'http://localhost:8080/api/'
 
 const prod = process.env.PROD === 'true'
 
-export default <Configuration>{
+const region = process.env.REGION || 'CA'
+const DOMAIN = `${prod ? '' : 'beta.'}ammobin.${region.toLowerCase()}`
+const BASE_URL = `https://${DOMAIN}`
+
+function getHead(region): any[] {
+  switch (region) {
+    case 'CA':
+      return [
+        { hid: 'description', name: 'description', content: 'The place to view ammo prices across Canada.' },
+        {
+          // google webmaster
+          name: 'google-site-verification',
+          content: 'X3ZsfEygJo1ywKMaf5Q8ltUgkgK7o9buM7yMsI6G7yc',
+        },
+        {
+          // bing webmaster (since helps to feed duckduckgo)
+          name: 'msvalidate.01',
+          content: '330D6A0BB2221C7F78C038494DE50309',
+        },
+        {
+          // yandex also feeds duckduckgo
+          name: 'yandex-verification',
+          content: '99071bdc94d7e5ed',
+        },
+        {
+          name: 'theme_color',
+          content: '#41b883',
+        },
+      ]
+    case 'US':
+      return [
+        { hid: 'description', name: 'description', content: 'TODO' },
+        {
+          // google webmaster
+          name: 'google-site-verification',
+          content: 'TODO',
+        },
+        {
+          // bing webmaster (since helps to feed duckduckgo)
+          name: 'msvalidate.01',
+          content: 'TODO',
+        },
+        {
+          // yandex also feeds duckduckgo
+          name: 'yandex-verification',
+          content: 'TODO',
+        },
+        {
+          name: 'theme_color',
+          content: '#0000',
+        },
+      ]
+    default:
+      throw 'UNKNOWN region: ' + region
+  }
+}
+
+function getLinks(region) {
+  const links: any[] = [
+    { rel: 'alternate', hreflang: 'en-ca', href: `${BASE_URL}/en` },
+    { rel: 'alternate', hreflang: 'x-default', href: `${BASE_URL}/en` },
+  ]
+  if (region === 'CA') {
+    links.push({ rel: 'alternate', hreflang: 'fr-ca', href: `${BASE_URL}/fr` })
+    links.push({ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' })
+    // links.push({ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' })
+  } else {
+    links.push({ rel: 'icon', type: 'image/x-icon', href: `/favicon-${region.toLowerCase()}.ico` }) // todo: make constant
+  }
+  return links
+}
+
+export default <NuxtConfig>{
   modern: 'client',
   modules: ['@nuxt/typescript-build', '@nuxtjs/pwa', '@nuxtjs/axios'],
   build: {
     plugins: [
       new DefinePlugin({
-        BASE_API_URL: prod ? `"${PROD_API}"` : `"${BETA_API}"`, //`"${DEV_API}"`,
+        DOMAIN: `"${DOMAIN}`,
+        BASE_URL: `"${BASE_URL}"`,
+        BASE_API_URL: `"${BASE_URL}/api/"`, //`"${DEV_API}"`,
         PROD: prod ? 'true' : 'false',
+        REGION: `"${region}"`,
       }),
     ],
     extractCSS: true,
@@ -29,7 +103,7 @@ export default <Configuration>{
     },
   },
   loading: {
-    color: '#4FC08D',
+    color: '#4FC08D', // ToDO
     failedColor: '#bf5050',
     duration: 2000,
     continuous: true,
@@ -43,46 +117,24 @@ export default <Configuration>{
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
-      { hid: 'description', name: 'description', content: 'The place to view ammo prices across Canada.' },
-      {
-        // google webmaster
-        name: 'google-site-verification',
-        content: 'X3ZsfEygJo1ywKMaf5Q8ltUgkgK7o9buM7yMsI6G7yc',
-      },
-      {
-        // bing webmaster (since helps to feed duckduckgo)
-        name: 'msvalidate.01',
-        content: '330D6A0BB2221C7F78C038494DE50309',
-      },
-      {
-        // yandex also feeds duckduckgo
-        name: 'yandex-verification',
-        content: '99071bdc94d7e5ed',
-      },
-      {
-        name: 'theme_color',
-        content: '#41b883',
-      },
       {
         name: 'image',
-        content: 'https://ammobin.ca/icon.png',
+        content: `${BASE_URL}/icon-${region}.png`,
       },
+      ...getHead(region),
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'alternate', hreflang: 'fr-ca', href: 'https://ammobin.ca/fr' },
-      { rel: 'alternate', hreflang: 'en-ca', href: 'https://ammobin.ca/en' },
-      { rel: 'alternate', hreflang: 'x-default', href: 'https://ammobin.ca/en' },
-    ],
+    link: [...getLinks(region)],
   },
   router: {
     middleware: ['i18n', 'pageview-tracker'],
     extendRoutes(routes, resolve) {
-      routes.unshift(<any>{
-        name: 'fr-home',
-        path: '/fr',
-        component: resolve(__dirname, 'pages/index.vue'),
-      })
+      if (region === 'CA') {
+        routes.unshift(<any>{
+          name: 'fr-home',
+          path: '/fr',
+          component: resolve(__dirname, 'pages/index.vue'),
+        })
+      }
     },
   },
   plugins: [
@@ -100,7 +152,7 @@ export default <Configuration>{
   manifest: {
     start_url: '/?launcher=true',
     background_color: '#f4f4f4',
-    theme_color: '#41b883',
+    theme_color: region === 'US' ? '#0A3161' : '#41b883',
     display: 'standalone',
   },
   pwa: {
@@ -113,7 +165,7 @@ export default <Configuration>{
   },
   generate: {
     interval: 500,
-    routes: ['/', ...generateRoutes(prod)],
+    routes: ['/', ...generateRoutes(prod && region === 'CA', region)], // TODO update for launch
     subFolders: false, // https://nuxtjs.org/api/configuration-generate/#subfolders
     // we want centerfire.html NOT centerfire/index.html (for better )
   },

@@ -26,6 +26,7 @@ import { centerFireCalibres } from 'ammobin-classifier/build/centerfire-calibres
 import { rimfireCalibres } from 'ammobin-classifier/build/rimfire-calibres'
 import { shotgunGauges } from 'ammobin-classifier/build/shotgun-gauges'
 // import '~/types'
+declare const DOMAIN: string
 
 @Component({
   validate({ params }) {
@@ -34,7 +35,7 @@ import { shotgunGauges } from 'ammobin-classifier/build/shotgun-gauges'
   head() {
     const that: any = this
     const link: any[] = []
-    const url = `https://ammobin.ca/${this.$i18n.locale}/${that.itemType}`
+    const url = `https://${DOMAIN}/${this.$i18n.locale}/${that.itemType}`
     if (that.page > 1) {
       link.push({
         rel: 'prev',

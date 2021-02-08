@@ -3,9 +3,9 @@
     <div v-if="!isAmmoType">{{ $t('default.betaWarning') }}</div>
     <h1>{{ $t('subType.title', { area, subType }) }}</h1>
     <div class="pure-g row">
-      <nuxt-link :to="`/${this.$i18n.locale}/ads`" class="center">
+      <!-- <nuxt-link :to="`/${this.$i18n.locale}/ads`" class="center">
         <img class="pure-u-1" src="~/assets/468x60.png" />
-      </nuxt-link>
+      </nuxt-link> -->
     </div>
     <flat-list
       v-show="!error"
@@ -36,6 +36,8 @@ import '@nuxt/vue-app'
 import { Component, Vue, Watch } from 'vue-property-decorator'
 // import '~/types'
 declare const BASE_API_URL: string
+declare const DOMAIN: string
+declare const BASE_URL: string
 
 async function getShit(
   axios,
@@ -145,7 +147,7 @@ itemsFlatListings(
   head() {
     const that: any = this
     const link: any[] = []
-    const url = `https://ammobin.ca/${this.$i18n.locale}/${that.itemType}/${that.subType}`
+    const url = `${BASE_URL}/${this.$i18n.locale}/${that.itemType}/${that.subType}`
     if (that.page > 1) {
       link.push({
         rel: 'prev',
