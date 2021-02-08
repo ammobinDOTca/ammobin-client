@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <img src="~/assets/logo-medium.png" class="pure-img img" alt="ammobin.ca logo" />
+    <img src="~/assets/logo-medium.png" class="pure-img img" alt="ammobin logo" />
     <h1>{{ $t('default.about') }}</h1>
     <div>
-      <a href="/">ammobin.ca</a>
+      <a href="/">{{ DOMAIN }}</a>
       {{ $t('about.main1') }}
     </div>
     <div>{{ $t('about.main2') }}</div>
@@ -18,7 +18,7 @@
       <div>{{ $t('about.contactQuestion3') }}</div>
       <div>{{ $t('about.contactQuestion4') }}</div>
 
-      <div style="margin-top:10px;">
+      <div style="margin-top: 10px">
         {{ $t('about.submitIssue') }}
         <a href="https://github.com/ammobinDOTca" target="_blank" rel="noopener">https://github.com/ammobindotca</a>
       </div>
@@ -70,6 +70,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import '~/types'
+declare const DOMAIN: string
 
 declare const BASE_API_URL: string
 
@@ -96,7 +97,7 @@ function shuffle(input: any[]): any[] {
 @Component({
   head() {
     return {
-      title: this.$t('about.title') + ' | ammobin.ca',
+      title: `${this.$t('about.title')} | ${DOMAIN}`,
       meta: [
         {
           hid: 'description',
@@ -134,7 +135,7 @@ export default class AboutPage extends Vue {
   mail = 'mailto:' + 'contact' + '@' + 'ammobin.ca' // this probably will do nothing to stop bots...
   get randomVendors() {
     return shuffle(this.vendors || []).map(v => {
-      v.link += '?utm_source=ammobin.ca'
+      v.link += '?utm_source=' + DOMAIN
       return v
     })
   }

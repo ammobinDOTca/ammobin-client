@@ -2,7 +2,7 @@
   <div class="main">
     <a class="fork-me-hard-dady" href="https://github.com/ammobindotca" target="_blank" rel="noopener">
       <img
-        style="position: absolute; top: 0; right: 0; border: 0;"
+        style="position: absolute; top: 0; right: 0; border: 0"
         src="~/assets/fork.png"
         alt="Fork me on GitHub"
         title="Fork me on GitHub"
@@ -11,7 +11,9 @@
     <div class="pure-menu pure-menu-horizontal pure-menu-scrollable light-grey">
       <ul class="pure-menu-list">
         <li class="pure-menu-item" :class="{ 'pure-menu-selected': currentPage === '/' }">
-          <nuxt-link class="pure-menu-link" :to="path('/')">AMMOBIN.CA</nuxt-link>
+          <nuxt-link class="pure-menu-link" :to="path('/')">
+            {{ DOMAIN }}
+          </nuxt-link>
         </li>
         <li :class="{ 'pure-menu-selected': currentPage === '/centerfire' }" class="pure-menu-item">
           <nuxt-link class="pure-menu-link" :to="path('/centerfire')">{{ $t('default.centerfire') }}</nuxt-link>
@@ -50,12 +52,14 @@
     </div>
     <nuxt />
     <footer class="footer">
-      AmmoBin.ca {{ new Date().getFullYear() }}
+      {{ DOMAIN }} {{ new Date().getFullYear() }}
       <a :href="mail">Contact</a>
       <div>
-        <a href="https://github.com/ammobindotca" target="_blank" rel="noopener">github</a> |
-        <a href="https://www.instagram.com/ammobin.ca" target="_blank" rel="noopener">instagram</a> |
-        <a href="https://status.ammobin.ca/" target="_blank" rel="noopener">status</a>
+        <a href="https://github.com/ammobindotca" target="_blank" rel="noopener">github</a>
+        |
+        <a href="https://www.instagram.com/ammobin.ca" target="_blank" rel="noopener">instagram</a>
+        |
+        <a href="https://status.ammobin.ca" target="_blank" rel="noopener">status</a>
       </div>
     </footer>
   </div>
@@ -65,11 +69,13 @@
 import '@nuxtjs/axios'
 
 import { Component, Vue } from 'vue-property-decorator'
+declare const BASE_URL: string
+declare const DOMAIN: string
 
 @Component({
   head() {
     return {
-      title: 'AmmoBin.ca',
+      title: DOMAIN,
       meta: [
         {
           hid: 'description',
@@ -86,8 +92,8 @@ import { Component, Vue } from 'vue-property-decorator'
           innerHTML: JSON.stringify({
             '@context': 'http://schema.org',
             '@type': 'Person',
-            name: 'Ammobin.ca',
-            url: 'https://ammobin.ca',
+            name: DOMAIN,
+            url: BASE_URL,
             sameAs: ['https://github.com/ammobindotca', 'https://www.instagram.com/ammobin.ca'],
           }),
           type: 'application/ld+json',
@@ -98,7 +104,7 @@ import { Component, Vue } from 'vue-property-decorator'
 })
 export default class Layout extends Vue {
   // todo: attach correct types
-
+  DOMAIN = DOMAIN
   get currentPage() {
     return this.$route.path
   }

@@ -79,6 +79,13 @@ function getLinks(region) {
   }
   return links
 }
+console.log(`
+DOMAIN: "${DOMAIN}"
+BASE_URL: "${BASE_URL}"
+BASE_API_URL: "${BASE_URL}/api/"
+PROD: ${prod}
+REGION: "${region}"
+`)
 
 export default <NuxtConfig>{
   modern: 'client',
@@ -86,7 +93,7 @@ export default <NuxtConfig>{
   build: {
     plugins: [
       new DefinePlugin({
-        DOMAIN: `"${DOMAIN}`,
+        DOMAIN: `"${DOMAIN}"`,
         BASE_URL: `"${BASE_URL}"`,
         BASE_API_URL: `"${BASE_URL}/api/"`, //`"${DEV_API}"`,
         PROD: prod ? 'true' : 'false',

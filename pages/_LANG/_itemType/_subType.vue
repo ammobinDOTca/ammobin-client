@@ -163,7 +163,7 @@ itemsFlatListings(
     const area = that.area
     const subType = that.subType
     return {
-      title: this.$t('subType.title', { area, subType }) + ' | ammobin.ca',
+      title: this.$t('subType.title', { area, subType }) + ` | ${DOMAIN}`,
       meta: [
         {
           hid: 'description',

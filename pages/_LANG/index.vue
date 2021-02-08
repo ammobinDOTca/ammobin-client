@@ -1,9 +1,8 @@
 <template>
   <div>
-   
     <div class="container">
-      <img src="~/assets/logo-medium.png" class="pure-img img" alt="ammobin.ca logo" />
-      <h1 class="m-b-30">AmmoBin.ca</h1>
+      <img src="~/assets/logo-medium.png" class="pure-img img" alt="ammobin logo" />
+      <h1 class="m-b-30">{{ DOMAIN }}</h1>
       <h4>{{ $t('home.tagline') }}</h4>
       <h4>
         {{ $t('home.searching') }}
@@ -41,11 +40,11 @@ import { Component, Vue } from 'vue-property-decorator'
 import '~/types'
 import { MetaInfo } from 'vue-meta'
 declare const BASE_API_URL: string
-
+declare const DOMAIN: string
 @Component({
   head() {
     return {
-      title: this.$t('home.tagline') + ' | ammobin.ca',
+      title: this.$t('home.tagline') + ` | ${DOMAIN}`,
       meta: [
         {
           hid: 'description',
@@ -71,6 +70,7 @@ declare const BASE_API_URL: string
 export default class HomePage extends Vue {
   vendorCount: number
   $t: any
+  private DOMAIN = DOMAIN
   private topCalibres = [
     ...[
       '9MM',
