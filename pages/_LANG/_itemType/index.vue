@@ -3,7 +3,11 @@
     <h1 class="capitalize">
       {{ $t('itemTypes.title', { type: $t('default.' + itemType) }) }}
     </h1>
-
+    <div class="pure-g row">
+      <nuxt-link :to="`/${this.$i18n.locale}/ads`" class="center">
+        <img class="pure-u-1" src="~/assets/TEST_top.png" />
+      </nuxt-link>
+    </div>
     <div class="pure-g row">
       <div v-for="subType in subtypes" :key="subType" class="pure-u-md-1-3 pure-u-1 margin-y capitalize">
         <nuxt-link :to="path(subType)">{{ subType }}</nuxt-link>

@@ -1,5 +1,15 @@
 <template>
   <div>
+    <div class="left hide-mobile">
+      <nuxt-link :to="`/${this.$i18n.locale}/ads`">
+        <img src="~/assets/TEST_SIDE.png" />
+      </nuxt-link>
+    </div>
+    <div class="right hide-mobile">
+      <nuxt-link :to="`/${this.$i18n.locale}/ads`">
+        <img src="~/assets/TEST_SIDE.png" />
+      </nuxt-link>
+    </div>
     <div class="container">
       <img src="~/assets/logo-medium.png" class="pure-img img" alt="ammobin logo" />
       <h1 class="m-b-30">{{ DOMAIN }}</h1>
@@ -9,11 +19,11 @@
         <nuxt-link :to="{ path: 'about#supportedRetailers' }">{{ vendorCount }} retailers</nuxt-link>
         {{ $t('home.daily') }}
       </h4>
-      <div class="pure-g row">
+      <!-- <div class="pure-g row container">
         <nuxt-link :to="`/${this.$i18n.locale}/ads`" class="center show-mobile">
-          <img class="pure-u-1" src="~/assets/468x60.png" />
+          <img class="pure-u-1 center" src="~/assets/TEST_top.png" />
         </nuxt-link>
-      </div>
+      </div> -->
       <h2 class="m-t-30 cap">{{ $t('home.currentlyPopular') }}</h2>
       <div class="pure-g row">
         <div v-for="v in topCalibres" :key="v.subType" class="pure-u-md-1-3 pure-u-1 margin-y">

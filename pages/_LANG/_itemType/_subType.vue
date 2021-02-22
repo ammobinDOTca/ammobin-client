@@ -3,9 +3,9 @@
     <div v-if="!isAmmoType">{{ $t('default.betaWarning') }}</div>
     <h1>{{ $t('subType.title', { area, subType }) }}</h1>
     <div class="pure-g row">
-      <!-- <nuxt-link :to="`/${this.$i18n.locale}/ads`" class="center">
-        <img class="pure-u-1" src="~/assets/468x60.png" />
-      </nuxt-link> -->
+      <nuxt-link :to="`/${this.$i18n.locale}/ads`" class="center">
+        <img class="pure-u-1" src="~/assets/TEST_top.png" />
+      </nuxt-link>
     </div>
     <flat-list
       v-show="!error"
