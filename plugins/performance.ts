@@ -2,7 +2,7 @@ import axios from 'axios'
 
 declare const BASE_API_URL: string
 
-if (!process.server  && 1 > 2) {
+if (!process.server && 1 > 2 && !window.navigator.doNotTrack) {
   window.onload = () => {
     const perfData = { performance: window.performance.timing, href: window.location.href }
     setTimeout(() => {

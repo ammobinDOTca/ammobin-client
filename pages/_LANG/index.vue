@@ -1,14 +1,10 @@
 <template>
   <div>
     <div class="left hide-mobile">
-      <nuxt-link :to="`/${this.$i18n.locale}/ads`">
-        <img src="~/assets/TEST_SIDE.png" />
-      </nuxt-link>
+      <sponsorship />
     </div>
     <div class="right hide-mobile">
-      <nuxt-link :to="`/${this.$i18n.locale}/ads`">
-        <img src="~/assets/TEST_SIDE.png" />
-      </nuxt-link>
+      <sponsorship />
     </div>
     <div class="container">
       <img src="~/assets/logo-medium.png" class="pure-img img" alt="ammobin logo" />
@@ -20,9 +16,7 @@
         {{ $t('home.daily') }}
       </h4>
       <!-- <div class="pure-g row container">
-        <nuxt-link :to="`/${this.$i18n.locale}/ads`" class="center show-mobile">
-          <img class="pure-u-1 center" src="~/assets/TEST_top.png" />
-        </nuxt-link>
+        <sponsorship />
       </div> -->
       <h2 class="m-t-30 cap">{{ $t('home.currentlyPopular') }}</h2>
       <div class="pure-g row">
@@ -49,6 +43,8 @@
 import { Component, Vue } from 'vue-property-decorator'
 import '~/types'
 import { MetaInfo } from 'vue-meta'
+import Sponsorship from '~/components/sponsorship.vue'
+
 declare const BASE_API_URL: string
 declare const DOMAIN: string
 @Component({
@@ -76,6 +72,7 @@ declare const DOMAIN: string
       console.error('landing error', e)
     }
   },
+  components: { Sponsorship },
 })
 export default class HomePage extends Vue {
   vendorCount: number
