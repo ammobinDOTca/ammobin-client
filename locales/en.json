@@ -31,7 +31,7 @@
     "description": "Ammobin.ca is THE place to find the best online ammo and reloading prices across Canada. Listings are refreshed multiple times per day. New retailers are added all the time.",
     "supportedRetailers": "Supported Retailers",
     "disclaimerTitle": "Disclaimer",
-    "disclaimer": "As of June 15, 2017, ammobin.ca has been entirely funded out of pocket. It does not receive any kick backs from any retailer listed on this site. Additionally, ammobin.ca does not use any client side analytics or tracking software or external libraries. All site statistics are collected from nginx server logs (ie: what your browser sends when it requests a page) and by using url redirection to track clicks to vendors.",
+    "disclaimer": "As of June 15, 2017, ammobin.ca has been entirely funded out of pocket. It does not receive any kick backs from any retailer listed on this site for preferred placement or inclusion on the site. All images, CSS, and JavaScript is selfhosted within ammobin.ca. Ammobin.ca does not make use of cookies or 3rd party analytics. All tracking occurs using sendbeacon/ajax requests in order to maintain the operations of the site. If you would like to opt-out of tracking, please set your browsers Do Not Track (DNT) setting to true.",
     "sendEmail": "or send me an email at",
     "submitIssue": "Submit an issue or PR at",
     "contactInfo": "Contact Info",
