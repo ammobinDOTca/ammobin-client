@@ -16,10 +16,7 @@
         <div class="pure-u-1 show-on-mobile">
           <div @click="toggleFilters()" class="active pure-button button-xsmall">
             {{ $t(!showFilters ? 'table.showFilters' : 'table.hideFilters') }}
-            <span
-              class="arrow"
-              :class="{ DES: !showFilters, ASC: showFilters }"
-            ></span>
+            <span class="arrow" :class="{ DES: !showFilters, ASC: showFilters }"></span>
           </div>
         </div>
         <div class="pure-u-1 pure-u-md-2-3" v-show="showFilters">
@@ -74,7 +71,9 @@
               @change="updateBrand($event.target.value)"
               :disabled="loading"
             >
-              <option v-for="c in brands" :key="c" class="capitalize">{{ c }}</option>
+              <option v-for="c in brands" :key="c" class="capitalize">
+                {{ c }}
+              </option>
             </select>
           </div>
         </div>
@@ -82,27 +81,19 @@
       <div v-show="pages > 0" class="pure-u-1 pure-u-md-1-3">
         <label>{{ $t('table.page') }}</label>
         <div>
-          <button
-            class="pure-button button-xsmall"
-            :disabled="page <= 1 || loading"
-            @click="updatePage(1)"
-          >|<<</button>
-          <button
-            class="pure-button button-xsmall"
-            :disabled="page <= 1 || loading"
-            @click="updatePage(page - 1)"
-          ><</button>
+          <button class="pure-button button-xsmall" :disabled="page <= 1 || loading" @click="updatePage(1)">
+            |<<
+          </button>
+          <button class="pure-button button-xsmall" :disabled="page <= 1 || loading" @click="updatePage(page - 1)">
+            <
+          </button>
           {{ page }} {{ $t('table.of') }} {{ pages }}
-          <button
-            class="pure-button button-xsmall"
-            :disabled="page >= pages || loading"
-            @click="updatePage(page + 1)"
-          >></button>
-          <button
-            class="pure-button button-xsmall"
-            :disabled="page >= pages || loading"
-            @click="updatePage(pages)"
-          >>>|</button>
+          <button class="pure-button button-xsmall" :disabled="page >= pages || loading" @click="updatePage(page + 1)">
+            >
+          </button>
+          <button class="pure-button button-xsmall" :disabled="page >= pages || loading" @click="updatePage(pages)">
+            >>|
+          </button>
         </div>
       </div>
     </div>
@@ -170,12 +161,14 @@
             :src="row.img || defaultImg"
             :alt="row.name"
             loading="lazy"
-	    referrerpolicy="origin"
+            referrerpolicy="origin"
             decoding="async"
             importance="low"
           />
         </div>
-        <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1 capitalize">{{ row.name }}</div>
+        <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1 capitalize">
+          {{ row.name }}
+        </div>
         <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
           <div>${{ row.price.toFixed(2) }}</div>
         </div>
@@ -184,12 +177,9 @@
           <div v-else if="!row.minUnitCost">N/A</div>
         </div>
         <div class="pure-u-lg-1-5 pure-u-md-1-4 pure-u-1 m-b-1">
-          <a
-            :href="row.link"
-            target="_blank"
-            rel="nofollow noopener"
-            @click="itemClicked(row.link, index)"
-          >{{ $t('table.buyFrom') }} {{ row.vendor }}</a>
+          <a :href="row.link" target="_blank" rel="nofollow noopener" @click="itemClicked(row.link, index)"
+            >{{ $t('table.buyFrom') }} {{ row.vendor }}</a
+          >
         </div>
       </div>
     </div>
@@ -197,27 +187,19 @@
       <div v-show="pages > 0" class="pure-u-lg-1-2 pure-u-1">
         <div>{{ $t('table.page') }}</div>
         <div>
-          <button
-            class="pure-button button-xsmall"
-            :disabled="page === 1 || loading"
-            @click="updatePage(1)"
-          >|<<</button>
-          <button
-            class="pure-button button-xsmall"
-            :disabled="page === 1 || loading"
-            @click="updatePage(page - 1)"
-          ><</button>
+          <button class="pure-button button-xsmall" :disabled="page === 1 || loading" @click="updatePage(1)">
+            |<<
+          </button>
+          <button class="pure-button button-xsmall" :disabled="page === 1 || loading" @click="updatePage(page - 1)">
+            <
+          </button>
           {{ page }} {{ $t('table.of') }} {{ pages }}
-          <button
-            class="pure-button button-xsmall"
-            :disabled="page === pages || loading"
-            @click="updatePage(page + 1)"
-          >></button>
-          <button
-            class="pure-button button-xsmall"
-            :disabled="page === pages || loading"
-            @click="updatePage(pages)"
-          >>>|</button>
+          <button class="pure-button button-xsmall" :disabled="page === pages || loading" @click="updatePage(page + 1)">
+            >
+          </button>
+          <button class="pure-button button-xsmall" :disabled="page === pages || loading" @click="updatePage(pages)">
+            >>|
+          </button>
         </div>
       </div>
     </div>
@@ -242,22 +224,7 @@ export default class FlatList extends Vue {
   showFilters: boolean = true
 
   @Prop() rows
-  provinces = [
-    null,
-    'AB',
-    'BC',
-    'MB',
-    'NB',
-    'NS',
-    'NL',
-    'NT',
-    'NU',
-    'ON',
-    'PE',
-    'QC',
-    'SK',
-    'YT',
-  ]
+  provinces = [null, 'AB', 'BC', 'MB', 'NB', 'NS', 'NL', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT']
   defaultImg = require('~/assets/blank.png')
 
   brands = [null, ...brands.map(l => l[0]).sort(), 'UNKNOWN']
@@ -286,6 +253,9 @@ export default class FlatList extends Vue {
    * index = position in page
    */
   itemClicked(link, index) {
+    if (window.navigator.doNotTrack) {
+      return
+    }
     const click = JSON.stringify({
       link,
       index,

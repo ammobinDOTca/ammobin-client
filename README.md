@@ -20,7 +20,7 @@ The meta search site for ammo prices across Canada. built with [nuxt.js](https:/
 ## todo
 
 - https://github.com/WICG/BackgroundSync/blob/master/explainer.md
-  https://nuxt-community.github.io/nuxt-i18n/
+- update about to describe support for window.navigator.doNotTrack
 
 ## contributing
 

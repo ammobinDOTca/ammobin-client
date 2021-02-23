@@ -41,7 +41,7 @@
     <hr />
     <h2>{{ $t('about.adsTitle') }}</h2>
     <p>
-      <nuxt-link :to="`/${this.$i18n.locale}/ads`">see here</nuxt-link>
+      <nuxt-link :to="`/${this.$i18n.locale}/sponsorship`">see here</nuxt-link>
     </p>
 
     <hr />
