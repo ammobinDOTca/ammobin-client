@@ -2,7 +2,7 @@ declare const DOMAIN: string
 const REF = page => `utm_source=${DOMAIN}&utm_campaign=${page}`
 
 export function getConfig(page: string, params: { [k: string]: string }): { href: string; img: string } {
-  const { locale, itemType, subType } = params
+  const { LANG: locale, itemType, subType } = params
 
   const INFO_LINK = `/${locale}/sponsorship`
 
