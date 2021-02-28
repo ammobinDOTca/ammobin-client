@@ -3,9 +3,7 @@
     <div v-if="!isAmmoType">{{ $t('default.betaWarning') }}</div>
     <h1>{{ $t('subType.title', { area, subType }) }}</h1>
     <div class="pure-g row">
-      <!-- <nuxt-link :to="`/${this.$i18n.locale}/ads`" class="center">
-        <img class="pure-u-1" src="~/assets/468x60.png" />
-      </nuxt-link> -->
+      <sponsorship />
     </div>
     <flat-list
       v-show="!error"
@@ -30,12 +28,14 @@
 
 <script lang="ts">
 import FlatList from '~/components/flat-list.vue'
+import Sponsorship from '~/components/sponsorship.vue'
 import { getUrl } from '~/helpers'
 import { ITEM_TYPES, AMMO_TYPES } from '~/components/constants'
 import '@nuxt/vue-app'
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { getCountry } from '~/helpers'
 // import '~/types'
+
 declare const BASE_API_URL: string
 declare const DOMAIN: string
 declare const BASE_URL: string
@@ -144,6 +144,7 @@ itemsFlatListings(
   },
   components: {
     FlatList,
+    Sponsorship,
   },
   head() {
     const that: any = this

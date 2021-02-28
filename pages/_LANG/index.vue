@@ -1,5 +1,11 @@
 <template>
   <div>
+    <div class="left hide-mobile">
+      <sponsorship />
+    </div>
+    <div class="right hide-mobile">
+      <sponsorship />
+    </div>
     <div class="container">
       <img :src="require(`~/assets/logo-medium-${REGION}.png`)" class="pure-img img" alt="ammobin logo" />
       <h1 class="m-b-30">{{ DOMAIN }}</h1>
@@ -9,11 +15,9 @@
         <nuxt-link :to="{ path: 'about#supportedRetailers' }">{{ vendorCount }} retailers</nuxt-link>
         {{ $t('home.daily') }}
       </h4>
-      <div class="pure-g row">
-        <nuxt-link :to="`/${this.$i18n.locale}/ads`" class="center show-mobile">
-          <img class="pure-u-1" src="~/assets/468x60.png" />
-        </nuxt-link>
-      </div>
+      <!-- <div class="pure-g row container">
+        <sponsorship />
+      </div> -->
       <h2 class="m-t-30 cap">{{ $t('home.currentlyPopular') }}</h2>
       <div class="pure-g row">
         <div v-for="v in topCalibres" :key="v.subType" class="pure-u-md-1-3 pure-u-1 margin-y">
@@ -40,6 +44,8 @@ import { Component, Vue } from 'vue-property-decorator'
 import '~/types'
 import { MetaInfo } from 'vue-meta'
 import { getCountry } from '~/helpers'
+import Sponsorship from '~/components/sponsorship.vue'
+
 declare const BASE_API_URL: string
 declare const DOMAIN: string
 declare const REGION: string
@@ -68,6 +74,7 @@ declare const REGION: string
       console.error('landing error', e)
     }
   },
+  components: { Sponsorship },
 })
 export default class HomePage extends Vue {
   vendorCount: number
