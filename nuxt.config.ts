@@ -110,7 +110,7 @@ export default <NuxtConfig>{
     },
   },
   loading: {
-    color: '#4FC08D', // ToDO
+    color: region === 'CA' ? '#4FC08D' : '#0A3161', // ToDO
     failedColor: '#bf5050',
     duration: 2000,
     continuous: true,

@@ -39,6 +39,7 @@
   "scripts": {
     "test": "npm run build",
     "dev": "NUXT_HOST=0.0.0.0 NUXT_PORT=3333 nuxt-ts",
+    "dev:us": "REGION=US NUXT_HOST=0.0.0.0 NUXT_PORT=3333 nuxt-ts",
     "build": "PROD=true nuxt-ts build --universal",
     "start": "HOST=0.0.0.0 NODE_ENV=production PROD=true nuxt start",
     "generate": "PROD=true REGION=CA nuxt-ts generate && REGION=CA node ./generate-sitemap.js",

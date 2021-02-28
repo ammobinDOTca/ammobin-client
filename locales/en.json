@@ -17,7 +17,7 @@
   },
   "home": {
     "title": "Welcome",
-    "tagline": "The place to view the best online ammo prices across Canada.",
+    "tagline": "The place to view the best online ammo prices across {country}.",
     "daily": "daily, with more to come.",
     "gunsaleLink": "Looking for guns? Try",
     "startingAt": "starting at",
@@ -27,11 +27,11 @@
     "newBeta": "new features currently in beta"
   },
   "about": {
-    "title": "About Ammobin.ca",
-    "description": "Ammobin.ca is THE place to find the best online ammo and reloading prices across Canada. Listings are refreshed multiple times per day. New retailers are added all the time.",
+    "title": "About",
+    "description": "{domain} is THE place to find the best online ammo and reloading prices across {country}. Listings are refreshed multiple times per day. New retailers are added all the time.",
     "supportedRetailers": "Supported Retailers",
     "disclaimerTitle": "Disclaimer",
-    "disclaimer": "As of June 15, 2017, ammobin.ca has been entirely funded out of pocket. It does not receive any kick backs from any retailer listed on this site. Additionally, ammobin.ca does not use any client side analytics or tracking software or external libraries. All site statistics are collected from nginx server logs (ie: what your browser sends when it requests a page) and by using url redirection to track clicks to vendors.",
+    "disclaimer": "As of June 15, 2017, {domain} has been entirely funded out of pocket. It does not receive any kick backs from any retailer listed on this site. Additionally, ammobin.ca does not use any client side analytics or tracking software or external libraries. All site statistics are collected from nginx server logs (ie: what your browser sends when it requests a page) and by using url redirection to track clicks to vendors.",
     "sendEmail": "or send me an email at",
     "submitIssue": "Submit an issue or PR at",
     "contactInfo": "Contact Info",
@@ -40,17 +40,18 @@
     "contactQuestion3": "Feature suggestions?",
     "contactQuestion4": "Need a retailer not yet listed here?",
     "wikiamrsLink": "Looking for ammo/guns in the land of the free and the brave? Consider",
-    "main1": "retreives public ammo prices daily from Canadian online retailers to aid in showing the best deals available.",
+    "main1": "retreives public ammo prices daily from {nationality} online retailers to aid in showing the best deals available.",
     "main2": "Prices are updated throughout the day.",
     "main3": "No ammo is sold through this site, it only links to retailer's product page.",
     "moreRetailers": "more to come...",
-    "adsTitle": "Advertising on ammobin.ca",
+    "adsTitle": "Advertising on {domain}",
     "incorrectCountTitle": "Incorrect Unit Costs",
     "incorrectCountText": "Since the start of Ammobin, unit costs have not been 100% correct. Part of this is due to retailers including blanks or multiple quantities in the title. Other times, ammobin-classifer parses other numbers in the title as the item count. Since Ammobin uses automated scraping, it is not possible to manually correct these errors (as much as it would be great to not have to see it)."
   },
   "links": {
     "french": "FR",
-    "english": "EN"
+    "english": "EN",
+    "spanish": "ES"
   },
   "table": {
     "brand": "brand",
@@ -58,6 +59,7 @@
     "pageSize": "Page Size",
     "calibre": "Calibre",
     "province": "Province",
+    "state": "State",
     "vendor": "Vendor",
     "page": "Page",
     "of": "of",
@@ -78,11 +80,11 @@
   },
   "itemTypes": {
     "title": "{type}",
-    "description": "All the {type} listed on ammobin.ca. Refreshed mutliple times per day."
+    "description": "All the {type} listed on {domain}. Refreshed multiple times per day."
   },
   "subType": {
     "title": "Best {subType} Prices Across {area}",
-    "description": "The place to view the best {subType} prices across {area}. Refreshed mutliple times per day."
+    "description": "The place to view the best {subType} prices across {area}. Refreshed multiple times per day."
   },
   "ads": {}
 }

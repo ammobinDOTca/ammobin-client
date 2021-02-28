@@ -25,6 +25,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import { centerFireCalibres } from 'ammobin-classifier/build/centerfire-calibres'
 import { rimfireCalibres } from 'ammobin-classifier/build/rimfire-calibres'
 import { shotgunGauges } from 'ammobin-classifier/build/shotgun-gauges'
+import { getCountry } from '~/helpers'
 // import '~/types'
 declare const DOMAIN: string
 
@@ -49,7 +50,7 @@ declare const DOMAIN: string
       })
     }
     const type = this.$t('default.' + that.itemType)
-    const area = that.province || 'Canada'
+    const area = that.province || getCountry()
     return {
       title: this.$t('itemTypes.title', { type }) as string,
       meta: [

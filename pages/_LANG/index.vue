@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="container">
-      <img src="~/assets/logo-medium.png" class="pure-img img" alt="ammobin logo" />
+      <img :src="require(`~/assets/logo-medium-${REGION}.png`)" class="pure-img img" alt="ammobin logo" />
       <h1 class="m-b-30">{{ DOMAIN }}</h1>
-      <h4>{{ $t('home.tagline') }}</h4>
+      <h4>{{ $t('home.tagline', { country: getCountry() }) }}</h4>
       <h4>
         {{ $t('home.searching') }}
         <nuxt-link :to="{ path: 'about#supportedRetailers' }">{{ vendorCount }} retailers</nuxt-link>
@@ -39,8 +39,10 @@
 import { Component, Vue } from 'vue-property-decorator'
 import '~/types'
 import { MetaInfo } from 'vue-meta'
+import { getCountry } from '~/helpers'
 declare const BASE_API_URL: string
 declare const DOMAIN: string
+declare const REGION: string
 @Component({
   head() {
     return {
@@ -70,6 +72,8 @@ declare const DOMAIN: string
 export default class HomePage extends Vue {
   vendorCount: number
   $t: any
+  private getCountry = getCountry
+  private REGION = REGION
   private DOMAIN = DOMAIN
   private topCalibres = [
     ...[

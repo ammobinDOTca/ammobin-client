@@ -34,6 +34,7 @@ import { getUrl } from '~/helpers'
 import { ITEM_TYPES, AMMO_TYPES } from '~/components/constants'
 import '@nuxt/vue-app'
 import { Component, Vue, Watch } from 'vue-property-decorator'
+import { getCountry } from '~/helpers'
 // import '~/types'
 declare const BASE_API_URL: string
 declare const DOMAIN: string
@@ -189,7 +190,7 @@ export default class ListingPage extends Vue {
   brand: string = null
 
   get area() {
-    return this.province || 'Canada'
+    return this.province || getCountry()
   }
   get isAmmoType() {
     return AMMO_TYPES.includes(this.itemType as string)

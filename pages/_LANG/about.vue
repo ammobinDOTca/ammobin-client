@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <img src="~/assets/logo-medium.png" class="pure-img img" alt="ammobin logo" />
+    <img :src="require(`~/assets/logo-medium-${REGION}.png`)" class="pure-img img" alt="ammobin logo" />
     <h1>{{ $t('default.about') }}</h1>
     <div>
       <a href="/">{{ DOMAIN }}</a>
-      {{ $t('about.main1') }}
+      {{ $t('about.main1', { nationality }) }}
     </div>
     <div>{{ $t('about.main2') }}</div>
     <div>{{ $t('about.main3') }}</div>
@@ -31,7 +31,7 @@
     <hr />
 
     <h2>{{ $t('about.disclaimerTitle') }}</h2>
-    <p>{{ $t('about.disclaimer') }}</p>
+    <p>{{ $t('about.disclaimer', { domain: DOMAIN }) }}</p>
 
     <hr />
 
@@ -39,7 +39,7 @@
     <p>{{ $t('about.incorrectCountText') }}</p>
 
     <hr />
-    <h2>{{ $t('about.adsTitle') }}</h2>
+    <h2>{{ $t('about.adsTitle', { domain: DOMAIN }) }}</h2>
     <p>
       <nuxt-link :to="`/${this.$i18n.locale}/ads`">see here</nuxt-link>
     </p>
@@ -69,9 +69,10 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { getCountry, getNationality } from '~/helpers'
 import '~/types'
 declare const DOMAIN: string
-
+declare const REGION: string
 declare const BASE_API_URL: string
 
 function shuffle(input: any[]): any[] {
@@ -130,7 +131,11 @@ function shuffle(input: any[]): any[] {
 })
 export default class AboutPage extends Vue {
   vendors!: string[]
+  DOMAIN = DOMAIN
+  private REGION = REGION
 
+  country = getCountry()
+  nationality = getNationality()
   email = 'contact' + '@' + 'ammobin.ca'
   mail = 'mailto:' + 'contact' + '@' + 'ammobin.ca' // this probably will do nothing to stop bots...
   get randomVendors() {

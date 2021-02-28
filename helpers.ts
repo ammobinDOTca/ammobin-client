@@ -39,3 +39,27 @@ export function provinceCodeToName(code) {
   // todo implement
   return code
 }
+
+declare const REGION: string
+
+export function getCountry() {
+  switch (REGION) {
+    case 'CA':
+      return 'Canada'
+    case 'US':
+      return 'USA'
+    default:
+      throw new Error('unknown region: ' + REGION)
+  }
+}
+
+export function getNationality() {
+  switch (REGION) {
+    case 'CA':
+      return 'Canadian'
+    case 'US':
+      return 'American'
+    default:
+      throw new Error('unknown region: ' + REGION)
+  }
+}

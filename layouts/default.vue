@@ -30,7 +30,7 @@
         <li class="pure-menu-item" :class="{ 'pure-menu-selected': currentPage === '/about' }">
           <nuxt-link class="pure-menu-link" :to="path('/about')">{{ $t('default.about') }}</nuxt-link>
         </li>
-        <li class="pure-menu-item">
+        <li class="pure-menu-item" v-if="REGION === 'CA'">
           <nuxt-link
             v-if="$i18n.locale === 'en'"
             class="pure-menu-link"
@@ -69,8 +69,10 @@
 import '@nuxtjs/axios'
 
 import { Component, Vue } from 'vue-property-decorator'
+import { getCountry } from '~/helpers'
 declare const BASE_URL: string
 declare const DOMAIN: string
+declare const REGION: string
 
 @Component({
   head() {
@@ -80,7 +82,7 @@ declare const DOMAIN: string
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('home.tagline'),
+          content: this.$t('home.tagline', { country: getCountry() }),
         },
       ],
       htmlAttrs: {
@@ -105,6 +107,7 @@ declare const DOMAIN: string
 export default class Layout extends Vue {
   // todo: attach correct types
   DOMAIN = DOMAIN
+  REGION = REGION
   get currentPage() {
     return this.$route.path
   }
