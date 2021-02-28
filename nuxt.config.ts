@@ -87,7 +87,9 @@ PROD: ${prod}
 REGION: "${region}"
 `)
 
+
 export default <NuxtConfig>{
+  target: process.argv[2] === 'generate' ? 'static' : 'server',
   modern: 'client',
   modules: ['@nuxt/typescript-build', '@nuxtjs/pwa', '@nuxtjs/axios'],
   build: {
@@ -165,9 +167,9 @@ export default <NuxtConfig>{
   pwa: {
     workbox: prod
       ? {
-          importScripts: ['custom-service-worker.js'],
-          globIgnores: ['sw.js', '**/workbox*.js'],
-        }
+        importScripts: ['custom-service-worker.js'],
+        globIgnores: ['sw.js', '**/workbox*.js'],
+      }
       : false,
   },
   generate: {

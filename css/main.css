@@ -7,12 +7,20 @@
 .container {
   text-align: center;
   padding-top: 25px;
-    margin: auto;
+  margin: auto;
 }
 .main {
-    margin: auto;
+  margin: auto;
 }
 
-a {
-  color: #41B883;
+.ca a {
+  color: #41b883;
+}
+
+.us a {
+  color: #1202ec;
+}
+
+.pure-menu a {
+  color: #4f4f4f;
 }

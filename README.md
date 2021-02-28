@@ -77,3 +77,6 @@ The meta search site for ammo prices across Canada. built with [nuxt.js](https:/
 ## docker hub
 
 https://hub.docker.com/r/ammobindotca/ammobin-client/
+
+## regionalize work
+- update 
