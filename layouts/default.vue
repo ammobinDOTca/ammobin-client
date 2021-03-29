@@ -91,6 +91,7 @@
     <footer class="footer">
       {{ DOMAIN }} {{ new Date().getFullYear() }}
       <a :href="mail">Contact</a>
+      <div>BTC: bc1q99354qy5n2pq7y8hqnsttql8crjs0eugx6upvh</div>
       <div>
         <a href="https://github.com/ammobindotca" target="_blank" rel="noopener"
           >github</a
