@@ -7,8 +7,7 @@ export function getConfig(page: string, params: { [k: string]: string }): { href
 
   const INFO_LINK = `/${locale}/sponsorship`
 
-  // running a 1 month trial for canadafirstammo.ca
-  if (new Date() > new Date('04/01/2021') || REGION != 'CA') {
+  if (REGION != 'CA') {
     if (page === 'LANG' || page === 'index')
       return {
         img: require('~/assets/TEST_SIDE.png'),
