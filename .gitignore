@@ -5,3 +5,6 @@ static/sw.js
 static/workbox-sw*.js
 npm-debug.log
 *~
+static/favicon.ico
+static/sitemap.txt
+static/icon.png

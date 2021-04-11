@@ -39,7 +39,7 @@ function getHead(region): any[] {
       ]
     case 'US':
       return [
-        { hid: 'description', name: 'description', content: 'TODO' },
+        { hid: 'description', name: 'description', content: 'The place to view ammo prices across the US.' },
         {
           // google webmaster
           name: 'google-site-verification',
@@ -57,7 +57,7 @@ function getHead(region): any[] {
         },
         {
           name: 'theme_color',
-          content: '#0000',
+          content: '#0A3161',
         },
       ]
     default:
