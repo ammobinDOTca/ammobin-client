@@ -20,6 +20,11 @@
 .us a {
   color: #1202ec;
 }
+@media (prefers-color-scheme: dark) {
+  .us a {
+    color: #6358ff;
+  }
+}
 
 .pure-menu a {
   color: #4f4f4f;

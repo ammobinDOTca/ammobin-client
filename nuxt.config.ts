@@ -87,7 +87,6 @@ PROD: ${prod}
 REGION: "${region}"
 `)
 
-
 export default <NuxtConfig>{
   target: process.argv[2] === 'generate' ? 'static' : 'server',
   modern: 'client',
@@ -161,15 +160,15 @@ export default <NuxtConfig>{
   manifest: {
     start_url: '/?launcher=true',
     background_color: '#f4f4f4',
-    theme_color: region === 'US' ? '#0A3161' : '#41b883',
+    theme_color: region === 'US' ? '#6358ff' : '#41b883',
     display: 'standalone',
   },
   pwa: {
     workbox: prod
       ? {
-        importScripts: ['custom-service-worker.js'],
-        globIgnores: ['sw.js', '**/workbox*.js'],
-      }
+          importScripts: ['custom-service-worker.js'],
+          globIgnores: ['sw.js', '**/workbox*.js'],
+        }
       : false,
   },
   generate: {

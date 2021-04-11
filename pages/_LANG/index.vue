@@ -7,18 +7,12 @@
       <sponsorship />
     </div>
     <div class="container">
-      <img
-        :src="require(`~/assets/logo-medium-${REGION}.png`)"
-        class="pure-img img"
-        alt="ammobin logo"
-      />
+      <img :src="require(`~/assets/logo-medium-${REGION}.png`)" class="pure-img img" alt="ammobin logo" />
       <h1 class="m-b-30">{{ DOMAIN }}</h1>
       <h4>{{ $t('home.tagline', { country: getCountry() }) }}</h4>
       <h4>
         {{ $t('home.searching') }}
-        <nuxt-link :to="{ path: 'about#supportedRetailers' }"
-          >{{ vendorCount }} retailers</nuxt-link
-        >
+        <nuxt-link :to="{ path: 'about#supportedRetailers' }">{{ vendorCount }} retailers</nuxt-link>
         {{ $t('home.daily') }}
       </h4>
       <!-- <div class="pure-g row container">
@@ -26,14 +20,8 @@
       </div> -->
       <h2 class="m-t-30 cap">{{ $t('home.currentlyPopular') }}</h2>
       <div class="pure-g row">
-        <div
-          v-for="v in topCalibres"
-          :key="v.subType"
-          class="pure-u-md-1-3 pure-u-1 margin-y"
-        >
-          <nuxt-link :to="{ path: `${v.itemType}/${v.subType}` }">{{
-            v.subType
-          }}</nuxt-link>
+        <div v-for="v in topCalibres" :key="v.subType" class="pure-u-md-1-3 pure-u-1 margin-y">
+          <nuxt-link :to="{ path: `${v.itemType}/${v.subType}` }">{{ v.subType }}</nuxt-link>
         </div>
       </div>
 
@@ -44,11 +32,7 @@
           rel="noopener"
           title="TFBTV Mailbag Episode 4: A New Hope"
         >
-          <img
-            src="~/assets/aso-tfbtv2.svg"
-            width="100px"
-            alt="as seen on TFBTV"
-          />
+          <img src="~/assets/aso-tfbtv2.svg" width="100px" alt="as seen on TFBTV" />
         </a>
       </div>
     </div>
@@ -68,8 +52,7 @@ declare const REGION: string
 @Component({
   head() {
     return {
-      title:
-        this.$t('home.tagline', { country: getCountry() }) + ` | ${DOMAIN}`,
+      title: this.$t('home.tagline', { country: getCountry() }) + ` | ${DOMAIN}`,
       meta: [
         {
           hid: 'description',
@@ -108,7 +91,7 @@ export default class HomePage extends Vue {
       '6.5MM CREEDMOOR',
       '7MM-08 REMINGTON',
       '.300 WEATHERBY MAGNUM',
-    ].map((subType) => ({ itemType: 'centerfire', subType })),
+    ].map(subType => ({ itemType: 'centerfire', subType })),
     { itemType: 'rimfire', subType: '.22 LR' },
     { itemType: 'shotgun', subType: '12 GA' },
   ]

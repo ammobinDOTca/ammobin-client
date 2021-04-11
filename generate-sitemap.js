@@ -7,5 +7,5 @@ const site = `https://ammobin.${REGION.toLowerCase()}`
 ws.write(`${site}\n`)
 generateRoutes(true, REGION).map(r => ws.write(`${site}${r}\n`))
 
-fs.copyFileSync(`./static/favicon-${REGION}.ico`,'./static/favicon.ico')
-fs.copyFileSync(`./static/icon-${REGION}.png`,'./static/icon.png')
+fs.copyFileSync(`./static/favicon-${REGION}.ico`, './static/favicon.ico')
+fs.copyFileSync(`./static/icon-${REGION}.png`, './static/icon.png')
