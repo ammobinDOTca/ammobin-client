@@ -1,11 +1,6 @@
 <template>
   <div class="main" v-bind:class="{ ca: isCA, us: isUS }">
-    <a
-      class="fork-me-hard-dady"
-      href="https://github.com/ammobindotca"
-      target="_blank"
-      rel="noopener"
-    >
+    <a class="fork-me-hard-dady" href="https://github.com/ammobindotca" target="_blank" rel="noopener">
       <img
         style="position: absolute; top: 0; right: 0; border: 0"
         src="~/assets/fork.png"
@@ -15,63 +10,35 @@
     </a>
     <div class="pure-menu pure-menu-horizontal pure-menu-scrollable light-grey">
       <ul class="pure-menu-list">
-        <li
-          class="pure-menu-item"
-          :class="{ 'pure-menu-selected': currentPage === '/' }"
-        >
+        <li class="pure-menu-item" :class="{ 'pure-menu-selected': currentPage === '/' }">
           <nuxt-link class="pure-menu-link" :to="path('/')">
             {{ DOMAIN }}
           </nuxt-link>
         </li>
-        <li
-          :class="{ 'pure-menu-selected': currentPage === '/centerfire' }"
-          class="pure-menu-item"
-        >
-          <nuxt-link class="pure-menu-link" :to="path('/centerfire')">{{
-            $t('default.centerfire')
-          }}</nuxt-link>
+        <li :class="{ 'pure-menu-selected': currentPage === '/centerfire' }" class="pure-menu-item">
+          <nuxt-link class="pure-menu-link" :to="path('/centerfire')">{{ $t('default.centerfire') }}</nuxt-link>
         </li>
-        <li
-          class="pure-menu-item"
-          :class="{ 'pure-menu-selected': currentPage === '/shotgun' }"
-        >
-          <nuxt-link class="pure-menu-link" :to="path('/shotgun')">{{
-            $t('default.shotgun')
-          }}</nuxt-link>
+        <li class="pure-menu-item" :class="{ 'pure-menu-selected': currentPage === '/shotgun' }">
+          <nuxt-link class="pure-menu-link" :to="path('/shotgun')">{{ $t('default.shotgun') }}</nuxt-link>
         </li>
-        <li
-          class="pure-menu-item"
-          :class="{ 'pure-menu-selected': currentPage === '/rimfire' }"
-        >
-          <nuxt-link class="pure-menu-link" :to="path('/rimfire')">{{
-            $t('default.rimfire')
-          }}</nuxt-link>
+        <li class="pure-menu-item" :class="{ 'pure-menu-selected': currentPage === '/rimfire' }">
+          <nuxt-link class="pure-menu-link" :to="path('/rimfire')">{{ $t('default.rimfire') }}</nuxt-link>
         </li>
         <li
           class="pure-menu-item"
           :class="{ 'pure-menu-selected': currentPage === '/reloading' }"
+          v-if="REGION === 'CA'"
         >
-          <nuxt-link class="pure-menu-link" :to="path('/reloading')"
-            >{{ $t('default.reloading') }} (BETA)</nuxt-link
-          >
+          <nuxt-link class="pure-menu-link" :to="path('/reloading')">{{ $t('default.reloading') }} (BETA)</nuxt-link>
         </li>
-        <li
-          class="pure-menu-item"
-          :class="{ 'pure-menu-selected': currentPage === '/about' }"
-        >
-          <nuxt-link class="pure-menu-link" :to="path('/about')">{{
-            $t('default.about')
-          }}</nuxt-link>
+        <li class="pure-menu-item" :class="{ 'pure-menu-selected': currentPage === '/about' }">
+          <nuxt-link class="pure-menu-link" :to="path('/about')">{{ $t('default.about') }}</nuxt-link>
         </li>
         <li class="pure-menu-item" v-if="REGION === 'CA'">
           <nuxt-link
             v-if="$i18n.locale === 'en'"
             class="pure-menu-link"
-            :to="
-              $route.fullPath === '/'
-                ? '/fr'
-                : $route.fullPath.replace('/en', '/fr')
-            "
+            :to="$route.fullPath === '/' ? '/fr' : $route.fullPath.replace('/en', '/fr')"
             active-class="none"
             exact
             >{{ $t('links.french') }}</nuxt-link
@@ -92,20 +59,11 @@
       {{ DOMAIN }} {{ new Date().getFullYear() }}
       <a :href="mail">Contact</a>
       <div>
-        <a href="https://github.com/ammobindotca" target="_blank" rel="noopener"
-          >github</a
-        >
+        <a href="https://github.com/ammobindotca" target="_blank" rel="noopener">github</a>
         |
-        <a
-          href="https://www.instagram.com/ammobin.ca"
-          target="_blank"
-          rel="noopener"
-          >instagram</a
-        >
+        <a href="https://www.instagram.com/ammobin.ca" target="_blank" rel="noopener">instagram</a>
         |
-        <a href="https://status.ammobin.ca" target="_blank" rel="noopener"
-          >status</a
-        >
+        <a href="https://status.ammobin.ca" target="_blank" rel="noopener">status</a>
       </div>
     </footer>
   </div>
@@ -142,10 +100,7 @@ declare const REGION: string
             '@type': 'Person',
             name: DOMAIN,
             url: BASE_URL,
-            sameAs: [
-              'https://github.com/ammobindotca',
-              'https://www.instagram.com/ammobin.ca',
-            ],
+            sameAs: ['https://github.com/ammobindotca', 'https://www.instagram.com/ammobin.ca'],
           }),
           type: 'application/ld+json',
         },

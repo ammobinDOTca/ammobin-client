@@ -1,13 +1,16 @@
-module.exports.generateRoutes =  (prod, region) => {
-
+module.exports.generateRoutes = (prod, region) => {
   const head = l => l[0]
   const langs = region === 'CA' ? ['en', 'fr'] : ['en']
   console.log(`generateRoutes!!!!prod=${prod} region=${region}`)
 
   return langs.reduce((routes, lang) => {
-    let lst = ['about', 'rimfire', 'shotgun', 'centerfire', 'reloading', 'powder', 'shot', 'case', 'primer'].map(
-      s => `/${lang}/${s}`
-    )
+    let lst = [
+      'about',
+      'rimfire',
+      'shotgun',
+      'centerfire',
+      ...(region === 'CA' ? ['reloading', 'powder', 'shot', 'case', 'primer'] : []),
+    ].map(s => `/${lang}/${s}`)
     lst = lst.concat([`/${lang}`])
 
     if (!!prod) {
