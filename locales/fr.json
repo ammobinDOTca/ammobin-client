@@ -24,7 +24,8 @@
     "perRound": "par cartouche",
     "currentlyPopular": "Populaire présentement",
     "searching": "Recherche sur",
-    "newBeta": "nouvelles fonctionnalités actuellement en version bêta"
+    "newBeta": "nouvelles fonctionnalités actuellement en version bêta",
+    "alternativeRegion": "Je suis situe en {country}. Essayer"
   },
   "about": {
     "title": "À propos",

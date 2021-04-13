@@ -24,7 +24,8 @@
     "perRound": "per round",
     "currentlyPopular": "currently popular",
     "searching": "Searching",
-    "newBeta": "new features currently in beta"
+    "newBeta": "new features currently in beta",
+    "alternativeRegion": "Located in {country}? Try:"
   },
   "about": {
     "title": "About",
