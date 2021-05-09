@@ -1,10 +1,22 @@
 <template>
   <a v-if="!linkToSponsorPage" :href="href" class="center" rel="sponsored" target="_blank" v-on:click="trackClick">
-    <img class="pure-u-1" :src="img" />
+    <img
+      :class="{
+        'pure-u-1': true,
+        sponsor: !homePage,
+        homePageSponsor: homePage,
+      }"
+      :src="img"
+      crossorigin="anonymous"
+      alt="sponsored ad"
+      decoding="async"
+      loading="lazy"
+      :height="homePage ? 600 : 60"
+    />
   </a>
 
   <nuxt-link v-else class="center" :to="href">
-    <img class="pure-u-1" :src="img" />
+    <img class="pure-u-1" :src="img" alt="sponsored ad" decoding="async" loading="lazy" height="60" />
   </nuxt-link>
 </template>
 
@@ -18,6 +30,8 @@ declare const BASE_API_URL: string
 
 @Component({})
 export default class ItemsTable extends Vue {
+  @Prop() homePage: boolean
+
   config = getConfig(this.$route.name, this.$route.params)
 
   get href() {
@@ -51,4 +65,14 @@ export default class ItemsTable extends Vue {
 }
 </script>
 
-<style></style>
+<style>
+.sponsor {
+  max-height: 60px;
+  max-width: 468px;
+}
+
+.homePageSponsor {
+  max-height: 600px;
+  max-width: 120px;
+}
+</style>

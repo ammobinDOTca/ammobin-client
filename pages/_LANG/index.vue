@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="left hide-mobile">
-      <sponsorship />
+      <sponsorship homePage="true" />
     </div>
     <div class="right hide-mobile">
-      <sponsorship />
+      <sponsorship homePage="true" />
     </div>
     <div class="container">
       <img :src="require(`~/assets/logo-medium-${REGION}.png`)" class="pure-img img" alt="ammobin logo" />
