@@ -78,15 +78,15 @@ export function getConfig(page: string, params: { [k: string]: string }): { href
         )}`,
       }
     case '7.62 NATO':
-      return Math.random() > 0.5
-        ? {
-            img: 'https://store-udt1amkaxd.mybigcommerce.com/content/ammobin/308.png',
-            href: `https://canadafirstammo.ca/search-results-page?q=308&${REF(subType)}`,
-          }
-        : {
-            img: 'https://store-udt1amkaxd.mybigcommerce.com/content/ammobin/762.png',
-            href: `https://canadafirstammo.ca/search-results-page?q=7.62&${REF(subType)}`,
-          }
+      return {
+        img: 'https://store-udt1amkaxd.mybigcommerce.com/content/ammobin/308.png',
+        href: `https://canadafirstammo.ca/search-results-page?q=308&${REF(subType)}`,
+      }
+    case '7.62X39MM':
+      return {
+        img: 'https://store-udt1amkaxd.mybigcommerce.com/content/ammobin/762.png',
+        href: `https://canadafirstammo.ca/search-results-page?q=7.62&${REF(subType)}`,
+      }
     // NOT READY YET
     // case '6.5MM CREEDMOOR':
     //   return {
