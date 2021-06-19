@@ -15,9 +15,9 @@
         <nuxt-link :to="{ path: 'about#supportedRetailers' }">{{ vendorCount }} retailers</nuxt-link>
         {{ $t('home.daily') }}
       </h4>
-      <!-- <div class="pure-g row container">
-        <sponsorship />
-      </div> -->
+      <div class="pure-g row container show-mobile">
+        <sponsorship mobile="true" />
+      </div>
       <h2 class="m-t-30 cap">{{ $t('home.currentlyPopular') }}</h2>
       <div class="pure-g row">
         <div v-for="v in topCalibres" :key="v.subType" class="pure-u-md-1-3 pure-u-1 margin-y">

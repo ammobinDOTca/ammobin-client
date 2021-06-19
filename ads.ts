@@ -2,7 +2,11 @@ declare const DOMAIN: string
 declare const REGION: string
 const REF = page => `utm_source=${DOMAIN}&utm_campaign=${page}`
 
-export function getConfig(page: string, params: { [k: string]: string }): { href: string; img: string } {
+export function getConfig(
+  page: string,
+  params: { [k: string]: string },
+  mobile: boolean
+): { href: string; img: string } {
   const { LANG: locale, itemType, subType } = params
 
   const INFO_LINK = `/${locale}/sponsorship`
@@ -21,10 +25,15 @@ export function getConfig(page: string, params: { [k: string]: string }): { href
   }
 
   if (page === 'LANG' || page === 'index') {
-    return {
-      img: 'https://store-udt1amkaxd.mybigcommerce.com/content/ammobin/home-desktop.png',
-      href: `https://canadafirstammo.ca/canadian-made/?${REF('homepage')}`,
-    }
+    return mobile
+      ? {
+          img: 'https://store-udt1amkaxd.mybigcommerce.com/content/ammobin/home-mobile.png',
+          href: `https://canadafirstammo.ca/canadian-made/?${REF('mobile_homepage')}`,
+        }
+      : {
+          img: 'https://store-udt1amkaxd.mybigcommerce.com/content/ammobin/home-desktop.png',
+          href: `https://canadafirstammo.ca/canadian-made/?${REF('homepage')}`,
+        }
   }
   switch (subType) {
     case '17 HMR':

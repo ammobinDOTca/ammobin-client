@@ -31,8 +31,9 @@ declare const BASE_API_URL: string
 @Component({})
 export default class ItemsTable extends Vue {
   @Prop() homePage: boolean
+  @Prop() mobile: boolean
 
-  config = getConfig(this.$route.name, this.$route.params)
+  config = getConfig(this.$route.name, this.$route.params, this.$props.mobile)
 
   get href() {
     return this.config.href
