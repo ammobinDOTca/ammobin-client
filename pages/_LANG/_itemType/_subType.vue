@@ -11,7 +11,7 @@
       :pages="itemsFlatListings ? itemsFlatListings.pages : 0"
       :item-type="itemType"
       :subType="subType"
-      :vendors="[null].concat((vendors || []).map(i => i.name))"
+      :vendors="[null].concat((vendors || []).map((i) => i.name))"
       :loading="!itemsFlatListings || loading"
       :page.sync="page"
       :pageSize.sync="pageSize"
@@ -66,7 +66,7 @@ itemsFlatListings(
  itemType: ${itemType}
  subType: "${subType}"
  brand:${format(brand)}
- province:${province}
+ province:${format(province)}
  vendor:${format(vendor)}
  query:${format(query)}
  sortField:${sortField}
@@ -134,7 +134,7 @@ itemsFlatListings(
             opName: 'vendors',
           },
         })
-        .then(f => f.data.data.vendors),
+        .then((f) => f.data.data.vendors),
     ])
 
     return {
