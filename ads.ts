@@ -140,9 +140,14 @@ export function getConfig(
       img: require('~/assets/TEST_SIDE.png'),
       href: INFO_LINK,
     }
+  // return {
+  //   img: require('~/assets/TEST_TOP.png'),
+  //   href: INFO_LINK,
+  // }
+  // default to mobile ad
   else
     return {
-      img: require('~/assets/TEST_TOP.png'),
-      href: INFO_LINK,
+      img: 'https://store-udt1amkaxd.mybigcommerce.com/content/ammobin/home-mobile.png',
+      href: `https://canadafirstammo.ca/canadian-made/?${REF('mobile_homepage')}`,
     }
 }
