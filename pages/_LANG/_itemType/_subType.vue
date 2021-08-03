@@ -6,7 +6,7 @@
       <sponsorship />
     </div>
     <flat-list
-      v-show="!error"
+      v-if="!error"
       :rows="itemsFlatListings ? itemsFlatListings.items : []"
       :pages="itemsFlatListings ? itemsFlatListings.pages : 0"
       :item-type="itemType"
@@ -118,28 +118,56 @@ itemsFlatListings(
       // todo: figure out generate issues before respecting query params
       // query: { page, pageSize, province, vendor, query, sortField, sortOrder },
     },
+    error,
   }) {
-    // todo: make use of https://nuxtjs.org/api/context#-code-error-code-em-function-em-
+    try {
+      const [itemsFlatListings, vendors] = await Promise.all([
+        getShit($axios, {
+          itemType,
+          subType,
+        }),
+        // lazy, this should be cached...
+        $axios
+          .get(BASE_API_URL + 'graphql', {
+            params: {
+              query: '{vendors{name}}',
+              opName: 'vendors',
+            },
+          })
+          .then((f) => f.data.data.vendors),
+      ])
 
-    const [itemsFlatListings, vendors] = await Promise.all([
-      getShit($axios, {
-        itemType,
-        subType,
-      }),
-      // lazy, this should be cached...
-      $axios
-        .get(BASE_API_URL + 'graphql', {
-          params: {
-            query: '{vendors{name}}',
-            opName: 'vendors',
-          },
+      return {
+        vendors,
+        itemsFlatListings,
+      }
+    } catch (e) {
+      console.error('asyncData ERROR', e, e.config)
+
+      if (e.response) {
+        error({
+          message: `message ${e.message}
+          url:${e?.config.url}
+          params:${JSON.stringify(e?.config.params || 'empty params')}
+          body:${JSON.stringify(e?.response.data || 'empty body')}`,
+          statusCode: e.response.status,
         })
-        .then((f) => f.data.data.vendors),
-    ])
+      } else if (e.request) {
+        error({
+          message: `clientside network error message: ${e.message} `,
+          statusCode: 0,
+        })
+      } else {
+        error({
+          message: `clientside error message: ${e.message} `,
+          statusCode: 0,
+        })
+      }
+      console.error('asyncData ERROR', e)
 
-    return {
-      vendors,
-      itemsFlatListings,
+      return {
+        error: e,
+      }
     }
   },
   components: {
@@ -221,6 +249,7 @@ export default class ListingPage extends Vue {
         this.page = this.itemsFlatListings.pages || 1
       }
     } catch (e) {
+      console.error('onQueryChange ERROR', e)
       this.error = e
     }
     this.loading = false
