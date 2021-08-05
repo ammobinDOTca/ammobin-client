@@ -172,9 +172,11 @@ export default <NuxtConfig>{
       : false,
   },
   generate: {
+    crawler:false,
     interval: 500,
     routes: ['/', ...generateRoutes(prod && region === 'CA', region)], // TODO update for launch
     subFolders: false, // https://nuxtjs.org/api/configuration-generate/#subfolders
     // we want centerfire.html NOT centerfire/index.html (for better )
   },
+  telemetry:false,
 }
