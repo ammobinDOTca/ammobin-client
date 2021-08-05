@@ -151,7 +151,7 @@
 
     <div v-show="loading" class="pure-g row fix-row">
       <div class="pure-u-1">{{ $t('default.loading') }}...</div>
-      <div>if the page is stuck, trying going back to the <nuxt-link to="/">home page</nuxt-link></div>
+      <div class="pure-u-1">if the page is stuck, trying going back to the <nuxt-link to="/">home page</nuxt-link></div>
     </div>
     <div v-show="!loading">
       <div v-for="(row, index) in rows" :key="row.link + index" class="pure-g row fix-row item">
