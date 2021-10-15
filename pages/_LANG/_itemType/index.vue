@@ -23,7 +23,7 @@ import Sponsorship from '~/components/sponsorship.vue'
 
 import { getUrl } from '~/helpers'
 import { ITEM_TYPES, AMMO_TYPES, RELOADING_TYPES } from '~/components/constants'
-import '@nuxt/vue-app'
+//import '@nuxt/vue-app'
 import { Component, Vue } from 'vue-property-decorator'
 
 import { centerFireCalibres } from 'ammobin-classifier/build/centerfire-calibres'

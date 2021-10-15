@@ -10,8 +10,7 @@
         feel free to complain to
         <a :href="mailto">contact@ammobin.ca</a>
         about this error.
-        <br />please include the time + which browser + which page + error
-        displayed below in your email
+        <br />please include the time + which browser + which page + error displayed below in your email
       </div>
       <code>
         <pre>{{ error.message }}</pre>
@@ -27,7 +26,7 @@ import axios from 'axios'
 declare const BASE_API_URL: string
 
 @Component({
-  mounted: function () {
+  mounted: function() {
     try {
       const message = JSON.stringify({
         msg: this.error ? this.error.message : 'error page view',
@@ -57,7 +56,7 @@ export default class ErrorPage extends Vue {
 
       today=${new Date().toDateString()} for
 
-      browser=${navigator.userAgent}
+      browser=${process.server ? 'SERVER' : navigator.userAgent}
 
       error=${this.error.statusCode}
       ${this.error.message}`

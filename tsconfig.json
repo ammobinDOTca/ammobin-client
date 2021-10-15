@@ -1,14 +1,6 @@
 {
+  "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "lib": ["esnext", "esnext.asynciterable", "dom"],
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "sourceMap": true,
-
-    "noEmit": true,
     "baseUrl": ".",
     "paths": {
       "~/*": ["./*"],

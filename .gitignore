@@ -8,3 +8,6 @@ npm-debug.log
 static/favicon.ico
 static/sitemap.txt
 static/icon.png
+
+.output
+nuxt.d.ts

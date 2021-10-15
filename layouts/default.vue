@@ -73,9 +73,9 @@ import '@nuxtjs/axios'
 
 import { Component, Vue } from 'vue-property-decorator'
 import { getCountry } from '~/helpers'
-declare const BASE_URL: string
-declare const DOMAIN: string
-declare const REGION: string
+// declare const BASE_URL: string
+// declare const DOMAIN: string
+// declare const REGION: string
 
 @Component({
   head() {

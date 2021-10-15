@@ -71,9 +71,9 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { getCountry, getNationality } from '~/helpers'
 import '~/types'
-declare const DOMAIN: string
-declare const REGION: string
-declare const BASE_API_URL: string
+// declare const DOMAIN: string
+// declare const REGION: string
+// declare const BASE_API_URL: string
 
 function shuffle(input: any[]): any[] {
   const array = [...input]
