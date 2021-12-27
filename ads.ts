@@ -11,7 +11,7 @@ export function getConfig(
 
   const INFO_LINK = `/${locale}/sponsorship`
 
-  if (REGION != 'CA') {
+  if (REGION != 'CA' || new Date() > new Date('6/30/2022')) {
     if (page === 'LANG' || page === 'index')
       return {
         img: require('~/assets/TEST_SIDE.png'),
@@ -29,13 +29,13 @@ export function getConfig(
     if (page === 'LANG' || page === 'fr-home') {
       return mobile
         ? {
-            img: 'https://store-udt1amkaxd.mybigcommerce.com/content/ammobin/home-mobile-fr.png',
-            href: `https://canadafirstammo.ca/canadian-made/?${REF('mobile_FR')}`,
-          }
+          img: 'https://store-udt1amkaxd.mybigcommerce.com/content/ammobin/home-mobile-fr.png',
+          href: `https://canadafirstammo.ca/canadian-made/?${REF('mobile_FR')}`,
+        }
         : {
-            img: 'https://store-udt1amkaxd.mybigcommerce.com/content/ammobin/home-desktop-fr.png',
-            href: `https://canadafirstammo.ca/canadian-made/?${REF('desktop_FR')}`,
-          }
+          img: 'https://store-udt1amkaxd.mybigcommerce.com/content/ammobin/home-desktop-fr.png',
+          href: `https://canadafirstammo.ca/canadian-made/?${REF('desktop_FR')}`,
+        }
     } else {
       return {
         img: 'https://store-udt1amkaxd.mybigcommerce.com/content/ammobin/home-mobile-fr.png',
@@ -47,13 +47,13 @@ export function getConfig(
   if (page === 'LANG' || page === 'index') {
     return mobile
       ? {
-          img: 'https://store-udt1amkaxd.mybigcommerce.com/content/ammobin/home-mobile.png',
-          href: `https://canadafirstammo.ca/canadian-made/?${REF('mobile_homepage')}`,
-        }
+        img: 'https://store-udt1amkaxd.mybigcommerce.com/content/ammobin/home-mobile.png',
+        href: `https://canadafirstammo.ca/canadian-made/?${REF('mobile_homepage')}`,
+      }
       : {
-          img: 'https://store-udt1amkaxd.mybigcommerce.com/content/ammobin/home-desktop.png',
-          href: `https://canadafirstammo.ca/canadian-made/?${REF('homepage')}`,
-        }
+        img: 'https://store-udt1amkaxd.mybigcommerce.com/content/ammobin/home-desktop.png',
+        href: `https://canadafirstammo.ca/canadian-made/?${REF('homepage')}`,
+      }
   }
   switch (subType) {
     case '17 HMR':
