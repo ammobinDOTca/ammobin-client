@@ -1,0 +1,27 @@
+name = "ammobin_nuxt_v3"
+type = "javascript"
+account_id = "fcefb1f6a2e21eb22824e596b6a3f777"
+workers_dev = true
+route = ""
+zone_id = ""
+compatibility_date = "2021-10-15"
+
+[site]
+bucket = ".output/public"
+entry-point = ".output"
+
+[build]
+command = "NITRO_PRESET=cloudflare npm run build"
+upload.format = "service-worker"
+
+[env.ca_beta]
+name = "ammobin_nuxt_ca_beta"
+
+[env.us_beta]
+name = "ammobin_nuxt_us_beta"
+
+[env.ca_prod]
+name = "ammobin_nuxt_ca_prod"
+
+[env.us_prod]
+name = "ammobin_nuxt_us_prod"

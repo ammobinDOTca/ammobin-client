@@ -1,5 +1,6 @@
 import { NuxtConfig } from '@nuxt/types'
 import { generateRoutes } from './generate-routes'
+import { defineNuxtConfig } from '@nuxt/bridge'
 
 const { DefinePlugin } = require('webpack')
 const { join } = require('path')
@@ -11,6 +12,7 @@ const prod = process.env.PROD === 'true'
 const region = process.env.REGION || 'CA'
 const DOMAIN = `${prod ? '' : 'beta.'}ammobin.${region.toLowerCase()}`
 const BASE_URL = `https://${DOMAIN}`
+const NITRO_PRESET = process.env.NITRO_PRESET //|| '_'
 
 function getHead(region): any[] {
   switch (region) {
@@ -87,10 +89,14 @@ PROD: ${prod}
 REGION: "${region}"
 `)
 
-export default <NuxtConfig>{
-  target: process.argv[2] === 'generate' ? 'static' : 'server',
-  modern: 'client',
-  modules: ['@nuxt/typescript-build', '@nuxtjs/pwa', '@nuxtjs/axios'],
+export default defineNuxtConfig({
+  // target: process.argv[2] === 'generate' ? 'static' : 'server',
+  // modern: 'client',
+  modules: [
+    //'@nuxt/typescript-build',
+    '@nuxtjs/pwa',
+    '@nuxtjs/axios',
+  ],
   build: {
     plugins: [
       new DefinePlugin({
@@ -99,16 +105,17 @@ export default <NuxtConfig>{
         BASE_API_URL: `"${BASE_URL}/api/"`, //`"${DEV_API}"`,
         PROD: prod ? 'true' : 'false',
         REGION: `"${region}"`,
+        NITRO_PRESET: `"${NITRO_PRESET}"`,
       }),
     ],
     extractCSS: true,
 
-    extend: (config, { loaders: { imgUrl } }) => {
-      config.node = {
-        fs: 'empty',
-      }
-      imgUrl.limit = 1 // no inline imgs (csp wont allow them)
-    },
+    // extend: (config, { loaders: { imgUrl } }) => {
+    //   config.node = {
+    //     fs: 'empty',
+    //   }
+    //   imgUrl.limit = 1 // no inline imgs (csp wont allow them)
+    // },
   },
   loading: {
     color: region === 'CA' ? '#4FC08D' : '#0A3161', // ToDO
@@ -164,19 +171,19 @@ export default <NuxtConfig>{
     display: 'standalone',
   },
   pwa: {
-    workbox: prod
-      ? {
-          importScripts: ['custom-service-worker.js'],
-          globIgnores: ['sw.js', '**/workbox*.js'],
-        }
-      : false,
+    workbox: false
+    // {
+    //   importScripts: ['custom-service-worker.js'],
+    //   globIgnores: ['sw.js', '**/workbox*.js'],
+    // }
+    //: false,
   },
   generate: {
-    crawler:false,
+    crawler: false,
     interval: 500,
     routes: ['/', ...generateRoutes(prod && region === 'CA', region)], // TODO update for launch
     subFolders: false, // https://nuxtjs.org/api/configuration-generate/#subfolders
     // we want centerfire.html NOT centerfire/index.html (for better )
   },
-  telemetry:false,
-}
+  telemetry: false,
+})

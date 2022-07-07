@@ -7,15 +7,15 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
     "ammobin-classifier": "^0.1.3",
-    "nuxt": "^2.15.7",
+    "nuxt-edge": "latest",
     "regenerator-runtime": "^0.13.9",
     "vue-class-component": "^7.2.6",
     "vue-i18n": "^8.25.0",
     "vue-property-decorator": "^9"
   },
   "devDependencies": {
+    "@nuxt/bridge": "npm:@nuxt/bridge-edge@^3.0.0-27237303.6acfdcd",
     "@nuxt/types": "^2.15.7",
-    "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/icon": "^3.0.0-beta.16",
     "@nuxtjs/manifest": "^3.0.0-beta.16",
     "@nuxtjs/meta": "^3.0.0-beta.16",
@@ -40,6 +40,7 @@
     "dev": "NUXT_HOST=0.0.0.0 NUXT_PORT=3333 nuxt",
     "dev:us": "REGION=US NUXT_HOST=0.0.0.0 NUXT_PORT=3333 nuxt",
     "build": "PROD=true nuxt build --universal",
+    "build:dev": "PROD=false nuxt build --universal",
     "start": "HOST=0.0.0.0 NODE_ENV=production PROD=true nuxt start",
     "start-beta": "HOST=0.0.0.0 PROD=false nuxt start",
     "generate": "PROD=true REGION=CA nuxt generate && REGION=CA node ./generate-sitemap.js",
@@ -62,6 +63,6 @@
     "not dead"
   ],
   "engines": {
-    "node": ">=12"
+    "node": ">=16"
   }
 }

@@ -11,7 +11,7 @@
       :pages="itemsFlatListings ? itemsFlatListings.pages : 0"
       :item-type="itemType"
       :subType="subType"
-      :vendors="[null].concat((vendors || []).map((i) => i.name))"
+      :vendors="[null].concat((vendors || []).map(i => i.name))"
       :loading="!itemsFlatListings || loading"
       :page.sync="page"
       :pageSize.sync="pageSize"
@@ -31,7 +31,7 @@ import FlatList from '~/components/flat-list.vue'
 import Sponsorship from '~/components/sponsorship.vue'
 import { getUrl } from '~/helpers'
 import { ITEM_TYPES, AMMO_TYPES } from '~/components/constants'
-import '@nuxt/vue-app'
+// import '@nuxt/vue-app'
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { getCountry } from '~/helpers'
 // import '~/types'
@@ -39,6 +39,7 @@ import { getCountry } from '~/helpers'
 declare const BASE_API_URL: string
 declare const DOMAIN: string
 declare const BASE_URL: string
+declare const NITRO_PRESET: string
 
 async function getShit(
   axios,
@@ -107,6 +108,73 @@ itemsFlatListings(
   return itemsFlatListings
 }
 
+async function getShitFetch(
+  fetch,
+  {
+    itemType,
+    subType,
+    page = 1,
+    pageSize = 25,
+    brand = null,
+    province = null,
+    vendor = null,
+    query = null,
+    sortField = 'unitCost',
+    sortOrder = 'ASC',
+  }
+) {
+  function format(s) {
+    return s ? '"' + s + '"' : 'null'
+  }
+  const url = new URL(BASE_API_URL + 'graphql')
+  url.searchParams.set(
+    'query',
+    `{
+itemsFlatListings(
+ page: ${page}
+ itemType: ${itemType}
+ subType: "${subType}"
+ brand:${format(brand)}
+ province:${format(province)}
+ vendor:${format(vendor)}
+ query:${format(query)}
+ sortField:${sortField}
+ sortOrder:${sortOrder}
+) {
+ pages
+ items {
+  name
+  brand
+  img
+  price
+  link
+  unitCost
+  vendor
+  }
+ }
+}`
+  )
+  url.searchParams.set('opName', 'getItemsFlatListings')
+  url.searchParams.set(
+    'variables',
+    JSON.stringify({
+      itemType,
+      subType,
+      page,
+      pageSize,
+      brand,
+      province,
+      vendor,
+      query,
+      sortField,
+      sortOrder,
+    })
+  )
+  return fetch(url.toString(), { method: 'GET' })
+    .then(f => f.json())
+    .then(f => f.data.itemsFlatListings)
+}
+
 @Component({
   validate({ params }) {
     return ITEM_TYPES.includes(params.itemType)
@@ -119,27 +187,51 @@ itemsFlatListings(
       // query: { page, pageSize, province, vendor, query, sortField, sortOrder },
     },
     error,
+    ...rest
   }) {
     try {
-      const [itemsFlatListings, vendors] = await Promise.all([
-        getShit($axios, {
-          itemType,
-          subType,
-        }),
-        // lazy, this should be cached...
-        $axios
-          .get(BASE_API_URL + 'graphql', {
-            params: {
-              query: '{vendors{name}}',
-              opName: 'vendors',
-            },
-          })
-          .then((f) => f.data.data.vendors),
-      ])
+      if (NITRO_PRESET === 'cloudflare') {
+        // todo - use fetch instead ? use nuxt3 thing fetch
+        const url = new URL(BASE_API_URL + `graphql`)
+        url.searchParams.set('query', '{vendors{name}}')
+        url.searchParams.set('opName', 'vendors')
+        const [itemsFlatListings, vendors] = await Promise.all([
+          getShitFetch(fetch, {
+            itemType,
+            subType,
+          }),
 
-      return {
-        vendors,
-        itemsFlatListings,
+          fetch(url.toString(), {
+            method: 'GET',
+          })
+            .then(f => f.json())
+            .then(f => f.data.vendors),
+        ])
+        return {
+          vendors,
+          itemsFlatListings,
+        }
+      } else {
+        const [itemsFlatListings, vendors] = await Promise.all([
+          getShit($axios, {
+            itemType,
+            subType,
+          }),
+          // lazy, this should be cached...
+          $axios
+            .get(BASE_API_URL + 'graphql', {
+              params: {
+                query: '{vendors{name}}',
+                opName: 'vendors',
+              },
+            })
+            .then(f => f.data.data.vendors),
+        ])
+
+        return {
+          vendors,
+          itemsFlatListings,
+        }
       }
     } catch (e) {
       console.error('asyncData ERROR', e, e.config)
@@ -163,7 +255,6 @@ itemsFlatListings(
           statusCode: 0,
         })
       }
-      console.error('asyncData ERROR', e)
 
       return {
         error: e,

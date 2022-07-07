@@ -1,4 +1,4 @@
-const { Nuxt } = require('nuxt')
+import { Nuxt } from 'nuxt'
 
 // Add Nuxt
 import config from './nuxt.config'
@@ -6,7 +6,7 @@ import config from './nuxt.config'
 config.dev = false
 const nuxt = new Nuxt(config)
 
-module.exports.nuxt = (event, context, cb) => {
+export const nuxt = (event, context, cb) => {
   nuxt.ready().then(n => {
     //once nuxt is ready, render the given route
     return n

@@ -1,7 +1,7 @@
 import { Component } from 'vue-property-decorator'
 import Vue, { ComponentOptions } from 'vue'
 
-import '@nuxt/vue-app'
+//import '@nuxt/vue-app'
 declare module 'vue/types/vue' {
   interface Vue {
     apollo: any
