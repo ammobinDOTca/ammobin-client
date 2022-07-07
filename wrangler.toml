@@ -13,3 +13,15 @@ entry-point = ".output"
 [build]
 command = "NITRO_PRESET=cloudflare npm run build"
 upload.format = "service-worker"
+
+[env.ca_beta]
+name = "ammobin_nuxt_ca_beta"
+
+[env.us_beta]
+name = "ammobin_nuxt_us_beta"
+
+[env.ca_prod]
+name = "ammobin_nuxt_ca_prod"
+
+[env.us_prod]
+name = "ammobin_nuxt_us_prod"

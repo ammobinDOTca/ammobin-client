@@ -171,12 +171,12 @@ export default defineNuxtConfig({
     display: 'standalone',
   },
   pwa: {
-    workbox: prod
-      ? {
-          importScripts: ['custom-service-worker.js'],
-          globIgnores: ['sw.js', '**/workbox*.js'],
-        }
-      : false,
+    workbox: false
+    // {
+    //   importScripts: ['custom-service-worker.js'],
+    //   globIgnores: ['sw.js', '**/workbox*.js'],
+    // }
+    //: false,
   },
   generate: {
     crawler: false,
