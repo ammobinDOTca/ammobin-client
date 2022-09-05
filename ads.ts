@@ -11,7 +11,7 @@ export function getConfig(
 
   const INFO_LINK = `/${locale}/sponsorship`
 
-  if (REGION != 'CA' || new Date() > new Date('6/30/2022')) {
+  if (REGION != 'CA' || new Date() > new Date('09/01/2023')) {
     if (page === 'LANG' || page === 'index')
       return {
         img: require('~/assets/TEST_SIDE.png'),
