@@ -35,17 +35,11 @@
     "build:dev": "PROD=false nuxi build --universal",
     "start": "HOST=0.0.0.0 NODE_ENV=production PROD=true nuxi start",
     "start-beta": "HOST=0.0.0.0 PROD=false nuxi start",
-    "generate": "PROD=true REGION=CA nuxi generate && REGION=CA node ./generate-sitemap.js",
-    "generate:us": "PROD=true REGION=US nuxi generate && REGION=US node ./generate-sitemap.js",
-    "generate:us:beta": "PROD=false REGION=US nuxi generate",
-    "generate-beta": "PROD=false nuxi generate",
-    "upload": "node ./upload.js",
-    "format": "pretty-quick"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick"
-    }
+    "generate": "nuxi generate && node ./generate-sitemap.js",
+    "generate:ca:prod": "PROD=true REGION=CA nuxi generate && REGION=CA node ./generate-sitemap.js",
+    "generate:ca:beta": "PROD=false REGION=CA nuxi generate && REGION=CA node ./generate-sitemap.js",
+    "generate:us:prod": "PROD=true REGION=US nuxi generate && REGION=US node ./generate-sitemap.js",
+    "generate:us:beta": "PROD=false REGION=US nuxi generate"
   },
   "browserslist": [
     "last 2 versions",
