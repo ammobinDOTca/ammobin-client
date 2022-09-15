@@ -24,7 +24,7 @@
       </div>
       <div>
         {{ $t('about.sendEmail') }}
-        <a :href="mail">{{ email }}</a>
+        <a :href="mail">{{ email }}</a>(<a href="/pub_key.asc">PGP key</a>)
       </div>
     </div>
 

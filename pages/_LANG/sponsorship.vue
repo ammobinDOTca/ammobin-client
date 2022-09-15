@@ -15,7 +15,7 @@
 
       <div class="pure-u-1 p">
         interested? email
-        <a href="mailto:contact@ammobin.ca">contact@ammobin.ca</a>
+        <a href="mailto:contact@ammobin.ca">contact@ammobin.ca</a>(<a href="/pub_key.asc">PGP key</a>)
       </div>
     </div>
   </div>
