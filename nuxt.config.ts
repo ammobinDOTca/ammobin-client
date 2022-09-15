@@ -94,7 +94,7 @@ export default defineNuxtConfig({
   // modern: 'client',
   modules: [
     //'@nuxt/typescript-build',
-    '@nuxtjs/pwa',
+    // '@nuxtjs/pwa',
     '@nuxtjs/axios',
   ],
   build: {
@@ -158,6 +158,9 @@ export default defineNuxtConfig({
     { src: '~/plugins/performance', ssr: false },
     { src: '~/plugins/error-reporter', ssr: false },
   ],
+  buildModules: [
+    '@nuxtjs/pwa',
+  ],
   /*
   disabled while working on api memory useage
   cache: {
@@ -171,7 +174,11 @@ export default defineNuxtConfig({
     display: 'standalone',
   },
   pwa: {
-    workbox: false
+    icon: {
+      fileName: `icon-${region}.png`
+    },
+    // meta: {
+    // }
     // {
     //   importScripts: ['custom-service-worker.js'],
     //   globIgnores: ['sw.js', '**/workbox*.js'],
