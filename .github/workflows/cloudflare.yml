@@ -37,16 +37,30 @@ jobs:
         env:
           NITRO_PRESET: cloudflare
 
-      - name: beta Publish to Cloudflare
+      - name: ca beta Publish to Cloudflare
         uses: cloudflare/wrangler-action@1.3.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           wranglerVersion: '1.19.12'
           environment: ca_beta
+          
+      - name: usa beta Publish to Cloudflare
+        uses: cloudflare/wrangler-action@1.3.0
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          wranglerVersion: '1.19.12'
+          environment: us_beta
 
-      - name: Publish to Cloudflare
+      - name: CA PROD Publish to Cloudflare
         uses: cloudflare/wrangler-action@1.3.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           wranglerVersion: '1.19.12'
           environment: ca_prod
+          
+      - name: US PROD Publish to Cloudflare
+        uses: cloudflare/wrangler-action@1.3.0
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          wranglerVersion: '1.19.12'
+          environment: us_prod
