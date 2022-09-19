@@ -36,6 +36,8 @@ jobs:
         run: npm run build
         env:
           NITRO_PRESET: cloudflare
+          REGION: CA
+          PROD: "true"
 
       
       - name: CA PROD Publish to Cloudflare
