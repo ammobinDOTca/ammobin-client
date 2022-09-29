@@ -177,8 +177,7 @@ export default defineNuxtConfig({
     icon: {
       fileName: `icon-${region}.png`
     },
-    // meta: {
-    // }
+    workbox: true
     // {
     //   importScripts: ['custom-service-worker.js'],
     //   globIgnores: ['sw.js', '**/workbox*.js'],

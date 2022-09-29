@@ -1,4 +1,4 @@
-name: cloudflare
+name: cloudflare-ca-prod
 
 on:
   push:
@@ -36,17 +36,18 @@ jobs:
         run: npm run build
         env:
           NITRO_PRESET: cloudflare
+          REGION: CA
+          PROD: "true"
 
-      - name: beta Publish to Cloudflare
-        uses: cloudflare/wrangler-action@1.3.0
-        with:
-          apiToken: ${{ secrets.CF_API_TOKEN }}
-          wranglerVersion: '1.19.12'
-          environment: ca_beta
-
-      - name: Publish to Cloudflare
+      
+      - name: CA PROD Publish to Cloudflare
         uses: cloudflare/wrangler-action@1.3.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           wranglerVersion: '1.19.12'
           environment: ca_prod
+        env:
+          PROD: "true"
+          REGION: CA
+          
+     
