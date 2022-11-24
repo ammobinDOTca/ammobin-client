@@ -115,6 +115,7 @@ function shuffle(input: any[]): any[] {
           query: `{vendors{ name logo link background }}`,
           opName: 'vendors',
         },
+        headers:{'content-type':'application/json'}
       })
       const { vendors } = f.data.data
       // store.commit('setVendors', vendors)
