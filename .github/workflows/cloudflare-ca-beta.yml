@@ -37,7 +37,7 @@ jobs:
           REGION: CA
           PROD: 'false'
 
-      - name: CA PROD Publish to Cloudflare
+      - name: CA BETA Publish to Cloudflare
         uses: cloudflare/wrangler-action@1.3.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
