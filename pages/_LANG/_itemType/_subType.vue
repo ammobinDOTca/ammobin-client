@@ -99,6 +99,7 @@ itemsFlatListings(
         sortOrder,
       },
     },
+    headers:{'content-type':'application/json'}
   })
 
   const {

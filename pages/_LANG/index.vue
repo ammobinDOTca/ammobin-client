@@ -70,7 +70,8 @@ declare const REGION: string
     try {
       const f = await $axios.get(BASE_API_URL + 'graphql', {
         params: { query: `{vendors{background}}`, opName: 'vendors' },
-      })
+        headers:{'content-type':'application/json'} // https://www.apollographql.com/docs/apollo-server/security/cors/#preventing-cross-site-request-forgery-csrf
+      }) 
       return {
         vendorCount: f.data.data.vendors.length,
       }
