@@ -2,7 +2,7 @@
 # build: pull in + install everything to run nuxt build
 ####
 
-FROM node:12-alpine as build
+FROM node:18-alpine as build
 RUN apk --no-cache add wget git g++ make python
 
 WORKDIR /build
@@ -17,7 +17,7 @@ RUN npm run build
 ########
 # run: do production install + copy build output of build container and run the node server
 ########
-FROM node:12-alpine as main
+FROM node:18-alpine as main
 
 WORKDIR /build
 COPY --from=build /build/package*.json /build/

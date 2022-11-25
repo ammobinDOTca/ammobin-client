@@ -1,8 +1,5 @@
-import { NuxtConfig } from '@nuxt/types'
 import { generateRoutes } from './generate-routes'
-import { defineNuxtConfig } from '@nuxt/bridge'
 
-const { DefinePlugin } = require('webpack')
 const { join } = require('path')
 
 // const DEV_API = 'http://localhost:8080/api/'
@@ -14,7 +11,7 @@ const DOMAIN = `${prod ? '' : 'beta.'}ammobin.${region.toLowerCase()}`
 const BASE_URL = `https://${DOMAIN}`
 const NITRO_PRESET = process.env.NITRO_PRESET //|| '_'
 
-function getHead(region): any[] {
+function getHead(region:string): any[] {
   switch (region) {
     case 'CA':
       return [
@@ -67,7 +64,7 @@ function getHead(region): any[] {
   }
 }
 
-function getLinks(region) {
+function getLinks(region:string) {
   const links: any[] = [
     { rel: 'alternate', hreflang: 'en-ca', href: `${BASE_URL}/en` },
     { rel: 'alternate', hreflang: 'x-default', href: `${BASE_URL}/en` },
@@ -95,20 +92,54 @@ export default defineNuxtConfig({
   modules: [
     //'@nuxt/typescript-build',
     // '@nuxtjs/pwa',
-    '@nuxtjs/axios',
+  //  '@nuxtjs/axios',
+
+
+      '@nuxtjs/i18n',
+
+
+
   ],
+  i18n: {
+    // add `vueI18n` option to `@nuxtjs/i18n` module options
+    vueI18n: {
+      legacy: false,
+      locale: 'en',
+      messages: {
+        en: {
+          welcome: 'Welcome'
+        },
+        fr: {
+          welcome: 'Bienvenue'
+        }
+      }
+    }
+  },
+  runtimeConfig: {
+    // Private config that is only available on the server
+    apiSecret: '123',
+    // Config within public will be also exposed to the client
+    public: {
+      DOMAIN: `"${DOMAIN}"`,
+          BASE_URL: `"${BASE_URL}"`,
+          BASE_API_URL: `"${BASE_URL}/api/"`, //`"${DEV_API}"`,
+          PROD: prod ? 'true' : 'false',
+          REGION: `"${region}"`,
+          NITRO_PRESET: `"${NITRO_PRESET}"`,
+          }
+  },
   build: {
-    plugins: [
-      new DefinePlugin({
-        DOMAIN: `"${DOMAIN}"`,
-        BASE_URL: `"${BASE_URL}"`,
-        BASE_API_URL: `"${BASE_URL}/api/"`, //`"${DEV_API}"`,
-        PROD: prod ? 'true' : 'false',
-        REGION: `"${region}"`,
-        NITRO_PRESET: `"${NITRO_PRESET}"`,
-      }),
-    ],
-    extractCSS: true,
+    // plugins: [
+    //   new DefinePlugin({
+    //     DOMAIN: `"${DOMAIN}"`,
+    //     BASE_URL: `"${BASE_URL}"`,
+    //     BASE_API_URL: `"${BASE_URL}/api/"`, //`"${DEV_API}"`,
+    //     PROD: prod ? 'true' : 'false',
+    //     REGION: `"${region}"`,
+    //     NITRO_PRESET: `"${NITRO_PRESET}"`,
+    //   }),
+    // ],
+    // extractCSS: true,
 
     // extend: (config, { loaders: { imgUrl } }) => {
     //   config.node = {
@@ -117,40 +148,51 @@ export default defineNuxtConfig({
     //   imgUrl.limit = 1 // no inline imgs (csp wont allow them)
     // },
   },
-  loading: {
-    color: region === 'CA' ? '#4FC08D' : '#0A3161', // ToDO
-    failedColor: '#bf5050',
-    duration: 2000,
-    continuous: true,
-  },
+  // loading: {
+  //   color: region === 'CA' ? '#4FC08D' : '#0A3161', // ToDO
+  //   failedColor: '#bf5050',
+  //   duration: 2000,
+  //   continuous: true,
+  // },
   css: [
     `purecss/build/pure${process.env.PROD ? '-min' : ''}.css`,
     `purecss/build/grids-responsive${process.env.PROD ? '-min' : ''}.css`,
     join(__dirname, 'css/main.css'),
   ],
-  head: {
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
-      {
-        name: 'image',
-        content: `${BASE_URL}/icon-${region}.png`,
-      },
-      ...getHead(region),
-    ],
-    link: [...getLinks(region)],
-  },
-  router: {
-    middleware: ['i18n', 'pageview-tracker'],
-    extendRoutes(routes, resolve) {
-      if (region === 'CA') {
-        routes.unshift(<any>{
-          name: 'fr-home',
-          path: '/fr',
-          component: resolve(__dirname, 'pages/index.vue'),
-        })
-      }
-    },
+  // head: {
+  //   meta: [
+  //     { charset: 'utf-8' },
+  //     { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
+  //     {
+  //       name: 'image',
+  //       content: `${BASE_URL}/icon-${region}.png`,
+  //     },
+  //     ...getHead(region),
+  //   ],
+  //   link: [...getLinks(region)],
+  // },
+  // router: {
+  //   middleware: ['i18n', 'pageview-tracker'],
+  //   extendRoutes(routes, resolve) {
+  //     if (region === 'CA') {
+  //       routes.unshift(<any>{
+  //         name: 'fr-home',
+  //         path: '/fr',
+  //         component: resolve(__dirname, 'pages/index.vue'),
+  //       })
+  //     }
+  //   },
+  // },
+  hooks: {
+    // 'pages:extend'(routes, resolve) {
+    //   if (region === 'CA') {
+    //     routes.unshift(<any>{
+    //       name: 'fr-home',
+    //       path: '/fr',
+    //       component: resolve(__dirname, 'pages/index.vue'),
+    //     })
+    //   }
+    // }
   },
   plugins: [
     '~/plugins/i18n',
@@ -158,38 +200,38 @@ export default defineNuxtConfig({
     { src: '~/plugins/performance', ssr: false },
     { src: '~/plugins/error-reporter', ssr: false },
   ],
-  buildModules: [
-    '@nuxtjs/pwa',
-  ],
+  // buildModules: [
+  //   '@nuxtjs/pwa',
+  // ],
   /*
   disabled while working on api memory useage
   cache: {
      max: 1000,
      maxAge: 86400000
    }, */
-  manifest: {
-    start_url: '/?launcher=true',
-    background_color: '#f4f4f4',
-    theme_color: region === 'US' ? '#6358ff' : '#41b883',
-    display: 'standalone',
-  },
-  pwa: {
-    icon: {
-      fileName: `icon-${region}.png`
-    },
-    workbox: true
-    // {
-    //   importScripts: ['custom-service-worker.js'],
-    //   globIgnores: ['sw.js', '**/workbox*.js'],
-    // }
-    //: false,
-  },
-  generate: {
-    crawler: false,
-    interval: 500,
-    routes: ['/', ...generateRoutes(prod && region === 'CA', region)], // TODO update for launch
-    subFolders: false, // https://nuxtjs.org/api/configuration-generate/#subfolders
-    // we want centerfire.html NOT centerfire/index.html (for better )
-  },
+  // manifest: {
+  //   start_url: '/?launcher=true',
+  //   background_color: '#f4f4f4',
+  //   theme_color: region === 'US' ? '#6358ff' : '#41b883',
+  //   display: 'standalone',
+  // },
+  // pwa: {
+  //   icon: {
+  //     fileName: `icon-${region}.png`
+  //   },
+  //   workbox: true
+  //   // {
+  //   //   importScripts: ['custom-service-worker.js'],
+  //   //   globIgnores: ['sw.js', '**/workbox*.js'],
+  //   // }
+  //   //: false,
+  // },
+  // generate: {
+  //   crawler: false,
+  //   interval: 500,
+  //   routes: ['/', ...generateRoutes(prod && region === 'CA', region)], // TODO update for launch
+  //   subFolders: false, // https://nuxtjs.org/api/configuration-generate/#subfolders
+  //   // we want centerfire.html NOT centerfire/index.html (for better )
+  // },
   telemetry: false,
 })

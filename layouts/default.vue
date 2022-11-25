@@ -110,17 +110,29 @@
 </template>
 
 <script lang="ts">
-import '@nuxtjs/axios'
 
-import { Component, Vue } from 'vue-property-decorator'
 import { getCountry } from '~/helpers'
-// declare const BASE_URL: string
-// declare const DOMAIN: string
-// declare const REGION: string
+declare const BASE_URL: string
+declare const DOMAIN: string
+declare const REGION: string
 
-@Component({
-  head() {
-    return {
+// @Component({
+//
+
+
+export default {
+  data(){
+    return {DOMAIN,
+    REGION,
+    isCA: REGION==='CA',
+    isUS:REGION === 'US',
+    mail:  'mailto:' + 'contact' + '@' + 'ammobin.ca'
+    }
+  },
+
+  head(){
+    return{
+
       title: DOMAIN,
       meta: [
         {
@@ -142,30 +154,30 @@ import { getCountry } from '~/helpers'
             url: BASE_URL,
             sameAs: [
               'https://github.com/ammobindotca',
-              'https://www.instagram.com/ammobin.ca',
             ],
           }),
           type: 'application/ld+json',
         },
       ],
     } as any
-  },
-})
-export default class Layout extends Vue {
+  }
+
+
   // todo: attach correct types
-  DOMAIN = DOMAIN
-  REGION = REGION
-  isCA = REGION === 'CA'
-  isUS = REGION === 'US'
-  get currentPage() {
-    return this.$route.path
-  }
+  // DOMAIN = DOMAIN
+  // REGION = REGION
+  // isCA = REGION === 'CA'
+  // isUS = REGION === 'US'
 
-  mail = 'mailto:' + 'contact' + '@' + 'ammobin.ca' // this probably will do nothing to stop bots...
+  // get currentPage() {
+  //   return this.$route.path
+  // }
 
-  path(url) {
-    return '/' + this.$i18n.locale + url
-  }
+  // mail = 'mailto:' + 'contact' + '@' + 'ammobin.ca' // this probably will do nothing to stop bots...
+
+  // path(url) {
+  //   return '/' + this.$i18n.locale + url
+  // }
 }
 </script>
 
