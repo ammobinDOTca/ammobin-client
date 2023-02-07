@@ -24,10 +24,6 @@
           <nuxt-link :to="{ path: `/${locale}/${v.itemType}/${v.subType}` }">{{ v.subType }}</nuxt-link>
         </div>
       </div>
-      <h4>
-        {{ $t('home.alternativeRegion', { country: altCountry }) }}
-        <a :href="altDomain">{{ altDomain }}</a>
-      </h4>
 
       <div class="margin-y m-t-30">
         <a
