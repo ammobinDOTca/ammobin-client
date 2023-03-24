@@ -33,7 +33,8 @@ export function getConfig(
           href: `https://canadafirstammo.ca/canadian-made/?${REF('mobile_FR')}`,
         }
         : {
-          img: 'https://store-udt1amkaxd.mybigcommerce.com/content/ammobin/home-desktop-fr.png',
+          //img: 'https://store-udt1amkaxd.mybigcommerce.com/content/ammobin/home-desktop-fr.png',
+          img: require('~/assets/home_fr.gif'),
           href: `https://canadafirstammo.ca/canadian-made/?${REF('desktop_FR')}`,
         }
     } else {
@@ -51,7 +52,8 @@ export function getConfig(
         href: `https://canadafirstammo.ca/canadian-made/?${REF('mobile_homepage')}`,
       }
       : {
-        img: 'https://store-udt1amkaxd.mybigcommerce.com/content/ammobin/home-desktop.png',
+        // img: 'https://store-udt1amkaxd.mybigcommerce.com/content/ammobin/home-desktop.png',
+        img: require('~/assets/home_en.gif'),
         href: `https://canadafirstammo.ca/canadian-made/?${REF('homepage')}`,
       }
   }
