@@ -1,0 +1,4 @@
+Contact: contact@ammobin.ca
+Preferred-Languages: en
+Canonical: https://ammobin.ca/security.txt
+
