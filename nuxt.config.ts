@@ -10,7 +10,7 @@ const { join } = require('path')
 const prod = process.env.PROD === 'true'
 
 const region = process.env.REGION || 'CA'
-const DOMAIN = `${prod ? '' : 'beta.'}ammobin.${region.toLowerCase()}`
+const DOMAIN = 'test.ammobin.ca' //`${prod ? '' : 'beta.'}ammobin.${region.toLowerCase()}`
 const BASE_URL = `https://${DOMAIN}`
 const NITRO_PRESET = process.env.NITRO_PRESET //|| '_'
 

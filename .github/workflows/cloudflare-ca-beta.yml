@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node: [16]
+        node: [20]
 
     steps:
       - uses: actions/setup-node@v1
@@ -31,18 +31,18 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build:dev
+        run: npm run build
         env:
           NITRO_PRESET: cloudflare
           REGION: CA
-          PROD: 'false'
+          PROD: 'true'
 
       - name: CA BETA Publish to Cloudflare
-        uses: cloudflare/wrangler-action@1.3.0
+        uses: cloudflare/wrangler-action@2.0.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           wranglerVersion: '1.19.12'
-          environment: ca_beta
+          environment: test
         env:
-          PROD: 'false'
+          PROD: 'true'
           REGION: CA

@@ -25,3 +25,5 @@ name = "ammobin_nuxt_ca_prod"
 
 [env.us_prod]
 name = "ammobin_nuxt_us_prod"
+[env.test]
+name = "ammobin-client-test"
