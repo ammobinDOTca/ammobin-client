@@ -1,6 +1,5 @@
 name = "ammobin_nuxt_v3"
 type = "javascript"
-account_id = "fcefb1f6a2e21eb22824e596b6a3f777"
 workers_dev = true
 route = ""
 zone_id = ""
