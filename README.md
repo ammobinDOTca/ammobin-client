@@ -1,83 +1,82 @@
-# ammobin.ca has been shut down
+# AmmoBin.ca [![Greenkeeper badge](https://badges.greenkeeper.io/ammobinDOTca/ammobin-client.svg)](https://greenkeeper.io/) [![docker pulls](https://img.shields.io/docker/pulls/ammobindotca/ammobin-client.svg)](https://hub.docker.com/r/ammobindotca/ammobin-client 'DockerHub')
 
-the code on the master branch is the shutdown version of the site
+The meta search site for ammo prices across Canada. built with [nuxt.js](https://nuxtjs.org) (and thus vue.js).
 
-if you want to see what it looked like (or steal the code) [goto here](https://github.com/ammobinDOTca/ammobin-client/releases/tag/LAST_LIVE_VERSION_OF_SITE# )
+![Screenshot-2017-9-27 The place to view the best online ammo prices across Canada.png](https://raw.githubusercontent.com/ammobinDOTca/ammobin-client/master/Screenshot-2017-9-27%20The%20place%20to%20view%20the%20best%20online%20ammo%20prices%20across%20Canada%20.png)
 
-----
+## how to run
 
-# Nuxt 3 Minimal Starter
+1.  `docker run ammobindotca/ammo-bin-client -p 3000:3000`
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## how to run locally
 
-## Setup
+- `npm i`
+- `PROD=true npm run dev` (will target prod api)
 
-Make sure to install the dependencies:
+##
 
-```bash
-# npm
-npm install
+`AWS_PROFILE=beta BUCKET_NAME=beta-ammobin-ca node upload.js`
 
-# pnpm
-pnpm install
+## todo
 
-# yarn
-yarn install
+- https://github.com/WICG/BackgroundSync/blob/master/explainer.md
 
-# bun
-bun install
-```
+## contributing
 
-## Development Server
+- do some work
+- submit pr
 
-Start the development server on `http://localhost:3000`:
+## vendors to add
 
-```bash
-# npm
-npm run dev
+- https://www.italiansportinggoods.com/ammunition/rifle.html
+- https://internationalshootingsupplies.com/
+- https://shophighfalls.com/collections/rifle-ammo?view=ALL (css rules hinder pulling data. will need to update scraper)
+- http://shop.sylvestresportinggoods.com/Rifle-Ammunition/?p=catalog&mode=catalog&parent=506&pg=1&CatalogSetSortBy=price
 
-# pnpm
-pnpm run dev
+- http://www.grouseriver.com/Hunting-Shooting/Ammunition
+- https://blue-wolf-firearms-canada.myshopify.com/collections/rimfire
+- https://gunworx.ca/collections/ammunition
+- https://www.latulippe.com/en/our-stores/
+- http://doctordeals.ca/product-category/smoking-gun/ammunition/rifle-ammo/
+- http://store.easthilloutdoors.com/ammo/bulk-ammo
 
-# yarn
-yarn dev
+* http://www.danchasse.com/shop_free/index.php?categoryID=109 (je ne parle en francis)
 
-# bun
-bun run dev
-```
+# low priority
 
-## Production
+- http://greendiamondoutfitters.ca/home/products_grid/category/rifle-ammunition/P24
+- http://practicalperformance.ca/accessories/ammunition/
+- https://www.greatnorthprecision.com/collections/rifle-ammunition-1
+- http://targetshootingproducts.com/index.php?cPath=10&osCsid=b5dd02944271605ca93e19ea903cd3d2
+- http://www.thegunroom.ca/index.php?route=product/category&path=85 (6 items
 
-Build the application for production:
+## blocked
 
-```bash
-# npm
-npm run build
+- http://westrifle.com/wrstore/index.php?main_page=index&cPath=2 (everything was sold out nov 2017)
+- https://eccfirearms.blogspot.ca/2011/02/ammunition-ecc-firearms-has-widest.html (cant buy oneline as of feb 17 2018)
+- https://tandtarms.com/product-category/ammo/
+- http://www.armseast.ca/surplus_ammunition/ no items
+- https://selectshootingsupplies.com/pages/ammunition no online sales
+- https://www.precisionoptics.net/category_s/761.htm html is too nasty to bother with
 
-# pnpm
-pnpm run build
+(see commented out retailers in constants.ts for disabled integrations)
 
-# yarn
-yarn build
+## skipped
 
-# bun
-bun run build
-```
+- wholesalesports.com
+- http://www.prairieshotammo.com/find-a-dealer-3.html (but should review these retailers to see if they have online shops)
+- http://www.generalgun.ca/ammunition only 1 item
+- https://www.kellysonline.ca/collections/ammunition only 1 item
+- https://armtac.com/category/ammunition only one 1 item
 
-Locally preview production build:
+## incomplete vendors
 
-```bash
-# npm
-npm run preview
+- none
 
-# pnpm
-pnpm run preview
+## docker hub
 
-# yarn
-yarn preview
+https://hub.docker.com/r/ammobindotca/ammobin-client/
 
-# bun
-bun run preview
-```
+## regionalize work
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- update
