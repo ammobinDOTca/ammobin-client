@@ -1,8 +1,8 @@
 name: cloudflare-ca-beta
 
 on:
-  pull_request:
-
+  push:
+    branches: ['master']
 jobs:
   ci:
     runs-on: ${{ matrix.os }}
