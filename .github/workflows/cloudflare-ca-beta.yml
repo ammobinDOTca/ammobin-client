@@ -37,10 +37,11 @@ jobs:
           REGION: CA
           PROD: 'true'
 
-      - name: CA BETA Publish to Cloudflare
+      - name: Publish to Cloudflare
         uses: cloudflare/wrangler-action@2.0.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
           wranglerVersion: '1.19.12'
           environment: test
         env:
