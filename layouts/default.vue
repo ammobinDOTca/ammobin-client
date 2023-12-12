@@ -91,8 +91,8 @@
     <nuxt />
     <footer class="footer">
       {{ DOMAIN }} {{ new Date().getFullYear() }} <a :href="mail">Contact</a
-      ><span />(<a href="/pub_key.asc">PGP key</a>)
-      <div>BTC: bc1q99354qy5n2pq7y8hqnsttql8crjs0eugx6upvh</div>
+      ><span />
+      
       <div>
         <a href="https://github.com/ammobindotca" target="_blank" rel="noopener"
           >github</a
@@ -141,8 +141,7 @@ import { getCountry } from '~/helpers'
             name: DOMAIN,
             url: BASE_URL,
             sameAs: [
-              'https://github.com/ammobindotca',
-              'https://www.instagram.com/ammobin.ca',
+              'https://github.com/ammobindotca'
             ],
           }),
           type: 'application/ld+json',
@@ -161,7 +160,7 @@ export default class Layout extends Vue {
     return this.$route.path
   }
 
-  mail = 'mailto:' + 'contact' + '@' + 'ammobin.ca' // this probably will do nothing to stop bots...
+  mail = 'mailto:' + 'TODO' // this probably will do nothing to stop bots...
 
   path(url) {
     return '/' + this.$i18n.locale + url

@@ -8,7 +8,7 @@
       <br />
       <div>
         feel free to complain to
-        <a :href="mailto">contact@ammobin.ca</a>
+        <a :href="mailto">TODO</a>
         about this error.
         <br />please include the time + which browser + which page + error displayed below in your email
       </div>
@@ -61,7 +61,7 @@ export default class ErrorPage extends Vue {
       error=${this.error.statusCode}
       ${this.error.message}`
     )
-    return `mailto:contact@ammobin.ca?subject=${subject}&body=${body}`
+    return `mailto:TODO?subject=${subject}&body=${body}`
   }
 }
 </script>
